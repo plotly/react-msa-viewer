@@ -18,7 +18,8 @@
   "license": "MIT",
   "version": "0.0.7",
   "private": false,
-  "main": "dist/index.js",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
   "dependencies": {
     "create-react-ref": "^0.1.0",
     "lodash-es": "^4.17.11",
@@ -31,9 +32,11 @@
     "stat.seqs": "^0.1.21"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "rollup -w -c rollup.umd.config",
     "build": "react-scripts build",
-    "build:lib": "NODE_ENV=production webpack",
+    "build:lib-umd": "NODE_ENV=production rollup -c rollup.umd.config",
+    "build:lib-esm": "NODE_ENV=production rollup -c rollup.esm.config",
+    "build:lib": "npm run build:lib-umd && npm run build:lib-esm",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
@@ -42,6 +45,11 @@
     "docs": "./docs/build"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^3.4.11",
     "@storybook/addon-knobs": "^3.4.11",
     "@storybook/addon-links": "^3.4.11",
@@ -54,6 +62,11 @@
     "react-docgen": "^2.21.0",
     "react-docgen-external-proptypes-handler": "^1.0.0",
     "react-dom": "^15.4.2",
-    "react-scripts": "1.1.4"
-  }
+    "react-scripts": "1.1.4",
+    "rollup": "^0.66.6",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-serve": "^0.6.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "sideEffects": false
 }
