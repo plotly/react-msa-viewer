@@ -127,6 +127,7 @@ Tooltip.defaultProps = {
 storiesOf('Events', module)
   .add('onResidue', () => (
     <MSAViewer sequences={sequences} >
+      Check the console or the "Action Logger" tab for the resulting events.
       <SequenceViewer
         onResidueMouseEnter={storyAction('onResidueMouseEnter')}
         onResidueMouseLeave={storyAction('onResidueMouseLeave')}
@@ -145,6 +146,7 @@ storiesOf('Events', module)
       render() {
         return (
           <div>
+            Click on a residue:
             <MSAViewer sequences={sequences} >
               <SequenceViewer
                 onResidueClick={this.onResidueClick}
@@ -189,10 +191,9 @@ storiesOf('Events', module)
           tooltipPosition,
           direction,
         });
-        console.log(tooltipPosition);
       }
       onResidueMouseLeave = (e) => {
-        //this.setState({lastEvent: undefined});
+        this.setState({lastEvent: undefined});
       }
       render() {
         return (
