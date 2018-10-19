@@ -21,6 +21,7 @@ class Marker extends PureComponent {
       ...this.props.style,
       width: width,
       display: "inline-block",
+      textAlign: "center",
     }
     return (
       <div {...otherProps}>
