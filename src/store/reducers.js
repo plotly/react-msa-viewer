@@ -13,14 +13,29 @@ import { combineReducers } from 'redux'
 import calculateSequencesState from './calculateSequencesState';
 import {ColorScheme, isColorScheme} from '../utils/ColorScheme';
 
-const position = (state = {}, {type, data}) => {
-  switch(type){
-    case types.POSITION_UPDATE:
-      return {xPos: data.xPos, yPos:data.yPos};
-    default:
+import {
+  floor,
+  clamp,
+} from 'lodash-es';
+
+function createReducer(initialState, handlers) {
+  return function reducer(state = initialState, {type, data}) {
+    if (handlers.hasOwnProperty(type)) {
+      return handlers[type](state, data);
+    } else {
       return state;
-  }
+    }
+  };
 }
+
+const position = createReducer({
+  xPos: 0,
+  yPos: 0,
+}, {
+  [types.POSITION_UPDATE]: ({xPos, yPos}) => {
+    return {xPos, yPos};
+  }
+});
 
 function checkColorScheme(state) {
   if (isColorScheme(state.colorScheme)) {
@@ -58,9 +73,53 @@ const sequences = (state = {}, {type, data}) => {
   }
 }
 
+const sequenceStats = (state = {
+    yPos: 0, xPos: 0,
+    sequenceLength: 0,
+  }, {type, data, key, value}) => {
+  switch(type){
+    case types.PROPS_UPDATE:
+      if (!(key === "tileHeight" || key === "tileWidth")) {
+        return state;
+      }
+      state = {
+          ...state,
+        [key]: value,
+      }
+      break;
+    case types.POSITION_UPDATE:
+      state = {
+        ...state,
+        ...data, // add {xPos, yPos}
+      };
+      break;
+    case types.SEQUENCES_UPDATE:
+      state = {
+        ...state,
+        sequenceLength: data.length,
+        maxLength: data.reduce((m, e) => Math.max(m, e.sequence.length), 0),
+      };
+      break;
+    default:
+      return state;
+  }
+  state.currentViewSequence = clamp(
+    floor(state.yPos / state.tileHeight),
+    0,
+    state.sequenceLength - 1
+  );
+  state.currentViewSequencePosition = clamp(
+    floor(state.xPos / state.tileWidth),
+    0,
+    state.maxLength,
+  );
+  return state;
+}
+
 export const reducers = combineReducers({
   position,
   props,
   sequences,
+  sequenceStats,
 });
 export default reducers;
