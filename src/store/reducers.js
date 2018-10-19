@@ -79,7 +79,6 @@ const sequenceStats = (prevState = {
     case actions.updateProps.key:
     case actions.updatePosition.key:
     case actions.updateSequences.key:
-      console.log("a");
       if (state.props && state.props.tileHeight && state.props.tileWidth &&
           state.position && state.sequences) {
         const stats = {};
@@ -93,7 +92,6 @@ const sequenceStats = (prevState = {
           0,
           state.sequences.maxLength,
         );
-        console.log(stats);
         return stats;
       }
       break;
