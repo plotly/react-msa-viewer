@@ -6,23 +6,35 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import * as types from './actionTypes'
+export const types = {
+  POSITION_UPDATE: 'POSITION_UPDATE',
+  PROPS_UPDATE: 'PROPS_UPDATE',
+  SEQUENCES_UPDATE: 'SEQUENCES_UPDATE',
+};
 
-export const updatePosition = view => ({
-  type: types.POSITION_UPDATE,
-  position: {
-    xPos: view.xPos,
-    yPos: view.yPos,
+/**
+ * Creates a redux action of the following payload:
+ * {
+ *  type,
+ *  ...forwardedArgNames,
+ * }
+ * i.e. its payload is the given `type` and the forwarded argument names from the actions payload.
+ * If no arguments are provided, the payload is forwarded as `data`.
+ */
+function makeActionCreator(type, ...argNames) {
+  return function (...args) {
+    const action = { type };
+    if (argNames.length === 0) {
+      action.data = args[0];
+      return action;
+    }
+    argNames.forEach((arg, index) => {
+      action[argNames[index]] = args[index];
+    });
+    return action;
   }
-});
+}
 
-export const updateProps = data => ({
-  type: types.PROPS_UPDATE,
-  key: data.key,
-  value: data.value,
-});
-
-export const updateSequences = data => ({
-  type: types.SEQUENCES_UPDATE,
-  sequences: data,
-});
+export const updatePosition = makeActionCreator(types.POSITION_UPDATE);
+export const updateProps = makeActionCreator(types.PROPS_UPDATE, 'key', 'value');
+export const updateSequences = makeActionCreator(types.SEQUENCES_UPDATE);

@@ -6,17 +6,17 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import * as types from './actionTypes'
+import { types } from './actions'
 
 import { combineReducers } from 'redux'
 
 import calculateSequencesState from './calculateSequencesState';
 import {ColorScheme, isColorScheme} from '../utils/ColorScheme';
 
-const position = (state = {}, action) => {
-  switch(action.type){
+const position = (state = {}, {type, data}) => {
+  switch(type){
     case types.POSITION_UPDATE:
-      return action.position;
+      return {xPos: data.xPos, yPos:data.yPos};
     default:
       return state;
   }
@@ -30,14 +30,14 @@ function checkColorScheme(state) {
   }
 }
 
-const props = (state = {}, action) => {
-  switch(action.type){
+const props = (state = {}, {type, key, value}) => {
+  switch(type){
     case types.PROPS_UPDATE:
       state = {
         ...state,
-        [action.key]: action.value
+        [key]: value
       };
-      if (action.key === "colorScheme") {
+      if (key === "colorScheme") {
         checkColorScheme(state);
       }
       return state;
@@ -49,10 +49,10 @@ const props = (state = {}, action) => {
   }
 }
 
-const sequences = (state = {}, action) => {
-  switch(action.type){
+const sequences = (state = {}, {type, data}) => {
+  switch(type){
     case types.SEQUENCES_UPDATE:
-      return calculateSequencesState(action.sequences);
+      return calculateSequencesState(data);
     default:
       return state;
   }

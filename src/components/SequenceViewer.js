@@ -11,6 +11,7 @@ import { updatePosition } from '../store/actions'
 import PropTypes from 'prop-types';
 
 import {
+  flow,
   floor,
   clamp,
   isEqual,
@@ -240,7 +241,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updatePosition: (view) => dispatch(updatePosition(view)),
+    updatePosition: flow(updatePosition, dispatch),
   }
 }
 
