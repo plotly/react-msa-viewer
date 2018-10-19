@@ -10,12 +10,19 @@ import PropTypes from 'prop-types';
 
 import { createStore } from 'redux'
 
-import { merge } from 'lodash-es';
+import {
+  each,
+  merge,
+} from 'lodash-es';
 
 import { MSAPropTypes, msaDefaultProps } from '../PropTypes';
 
 import positionReducers from '../store/reducers';
-import calculateSequencesState from './calculateSequencesState';
+import {
+  updateProps,
+  updatePosition,
+  updateSequences,
+} from '../store/actions';
 
 /**
 Initializes a new MSAViewer store-like structure.
@@ -27,12 +34,13 @@ export const createMSAStore = (props) => {
   PropTypes.checkPropTypes(MSAPropTypes, props, 'prop', 'MSAViewer');
   const propsWithDefaultValues = merge({}, msaDefaultProps, props);
   const {sequences, position, ...otherProps} = propsWithDefaultValues;
-  const customProps = {
-    props: otherProps,
-    position,
-    sequences: calculateSequencesState(props.sequences),
-  };
-  return createStore(positionReducers, customProps);
+  const store = createStore(positionReducers);
+  each(otherProps, (v, k) => {
+    store.dispatch(updateProps(k, v));
+  });
+  store.dispatch(updatePosition(position));
+  store.dispatch(updateSequences(sequences));
+  return store;
 }
 
 export default createMSAStore;
