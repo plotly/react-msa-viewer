@@ -15,7 +15,8 @@ import {
   PropTypes,
 } from '../PropTypes';
 
-import PositionBar from './PositionBar';
+//import PositionBar from './PositionBar';
+import HTMLPositionBar from './HTMLPositionBar';
 import SequenceViewer from './SequenceViewer';
 import SequenceOverview from './SequenceOverview';
 import OverviewBar from './OverviewBar';
@@ -78,7 +79,7 @@ class MSAViewerComponent extends Component {
             />
             <div>
               <OverviewBar height={overviewBarHeight} />
-              <PositionBar />
+              <HTMLPositionBar />
               <SequenceViewer {...sequenceViewerOptions} />
               <div style={separatorPadding} />
               <SequenceOverview />
