@@ -34,7 +34,10 @@ export const createMSAStore = (props) => {
   PropTypes.checkPropTypes(MSAPropTypes, props, 'prop', 'MSAViewer');
   const propsWithDefaultValues = merge({}, msaDefaultProps, props);
   const {sequences, position, ...otherProps} = propsWithDefaultValues;
-  const store = createStore(positionReducers);
+  const store = createStore(positionReducers,
+    // https://github.com/zalmoxisus/redux-devtools-extension
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
   each(otherProps, (v, k) => {
     store.dispatch(updateProps(k, v));
   });

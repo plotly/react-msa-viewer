@@ -6,35 +6,39 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-export const types = {
-  POSITION_UPDATE: 'POSITION_UPDATE',
-  PROPS_UPDATE: 'PROPS_UPDATE',
-  SEQUENCES_UPDATE: 'SEQUENCES_UPDATE',
-};
-
 /**
  * Creates a redux action of the following payload:
  * {
  *  type,
- *  ...forwardedArgNames,
+ *  payload: ...forwardedArgNames,
  * }
  * i.e. its payload is the given `type` and the forwarded argument names from the actions payload.
- * If no arguments are provided, the payload is forwarded as `data`.
+ * If no arguments are provided, the payload is forwarded as `payload` in accordance to FSA (Flux Standard Action).
+ *
+ * Similar to createAction from redux-actions
  */
-function makeActionCreator(type, ...argNames) {
-  return function (...args) {
-    const action = { type };
+function createAction(type, ...argNames) {
+  const actionCreator = function (...args) {
+    let payload;
     if (argNames.length === 0) {
-      action.data = args[0];
-      return action;
+      payload = args[0];
+    } else {
+      payload = {};
+      argNames.forEach((arg, index) => {
+        payload[argNames[index]] = args[index];
+      });
     }
-    argNames.forEach((arg, index) => {
-      action[argNames[index]] = args[index];
-    });
-    return action;
+    return {
+      type,
+      payload,
+    }
   }
+  actionCreator.toString = () => type.toString();
+  actionCreator.key = actionCreator.toString();
+  return actionCreator;
 }
 
-export const updatePosition = makeActionCreator(types.POSITION_UPDATE);
-export const updateProps = makeActionCreator(types.PROPS_UPDATE, 'key', 'value');
-export const updateSequences = makeActionCreator(types.SEQUENCES_UPDATE);
+// TODO: maybe use createActions from redux-actions here
+export const updatePosition = createAction('POSITION_UPDATE');
+export const updateProps = createAction('PROPS_UPDATE', 'key', 'value');
+export const updateSequences = createAction('SEQUENCES_UPDATE');

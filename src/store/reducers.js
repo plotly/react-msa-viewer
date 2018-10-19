@@ -6,11 +6,16 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import { types } from './actions'
+import * as actions from './actions'
 
-import { combineReducers } from 'redux'
+// reducer utilities
+import handleActions from './reducers/handleActions'; // similar to handleActions from redux-actions
+import combineReducers from './reducers/combineReducers';
 
-import calculateSequencesState from './calculateSequencesState';
+// import reducers
+import calculateSequencesState from './reducers/calculateSequencesState';
+
+// other utilities
 import {ColorScheme, isColorScheme} from '../utils/ColorScheme';
 
 import {
@@ -18,23 +23,13 @@ import {
   clamp,
 } from 'lodash-es';
 
-function createReducer(initialState, handlers) {
-  return function reducer(state = initialState, {type, data}) {
-    if (handlers.hasOwnProperty(type)) {
-      return handlers[type](state, data);
-    } else {
-      return state;
-    }
-  };
-}
-
-const position = createReducer({
-  xPos: 0,
-  yPos: 0,
-}, {
-  [types.POSITION_UPDATE]: ({xPos, yPos}) => {
+const position = handleActions({
+  [actions.updatePosition]: (prevState, {xPos, yPos}) => {
     return {xPos, yPos};
   }
+}, {
+  xPos: 0,
+  yPos: 0,
 });
 
 function checkColorScheme(state) {
@@ -45,9 +40,13 @@ function checkColorScheme(state) {
   }
 }
 
-const props = (state = {}, {type, key, value}) => {
+/**
+ * Makes sure that a colorScheme is only recreated if it changed.
+ */
+const props = (state = {}, {type, payload}) => {
   switch(type){
-    case types.PROPS_UPDATE:
+    case actions.updateProps.key:
+      const {key, value} = payload;
       state = {
         ...state,
         [key]: value
@@ -64,62 +63,76 @@ const props = (state = {}, {type, key, value}) => {
   }
 }
 
-const sequences = (state = {}, {type, data}) => {
-  switch(type){
-    case types.SEQUENCES_UPDATE:
-      return calculateSequencesState(data);
-    default:
-      return state;
-  }
-}
+const sequences = handleActions({
+  [actions.updateSequences]: calculateSequencesState,
+}, []);
 
-const sequenceStats = (state = {
-    yPos: 0, xPos: 0,
-    sequenceLength: 0,
-  }, {type, data, key, value}) => {
-  switch(type){
-    case types.PROPS_UPDATE:
-      if (!(key === "tileHeight" || key === "tileWidth")) {
-        return state;
+/**
+ * Aggregates the state with stats if the state changed.
+ */
+// TODO: maybe use reselect for this?
+const sequenceStats = (prevState = {
+  currentViewSequence: 0,
+  currentViewSequencePosition: 0,
+}, action, state) => {
+  switch(action.type){
+    case actions.updateProps.key:
+    case actions.updatePosition.key:
+    case actions.updateSequences.key:
+      console.log("a");
+      if (state.props && state.props.tileHeight && state.props.tileWidth &&
+          state.position && state.sequences) {
+        const stats = {};
+        stats.currentViewSequence = clamp(
+          floor(state.position.yPos / state.props.tileHeight),
+          0,
+          state.sequences.length - 1
+        );
+        stats.currentViewSequencePosition = clamp(
+          floor(state.position.xPos / state.props.tileWidth),
+          0,
+          state.sequences.maxLength,
+        );
+        console.log(stats);
+        return stats;
       }
-      state = {
-          ...state,
-        [key]: value,
-      }
-      break;
-    case types.POSITION_UPDATE:
-      state = {
-        ...state,
-        ...data, // add {xPos, yPos}
-      };
-      break;
-    case types.SEQUENCES_UPDATE:
-      state = {
-        ...state,
-        sequenceLength: data.length,
-        maxLength: data.reduce((m, e) => Math.max(m, e.sequence.length), 0),
-      };
       break;
     default:
-      return state;
   }
-  state.currentViewSequence = clamp(
-    floor(state.yPos / state.tileHeight),
-    0,
-    state.sequenceLength - 1
-  );
-  state.currentViewSequencePosition = clamp(
-    floor(state.xPos / state.tileWidth),
-    0,
-    state.maxLength,
-  );
-  return state;
-}
+  return prevState;
+};
 
-export const reducers = combineReducers({
+/**
+ * Takes an reducer and an object of `statReducers`.
+ * The `statReducers` have the following differences to normal reducers:
+ *  - they are only called when the state has changed
+ *  - they receive the full state as third parameter
+ *
+ *  These stat reducers are meant to efficiently compute derived statistics.
+ */
+const statCombineReduce = (reducer, statReducers) => {
+  const keys = Object.keys(statReducers);
+  return function(prevState = {}, action){
+    const state = reducer(prevState, action);
+    if (prevState !== state) {
+      // state object already changed, no need to copy it again
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        const nextStateForKey = statReducers[key](state[key], action, state);
+        if (typeof nextStateForKey === 'undefined') {
+          throw new Error("A reducer can't return 'undefined'");
+        }
+        state[key] = nextStateForKey;
+      }
+    }
+    return state;
+  }
+};
+
+export default statCombineReduce(combineReducers({
   position,
   props,
   sequences,
+}), {
   sequenceStats,
 });
-export default reducers;

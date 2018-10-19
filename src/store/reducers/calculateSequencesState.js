@@ -10,7 +10,7 @@ import {
   reduce,
 } from 'lodash-es';
 
-const calculateSequencesState = (sequences) => {
+const calculateSequencesState = (prevState, sequences) => {
   const state = {
     raw: sequences,
     length: sequences.length,
