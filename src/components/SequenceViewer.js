@@ -34,11 +34,11 @@ class SequenceViewerComponent extends DraggingComponent {
     const tileHeight = this.props.tileHeight;
     const xInitPos = -(this.props.position.xPos % tileWidth);
     let yPos = -(this.props.position.yPos % tileHeight);
-    let i = this.currentViewSequence();
+    let i = this.props.stats.currentViewSequence;
     for (; i < sequences.length; i++) {
       const sequence = sequences[i].sequence;
       let xPos = xInitPos;
-      let j = this.currentViewSequencePosition(sequence);
+      let j = Math.min(sequence.length, this.props.stats.currentViewSequencePosition);
       for (; j < sequence.length; j++) {
         const el = sequence[j];
         this.ctx.font(this.props.tileFont);
@@ -71,23 +71,6 @@ class SequenceViewerComponent extends DraggingComponent {
     const maxHeight = this.props.sequences.raw.length * this.props.tileHeight - this.props.height;
     pos.yPos = clamp(pos.yPos, 0, maxHeight);
     this.props.updatePosition(pos);
-  }
-
-  // TODO: move into the reducer
-  /**
-   * Returns the first visible sequence on the current viewpoint.
-   * Might only be partially visible.
-   */
-  currentViewSequence() {
-    return clamp(floor(this.props.position.yPos / this.props.tileHeight), 0, this.props.sequences.length - 1)
-  }
-
-  /**
-   * Returns the first visible position on the current viewpoint.
-   * Might only be partially visible.
-   */
-  currentViewSequencePosition(sequence) {
-    return clamp(floor(this.props.position.xPos / this.props.tileWidth), 0, sequence.length - 1);
   }
 
   positionToSequence(pos) {
@@ -236,6 +219,7 @@ const mapStateToProps = state => {
     msecsPerFps: state.props.msecsPerFps,
     colorScheme: state.props.colorScheme,
     engine: state.props.engine,
+    stats: state.sequenceStats,
   }
 }
 
