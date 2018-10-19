@@ -19,7 +19,8 @@ import PositionBar from './PositionBar';
 import SequenceViewer from './SequenceViewer';
 import SequenceOverview from './SequenceOverview';
 import OverviewBar from './OverviewBar';
-import Labels from './Labels';
+//import Labels from './Labels';
+import HTMLLabels from './HTMLLabels';
 
 import propsToRedux from '../store/propsToRedux';
 
@@ -72,7 +73,7 @@ class MSAViewerComponent extends Component {
       return (
         <MSAProvider store={msaStore}>
           <div style={labelsAndSequenceDiv}>
-            <Labels
+            <HTMLLabels
               style={labelsStyle}
             />
             <div>
