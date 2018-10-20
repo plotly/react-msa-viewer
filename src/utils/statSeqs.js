@@ -2,8 +2,10 @@ import {
   each,
   extend,
   map,
+  mapValues,
   max,
   reduce,
+  reject,
 } from 'lodash-es'
 
 const stat = function(seqs, opts) {
@@ -201,7 +203,7 @@ stat.prototype.backgroundCalc = function backgroundCalc() {
   });
 
   // normalize to 1
-  occ = _.mapValues(occ, function(val) {
+  occ = mapValues(occ, function(val) {
     return val / total;
   });
   this._background = occ;
