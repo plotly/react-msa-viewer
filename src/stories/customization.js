@@ -38,7 +38,6 @@ storiesOf('Customization', module)
     ];
     const options = {
       colorScheme: select("Colorscheme", colorschemes, "zappo"),
-      height: 60,
       sequences,
     };
     return (
@@ -60,7 +59,6 @@ storiesOf('Customization', module)
     const myColorScheme = new MyColorScheme();
     const options = {
       colorScheme: myColorScheme,
-      height: 60,
       sequences,
     };
     return (
@@ -69,7 +67,6 @@ storiesOf('Customization', module)
   })
  .add('Custom Labels', function(){
     const options = {
-      height: 60,
       sequences,
       labelComponent: ({name}) => {
         return (
@@ -85,7 +82,6 @@ storiesOf('Customization', module)
   })
  .add('Custom Markers', function(){
     const options = {
-      height: 60,
       sequences,
       markerComponent: ({name}) => {
         return (
