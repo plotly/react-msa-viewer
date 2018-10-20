@@ -68,10 +68,10 @@ storiesOf('Customization', module)
  .add('Custom Labels', function(){
     const options = {
       sequences,
-      labelComponent: ({name}) => {
+      labelComponent: ({sequence}) => {
         return (
           <div style={{height: 20, fontWeight: 'bold'}}>
-            My: {name}
+            My: {sequence.name}
           </div>
         );
       }

@@ -18,14 +18,14 @@ import createShallowCompare from '../utils/createShallowCompare';
  */
 class Label extends PureComponent {
   render() {
-    const {height, name, ...otherProps} = this.props;
+    const {height, sequence, ...otherProps} = this.props;
     otherProps.style = {
       ...this.props.style,
       height: height,
     }
     return (
       <div {...otherProps}>
-        {name}
+        {sequence.name}
       </div>
     );
   }
@@ -62,8 +62,8 @@ class HTMLLabelsComponent extends Component {
         <LabelComponent
           height={this.props.tileHeight}
           key={i}
-          name={sequence.name}
-          />
+          sequence={sequence}
+        />
       );
       yPos += this.props.tileHeight;
       if (yPos > this.props.height)
