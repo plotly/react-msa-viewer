@@ -114,7 +114,7 @@ function MSA() {
 
 ### Usage in Vanilla JS
 
-Using the `react-msa-viewer` with in React is highly recommended.
+Using the `react-msa-viewer` with React is highly recommended.
 However, it can be used in Vanilla JS:
 
 ```html
@@ -159,7 +159,7 @@ See an [example on CodePen](https://codepen.io/greenify/pen/xyYaWN).
 Props
 -----
 
-__Warning__: these properties are still suspectible to a _change at any moment_.
+__Warning__: these properties are still susceptible to a _change at any moment_.
 
 ### `MSAViewer` (component)
 
@@ -424,7 +424,7 @@ git clone https://github.com/plotly/react-msa-viewer
 Install the project `dev` dependencies:
 
 ```
-yarn install
+npm install
 ```
 
 Contributing
