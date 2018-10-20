@@ -16,12 +16,13 @@ import {
 } from '../PropTypes';
 
 //import PositionBar from './PositionBar';
-import HTMLPositionBar from './HTMLPositionBar';
+//import OverviewBar from './OverviewBar';
+//import Labels from './Labels';
+import PositionBar from './HTMLPositionBar';
 import SequenceViewer from './SequenceViewer';
 import SequenceOverview from './SequenceOverview';
-import OverviewBar from './OverviewBar';
-//import Labels from './Labels';
-import HTMLLabels from './HTMLLabels';
+import OverviewBar from './HTMLOverviewBar';
+import Labels from './HTMLLabels';
 
 import propsToRedux from '../store/propsToRedux';
 
@@ -51,6 +52,11 @@ class MSAViewerComponent extends Component {
   // List of props forwarded to the PositionBar component
   static positionBarProps = [
     "markerComponent",
+  ];
+
+  // List of props forwarded to the OverviewBar component
+  static overviewBarProps = [
+    "barComponent",
   ];
 
   forwardProps(propsToBeForwarded) {
@@ -88,13 +94,15 @@ class MSAViewerComponent extends Component {
       return (
         <MSAProvider store={msaStore}>
           <div style={labelsAndSequenceDiv}>
-            <HTMLLabels
+            <Labels
               style={labelsStyle}
               {...this.forwardProps(MSAViewerComponent.labelsProps)}
             />
             <div>
-              <OverviewBar height={overviewBarHeight} />
-              <HTMLPositionBar
+              <OverviewBar height={overviewBarHeight}
+                {...this.forwardProps(MSAViewerComponent.overviewBarProps)}
+              />
+              <PositionBar
                 {...this.forwardProps(MSAViewerComponent.positionBarProps)}
               />
               <SequenceViewer
