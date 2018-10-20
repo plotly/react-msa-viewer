@@ -3,7 +3,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import visualizer from 'rollup-plugin-visualizer';
-import filesize from 'rollup-plugin-filesize';
+import { terser } from "rollup-plugin-terser";
 
 export default {
   input: 'src/lib.js',
@@ -47,11 +47,11 @@ export default {
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
+    terser(),
     visualizer({
       filename: './dist/statistics.html',
       title: 'MSAViewer Bundle',
-      sourcemap: true,
+      //sourcemap: true,
     }),
-    filesize(),
   ],
 };
