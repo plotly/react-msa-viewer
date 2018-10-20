@@ -49,6 +49,8 @@ function MSA() {
 }
 ```
 
+[Open on CodePen](https://codepen.io/greenify/pen/ReJxvX?editors=1010)
+
 ### Installation
 
 For [npm](https://www.npmjs.com) users, run:
@@ -71,6 +73,7 @@ Hence, it will automatically take care of synchronization between all MSA compon
 ```jsx
 import {
   Labels,
+  MSAViewer,
   OverviewBar,
   PositionBar,
   SequenceOverview,
@@ -96,7 +99,7 @@ function MSA() {
     height: 60,
   };
   return (
-    <MSAViewer sequences={sequences}>
+    <MSAViewer {...options}>
       <SequenceOverview method="information-content"/>
       <div style={{display: "flex"}} >
         <div>
@@ -111,6 +114,8 @@ function MSA() {
   );
 }
 ```
+
+[Open on CodePen](https://codepen.io/greenify/pen/qJKpPK?editors=1010)
 
 ### Usage in Vanilla JS
 
@@ -154,7 +159,7 @@ However, it can be used in Vanilla JS:
 </html>
 ```
 
-See an [example on CodePen](https://codepen.io/greenify/pen/xyYaWN).
+See an [example on CodePen](https://codepen.io/greenify/pen/xyYaWN?editors=1010).
 
 Props
 -----
