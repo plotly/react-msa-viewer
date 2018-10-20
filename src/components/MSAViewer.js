@@ -34,13 +34,29 @@ const labelsAndSequenceDiv = {
 // TODO: support using the child components in stand-alone mode
 class MSAViewerComponent extends Component {
 
-  static sequenceViewerPropsForwarded = [
+  // List of props forwarded to the SequenceViewer component
+  static sequenceViewerProps = [
     "showModBar",
     "onResidueMouseEnter",
     "onResidueMouseLeave",
     "onResidueClick",
     "onResidueDoubleClick",
   ];
+
+  // List of props forwarded to the Labels component
+  static labelsProps = [
+    "labelComponent",
+  ];
+
+  forwardProps(propsToBeForwarded) {
+    const options = {}
+    propsToBeForwarded.forEach(prop => {
+      if (this.props[prop] !== undefined) {
+        options[prop] = this.props[prop];
+      }
+    });
+    return options;
+  }
 
   render() {
     const {children, msaStore, ...otherProps} = this.props;
@@ -64,23 +80,19 @@ class MSAViewerComponent extends Component {
         height: 10,
       };
 
-      // forward props to SequenceViewer
-      const sequenceViewerOptions = {};
-      MSAViewerComponent.sequenceViewerPropsForwarded.forEach(prop => {
-        if (this.props[prop] !== undefined) {
-          sequenceViewerOptions[prop] = this.props[prop];
-        }
-      });
       return (
         <MSAProvider store={msaStore}>
           <div style={labelsAndSequenceDiv}>
             <HTMLLabels
               style={labelsStyle}
+              {...this.forwardProps(MSAViewerComponent.labelsProps)}
             />
             <div>
               <OverviewBar height={overviewBarHeight} />
               <HTMLPositionBar />
-              <SequenceViewer {...sequenceViewerOptions} />
+              <SequenceViewer
+                {...this.forwardProps(MSAViewerComponent.sequenceViewerProps)}
+              />
               <div style={separatorPadding} />
               <SequenceOverview />
             </div>

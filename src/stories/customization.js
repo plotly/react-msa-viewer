@@ -42,8 +42,7 @@ storiesOf('Customization', module)
       sequences,
     };
     return (
-    <MSAViewer {...options} >
-    </MSAViewer>
+      <MSAViewer {...options} />
     )
   })
   .add('Custom ColorScheme', function(){
@@ -65,9 +64,19 @@ storiesOf('Customization', module)
       sequences,
     };
     return (
-    <MSAViewer {...options} >
-    </MSAViewer>
+      <MSAViewer {...options} />
     )
   })
- ;
+ .add('Custom Labels', function(){
+    const options = {
+      height: 60,
+      sequences,
+      labelComponent: ({name}) => {
+        return <div>My: {name} </div>
+      }
+    };
+    return (
+      <MSAViewer {...options} />
+    )
+  })
  ;

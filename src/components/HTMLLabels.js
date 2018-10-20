@@ -40,13 +40,14 @@ class HTMLLabelsComponent extends Component {
   }
 
   draw() {
+    const LabelComponent = this.props.labelComponent;
     const labels = [];
     let yPos = -(this.props.position.yPos % this.props.tileHeight);
     let i = this.props.stats.currentViewSequence;
     for (; i < this.props.sequences.length; i++) {
       const sequence = this.props.sequences[i];
       labels.push(
-        <Label
+        <LabelComponent
           height={this.props.tileHeight}
           key={i}
           name={sequence.name}
@@ -99,6 +100,7 @@ class HTMLLabelsComponent extends Component {
 
 HTMLLabelsComponent.defaultProps = {
   width: 80, // TODO: can we calculate this automatically?
+  labelComponent: Label,
 };
 
 HTMLLabelsComponent.propTypes = {
