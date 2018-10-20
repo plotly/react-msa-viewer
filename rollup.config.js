@@ -4,7 +4,6 @@ import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import visualizer from 'rollup-plugin-visualizer';
 import filesize from 'rollup-plugin-filesize';
-import { uglify } from "rollup-plugin-uglify";
 
 export default {
   input: 'src/lib.js',
@@ -50,7 +49,8 @@ export default {
     }),
     visualizer({
       filename: './dist/statistics.html',
-      title: 'MSAViewer Bundle'
+      title: 'MSAViewer Bundle',
+      sourcemap: true,
     }),
     filesize(),
   ],
