@@ -12,7 +12,7 @@ import createRef from 'create-react-ref/lib/createRef';
 import msaConnect from '../store/connect'
 import createShallowCompare from '../utils/createShallowCompare';
 
-const MSAStats = require('stat.seqs');
+import MSAStats from '../utils/statSeqs';
 
 class Bar extends PureComponent {
   render() {
