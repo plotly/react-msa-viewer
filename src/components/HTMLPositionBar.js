@@ -56,10 +56,9 @@ class HTMLPositionBarComponent extends Component {
   draw() {
     const MarkerComponent = this.props.markerComponent;
     const labels = [];
-    let xPos = -(this.props.position.xPos % this.props.tileWidth);
+    let xPos = this.props.stats.xPosOffset;
     const startTile = this.props.stats.currentViewSequencePosition;
-    const tiles = Math.ceil(this.props.width / this.props.tileWidth) + 1;
-    for (let i = startTile; i < (startTile + tiles); i++) {
+    for (let i = startTile; i < (startTile + this.props.stats.nrTiles); i++) {
       let name;
       if (i % this.props.markerSteps === 0) {
         name = i;
@@ -85,9 +84,8 @@ class HTMLPositionBarComponent extends Component {
   }
 
   updateScrollPosition() {
-    let xPos = (this.props.position.xPos % this.props.tileWidth);
     if (this.el.current) {
-      this.el.current.scrollLeft = xPos + 2;
+      this.el.current.scrollLeft = -this.props.stats.xPosOffset;
     }
   }
 

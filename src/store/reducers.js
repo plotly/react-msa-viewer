@@ -92,6 +92,9 @@ const sequenceStats = (prevState = {
           0,
           state.sequences.maxLength,
         );
+        stats.yPosOffset = -(state.position.yPos % state.props.tileHeight);
+        stats.xPosOffset = -(state.position.xPos % state.props.tileWidth);
+        stats.nrTiles = Math.ceil(state.props.width / state.props.tileWidth) + 1;
         return stats;
       }
       break;

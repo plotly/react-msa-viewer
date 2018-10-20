@@ -30,10 +30,9 @@ class OverviewBarComponent extends CanvasComponent {
   draw() {
     const tileWidth = this.props.tileWidth;
     const yPos = 0;
-    const startTile = Math.floor(this.props.position.xPos / tileWidth);
-    const tiles = Math.ceil(this.props.width / tileWidth) + 1;
-    let xPos = -this.props.position.xPos % tileWidth;
-    for (let i = startTile; i < (startTile + tiles); i++) {
+    const startTile = this.props.stats.currentViewSequencePosition;
+    let xPos = this.props.stats.xPosOffset;
+    for (let i = startTile; i < (startTile + this.props.stats.nrTiles); i++) {
 			let height = this.props.height * this.columnHeights[i];
 			const remainingHeight = this.props.height - height;
       this.ctx.fillStyle(this.props.fillColor);
@@ -99,6 +98,7 @@ const mapStateToProps = state => {
     tileHeight: state.props.tileHeight,
     tileWidth: state.props.tileWidth,
     msecsPerFps: state.props.msecsPerFps,
+    stats: state.sequenceStats,
   }
 }
 

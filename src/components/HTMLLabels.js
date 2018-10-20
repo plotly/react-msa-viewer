@@ -54,7 +54,7 @@ class HTMLLabelsComponent extends Component {
   draw() {
     const LabelComponent = this.props.labelComponent;
     const labels = [];
-    let yPos = -(this.props.position.yPos % this.props.tileHeight);
+    let yPos = this.props.stats.yPosOffset;
     let i = this.props.stats.currentViewSequence;
     for (; i < this.props.sequences.length; i++) {
       const sequence = this.props.sequences[i];
@@ -77,9 +77,8 @@ class HTMLLabelsComponent extends Component {
   }
 
   updateScrollPosition() {
-    let yPos = (this.props.position.yPos % this.props.tileHeight);
     if (this.el.current) {
-      this.el.current.scrollTop = yPos + 2;
+      this.el.current.scrollTop = -this.props.stats.yPosOffset;
     }
     return false;
   }
