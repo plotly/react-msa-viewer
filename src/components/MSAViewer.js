@@ -48,6 +48,11 @@ class MSAViewerComponent extends Component {
     "labelComponent",
   ];
 
+  // List of props forwarded to the PositionBar component
+  static positionBarProps = [
+    "markerComponent",
+  ];
+
   forwardProps(propsToBeForwarded) {
     const options = {}
     propsToBeForwarded.forEach(prop => {
@@ -89,7 +94,9 @@ class MSAViewerComponent extends Component {
             />
             <div>
               <OverviewBar height={overviewBarHeight} />
-              <HTMLPositionBar />
+              <HTMLPositionBar
+                {...this.forwardProps(MSAViewerComponent.positionBarProps)}
+              />
               <SequenceViewer
                 {...this.forwardProps(MSAViewerComponent.sequenceViewerProps)}
               />

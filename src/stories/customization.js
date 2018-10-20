@@ -72,7 +72,31 @@ storiesOf('Customization', module)
       height: 60,
       sequences,
       labelComponent: ({name}) => {
-        return <div>My: {name} </div>
+        return (
+          <div style={{height: 20, fontWeight: 'bold'}}>
+            My: {name}
+          </div>
+        );
+      }
+    };
+    return (
+      <MSAViewer {...options} />
+    )
+  })
+ .add('Custom Markers', function(){
+    const options = {
+      height: 60,
+      sequences,
+      markerComponent: ({name}) => {
+        return (
+          <div style={{
+            width: 20,
+            display: "inline-block",
+            textAlign: "center",
+            fontWeight: 'bold'}}>
+            {name}
+          </div>
+        );
       }
     };
     return (
