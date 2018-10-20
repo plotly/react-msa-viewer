@@ -18,6 +18,8 @@ import SequenceViewer from './components/SequenceViewer';
 import SequenceOverview from './components/SequenceOverview';
 import OverviewBar from './components/OverviewBar';
 
+const VERSION = "MSA_DEVELOPMENT_VERSION";
+
 export {
   ColorScheme,
   createMSAStore,
@@ -29,6 +31,7 @@ export {
   PositionBar,
   SequenceOverview,
   SequenceViewer,
+  VERSION as version,
 };
 
 export default MSAViewer;

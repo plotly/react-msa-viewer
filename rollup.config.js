@@ -4,6 +4,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import visualizer from 'rollup-plugin-visualizer';
 import { terser } from "rollup-plugin-terser";
+import { version } from "./package.json";
 
 export default {
   input: 'src/lib.js',
@@ -46,6 +47,7 @@ export default {
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
+      'MSA_DEVELOPMENT_VERSION': version,
     }),
     terser(),
     visualizer({
