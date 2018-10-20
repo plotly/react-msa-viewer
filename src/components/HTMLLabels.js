@@ -44,7 +44,7 @@ class HTMLLabelsComponent extends Component {
      * Updates the entire component if a property except for the position
      * has changed. Otherwise just adjusts the scroll position;
      */
-    const shallowCompare = createShallowCompare(['position']);
+    const shallowCompare = createShallowCompare(['yPosOffset']);
     this.shouldComponentUpdate = (nextProps, nextState) => {
       return shallowCompare(this.props, nextProps) ||
         this.updateScrollPosition();
@@ -54,8 +54,8 @@ class HTMLLabelsComponent extends Component {
   draw() {
     const LabelComponent = this.props.labelComponent;
     const labels = [];
-    let yPos = this.props.stats.yPosOffset;
-    let i = this.props.stats.currentViewSequence;
+    let yPos = this.props.yPosOffset;
+    let i = this.props.currentViewSequence;
     for (; i < this.props.sequences.length; i++) {
       const sequence = this.props.sequences[i];
       labels.push(
@@ -78,7 +78,7 @@ class HTMLLabelsComponent extends Component {
 
   updateScrollPosition() {
     if (this.el.current) {
-      this.el.current.scrollTop = -this.props.stats.yPosOffset;
+      this.el.current.scrollTop = -this.props.yPosOffset;
     }
     return false;
   }
@@ -115,13 +115,13 @@ HTMLLabelsComponent.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    position: state.position,
     height: state.props.height,
     tileHeight: state.props.tileHeight,
     msecsPerFps: state.props.msecsPerFps,
     nrSequences: state.sequences.raw.length,
     sequences: state.sequences.raw,
-    stats: state.sequenceStats,
+    currentViewSequence : state.sequenceStats.currentViewSequence,
+    yPosOffset: state.sequenceStats.yPosOffset,
   }
 }
 

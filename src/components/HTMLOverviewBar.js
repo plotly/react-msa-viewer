@@ -47,7 +47,7 @@ class HTMLOverviewBarComponent extends Component {
      * Updates the entire component if a property except for the position
      * has changed. Otherwise just adjusts the scroll position;
      */
-    const shallowCompare = createShallowCompare(['position']);
+    const shallowCompare = createShallowCompare(['xPosOffset']);
     this.shouldComponentUpdate = (nextProps, nextState) => {
       if (shallowCompare(this.props, nextProps)) {
         this.calculateStats();
@@ -77,9 +77,9 @@ class HTMLOverviewBarComponent extends Component {
   draw() {
     const BarComponent = this.props.barComponent;
     const labels = [];
-    let xPos = this.props.stats.xPosOffset;
-    const startTile = this.props.stats.currentViewSequencePosition;
-    for (let i = startTile; i < (startTile + this.props.stats.nrTiles); i++) {
+    let xPos = this.props.xPosOffset;
+    const startTile = this.props.currentViewSequencePosition;
+    for (let i = startTile; i < (startTile + this.props.nrTiles); i++) {
       let height = this.props.height * this.columnHeights[i];
       //const remainingHeight = this.props.height - height;
       labels.push(
@@ -102,8 +102,9 @@ class HTMLOverviewBarComponent extends Component {
 
   updateScrollPosition() {
     if (this.el.current) {
-      this.el.current.scrollLeft = -this.props.stats.xPosOffset;
+      this.el.current.scrollLeft = -this.props.xPosOffset;
     }
+    return false;
   }
 
   render() {
@@ -155,12 +156,13 @@ HTMLOverviewBarComponent.PropTypes = {
 const mapStateToProps = state => {
   return {
     sequences: state.sequences.raw,
-    position: state.position,
     width: state.props.width,
     tileHeight: state.props.tileHeight,
     tileWidth: state.props.tileWidth,
     msecsPerFps: state.props.msecsPerFps,
-    stats: state.sequenceStats,
+    currentViewSequencePosition : state.sequenceStats.currentViewSequencePosition,
+    xPosOffset: state.sequenceStats.xPosOffset,
+    nrTiles: state.sequenceStats.nrTiles,
   }
 }
 

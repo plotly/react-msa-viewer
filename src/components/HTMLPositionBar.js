@@ -46,7 +46,7 @@ class HTMLPositionBarComponent extends Component {
      * Updates the entire component if a property except for the position
      * has changed. Otherwise just adjusts the scroll position;
      */
-    const shallowCompare = createShallowCompare(['position']);
+    const shallowCompare = createShallowCompare(['xPosOffset']);
     this.shouldComponentUpdate = (nextProps, nextState) => {
       return shallowCompare(this.props, nextProps) ||
         this.updateScrollPosition();
@@ -56,9 +56,9 @@ class HTMLPositionBarComponent extends Component {
   draw() {
     const MarkerComponent = this.props.markerComponent;
     const labels = [];
-    let xPos = this.props.stats.xPosOffset;
-    const startTile = this.props.stats.currentViewSequencePosition;
-    for (let i = startTile; i < (startTile + this.props.stats.nrTiles); i++) {
+    let xPos = this.props.xPosOffset;
+    const startTile = this.props.currentViewSequencePosition;
+    for (let i = startTile; i < (startTile + this.props.nrTiles); i++) {
       let name;
       if (i % this.props.markerSteps === 0) {
         name = i;
@@ -85,8 +85,9 @@ class HTMLPositionBarComponent extends Component {
 
   updateScrollPosition() {
     if (this.el.current) {
-      this.el.current.scrollLeft = -this.props.stats.xPosOffset;
+      this.el.current.scrollLeft = -this.props.xPosOffset;
     }
+    return false;
   }
 
   render() {
@@ -141,7 +142,6 @@ HTMLPositionBarComponent.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    position: state.position,
     tileWidth: state.props.tileWidth,
     tileHeight: state.props.tileHeight,
     nrSequences: state.sequences.raw.length,
@@ -149,7 +149,9 @@ const mapStateToProps = state => {
     msecsPerFps: state.props.msecsPerFps,
     viewpoint: state.viewpoint,
     width: state.props.width,
-    stats: state.sequenceStats,
+    currentViewSequencePosition : state.sequenceStats.currentViewSequencePosition,
+    xPosOffset: state.sequenceStats.xPosOffset,
+    nrTiles: state.sequenceStats.nrTiles,
   }
 }
 
