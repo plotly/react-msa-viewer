@@ -108,13 +108,24 @@ SequenceOverviewComponent.propTypes = {
   tileHeight: PropTypes.number,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const defaultProps = SequenceOverviewComponent.defaultProps;
+  // Fallback to a smaller size if the given area is too large
+  const width = Math.min(
+    ownProps.width || state.props.width,
+    state.sequences.maxLength * (ownProps.tileWidth || defaultProps.tileWidth),
+  );
+  const height = Math.min(
+    ownProps.height || defaultProps.height,
+    state.sequences.length * (ownProps.tileHeight || defaultProps.tileHeight),
+  );
   return {
     position: state.position,
     viewpoint: state.viewpoint,
     ui: state.ui,
     sequences: state.sequences,
-    width: state.props.width,
+    width,
+    height,
     globalWidth: state.props.width,
     globalHeight: state.props.height,
     msecsPerFps: state.props.msecsPerFps,

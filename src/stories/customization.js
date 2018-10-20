@@ -38,7 +38,6 @@ storiesOf('Customization', module)
     ];
     const options = {
       colorScheme: select("Colorscheme", colorschemes, "zappo"),
-      height: 60,
       sequences,
     };
     return (
@@ -61,7 +60,6 @@ storiesOf('Customization', module)
     const myColorScheme = new MyColorScheme();
     const options = {
       colorScheme: myColorScheme,
-      height: 60,
       sequences,
     };
     return (
