@@ -49,7 +49,7 @@ function MSA() {
 }
 ```
 
-[Open on CodePen](https://codepen.io/greenify/pen/ReJxvX?editors=1010)
+[Open on CodePen](https://codepen.io/greenify/pen/ReJxvX?editors=0010)
 
 ### Installation
 
@@ -115,7 +115,7 @@ function MSA() {
 }
 ```
 
-[Open on CodePen](https://codepen.io/greenify/pen/qJKpPK?editors=1010)
+[Open on CodePen](https://codepen.io/greenify/pen/qJKpPK/left?editors=0010)
 
 ### Usage in Vanilla JS
 
