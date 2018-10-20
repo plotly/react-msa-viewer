@@ -2,6 +2,9 @@ import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
+import visualizer from 'rollup-plugin-visualizer';
+import filesize from 'rollup-plugin-filesize';
+import { uglify } from "rollup-plugin-uglify";
 
 export default {
   input: 'src/lib.js',
@@ -30,6 +33,7 @@ export default {
       plugins: [
         '@babel/plugin-proposal-object-rest-spread',
         '@babel/plugin-proposal-class-properties',
+        "lodash",
       ],
       //externalHelpers: false,
     }),
@@ -43,6 +47,11 @@ export default {
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
-    })
+    }),
+    visualizer({
+      filename: './dist/statistics.html',
+      title: 'MSAViewer Bundle'
+    }),
+    filesize(),
   ],
 };
