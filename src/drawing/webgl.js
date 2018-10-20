@@ -8,7 +8,7 @@
 
 import DrawingBase from './base';
 
-const convert = require('color-convert');
+import {hex, keyword} from 'color-convert';
 
 class WebGL extends DrawingBase {
 
@@ -127,9 +127,9 @@ class WebGL extends DrawingBase {
     if (!fillStyle)
       return;
     if (fillStyle[0] === "#") {
-      this.state.fillStyle = convert.hex.rgb(fillStyle.slice(1));
+      this.state.fillStyle = hex.rgb(fillStyle.slice(1));
     } else {
-      this.state.fillStyle = convert.keyword.rgb(fillStyle);
+      this.state.fillStyle = keyword.rgb(fillStyle);
     }
   }
 

@@ -9,12 +9,10 @@
 import React, { Component } from 'react';
 
 // Check https://plotly-icons.now.sh for a listing
-import {
-  AutoscaleIcon,
-  SaveIcon,
-  ZoomPlusIcon,
-  ZoomMinusIcon,
-} from 'plotly-icons';
+import AutoscaleIcon from 'plotly-icons/lib/components/AutoscaleIcon';
+//import SaveIcon from 'plotly-icons/lib/components/SaveIcon';
+import ZoomPlusIcon from 'plotly-icons/lib/components/ZoomPlusIcon';
+import ZoomMinusIcon from 'plotly-icons/lib/components/ZoomMinusIcon';
 
 function PlotlyIcon(){
   // TODO: Not part of plotly-icons
@@ -56,11 +54,12 @@ class ModBar extends Component {
       color: "black",
     };
     // fill with rgba(0, 31, 95, 0.3);
+    //
+        //<a href="" style={linkStyle}>
+          //<SaveIcon width={iconWidth} height={iconHeight} />
+        //</a>
     return (
       <div style={style}>
-        <a href="" style={linkStyle}>
-          <SaveIcon width={iconWidth} height={iconHeight} />
-        </a>
         <a href="" style={linkStyle}>
           <ZoomPlusIcon width={iconWidth} height={iconHeight} />
         </a>
