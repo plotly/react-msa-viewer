@@ -120,9 +120,9 @@ However, it can be used in Vanilla JS:
 ```html
 <html>
 <meta charset="utf-8" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.5.2/prop-types.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.4.2/react-dom.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.5.2/prop-types.js"></script>
 <script src="https://unpkg.com/@plotly/react-msa-viewer/dist/index.js"></script>
 <body>
   <div id="my-msa" />
