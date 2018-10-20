@@ -23,19 +23,17 @@
   "dependencies": {
     "create-react-ref": "^0.1.0",
     "lodash-es": "^4.17.11",
-    "msa-colorschemes": "^1.0.10",
     "plotly-icons": "^1.2.2",
     "prop-types": "^15.6.2",
     "react": "15.4.2",
     "react-redux": "^5.0.7",
-    "redux": "^4.0.1",
-    "stat.seqs": "^0.1.21"
+    "redux": "^4.0.1"
   },
   "scripts": {
-    "start": "rollup -w -c rollup.umd.config",
+    "start": "rollup -w -c rollup.config.js",
     "build": "react-scripts build",
-    "build:lib-umd": "NODE_ENV=production rollup -c --format es --file dist/index.esm.js",
-    "build:lib-esm": "NODE_ENV=production rollup -c --format umd --name 'MSAViewer' --file dist/index.umd.js",
+    "build:lib-esm": "NODE_ENV=production rollup -c --format es --file dist/index.esm.js",
+    "build:lib-esm": "NODE_ENV=production rollup -c",
     "build:lib": "npm run build:lib-umd && npm run build:lib-esm",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
@@ -67,6 +65,7 @@
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-serve": "^0.6.0",
     "webpack-cli": "^3.1.2"
   },

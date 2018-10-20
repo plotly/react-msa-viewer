@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import msaConnect from '../store/connect'
 import CanvasComponent from './CanvasComponent';
 
-const MSAStats = require('stat.seqs');
+import MSAStats from '../utils/statSeqs';
 
 /**
  * Creates a small overview box of the sequences for a general overview.

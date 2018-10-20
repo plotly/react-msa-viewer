@@ -6,9 +6,7 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-//import * as schemes from 'msa-colorschemes';
-const schemes = require('msa-colorschemes');
-
+import schemes from 'msa-colorschemes';
 const schemesMgr = new schemes();
 
 /**
