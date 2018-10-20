@@ -46,11 +46,8 @@ class HTMLLabelsComponent extends Component {
      */
     const shallowCompare = createShallowCompare(['position']);
     this.shouldComponentUpdate = (nextProps, nextState) => {
-      if (shallowCompare(this.props, nextProps)) {
-        return true;
-      }
-      this.updateScrollPosition();
-      return false;
+      return shallowCompare(this.props, nextProps) ||
+        this.updateScrollPosition();
     };
   }
 
@@ -84,6 +81,7 @@ class HTMLLabelsComponent extends Component {
     if (this.el.current) {
       this.el.current.scrollTop = yPos + 2;
     }
+    return false;
   }
 
   render() {
