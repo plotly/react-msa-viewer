@@ -81,7 +81,7 @@ class HTMLOverviewBarComponent extends Component {
     const startTile = this.props.stats.currentViewSequencePosition;
     for (let i = startTile; i < (startTile + this.props.stats.nrTiles); i++) {
       let height = this.props.height * this.columnHeights[i];
-      const remainingHeight = this.props.height - height;
+      //const remainingHeight = this.props.height - height;
       labels.push(
         <BarComponent
           width={this.props.tileWidth}
