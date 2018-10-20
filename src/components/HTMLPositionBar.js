@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 import msaConnect from '../store/connect'
 import createRef from 'create-react-ref/lib/createRef';
 
+import createShallowCompare from '../utils/createShallowCompare';
+
 /**
  * Displays an individual sequence name.
  */
@@ -39,6 +41,19 @@ class HTMLPositionBarComponent extends Component {
   constructor(props) {
     super(props);
     this.el = createRef();
+
+    /**
+     * Updates the entire component if a property except for the position
+     * has changed. Otherwise just adjusts the scroll position;
+     */
+    const shallowCompare = createShallowCompare(['position']);
+    this.shouldComponentUpdate = (nextProps, nextState) => {
+      if (shallowCompare(this.props, nextProps)) {
+        return true;
+      }
+      this.updateScrollPosition();
+      return false;
+    };
   }
 
   draw() {
@@ -77,16 +92,6 @@ class HTMLPositionBarComponent extends Component {
     if (this.el.current) {
       this.el.current.scrollLeft = xPos + 2;
     }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    // TODO: check if currentViewSequence has changed
-    if (this.props.currentViewSequencePosition !==
-        nextProps.currentViewSequencePosition) {
-      return true;
-    }
-    this.updateScrollPosition();
-    return true;
   }
 
   render() {
