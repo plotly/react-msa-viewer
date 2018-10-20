@@ -34,8 +34,8 @@
   "scripts": {
     "start": "rollup -w -c rollup.umd.config",
     "build": "react-scripts build",
-    "build:lib-umd": "NODE_ENV=production rollup -c rollup.umd.config",
-    "build:lib-esm": "NODE_ENV=production rollup -c rollup.esm.config",
+    "build:lib-umd": "NODE_ENV=production rollup -c --format es --file dist/index.esm.js",
+    "build:lib-esm": "NODE_ENV=production rollup -c --format umd --name 'MSAViewer' --file dist/index.umd.js",
     "build:lib": "npm run build:lib-umd && npm run build:lib-esm",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
@@ -65,6 +65,8 @@
     "react-scripts": "1.1.4",
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-serve": "^0.6.0",
     "webpack-cli": "^3.1.2"
   },
