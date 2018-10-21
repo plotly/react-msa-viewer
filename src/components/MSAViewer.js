@@ -15,14 +15,16 @@ import {
   PropTypes,
 } from '../PropTypes';
 
-//import PositionBar from './PositionBar';
-//import OverviewBar from './OverviewBar';
 //import Labels from './Labels';
-import PositionBar from './HTMLPositionBar';
-import SequenceViewer from './SequenceViewer';
-import SequenceOverview from './SequenceOverview';
-import OverviewBar from './HTMLOverviewBar';
+//import OverviewBar from './OverviewBar';
+//import PositionBar from './PositionBar';
+//import SequenceViewer from './SequenceViewer';
+
 import Labels from './HTMLLabels';
+import OverviewBar from './HTMLOverviewBar';
+import PositionBar from './HTMLPositionBar';
+import SequenceOverview from './SequenceOverview';
+import SequenceViewer from './SequenceViewer';
 
 import propsToRedux from '../store/propsToRedux';
 
@@ -30,9 +32,13 @@ const labelsAndSequenceDiv = {
   display: "flex",
 };
 
-// TODO: support changing the store dynamically
-// TODO: when props of children update -> update store
-// TODO: support using the child components in stand-alone mode
+/**
+ * A general-purpose layout for the MSA components
+ *
+ * When children are passed it acts as a Context Provider for the msaStore,
+ * otherwise it provides a default layout and forwards it props the respective
+ * components.
+ */
 class MSAViewerComponent extends Component {
 
   // List of props forwarded to the SequenceViewer component
