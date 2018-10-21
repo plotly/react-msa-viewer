@@ -104,7 +104,6 @@ class HTMLSequenceViewerComponent extends Component {
   onMouseLeave = (e) => {
     this.sendEvent('onResidueMouseLeave', this.currentMouseSequencePosition);
     this.currentMouseSequencePosition = undefined;
-    super.onMouseLeave(e);
   }
 
   onClick = (e) => {
@@ -238,7 +237,7 @@ const mapStateToProps = state => {
     msecsPerFps: state.props.msecsPerFps,
     colorScheme: state.props.colorScheme,
     engine: state.props.engine,
-    currentViewSequence: state.sequenceStats.currentViewSequencePosition,
+    currentViewSequence: state.sequenceStats.currentViewSequence,
     currentViewSequencePosition: state.sequenceStats.currentViewSequencePosition,
     yPosOffset: state.sequenceStats.yPosOffset,
     xPosOffset: state.sequenceStats.xPosOffset,
