@@ -24,7 +24,7 @@ import Labels from './HTMLLabels';
 import OverviewBar from './HTMLOverviewBar';
 import PositionBar from './HTMLPositionBar';
 import SequenceOverview from './SequenceOverview';
-import SequenceViewer from './SequenceViewer';
+import SequenceViewer from './HTMLSequenceViewer';
 
 import propsToRedux from '../store/propsToRedux';
 
