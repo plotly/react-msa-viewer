@@ -92,7 +92,7 @@ class HTMLPositionBarComponent extends Component {
 
   render() {
     const style = {
-      font: "14px Arial",
+      font: this.props.font,
       marginTop: 3,
       width: this.props.width,
       overflow: "hidden",
