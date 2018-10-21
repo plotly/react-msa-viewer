@@ -27,12 +27,28 @@ import SequenceComponent from './Sequence';
 //import ModBar from './ModBar';
 
 import Mouse from '../utils/mouse';
+import createShallowCompare from '../utils/createShallowCompare';
 
 class HTMLSequenceViewerComponent extends Component {
 
   constructor(props) {
     super(props);
     this.el = createRef();
+
+    /**
+     * Updates the entire component if a property except for the position
+     * has changed. Otherwise just adjusts the scroll position;
+     */
+    const shallowCompare = createShallowCompare([
+      'xPosOffset',
+      'yPosOffset',
+      'position',
+    ]);
+    this.shouldComponentUpdate = (nextProps, nextState) => {
+      return shallowCompare(this.props, nextProps) ||
+        this.updateScrollPosition();
+    };
+
   }
 
   onPositionUpdate = (oldPos, newPos) => {
@@ -151,10 +167,6 @@ class HTMLSequenceViewerComponent extends Component {
     return htmlSequences;
   }
 
-  // TODO
-  //shouldComponentUpdate() {
-  //}
-
   componentDidUpdate() {
     this.updateScrollPosition();
   }
@@ -234,9 +246,7 @@ const mapStateToProps = state => {
     tileWidth: state.props.tileWidth,
     tileHeight: state.props.tileHeight,
     tileFont: state.props.tileFont,
-    msecsPerFps: state.props.msecsPerFps,
     colorScheme: state.props.colorScheme,
-    engine: state.props.engine,
     currentViewSequence: state.sequenceStats.currentViewSequence,
     currentViewSequencePosition: state.sequenceStats.currentViewSequencePosition,
     yPosOffset: state.sequenceStats.yPosOffset,
