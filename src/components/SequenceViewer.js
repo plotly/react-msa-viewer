@@ -92,13 +92,6 @@ class SequenceViewerComponent extends DraggingComponent {
     this.draw();
   }
 
-  // TODO: move into the redux store
-  /**
-   * Only fire an event if its value has changed.
-   */
-  fireEvent(eventName, e) {
-  }
-
   /**
    * Returns the position of the mouse position relative to the sequences
    */
