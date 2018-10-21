@@ -208,6 +208,8 @@ class HTMLDraggingComponent extends Component {
       overflow: "hidden",
       whiteSpace: "nowrap",
       userSelect: "none",
+      MozUserSelect: "none",
+      msUserSelect: "none",
     };
     return (
       <div
