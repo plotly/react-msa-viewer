@@ -8,9 +8,9 @@
 
 import React, { Component } from 'react';
 
-//import {
-  //throttle,
-//} from 'lodash-es';
+import {
+  throttle,
+} from 'lodash-es';
 import Mouse from '../utils/mouse';
 
 import createRef from 'create-react-ref/lib/createRef';
@@ -54,8 +54,8 @@ class HTMLDraggingComponent extends Component {
     super(props);
     this.el = createRef();
 
-    //this.onMouseMove = throttle(this.onMouseMove, msecsPerFps);
-    //this.onTouchMove = throttle(this.onTouchMove, msecsPerFps);
+    this.onMouseMove = throttle(this.onMouseMove, 1 / 30);
+    this.onTouchMove = throttle(this.onTouchMove, 1 / 30);
   }
 
   componentWillMount() {
