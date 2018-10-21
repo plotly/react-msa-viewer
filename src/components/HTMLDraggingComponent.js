@@ -16,9 +16,8 @@ import Mouse from '../utils/mouse';
 import createRef from 'create-react-ref/lib/createRef';
 
 /**
-Provides dragging support in a canvas for sub-classes.
-Sub-classes are expected to implement:
-- drawScene
+Provides dragging support and related callbacks:
+
 - onPositionUpdate(oldPos, newPos)
 
 Moreover, a component's viewpoint needs to be passed in via its properties:

@@ -114,7 +114,6 @@ class HTMLSequenceViewerComponent extends Component {
         }
       }
     }
-    super.onMouseMove(e);
   }
 
   onMouseLeave = (e) => {
