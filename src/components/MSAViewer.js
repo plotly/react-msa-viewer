@@ -15,11 +15,14 @@ import {
   PropTypes,
 } from '../PropTypes';
 
-import PositionBar from './PositionBar';
+//import PositionBar from './PositionBar';
+//import OverviewBar from './OverviewBar';
+//import Labels from './Labels';
+import PositionBar from './HTMLPositionBar';
 import SequenceViewer from './SequenceViewer';
 import SequenceOverview from './SequenceOverview';
-import OverviewBar from './OverviewBar';
-import Labels from './Labels';
+import OverviewBar from './HTMLOverviewBar';
+import Labels from './HTMLLabels';
 
 import propsToRedux from '../store/propsToRedux';
 
@@ -32,13 +35,39 @@ const labelsAndSequenceDiv = {
 // TODO: support using the child components in stand-alone mode
 class MSAViewerComponent extends Component {
 
-  static sequenceViewerPropsForwarded = [
+  // List of props forwarded to the SequenceViewer component
+  static sequenceViewerProps = [
     "showModBar",
     "onResidueMouseEnter",
     "onResidueMouseLeave",
     "onResidueClick",
     "onResidueDoubleClick",
   ];
+
+  // List of props forwarded to the Labels component
+  static labelsProps = [
+    "labelComponent",
+  ];
+
+  // List of props forwarded to the PositionBar component
+  static positionBarProps = [
+    "markerComponent",
+  ];
+
+  // List of props forwarded to the OverviewBar component
+  static overviewBarProps = [
+    "barComponent",
+  ];
+
+  forwardProps(propsToBeForwarded) {
+    const options = {}
+    propsToBeForwarded.forEach(prop => {
+      if (this.props[prop] !== undefined) {
+        options[prop] = this.props[prop];
+      }
+    });
+    return options;
+  }
 
   render() {
     const {children, msaStore, ...otherProps} = this.props;
@@ -62,23 +91,23 @@ class MSAViewerComponent extends Component {
         height: 10,
       };
 
-      // forward props to SequenceViewer
-      const sequenceViewerOptions = {};
-      MSAViewerComponent.sequenceViewerPropsForwarded.forEach(prop => {
-        if (this.props[prop] !== undefined) {
-          sequenceViewerOptions[prop] = this.props[prop];
-        }
-      });
       return (
         <MSAProvider store={msaStore}>
           <div style={labelsAndSequenceDiv}>
             <Labels
               style={labelsStyle}
+              {...this.forwardProps(MSAViewerComponent.labelsProps)}
             />
             <div>
-              <OverviewBar height={overviewBarHeight} />
-              <PositionBar />
-              <SequenceViewer {...sequenceViewerOptions} />
+              <OverviewBar height={overviewBarHeight}
+                {...this.forwardProps(MSAViewerComponent.overviewBarProps)}
+              />
+              <PositionBar
+                {...this.forwardProps(MSAViewerComponent.positionBarProps)}
+              />
+              <SequenceViewer
+                {...this.forwardProps(MSAViewerComponent.sequenceViewerProps)}
+              />
               <div style={separatorPadding} />
               <SequenceOverview />
             </div>

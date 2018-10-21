@@ -38,12 +38,10 @@ storiesOf('Customization', module)
     ];
     const options = {
       colorScheme: select("Colorscheme", colorschemes, "zappo"),
-      height: 60,
       sequences,
     };
     return (
-    <MSAViewer {...options} >
-    </MSAViewer>
+      <MSAViewer {...options} />
     )
   })
   .add('Custom ColorScheme', function(){
@@ -61,13 +59,44 @@ storiesOf('Customization', module)
     const myColorScheme = new MyColorScheme();
     const options = {
       colorScheme: myColorScheme,
-      height: 60,
       sequences,
     };
     return (
-    <MSAViewer {...options} >
-    </MSAViewer>
+      <MSAViewer {...options} />
     )
   })
- ;
+ .add('Custom Labels', function(){
+    const options = {
+      sequences,
+      labelComponent: ({sequence}) => {
+        return (
+          <div style={{height: 20, fontWeight: 'bold'}}>
+            My: {sequence.name}
+          </div>
+        );
+      }
+    };
+    return (
+      <MSAViewer {...options} />
+    )
+  })
+ .add('Custom Markers', function(){
+    const options = {
+      sequences,
+      markerComponent: ({name}) => {
+        return (
+          <div style={{
+            width: 20,
+            display: "inline-block",
+            textAlign: "center",
+            fontWeight: 'bold'}}>
+            {name}
+          </div>
+        );
+      }
+    };
+    return (
+      <MSAViewer {...options} />
+    )
+  })
  ;
