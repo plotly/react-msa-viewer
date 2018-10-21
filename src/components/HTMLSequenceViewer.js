@@ -5,7 +5,7 @@
 * This source code is licensed under the MIT license found in the
 * LICENSE file in the root directory of this source tree.
 */
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import createRef from 'create-react-ref/lib/createRef';
@@ -17,83 +17,16 @@ import {
   isEqual,
 } from 'lodash-es';
 
-import { keyword, hex } from 'color-convert';
-
 import msaConnect from '../store/connect'
 import { updatePosition } from '../store/actions'
 
 import DraggingComponent from './HTMLDraggingComponent';
+import ResidueComponent from './Residue';
+import SequenceComponent from './Sequence';
 // TODO: withModBar
 //import ModBar from './ModBar';
 
 import Mouse from '../utils/mouse';
-
-/**
- * Render an individual residue.
- */
-class Residue extends PureComponent {
-  render() {
-    const {height, width, color, name} = this.props;
-    let colorRGB;
-    if (color && color[0] === "#") {
-      colorRGB = hex.rgb(color);
-    } else {
-      colorRGB = keyword.rgb(color);
-    }
-    const style = {
-      height,
-      width,
-      backgroundColor: `rgba(${colorRGB[0]}, ${colorRGB[1]}, ${colorRGB[2]}, 0.7)`,
-      display: "inline-block",
-      textAlign: "center",
-    }
-    return (
-      <div style={style}>
-        {name}
-      </div>
-    );
-  }
-}
-
-/**
- * Renders an individual sequence fragment.
- */
-class Sequence extends PureComponent {
-    render() {
-      const {
-        xPos,
-        jPos,
-        sequence,
-        tileWidth,
-        tileHeight,
-        tileFont,
-        colorScheme,
-        width,
-      } = this.props;
-      const rawSequence = sequence.sequence;
-      const residues = [];
-      let xPosMoved = xPos;
-      for (let j = jPos; j < rawSequence.length; j++) {
-        const el = rawSequence[j];
-        residues.push(<Residue
-          width={tileWidth}
-          height={tileHeight}
-          color={colorScheme.getColor(el)}
-          font={tileFont}
-          name={el}
-          key={j}
-        />);
-        xPosMoved += tileWidth;
-        if (xPosMoved > width)
-            break;
-      }
-      return (
-        <div>
-          {residues}
-        </div>
-      );
-    }
-}
 
 class HTMLSequenceViewerComponent extends Component {
 
@@ -177,13 +110,11 @@ class HTMLSequenceViewerComponent extends Component {
   onClick = (e) => {
     const eventData = this.currentPointerPosition(e);
     this.sendEvent('onResidueClick', eventData);
-    super.onClick(e);
   }
 
   onDoubleClick = (e) => {
     const eventData = this.currentPointerPosition(e);
     this.sendEvent('onResidueDoubleClick', eventData);
-    super.onDoubleClick(e);
   }
 
   /**
@@ -191,6 +122,7 @@ class HTMLSequenceViewerComponent extends Component {
    * Called on every sequence movement.
    */
   renderSequences() {
+    const Sequence = this.props.sequenceComponent;
     const sequences = this.props.sequences.raw;
     let yPos = this.props.yPosOffset;
     const htmlSequences = [];
@@ -210,6 +142,7 @@ class HTMLSequenceViewerComponent extends Component {
         sequence={sequence}
         font={this.props.tileFont}
         width={this.props.width}
+        residueComponent={this.props.residueComponent}
       />
       );
       yPos += this.props.tileHeight;
@@ -253,6 +186,8 @@ class HTMLSequenceViewerComponent extends Component {
 
 HTMLSequenceViewerComponent.defaultProps = {
   showModBar: true,
+  residueComponent: ResidueComponent,
+  sequenceComponent: SequenceComponent,
 };
 
 HTMLSequenceViewerComponent.PropTypes = {
