@@ -195,7 +195,7 @@ class HTMLSequenceViewerComponent extends Component {
       colorScheme,
       updatePosition,
       tileFont,
-      ...otherProps,
+      ...otherProps
     } = this.props;
     return (
       <DraggingComponent

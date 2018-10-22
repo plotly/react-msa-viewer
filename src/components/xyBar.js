@@ -45,6 +45,7 @@ class XYBarComponent extends Component {
   }
 
   draw() {
+    this.lastRenderTime = Date.now();
     const TileComponent = this.props.tileComponent;
     const elements = [];
     let yPos = this.props.yPosOffset;
@@ -70,6 +71,7 @@ class XYBarComponent extends Component {
   }
 
   componentDidUpdate() {
+    console.log("render time", Date.now() - this.lastRenderTime);
     this.updateScrollPosition();
   }
 
@@ -114,7 +116,6 @@ class XYBarComponent extends Component {
       position: "relative",
       whiteSpace: "nowrap",
     };
-    console.log("rerender xyBar");
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
