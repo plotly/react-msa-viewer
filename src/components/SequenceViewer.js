@@ -164,7 +164,7 @@ SequenceViewerComponent.defaultProps = {
   showModBar: true,
 };
 
-SequenceViewerComponent.PropTypes = {
+SequenceViewerComponent.propTypes = {
   /**
    * Show the custom ModBar
    */

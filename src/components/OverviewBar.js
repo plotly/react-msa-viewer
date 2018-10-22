@@ -70,8 +70,8 @@ OverviewBarComponent.defaultProps = {
   method: "conservation",
 }
 
-OverviewBarComponent.PropTypes = {
-  ...CanvasComponent.PropTypes,
+OverviewBarComponent.propTypes = {
+  ...CanvasComponent.propTypes,
   /**
    * Method to use for the OverviewBar:
    *  - `information-content`: Information entropy after Shannon of a column (scaled)

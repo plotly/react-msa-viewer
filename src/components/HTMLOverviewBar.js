@@ -137,7 +137,7 @@ HTMLOverviewBarComponent.defaultProps = {
   barComponent: Bar,
 }
 
-HTMLOverviewBarComponent.PropTypes = {
+HTMLOverviewBarComponent.propTypes = {
   /**
    * Method to use for the OverviewBar:
    *  - `information-content`: Information entropy after Shannon of a column (scaled)

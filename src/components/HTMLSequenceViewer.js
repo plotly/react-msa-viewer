@@ -200,7 +200,7 @@ HTMLSequenceViewerComponent.defaultProps = {
   sequenceComponent: SequenceComponent,
 };
 
-HTMLSequenceViewerComponent.PropTypes = {
+HTMLSequenceViewerComponent.propTypes = {
   /**
    * Show the custom ModBar
    */
