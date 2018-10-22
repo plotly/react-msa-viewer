@@ -16,7 +16,7 @@ import MSAStats from '../utils/statSeqs';
 
 import shallowCompare from 'react-addons-shallow-compare';
 
-function createBar({columnHeights, tileWidth, height}) {
+function createBar({columnHeights, tileWidth, height, fillColor}) {
   class Bar extends PureComponent {
     render() {
       const { index, ...otherProps} = this.props;
@@ -25,7 +25,7 @@ function createBar({columnHeights, tileWidth, height}) {
         width: tileWidth,
         display: "inline-block",
         textAlign: "center",
-        backgroundColor: "black",
+        backgroundColor: fillColor,
       }
       return (
         <div {...otherProps}>
@@ -76,17 +76,20 @@ class HTMLOverviewBarComponent extends Component {
       columnHeights: columnHeights,
       tileWidth: this.props.tileWidth,
       height: this.props.height,
+      fillColor: this.props.fillColor,
     });
   }
 
   render() {
     const {cacheElements,
       height,
+      method,
+      fillColor,
+      dispatch,
       ...otherProps} = this.props;
-    const Marker = this.statsBar;
     return (
       <XBar
-        tileComponent={Marker}
+        tileComponent={this.statsBar}
         cacheElements={cacheElements}
         {...otherProps}
       />

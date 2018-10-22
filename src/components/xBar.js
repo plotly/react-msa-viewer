@@ -78,14 +78,30 @@ class XBarComponent extends Component {
   }
 
   render() {
+    const {
+      xPosOffset,
+      tileWidth,
+      currentViewSequencePosition,
+      nrSequences,
+      sequences,
+      width,
+      cacheElements,
+      tileComponent,
+      nrTiles,
+      ...otherProps,
+    } = this.props;
     const style = {
-      width: this.props.width,
+      width,
       overflow: "hidden",
       position: "relative",
       whiteSpace: "nowrap",
     };
+    const containerStyle = {
+      ...this.props.style,
+      height: this.props.height,
+    };
     return (
-      <div style={this.props.style}>
+      <div style={containerStyle} {...otherProps}>
         <div style={style} ref={this.el}>
           { this.draw() }
         </div>

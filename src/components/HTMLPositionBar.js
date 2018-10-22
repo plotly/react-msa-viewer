@@ -73,6 +73,7 @@ class HTMLPositionBarComponent extends Component {
     const {cacheElements,
       markerSteps,
       startIndex,
+      dispatch,
       ...otherProps} = this.props;
     const Marker = this.marker;
     return (
