@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import MSAViewer from './lib';
 
 import {
+  repeat,
   times,
 } from 'lodash';
 
@@ -53,10 +54,11 @@ class App extends Component {
       width: 800,
       height: 800,
     };
-    times(100, (i) => {
+    times(1000, (i) => {
       options.sequences.push({
         name: `sequence ${i}`,
-        sequence: options.sequences[i % 7].sequence,
+        sequence:
+          repeat(options.sequences[i % 7].sequence, 5),
       });
     });
     return (
@@ -66,4 +68,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
