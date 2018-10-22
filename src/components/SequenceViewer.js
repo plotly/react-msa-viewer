@@ -168,7 +168,7 @@ SequenceViewerComponent.propTypes = {
   /**
    * Show the custom ModBar
    */
-  showModBar: PropTypes.boolean,
+  showModBar: PropTypes.bool,
 
   /**
    * Callback fired when the mouse pointer is entering a residue.
