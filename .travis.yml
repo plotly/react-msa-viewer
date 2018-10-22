@@ -7,3 +7,7 @@ cache:
 script:
   - npm test || true # temporarily disabled
   - npm run build
+branches:
+  only:
+  - master
+  - stable
