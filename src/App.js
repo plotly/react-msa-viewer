@@ -9,6 +9,10 @@
 import React, { Component } from 'react';
 import MSAViewer from './lib';
 
+import {
+  times,
+} from 'lodash';
+
 class App extends Component {
   render() {
     const options = {
@@ -46,7 +50,15 @@ class App extends Component {
         console.log("onResidueClick", e);
       },
       colorScheme: "clustal",
+      width: 800,
+      height: 800,
     };
+    times(100, (i) => {
+      options.sequences.push({
+        name: `sequence ${i}`,
+        sequence: options.sequences[i % 7].sequence,
+      });
+    });
     return (
       <div>
         <MSAViewer {...options} />
