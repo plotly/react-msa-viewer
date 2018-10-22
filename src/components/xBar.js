@@ -41,12 +41,12 @@ class XBarComponent extends Component {
 
   draw() {
     const TileComponent = this.props.tileComponent;
-    const labels = [];
+    const elements = [];
     let xPos = this.props.xPosOffset;
     const startTile = Math.max(0, this.props.currentViewSequencePosition - this.props.cacheElements);
     const endTile = Math.min(this.props.sequences.maxLength, startTile + this.props.nrTiles + this.props.cacheElements * 2);
     for (let i = startTile; i < endTile; i++) {
-      labels.push(
+      elements.push(
         <TileComponent
           key={i}
           index={i}
@@ -58,7 +58,7 @@ class XBarComponent extends Component {
     }
     this.lastCurrentViewSequencePosition = this.props.currentViewSequencePosition;
     this.lastStartTile = startTile;
-    return labels;
+    return elements;
   }
 
   componentDidUpdate() {
