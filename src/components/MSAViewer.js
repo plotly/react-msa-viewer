@@ -115,11 +115,11 @@ class MSAViewerComponent extends Component {
                 {...this.forwardProps(MSAViewerComponent.sequenceViewerProps)}
               />
               <div style={separatorPadding} />
-              <SequenceOverview />
             </div>
           </div>
         </MSAProvider>
       );
+      //<SequenceOverview />
     }
   }
 }
