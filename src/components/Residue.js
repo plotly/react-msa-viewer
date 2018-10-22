@@ -9,18 +9,27 @@ import React, { PureComponent } from 'react';
 
 import { keyword, hex } from 'color-convert';
 
+import {
+  memoize,
+} from 'lodash-es';
+
+function colorToHex(color) {
+  if (color && color[0] === "#") {
+    return hex.rgb(color);
+  } else {
+    return keyword.rgb(color);
+  }
+}
+
+const colorToHexCached = memoize(colorToHex);
+
 /**
  * Render an individual residue.
  */
 class Residue extends PureComponent {
   render() {
     const {height, width, color, name} = this.props;
-    let colorRGB;
-    if (color && color[0] === "#") {
-      colorRGB = hex.rgb(color);
-    } else {
-      colorRGB = keyword.rgb(color);
-    }
+    const colorRGB = colorToHexCached(color);
     const style = {
       height,
       width,
