@@ -5,7 +5,7 @@
 * This source code is licensed under the MIT license found in the
 * LICENSE file in the root directory of this source tree.
 */
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 
 import PropTypes from 'prop-types';
 import createRef from 'create-react-ref/lib/createRef';
@@ -29,26 +29,58 @@ import SequenceComponent from './Sequence';
 import Mouse from '../utils/mouse';
 import createShallowCompare from '../utils/createShallowCompare';
 
+import XYBar from './xyBar';
+
+function createSequence({sequences, tileWidth, tileHeight,
+  width, colorScheme, tileFont, cacheElements}) {
+  class Sequence extends PureComponent {
+    render() {
+      const {i, j: jPos} = this.props;
+      const rawSequence = sequences.raw[i].sequence;
+      const residues = [];
+      let xPos = 0;
+      const Residue = ResidueComponent;
+      for (let j = jPos; j < rawSequence.length; j++) {
+        const el = rawSequence[j];
+        residues.push(<Residue
+          width={tileWidth}
+          height={tileHeight}
+          color={colorScheme.getColor(el)}
+          font={tileFont}
+          name={el}
+          key={j}
+        />);
+        xPos += tileWidth;
+        if (xPos > (width + tileWidth * cacheElements * 2))
+            break;
+      }
+      return (
+        <div>
+          {residues}
+        </div>
+      );
+    }
+  }
+  return Sequence;
+};
+
 class HTMLSequenceViewerComponent extends Component {
 
   constructor(props) {
     super(props);
     this.el = createRef();
+  }
 
-    /**
-     * Updates the entire component if a property except for the position
-     * has changed. Otherwise just adjusts the scroll position;
-     */
-    const shallowCompare = createShallowCompare([
-      'xPosOffset',
-      'yPosOffset',
-      'position',
-    ]);
-    this.shouldComponentUpdate = (nextProps, nextState) => {
-      return shallowCompare(this.props, nextProps) ||
-        this.updateScrollPosition();
-    };
-
+  componentWillMount() {
+    this.sequenceComponent = createSequence({
+      sequences: this.props.sequences,
+      tileWidth: this.props.tileWidth,
+      tileHeight: this.props.tileHeight,
+      width: this.props.width,
+      tileFont: this.props.tileFont,
+      colorScheme: this.props.colorScheme,
+      cacheElements: this.props.cacheElements,
+    });
   }
 
   onPositionUpdate = (oldPos, newPos) => {
@@ -131,64 +163,31 @@ class HTMLSequenceViewerComponent extends Component {
     this.sendEvent('onResidueDoubleClick', eventData);
   }
 
-  /**
-   * Render the currently visible sequences.
-   * Called on every sequence movement.
-   */
-  renderSequences() {
-    const Sequence = this.props.sequenceComponent;
-    const sequences = this.props.sequences.raw;
-    let yPos = this.props.yPosOffset;
-    const htmlSequences = [];
-    for (let i = this.props.currentViewSequence; i < sequences.length; i++) {
-      const sequence = sequences[i];
-      let j = Math.min(
-        sequence.sequence.length,
-        this.props.currentViewSequencePosition
-      );
-      htmlSequences.push(<Sequence
-        key={i}
-        xPos={this.props.xPosOffset}
-        jPos={j}
-        tileWidth={this.props.tileWidth}
-        tileHeight={this.props.tileHeight}
-        colorScheme={this.props.colorScheme}
-        sequence={sequence}
-        font={this.props.tileFont}
-        width={this.props.width}
-        residueComponent={this.props.residueComponent}
-      />
-      );
-      yPos += this.props.tileHeight;
-      if (yPos > this.props.height)
-          break;
-    }
-    return htmlSequences;
-  }
-
-  componentDidUpdate() {
-    this.updateScrollPosition();
-  }
-
-  updateScrollPosition() {
-    if (this.el.current) {
-      this.el.current.el.current.scrollLeft = -this.props.xPosOffset;
-      this.el.current.el.current.scrollTop = -this.props.yPosOffset;
-    }
-    return false;
-  }
-
   render() {
     const style = {
       width: this.props.width,
       height: this.props.height,
     };
+    const {
+      showModBar,
+      residueComponent,
+      sequenceComponent,
+      onResidueMouseEnter,
+      onResidueMouseLeave,
+      onResidueClick,
+      onResidueDoubleClick,
+      position,
+      colorScheme,
+      updatePosition,
+      tileFont,
+      ...otherProps,
+    } = this.props;
     return (
       <DraggingComponent
         ref={this.el}
         style={style}
         onPositionUpdate={this.onPositionUpdate}>
-           {this.renderSequences()}
+        <XYBar {...otherProps} tileComponent={this.sequenceComponent} />
       </DraggingComponent>
     );
   }
@@ -198,6 +197,7 @@ HTMLSequenceViewerComponent.defaultProps = {
   showModBar: true,
   residueComponent: ResidueComponent,
   sequenceComponent: SequenceComponent,
+  cacheElements: 10,
 };
 
 HTMLSequenceViewerComponent.propTypes = {
@@ -240,6 +240,7 @@ const mapStateToProps = state => {
   return {
     position: state.position,
     sequences: state.sequences,
+    maxLength: state.sequences.maxLength,
     width,
     height,
     tileWidth: state.props.tileWidth,
