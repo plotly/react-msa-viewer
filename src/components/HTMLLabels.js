@@ -9,26 +9,30 @@ import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import msaConnect from '../store/connect'
-import createRef from 'create-react-ref/lib/createRef';
 
-import createShallowCompare from '../utils/createShallowCompare';
+import YBar from './yBar';
 
-/**
- * Displays an individual sequence name.
- */
-class Label extends PureComponent {
-  render() {
-    const {height, sequence, ...otherProps} = this.props;
-    otherProps.style = {
-      ...this.props.style,
-      height: height,
+import shallowCompare from 'react-addons-shallow-compare';
+
+function createLabel({sequences, tileHeight}) {
+  /**
+   * Displays an individual sequence name.
+   */
+  class Label extends PureComponent {
+    render() {
+      const {index, ...otherProps} = this.props;
+      otherProps.style = {
+        ...this.props.style,
+        height: tileHeight,
+      }
+      return (
+        <div {...otherProps}>
+          {sequences[index].name}
+        </div>
+      );
     }
-    return (
-      <div {...otherProps}>
-        {sequence.name}
-      </div>
-    );
   }
+  return Label;
 }
 
 /**
@@ -36,74 +40,43 @@ class Label extends PureComponent {
  */
 class HTMLLabelsComponent extends Component {
 
-  constructor(props) {
-    super(props);
-    this.el = createRef();
-
-    /**
-     * Updates the entire component if a property except for the position
-     * has changed. Otherwise just adjusts the scroll position;
-     */
-    const shallowCompare = createShallowCompare(['yPosOffset']);
-    this.shouldComponentUpdate = (nextProps, nextState) => {
-      return shallowCompare(this.props, nextProps) ||
-        this.updateScrollPosition();
-    };
+  componentWillMount() {
+    this.updateLabel();
   }
 
-  draw() {
-    const LabelComponent = this.props.labelComponent;
-    const labels = [];
-    let yPos = this.props.yPosOffset;
-    let i = this.props.currentViewSequence;
-    for (; i < this.props.sequences.length; i++) {
-      const sequence = this.props.sequences[i];
-      labels.push(
-        <LabelComponent
-          height={this.props.tileHeight}
-          key={i}
-          sequence={sequence}
-        />
-      );
-      yPos += this.props.tileHeight;
-      if (yPos > this.props.height)
-          break;
+  shouldComponentUpdate(nextProps, nextState) {
+    if (["sequences", "tileHeight"].some(key=> {
+      return nextProps[key] !== this.props[key];
+    }, true)){
+      this.updateLabel();
+      return true;
     }
-    return labels;
+    return shallowCompare(this, nextProps, nextState);
   }
 
-  componentDidUpdate() {
-    this.updateScrollPosition();
-  }
-
-  updateScrollPosition() {
-    if (this.el.current) {
-      this.el.current.scrollTop = -this.props.yPosOffset;
-    }
-    return false;
+  updateLabel() {
+    this.label = createLabel({
+      sequences: this.props.sequences,
+      tileWidth: this.props.tileWidth,
+    });
   }
 
   render() {
-    const style = {
-      font: "14px Arial",
-      marginTop: 3,
-      height: this.props.height,
-      overflow: "hidden",
-      position: "relative",
-    };
+    const {cacheElements,
+      dispatch,
+      ...otherProps} = this.props;
     return (
-      <div style={this.props.style}>
-        <div style={style} ref={this.el}>
-          {this.draw()}
-        </div>
-      </div>
+      <YBar
+        tileComponent={this.label}
+        cacheElements={cacheElements}
+        {...otherProps}
+      />
     );
   }
 }
 
 HTMLLabelsComponent.defaultProps = {
-  width: 80, // TODO: can we calculate this automatically?
-  labelComponent: Label,
+  cacheElements: 10,
 };
 
 HTMLLabelsComponent.propTypes = {
@@ -117,8 +90,6 @@ const mapStateToProps = state => {
   return {
     height: state.props.height,
     tileHeight: state.props.tileHeight,
-    msecsPerFps: state.props.msecsPerFps,
-    nrSequences: state.sequences.raw.length,
     sequences: state.sequences.raw,
     currentViewSequence : state.sequenceStats.currentViewSequence,
     yPosOffset: state.sequenceStats.yPosOffset,
