@@ -50,7 +50,10 @@ class HTMLOverviewBarComponent extends Component {
     const shallowCompare = createShallowCompare(['xPosOffset']);
     this.shouldComponentUpdate = (nextProps, nextState) => {
       if (shallowCompare(this.props, nextProps)) {
-        this.calculateStats();
+        if (this.props.sequences !== nextProps.sequences) {
+          console.log("update props");
+          this.calculateStats();
+        }
         return true;
       }
       this.updateScrollPosition();
