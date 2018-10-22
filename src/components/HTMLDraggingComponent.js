@@ -38,8 +38,6 @@ class HTMLDraggingComponent extends Component {
    */
 
   static defaultProps = {
-    width: 500,
-    height: 500,
     onPositionUpdate: () => null,
   }
 
