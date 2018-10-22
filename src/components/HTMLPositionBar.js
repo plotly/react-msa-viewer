@@ -18,16 +18,22 @@ import createShallowCompare from '../utils/createShallowCompare';
  */
 class Marker extends PureComponent {
   render() {
-    const {width, name, ...otherProps} = this.props;
+    const {width, name, markerSteps, ...otherProps} = this.props;
     otherProps.style = {
       ...this.props.style,
       width: width,
       display: "inline-block",
       textAlign: "center",
     }
+    let markerName;
+    if (name % markerSteps === 0) {
+      markerName = name;
+    } else {
+      markerName = '.';
+    }
     return (
       <div {...otherProps}>
-        {name}
+        {markerName}
       </div>
     );
   }
@@ -46,10 +52,18 @@ class HTMLPositionBarComponent extends Component {
      * Updates the entire component if a property except for the position
      * has changed. Otherwise just adjusts the scroll position;
      */
-    const shallowCompare = createShallowCompare(['xPosOffset']);
+    const shallowCompare = createShallowCompare([
+      'xPosOffset',
+      'currentViewSequencePosition'
+    ]);
     this.shouldComponentUpdate = (nextProps, nextState) => {
-      return shallowCompare(this.props, nextProps) ||
-        this.updateScrollPosition();
+      if (shallowCompare(this.props, nextProps)) {
+        return true;
+      }
+      if (Math.abs(nextProps.currentViewSequencePosition - this.lastCurrentViewSequencePosition) >= this.props.cacheElements) {
+        return true;
+      }
+      return this.updateScrollPosition();
     };
   }
 
@@ -57,25 +71,22 @@ class HTMLPositionBarComponent extends Component {
     const MarkerComponent = this.props.markerComponent;
     const labels = [];
     let xPos = this.props.xPosOffset;
-    const startTile = this.props.currentViewSequencePosition;
-    for (let i = startTile; i < (startTile + this.props.nrTiles); i++) {
-      let name;
-      if (i % this.props.markerSteps === 0) {
-        name = i;
-      } else {
-        name = '.';
-      }
+    const startTile = Math.max(0, this.props.currentViewSequencePosition - this.props.cacheElements);
+    for (let i = startTile; i < (startTile + this.props.nrTiles + this.props.cacheElements * 2); i++) {
       labels.push(
         <MarkerComponent
           width={this.props.tileWidth}
           key={i}
-          name={name}
+          name={i}
+          markerSteps={this.props.markerSteps}
           />
       );
       xPos += this.props.tileWidth;
-      if (xPos > this.props.width)
+      if (xPos > (this.props.width + this.props.cacheElements * 2 * this.props.tileWidth))
           break;
     }
+    this.lastCurrentViewSequencePosition = this.props.currentViewSequencePosition;
+    this.lastStartTile = startTile;
     return labels;
   }
 
@@ -85,7 +96,12 @@ class HTMLPositionBarComponent extends Component {
 
   updateScrollPosition() {
     if (this.el.current) {
-      this.el.current.scrollLeft = -this.props.xPosOffset;
+      let offset = -this.props.xPosOffset;
+      offset += (this.lastCurrentViewSequencePosition - this.lastStartTile) * this.props.tileWidth;
+      if (this.props.currentViewSequencePosition !== this.lastCurrentViewSequencePosition) {
+        offset += (this.props.currentViewSequencePosition - this.lastCurrentViewSequencePosition) * this.props.tileWidth;
+      }
+      this.el.current.scrollLeft = offset;
     }
     return false;
   }
@@ -115,6 +131,7 @@ HTMLPositionBarComponent.defaultProps = {
   markerSteps: 2,
   startIndex: 1,
   markerComponent: Marker,
+  cacheElements: 10,
 };
 
 HTMLPositionBarComponent.propTypes = {
