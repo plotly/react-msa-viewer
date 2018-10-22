@@ -201,6 +201,8 @@ class HTMLSequenceViewerComponent extends Component {
       <DraggingComponent
         ref={this.el}
         style={style}
+        width={this.props.width}
+        height={this.props.height}
         onPositionUpdate={this.onPositionUpdate}>
         <XYBar {...otherProps} tileComponent={this.sequenceComponent} />
       </DraggingComponent>
