@@ -54,8 +54,8 @@ class HTMLDraggingComponent extends Component {
     super(props);
     this.el = createRef();
 
-    this.onMouseMove = throttle(this.onMouseMove, 1 / 30);
-    this.onTouchMove = throttle(this.onTouchMove, 1 / 30);
+    this.onMouseMove = this.onMouseMove;
+    //this.onTouchMove = throttle(this.onTouchMove, 1 / 30);
   }
 
   componentWillMount() {
@@ -88,8 +88,15 @@ class HTMLDraggingComponent extends Component {
       this.stopDragPhase();
       return;
     }
-    this.props.onPositionUpdate(this.mouseMovePosition, pos);
+    const oldPos = this.mouseMovePosition
     this.mouseMovePosition = pos;
+    if (this.nextFrame === undefined) {
+      this.nextFrame = window.requestAnimationFrame(() => {
+        // already use the potentially updated mouse move position here
+        this.props.onPositionUpdate(oldPos, this.mouseMovePosition);
+        this.nextFrame = undefined;
+      });
+    }
   }
 
   onMouseUp = () => {
@@ -164,8 +171,8 @@ class HTMLDraggingComponent extends Component {
    * Called at the end of a drag action.
    */
   stopDragPhase() {
-    this.mouseMovePosition = undefined;
-    this.touchMovePosition = undefined;
+    //this.mouseMovePosition = undefined;
+    //this.touchMovePosition = undefined;
     this.isInDragPhase = undefined;
     this.setState(prevState => ({
       mouse: {
