@@ -93,7 +93,6 @@ class YBarComponent extends Component {
       position: "relative",
       whiteSpace: "nowrap",
     };
-    console.log("rerender yBar");
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
