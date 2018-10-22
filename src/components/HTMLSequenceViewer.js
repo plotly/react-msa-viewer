@@ -27,9 +27,9 @@ import SequenceComponent from './Sequence';
 //import ModBar from './ModBar';
 
 import Mouse from '../utils/mouse';
-import createShallowCompare from '../utils/createShallowCompare';
-
 import XYBar from './xyBar';
+
+import shallowCompare from 'react-addons-shallow-compare';
 
 function createSequence({sequences, tileWidth, tileHeight,
   width, colorScheme, tileFont, cacheElements}) {
@@ -72,6 +72,10 @@ class HTMLSequenceViewerComponent extends Component {
   }
 
   componentWillMount() {
+    this.updateSequence();
+  }
+
+  updateSequence() {
     this.sequenceComponent = createSequence({
       sequences: this.props.sequences,
       tileWidth: this.props.tileWidth,
@@ -163,6 +167,17 @@ class HTMLSequenceViewerComponent extends Component {
     this.sendEvent('onResidueDoubleClick', eventData);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (["sequences", "tileHeight", "tileWidth", "width", "tileFont",
+         "colorScheme", "cacheElements"].some(key=> {
+      return nextProps[key] !== this.props[key];
+    }, true)){
+      this.updateSequence();
+      return true;
+    }
+    return shallowCompare(this, nextProps, nextState);
+  }
+
   render() {
     const style = {
       width: this.props.width,
@@ -197,7 +212,7 @@ HTMLSequenceViewerComponent.defaultProps = {
   showModBar: true,
   residueComponent: ResidueComponent,
   sequenceComponent: SequenceComponent,
-  cacheElements: 10,
+  cacheElements: 1,
 };
 
 HTMLSequenceViewerComponent.propTypes = {
