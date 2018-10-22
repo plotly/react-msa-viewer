@@ -7,30 +7,33 @@
 */
 import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import createRef from 'create-react-ref/lib/createRef';
 
 import msaConnect from '../store/connect'
-import createShallowCompare from '../utils/createShallowCompare';
+
+import XBar from './xBar';
 
 import MSAStats from '../utils/statSeqs';
 
-class Bar extends PureComponent {
-  render() {
-    const {width, height, name, ...otherProps} = this.props;
-    otherProps.style = {
-      ...this.props.style,
-      width: width,
-      height: height,
-      display: "inline-block",
-      textAlign: "center",
-      backgroundColor: "black",
+import shallowCompare from 'react-addons-shallow-compare';
+
+function createBar({columnHeights, tileWidth, height}) {
+  class Bar extends PureComponent {
+    render() {
+      const { index, ...otherProps} = this.props;
+      otherProps.style = {
+        height: columnHeights[index] * height,
+        width: tileWidth,
+        display: "inline-block",
+        textAlign: "center",
+        backgroundColor: "black",
+      }
+      return (
+        <div {...otherProps}>
+        </div>
+      );
     }
-    return (
-      <div {...otherProps}>
-        {name}
-      </div>
-    );
   }
+  return Bar;
 }
 
 /**
@@ -38,94 +41,55 @@ class Bar extends PureComponent {
  */
 class HTMLOverviewBarComponent extends Component {
 
-  constructor(props) {
-    super(props);
+  componentWillMount() {
     this.calculateStats();
-    this.el = createRef();
+  }
 
-    /**
-     * Updates the entire component if a property except for the position
-     * has changed. Otherwise just adjusts the scroll position;
-     */
-    const shallowCompare = createShallowCompare(['xPosOffset']);
-    this.shouldComponentUpdate = (nextProps, nextState) => {
-      if (shallowCompare(this.props, nextProps)) {
-        if (this.props.sequences !== nextProps.sequences) {
-          console.log("update props");
-          this.calculateStats();
-        }
-        return true;
+  shouldComponentUpdate(nextProps, nextState) {
+    if (["height", "sequences", "tileWidth"].some(key=> {
+      return nextProps[key] !== this.props[key];
+    }, true)){
+      if (nextProps["sequences"] !== this.props.sequences) {
+        this.calculateStats();
       }
-      this.updateScrollPosition();
-      return false;
-    };
+      return true;
+    }
+    return shallowCompare(this, nextProps, nextState);
   }
 
   // TODO: do smarter caching here (reselect)
   calculateStats() {
     const stats = MSAStats(this.props.sequences.map(e => e.sequence));
-    this.columnHeights = [];
+    let columnHeights;
     switch (this.props.method) {
       case "conservation":
-        this.columnHeights = stats.scale(stats.conservation());
+        columnHeights = stats.scale(stats.conservation());
         break;
       case "information-content":
-        this.columnHeights = stats.scale(stats.ic());
+        columnHeights = stats.scale(stats.ic());
         break;
       default:
         console.error(this.props.method + "is an invalid aggregation method for <OverviewBar />");
     }
-  }
 
-  draw() {
-    const BarComponent = this.props.barComponent;
-    const labels = [];
-    let xPos = this.props.xPosOffset;
-    const startTile = this.props.currentViewSequencePosition;
-    for (let i = startTile; i < (startTile + this.props.nrTiles); i++) {
-      let height = this.props.height * this.columnHeights[i];
-      //const remainingHeight = this.props.height - height;
-      labels.push(
-        <BarComponent
-          width={this.props.tileWidth}
-          key={i}
-          height={height}
-          />
-      );
-      xPos += this.props.tileWidth;
-      if (xPos > this.props.width)
-          break;
-    }
-    return labels;
-  }
-
-  componentDidUpdate() {
-    this.updateScrollPosition();
-  }
-
-  updateScrollPosition() {
-    if (this.el.current) {
-      this.el.current.scrollLeft = -this.props.xPosOffset;
-    }
-    return false;
+    this.statsBar = createBar({
+      columnHeights: columnHeights,
+      tileWidth: this.props.tileWidth,
+      height: this.props.height,
+    });
   }
 
   render() {
-    const style = {
-      font: "14px Arial",
-      marginTop: 3,
-      width: this.props.width,
-      overflow: "hidden",
-      position: "relative",
-      whiteSpace: "nowrap",
-      height: this.props.height,
-    };
+    const {cacheElements,
+      height,
+      ...otherProps} = this.props;
+    const Marker = this.statsBar;
     return (
-      <div style={this.props.style}>
-        <div style={style} ref={this.el}>
-          { this.draw() }
-        </div>
-      </div>
+      <XBar
+        tileComponent={Marker}
+        cacheElements={cacheElements}
+        {...otherProps}
+      />
     );
   }
 }
@@ -134,7 +98,7 @@ HTMLOverviewBarComponent.defaultProps = {
   height: 50,
   fillColor: "#999999",
   method: "conservation",
-  barComponent: Bar,
+  cacheElements: 10,
 }
 
 HTMLOverviewBarComponent.propTypes = {
@@ -159,10 +123,9 @@ HTMLOverviewBarComponent.propTypes = {
 const mapStateToProps = state => {
   return {
     sequences: state.sequences.raw,
+    nrSequences: state.sequences.raw.length,
     width: state.props.width,
-    tileHeight: state.props.tileHeight,
     tileWidth: state.props.tileWidth,
-    msecsPerFps: state.props.msecsPerFps,
     currentViewSequencePosition : state.sequenceStats.currentViewSequencePosition,
     xPosOffset: state.sequenceStats.xPosOffset,
     nrTiles: state.sequenceStats.nrTiles,

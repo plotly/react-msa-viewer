@@ -9,34 +9,37 @@ import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import msaConnect from '../store/connect'
-import createRef from 'create-react-ref/lib/createRef';
 
-import createShallowCompare from '../utils/createShallowCompare';
+import XBar from './xBar';
 
-/**
- * Displays an individual sequence name.
- */
-class Marker extends PureComponent {
-  render() {
-    const {width, name, markerSteps, ...otherProps} = this.props;
-    otherProps.style = {
-      ...this.props.style,
-      width: width,
-      display: "inline-block",
-      textAlign: "center",
+import shallowCompare from 'react-addons-shallow-compare';
+
+function createMarker({markerSteps, startIndex, tileWidth, font}) {
+  /**
+   * Displays an individual sequence name.
+   */
+  class Marker extends PureComponent {
+    render() {
+      const {index, ...otherProps} = this.props;
+      otherProps.style = {
+        width: tileWidth,
+        display: "inline-block",
+        textAlign: "center",
+      }
+      let name;
+      if (index % markerSteps === 0) {
+        name = index+ 0 + startIndex;
+      } else {
+        name = '.';
+      }
+      return (
+        <div {...otherProps}>
+          {name}
+        </div>
+      );
     }
-    let markerName;
-    if (name % markerSteps === 0) {
-      markerName = name;
-    } else {
-      markerName = '.';
-    }
-    return (
-      <div {...otherProps}>
-        {markerName}
-      </div>
-    );
   }
+  return Marker;
 }
 
 /**
@@ -44,93 +47,51 @@ class Marker extends PureComponent {
 */
 class HTMLPositionBarComponent extends Component {
 
-  constructor(props) {
-    super(props);
-    this.el = createRef();
-
-    /**
-     * Updates the entire component if a property except for the position
-     * has changed. Otherwise just adjusts the scroll position;
-     */
-    const shallowCompare = createShallowCompare([
-      'xPosOffset',
-      'currentViewSequencePosition'
-    ]);
-    this.shouldComponentUpdate = (nextProps, nextState) => {
-      if (shallowCompare(this.props, nextProps)) {
-        return true;
-      }
-      if (Math.abs(nextProps.currentViewSequencePosition - this.lastCurrentViewSequencePosition) >= this.props.cacheElements) {
-        return true;
-      }
-      return this.updateScrollPosition();
-    };
+  componentWillMount() {
+    this.updateMarker();
   }
 
-  draw() {
-    const MarkerComponent = this.props.markerComponent;
-    const labels = [];
-    let xPos = this.props.xPosOffset;
-    const startTile = Math.max(0, this.props.currentViewSequencePosition - this.props.cacheElements);
-    for (let i = startTile; i < (startTile + this.props.nrTiles + this.props.cacheElements * 2); i++) {
-      labels.push(
-        <MarkerComponent
-          width={this.props.tileWidth}
-          key={i}
-          name={i}
-          markerSteps={this.props.markerSteps}
-          />
-      );
-      xPos += this.props.tileWidth;
-      if (xPos > (this.props.width + this.props.cacheElements * 2 * this.props.tileWidth))
-          break;
+  shouldComponentUpdate(nextProps, nextState) {
+    if (["markerSteps", "startIndex", "tileWidth"].some(key=> {
+      return nextProps[key] !== this.props[key];
+    }, true)){
+      this.updateMarker();
+      return true;
     }
-    this.lastCurrentViewSequencePosition = this.props.currentViewSequencePosition;
-    this.lastStartTile = startTile;
-    return labels;
+    return shallowCompare(this, nextProps, nextState);
   }
 
-  componentDidUpdate() {
-    this.updateScrollPosition();
-  }
-
-  updateScrollPosition() {
-    if (this.el.current) {
-      let offset = -this.props.xPosOffset;
-      offset += (this.lastCurrentViewSequencePosition - this.lastStartTile) * this.props.tileWidth;
-      if (this.props.currentViewSequencePosition !== this.lastCurrentViewSequencePosition) {
-        offset += (this.props.currentViewSequencePosition - this.lastCurrentViewSequencePosition) * this.props.tileWidth;
-      }
-      this.el.current.scrollLeft = offset;
-    }
-    return false;
+  updateMarker() {
+    this.marker = createMarker({
+      markerSteps: this.props.markerSteps,
+      startIndex: this.props.startIndex,
+      tileWidth: this.props.tileWidth,
+    });
   }
 
   render() {
-    const style = {
-      font: this.props.font,
-      marginTop: 3,
-      width: this.props.width,
-      overflow: "hidden",
-      position: "relative",
-      whiteSpace: "nowrap",
-    };
+    const {cacheElements,
+      markerSteps,
+      startIndex,
+      ...otherProps} = this.props;
+    const Marker = this.marker;
     return (
-      <div style={this.props.style}>
-        <div style={style} ref={this.el}>
-          { this.draw() }
-        </div>
-      </div>
+      <XBar
+        tileComponent={Marker}
+        cacheElements={cacheElements}
+        {...otherProps}
+      />
     );
   }
 }
 
 HTMLPositionBarComponent.defaultProps = {
-  font: "12px Arial",
+  style: {
+    font: "12px Arial",
+  },
   height: 15,
   markerSteps: 2,
   startIndex: 1,
-  markerComponent: Marker,
   cacheElements: 10,
 };
 
@@ -159,13 +120,10 @@ HTMLPositionBarComponent.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    tileWidth: state.props.tileWidth,
-    tileHeight: state.props.tileHeight,
-    nrSequences: state.sequences.raw.length,
     sequences: state.sequences.raw,
-    msecsPerFps: state.props.msecsPerFps,
-    viewpoint: state.viewpoint,
+    nrSequences: state.sequences.raw.length,
     width: state.props.width,
+    tileWidth: state.props.tileWidth,
     currentViewSequencePosition : state.sequenceStats.currentViewSequencePosition,
     xPosOffset: state.sequenceStats.xPosOffset,
     nrTiles: state.sequenceStats.nrTiles,
