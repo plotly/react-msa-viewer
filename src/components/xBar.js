@@ -44,7 +44,7 @@ class XBarComponent extends Component {
     const labels = [];
     let xPos = this.props.xPosOffset;
     const startTile = Math.max(0, this.props.currentViewSequencePosition - this.props.cacheElements);
-    const endTile = Math.min(this.props.nrSequences, startTile + this.props.nrTiles + this.props.cacheElements * 2);
+    const endTile = Math.min(this.props.sequences.maxLength, startTile + this.props.nrTiles + this.props.cacheElements * 2);
     for (let i = startTile; i < endTile; i++) {
       labels.push(
         <TileComponent
