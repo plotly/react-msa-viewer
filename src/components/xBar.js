@@ -44,7 +44,7 @@ class XBarComponent extends Component {
     const elements = [];
     let xPos = this.props.xPosOffset;
     const startTile = Math.max(0, this.props.currentViewSequencePosition - this.props.cacheElements);
-    const endTile = Math.min(this.props.sequences.maxLength, startTile + this.props.nrTiles + this.props.cacheElements * 2);
+    const endTile = Math.min(this.props.maxLength, startTile + this.props.nrTiles + this.props.cacheElements * 2);
     for (let i = startTile; i < endTile; i++) {
       elements.push(
         <TileComponent
@@ -82,12 +82,12 @@ class XBarComponent extends Component {
       xPosOffset,
       tileWidth,
       currentViewSequencePosition,
-      nrSequences,
       sequences,
       width,
       cacheElements,
       tileComponent,
       nrTiles,
+      maxLength,
       ...otherProps,
     } = this.props;
     const style = {
@@ -125,7 +125,7 @@ XBarComponent.propTypes = {
   currentViewSequencePosition: PropTypes.number.isRequired,
   nrTiles: PropTypes.number.isRequired,
   xPosOffset: PropTypes.number.isRequired,
-  nrSequences: PropTypes.number.isRequired,
+  maxLength: PropTypes.number.isRequired,
 }
 
 export default XBarComponent;

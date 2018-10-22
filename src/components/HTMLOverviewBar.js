@@ -126,7 +126,7 @@ HTMLOverviewBarComponent.propTypes = {
 const mapStateToProps = state => {
   return {
     sequences: state.sequences.raw,
-    nrSequences: state.sequences.raw.length,
+    maxLength: state.sequences.maxLength,
     width: state.props.width,
     tileWidth: state.props.tileWidth,
     currentViewSequencePosition : state.sequenceStats.currentViewSequencePosition,
