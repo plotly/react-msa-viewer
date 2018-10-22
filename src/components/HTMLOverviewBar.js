@@ -21,7 +21,7 @@ function createBar({columnHeights, tileWidth, height}) {
     render() {
       const { index, ...otherProps} = this.props;
       otherProps.style = {
-        height: columnHeights[index] * height,
+        height: Math.round(columnHeights[index] * height),
         width: tileWidth,
         display: "inline-block",
         textAlign: "center",
