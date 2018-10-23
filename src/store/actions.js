@@ -17,7 +17,7 @@
  *
  * Similar to createAction from redux-actions
  */
-function createAction(type, ...argNames) {
+export function createAction(type, ...argNames) {
   const actionCreator = function (...args) {
     let payload;
     if (argNames.length === 0) {
@@ -42,3 +42,9 @@ function createAction(type, ...argNames) {
 export const updatePosition = createAction('POSITION_UPDATE');
 export const updateProps = createAction('PROPS_UPDATE', 'key', 'value');
 export const updateSequences = createAction('SEQUENCES_UPDATE');
+export const actions = {
+  updatePosition,
+  updateProps,
+  updateSequences,
+};
+export default actions;
