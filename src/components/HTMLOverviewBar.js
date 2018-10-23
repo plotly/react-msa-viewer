@@ -101,7 +101,7 @@ HTMLOverviewBarComponent.defaultProps = {
   height: 50,
   fillColor: "#999999",
   method: "conservation",
-  cacheElements: 10,
+  cacheElements: 3,
 }
 
 HTMLOverviewBarComponent.propTypes = {

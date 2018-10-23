@@ -101,7 +101,7 @@ HTMLPositionBarComponent.defaultProps = {
   height: 15,
   markerSteps: 2,
   startIndex: 1,
-  cacheElements: 10,
+  cacheElements: 3,
 };
 
 HTMLPositionBarComponent.propTypes = {
