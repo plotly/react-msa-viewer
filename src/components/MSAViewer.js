@@ -140,6 +140,9 @@ class MSAViewerComponent extends Component {
               {...this.forwardProps(MSAViewerComponent.labelsProps)}
             />
             <div>
+              <OverviewBar height={overviewBarHeight}
+                {...this.forwardProps(MSAViewerComponent.overviewBarProps)}
+              />
               <PositionBar
                 {...this.forwardProps(MSAViewerComponent.positionBarProps)}
               />
