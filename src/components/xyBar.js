@@ -34,13 +34,7 @@ class XYBarComponent extends Component {
       if (shallowCompare(this.props, nextProps)) {
         return true;
       }
-      if (Math.abs(nextProps.currentViewSequencePosition - this.lastCurrentViewSequencePosition) >= this.props.cacheElements) {
-        return true;
-      }
-      if (Math.abs(nextProps.currentViewSequence - this.lastCurrentViewSequence) >= this.props.cacheElements) {
-        return true;
-      }
-      return this.updateScrollPosition();
+      return this.shouldRerender();
     };
   }
 
@@ -48,9 +42,9 @@ class XYBarComponent extends Component {
     this.lastRenderTime = Date.now();
     const TileComponent = this.props.tileComponent;
     const elements = [];
-    let yPos = this.props.yPosOffset;
-    const startXTile = Math.max(0, this.props.currentViewSequencePosition - this.props.cacheElements);
-    const startYTile = Math.max(0, this.props.currentViewSequence - this.props.cacheElements);
+    let yPos = this.yPosOffset;
+    const startXTile = Math.max(0, this.currentViewSequencePosition - this.props.cacheElements);
+    const startYTile = Math.max(0, this.currentViewSequence - this.props.cacheElements);
     for (let i = startYTile; i < this.props.sequences.length; i++) {
       elements.push(
         <TileComponent
@@ -63,49 +57,21 @@ class XYBarComponent extends Component {
       if (yPos > (this.props.height + this.props.cacheElements * 2 * this.props.tileHeight))
           break;
     }
-    this.lastCurrentViewSequencePosition = this.props.currentViewSequencePosition;
-    this.lastCurrentViewSequence = this.props.currentViewSequence;
-    this.lastXStartTile = startXTile;
-    this.lastYStartTile = startYTile;
+    this.lastCurrentViewSequencePosition = this.currentViewSequencePosition;
+    this.lastCurrentViewSequence = this.currentViewSequence;
+    this.lastStartXTile = startXTile;
+    this.lastStartYTile = startYTile;
     return elements;
   }
 
   componentDidUpdate() {
-    console.log("render time", Date.now() - this.lastRenderTime);
-    this.updateScrollPosition();
-  }
-
-  updateScrollPosition() {
-    if (this.el.current) {
-      let xOffset = -this.props.xPosOffset;
-      xOffset += (this.lastCurrentViewSequencePosition - this.lastXStartTile) * this.props.tileWidth;
-      if (this.props.currentViewSequencePosition !== this.lastCurrentViewSequencePosition) {
-        xOffset += (this.props.currentViewSequencePosition - this.lastCurrentViewSequencePosition) * this.props.tileWidth;
-      }
-      this.el.current.scrollLeft = xOffset;
-
-      let yOffset = -this.props.yPosOffset;
-      yOffset += (this.lastCurrentViewSequence - this.lastYStartTile) * this.props.tileHeight;
-      if (this.props.currentViewSequence !== this.lastCurrentViewSequence) {
-        yOffset += (this.props.currentViewSequence - this.lastCurrentViewSequence) * this.props.tileHeight;
-      }
-      this.el.current.scrollTop = yOffset;
-    }
-    return false;
-  }
-
-  componentWillUpdate() {
-    console.log("CWU");
+    console.log("SV render time", Date.now() - this.lastRenderTime);
   }
 
   render() {
     const {
-      xPosOffset,
-      yPosOffset,
       tileWidth,
       tileHeight,
-      currentViewSequence,
-      currentViewSequencePosition,
       sequences,
       width,
       height,
@@ -120,11 +86,10 @@ class XYBarComponent extends Component {
       position: "relative",
       whiteSpace: "nowrap",
     };
-          //{ this.draw() }
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
-          <div style={{width, height, backgroundColor: "red"}} />
+          { this.draw() }
         </div>
       </div>
     );

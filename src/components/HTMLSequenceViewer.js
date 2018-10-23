@@ -99,7 +99,6 @@ class HTMLSequenceViewerComponent extends Component {
       yMovement: oldPos[1] - newPos[1],
     };
     this.context.positionMSAStore.dispatch(updatePosition(relativeMovement));
-    //this.props.updatePosition(pos);
   }
 
   positionToSequence(pos) {
@@ -197,7 +196,6 @@ class HTMLSequenceViewerComponent extends Component {
       onResidueMouseLeave,
       onResidueClick,
       onResidueDoubleClick,
-      position,
       colorScheme,
       updatePosition,
       tileFont,
