@@ -84,6 +84,7 @@ class XYBarComponent extends Component {
     } = this.props;
     const style = {
       width,
+      height,
       overflow: "hidden",
       position: "relative",
       whiteSpace: "nowrap",
