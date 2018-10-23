@@ -34,6 +34,9 @@ import shallowCompare from 'react-addons-shallow-compare';
 function createSequence({sequences, tileWidth, tileHeight,
   width, colorScheme, tileFont, cacheElements}) {
   class Sequence extends PureComponent {
+    componentWillMount() {
+      this.style = {};
+    }
     render() {
       const {i, j: jPos} = this.props;
       const rawSequence = sequences.raw[i].sequence;
@@ -54,8 +57,10 @@ function createSequence({sequences, tileWidth, tileHeight,
         if (xPos > (width + tileWidth * cacheElements * 2))
             break;
       }
+      this.style.width = xPos;
+      this.style.height = tileHeight;
       return (
-        <div>
+        <div style={this.style}>
           {residues}
         </div>
       );
@@ -89,16 +94,15 @@ class HTMLSequenceViewerComponent extends Component {
 
   onPositionUpdate = (oldPos, newPos) => {
     // TODO: move this into a redux action
-    const pos = this.props.position;
-    pos.xPos += oldPos[0] - newPos[0];
-    pos.yPos += oldPos[1] - newPos[1];
-    // TODO: need maximum of sequence lengths here
-    const maximum = this.props.sequences.maxLength;
-    const maxWidth = maximum * this.props.tileWidth - this.props.width;
-    pos.xPos = clamp(pos.xPos, 0, maxWidth);
-    const maxHeight = this.props.sequences.raw.length * this.props.tileHeight - this.props.height;
-    pos.yPos = clamp(pos.yPos, 0, maxHeight);
-    this.props.updatePosition(pos);
+    const relativePosition = {
+      xMovement: oldPos[0] - newPos[0],
+      yMovement: oldPos[1] - newPos[1],
+    };
+    this.context.positionMSAStore.dispatch({
+      type: "POSITION_UPDATE",
+      payload: relativePosition,
+    });
+    //this.props.updatePosition(pos);
   }
 
   positionToSequence(pos) {
@@ -168,6 +172,7 @@ class HTMLSequenceViewerComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    return false;
     if (["sequences", "tileHeight", "tileWidth", "width", "tileFont",
          "colorScheme", "cacheElements"].some(key=> {
       return nextProps[key] !== this.props[key];
@@ -176,6 +181,10 @@ class HTMLSequenceViewerComponent extends Component {
       return true;
     }
     return shallowCompare(this, nextProps, nextState);
+  }
+
+  componentWillUpdate() {
+    console.log("CWU");
   }
 
   render() {
@@ -208,6 +217,10 @@ class HTMLSequenceViewerComponent extends Component {
       </DraggingComponent>
     );
   }
+}
+
+HTMLSequenceViewerComponent.contextTypes = {
+  positionMSAStore: PropTypes.object,
 }
 
 HTMLSequenceViewerComponent.defaultProps = {
@@ -255,7 +268,7 @@ const mapStateToProps = state => {
     state.sequences.length * state.props.tileHeight
   );
   return {
-    position: state.position,
+    //position: state.position,
     sequences: state.sequences,
     maxLength: state.sequences.maxLength,
     width,
@@ -264,10 +277,10 @@ const mapStateToProps = state => {
     tileHeight: state.props.tileHeight,
     tileFont: state.props.tileFont,
     colorScheme: state.props.colorScheme,
-    currentViewSequence: state.sequenceStats.currentViewSequence,
-    currentViewSequencePosition: state.sequenceStats.currentViewSequencePosition,
-    yPosOffset: state.sequenceStats.yPosOffset,
-    xPosOffset: state.sequenceStats.xPosOffset,
+    //currentViewSequence: state.sequenceStats.currentViewSequence,
+    //currentViewSequencePosition: state.sequenceStats.currentViewSequencePosition,
+    //yPosOffset: state.sequenceStats.yPosOffset,
+    //xPosOffset: state.sequenceStats.xPosOffset,
   }
 }
 
