@@ -34,9 +34,6 @@ import shallowCompare from 'react-addons-shallow-compare';
 function createSequence({sequences, tileWidth, tileHeight,
   width, colorScheme, tileFont, cacheElements}) {
   class Sequence extends PureComponent {
-    componentWillMount() {
-      this.style = {};
-    }
     render() {
       const {i, j: jPos} = this.props;
       const rawSequence = sequences.raw[i].sequence;
@@ -57,10 +54,12 @@ function createSequence({sequences, tileWidth, tileHeight,
         if (xPos > (width + tileWidth * cacheElements * 2))
             break;
       }
-      this.style.width = xPos;
-      this.style.height = tileHeight;
+      const style = {
+        width: xPos,
+        height: tileHeight,
+      }
       return (
-        <div style={this.style}>
+        <div style={style}>
           {residues}
         </div>
       );

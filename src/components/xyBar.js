@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 import createRef from 'create-react-ref/lib/createRef';
 import createShallowCompare from '../utils/createShallowCompare';
 
+import positionStoreMixin from '../store/positionStoreMixin';
+
 /**
 * Displays the sequence names with an arbitrary Marker component
 */
@@ -95,6 +97,8 @@ class XYBarComponent extends Component {
     );
   }
 }
+
+positionStoreMixin(XYBarComponent, {withX: true, withY: true});
 
 XYBarComponent.propTypes = {
   /**
