@@ -132,13 +132,13 @@ class MSAViewerComponent extends Component {
         height: 10,
       };
 
-            //<Labels
-              //style={labelsStyle}
-              //{...this.forwardProps(MSAViewerComponent.labelsProps)}
-            ///>
       return (
         <MSAProvider store={msaStore}>
           <div style={labelsAndSequenceDiv}>
+            <Labels
+              style={labelsStyle}
+              {...this.forwardProps(MSAViewerComponent.labelsProps)}
+            />
             <div>
               <PositionBar
                 {...this.forwardProps(MSAViewerComponent.positionBarProps)}

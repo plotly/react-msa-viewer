@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 import createRef from 'create-react-ref/lib/createRef';
 import createShallowCompare from '../utils/createShallowCompare';
 
+import { positionStoreMixin } from '../store/positionReducers';
+
 class ListComponent extends PureComponent {
 
   render() {
@@ -50,30 +52,9 @@ class YBarComponent extends Component {
       'currentViewSequence'
     ]);
     this.shouldComponentUpdate = (nextProps, nextState) => {
-      if (shallowCompare(this.props, nextProps)) {
-        return true;
-      }
-      if (Math.abs(nextProps.currentViewSequence - this.lastCurrentViewSequence) >= this.props.cacheElements) {
-        return true;
-      }
-      return this.updateScrollPosition();
+      return shallowCompare(this.props, nextProps) ||
+             this.shouldRerender();
     };
-  }
-
-  componentDidUpdate() {
-    this.updateScrollPosition();
-  }
-
-  updateScrollPosition() {
-    if (this.el.current) {
-      let offset = -this.props.yPosOffset;
-      offset += (this.lastCurrentViewSequence - this.lastStartYTile) * this.props.tileHeight;
-      if (this.props.currentViewSequence !== this.lastCurrentViewSequence) {
-        offset += (this.props.currentViewSequence - this.lastCurrentViewSequence) * this.props.tileHeight;
-      }
-      this.el.current.scrollTop = offset;
-    }
-    return false;
   }
 
   render() {
@@ -93,11 +74,12 @@ class YBarComponent extends Component {
       position: "relative",
       whiteSpace: "nowrap",
     };
-    const startTile = Math.max(0, this.props.currentViewSequence - this.props.cacheElements);
+    const startTile = Math.max(0, this.currentViewSequence - this.props.cacheElements);
     const endTile = this.props.sequences.length;
     const maxHeight = this.props.height + this.props.cacheElements * 2 * this.props.tileHeight;
-    this.lastCurrentViewSequence = this.props.currentViewSequence;
+    this.lastCurrentViewSequence = this.currentViewSequence;
     this.lastStartYTile = startTile;
+    console.log(startTile, endTile);
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
@@ -113,6 +95,8 @@ class YBarComponent extends Component {
   }
 }
 
+positionStoreMixin(YBarComponent, {withY: true});
+
 YBarComponent.propTypes = {
   /**
    * Tile to render.
@@ -125,8 +109,8 @@ YBarComponent.propTypes = {
   cacheElements: PropTypes.number.isRequired,
 
   tileHeight: PropTypes.number.isRequired,
-  currentViewSequence: PropTypes.number.isRequired,
-  yPosOffset: PropTypes.number.isRequired,
+  //currentViewSequence: PropTypes.number.isRequired,
+  //yPosOffset: PropTypes.number.isRequired,
 }
 
 export default YBarComponent;
