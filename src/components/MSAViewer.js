@@ -28,6 +28,11 @@ import SequenceViewer from './HTMLSequenceViewer';
 
 import propsToRedux from '../store/propsToRedux';
 
+import {
+  positionReducer,
+  createPositionStore,
+} from '../store/positionReducers';
+
 const labelsAndSequenceDiv = {
   display: "flex",
 };
@@ -75,6 +80,36 @@ class MSAViewerComponent extends Component {
     return options;
   }
 
+  componentWillMount() {
+    this.positionStore = createPositionStore(positionReducer);
+    this.positionStore.dispatch({
+      type: "MAINSTORE_UPDATE",
+      payload: this.props.msaStore.getState(),
+    });
+    this.positionStore.dispatch({
+      type: "POSITION_UPDATE",
+      payload: {xMovement: 0, yMovement: 0},
+    });
+    this.msaStoreUnsubscribe = this.props.msaStore.subscribe(() => {
+      // forward the msaStore to the positionStore for convenience
+      this.positionStore.dispatch({
+        type: "MAINSTORE_UPDATE",
+        payload: this.props.msaStore.getState(),
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    this.msaStoreUnsubscribe();
+  }
+
+  // TODO: we could inject this in the main redux store for better compatibility
+  getChildContext() {
+    return {
+      positionMSAStore: this.positionStore,
+    };
+  }
+
   render() {
     const {children, msaStore, ...otherProps} = this.props;
     if (children) {
@@ -97,17 +132,14 @@ class MSAViewerComponent extends Component {
         height: 10,
       };
 
+            //<Labels
+              //style={labelsStyle}
+              //{...this.forwardProps(MSAViewerComponent.labelsProps)}
+            ///>
       return (
         <MSAProvider store={msaStore}>
           <div style={labelsAndSequenceDiv}>
-            <Labels
-              style={labelsStyle}
-              {...this.forwardProps(MSAViewerComponent.labelsProps)}
-            />
             <div>
-              <OverviewBar height={overviewBarHeight}
-                {...this.forwardProps(MSAViewerComponent.overviewBarProps)}
-              />
               <PositionBar
                 {...this.forwardProps(MSAViewerComponent.positionBarProps)}
               />
@@ -124,10 +156,13 @@ class MSAViewerComponent extends Component {
   }
 }
 
+MSAViewerComponent.childContextTypes = {
+  positionMSAStore: PropTypes.object,
+};
+
 const MSAViewer = propsToRedux(MSAViewerComponent);
 
 MSAViewer.defaultProps = msaDefaultProps;
-
 MSAViewer.propTypes = {
   /**
    * A custom msaStore (created with `createMSAStore`).
