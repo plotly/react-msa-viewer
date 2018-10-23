@@ -79,7 +79,6 @@ class YBarComponent extends Component {
     const maxHeight = this.props.height + this.props.cacheElements * 2 * this.props.tileHeight;
     this.lastCurrentViewSequence = this.currentViewSequence;
     this.lastStartYTile = startTile;
-    console.log(startTile, endTile);
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
