@@ -220,7 +220,7 @@ HTMLSequenceViewerComponent.defaultProps = {
   showModBar: true,
   residueComponent: ResidueComponent,
   sequenceComponent: SequenceComponent,
-  cacheElements: 1,
+  cacheElements: 3,
 };
 
 HTMLSequenceViewerComponent.propTypes = {
