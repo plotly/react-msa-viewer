@@ -76,7 +76,7 @@ class HTMLLabelsComponent extends Component {
 }
 
 HTMLLabelsComponent.defaultProps = {
-  cacheElements: 3,
+  cacheElements: 4,
 };
 
 HTMLLabelsComponent.propTypes = {

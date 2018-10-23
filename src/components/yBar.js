@@ -18,7 +18,7 @@ class ListComponent extends PureComponent {
   render() {
     const TileComponent = this.props.tileComponent;
     const elements = [];
-    let yPos = 0;
+    //let yPos = 0;
     for (let i = this.props.startTile; i < this.props.endTile; i++) {
       elements.push(
         <TileComponent
@@ -26,9 +26,9 @@ class ListComponent extends PureComponent {
           index={i}
           />
       );
-      yPos += this.props.tileHeight;
-      if (yPos > this.props.maxHeight)
-          break;
+      //yPos += this.props.tileHeight;
+      //if (yPos > this.props.maxHeight)
+          //break;
     }
     return elements;
   }
@@ -75,17 +75,17 @@ class YBarComponent extends Component {
       whiteSpace: "nowrap",
     };
     const startTile = Math.max(0, this.currentViewSequence - this.props.cacheElements);
-    const endTile = this.props.sequences.length;
-    const maxHeight = this.props.height + this.props.cacheElements * 2 * this.props.tileHeight;
+    const endTile = Math.min(this.props.sequences.length,
+      startTile + Math.ceil(height/ this.props.tileHeight) + this.props.cacheElements * 2);
     this.lastCurrentViewSequence = this.currentViewSequence;
     this.lastStartYTile = startTile;
+    console.log(startTile, endTile);
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
           <ListComponent
             startTile={startTile}
             endTile={endTile}
-            maxHeight={maxHeight}
             tileComponent={this.props.tileComponent}
           />
         </div>

@@ -137,7 +137,7 @@ class SequenceViewerComponent extends DraggingComponent {
   onClick = (e) => {
     //const eventData = this.currentPointerPosition(e);
     //this.sendEvent('onResidueClick', eventData);
-    //super.onClick(e);
+    super.onClick(e);
   }
 
   onDoubleClick = (e) => {
