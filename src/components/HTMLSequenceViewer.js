@@ -95,8 +95,8 @@ class HTMLSequenceViewerComponent extends Component {
   onPositionUpdate = (oldPos, newPos) => {
     // TODO: move this into a redux action
     const relativeMovement = {
-      xMovement: newPos[0] - oldPos[0],
-      yMovement: newPos[1] - oldPos[1],
+      xMovement: oldPos[0] - newPos[0],
+      yMovement: oldPos[1] - newPos[1],
     };
     this.context.positionMSAStore.dispatch(updatePosition(relativeMovement));
     //this.props.updatePosition(pos);
