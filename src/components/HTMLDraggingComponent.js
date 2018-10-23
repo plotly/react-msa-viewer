@@ -60,6 +60,11 @@ class HTMLDraggingComponent extends Component {
     this.stopDragPhase();
   }
 
+  // TODO
+  shouldComponentUpdate() {
+    return false;
+  }
+
   componentDidMount() {
     this.el.current.addEventListener('mouseenter', this.onMouseEnter);
     this.el.current.addEventListener('mouseleave', this.onMouseLeave);
