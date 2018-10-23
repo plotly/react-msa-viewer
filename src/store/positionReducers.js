@@ -178,6 +178,11 @@ export function positionReducer(state = {position: {xPos: 0, yPos: 0}}, action){
       const payload = {
         xPosOffset: -(position.xPos % state.props.tileWidth),
         yPosOffset: -(position.yPos % state.props.tileWidth),
+        currentViewSequence: clamp(
+          floor(state.position.yPos / state.props.tileHeight),
+          0,
+          state.sequences.length - 1
+        ),
         currentViewSequencePosition: clamp(
           floor(position.xPos / state.props.tileWidth),
           0,
