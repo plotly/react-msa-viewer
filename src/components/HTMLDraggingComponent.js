@@ -92,9 +92,9 @@ class HTMLDraggingComponent extends Component {
       return;
     }
     const oldPos = this.mouseMovePosition
-    this.mouseMovePosition = pos;
     if (this.nextFrame === undefined) {
       this.nextFrame = window.requestAnimationFrame(() => {
+        this.mouseMovePosition = pos;
         // already use the potentially updated mouse move position here
         this.props.onPositionUpdate(oldPos, this.mouseMovePosition);
         this.nextFrame = undefined;
