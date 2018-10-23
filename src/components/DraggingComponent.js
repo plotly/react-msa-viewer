@@ -129,6 +129,7 @@ class DraggingComponent extends Component {
   }
 
   draw() {
+    if (!this.ctx) return;
     // TODO: only update this if required
     this.ctx.startDrawingFrame();
     this.ctx.save();
@@ -180,9 +181,9 @@ class DraggingComponent extends Component {
       return;
     }
     const oldPos = this.mouseMovePosition
-    this.mouseMovePosition = pos;
     if (this.nextFrame === undefined) {
       this.nextFrame = window.requestAnimationFrame(() => {
+        this.mouseMovePosition = pos;
         // already use the potentially updated mouse move position here
         this.onPositionUpdate(oldPos, this.mouseMovePosition);
         this.nextFrame = undefined;

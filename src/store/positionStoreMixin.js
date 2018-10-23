@@ -75,26 +75,28 @@ export function positionStoreMixin(Component, {
     this.updateScrollPosition();
   }
 
-  Component.prototype.updateScrollPosition = function(){
-    if (this.el.current) {
-      if (withX) {
-        let offsetX = -this.xPosOffset;
-        offsetX += (this.lastCurrentViewSequencePosition - this.lastStartXTile) * this.props.tileWidth;
-        if (this.currentViewSequencePosition !== this.lastCurrentViewSequencePosition) {
-          offsetX += (this.currentViewSequencePosition - this.lastCurrentViewSequencePosition) * this.props.tileWidth;
+  if (Component.prototype.updateScrollPosition === undefined) {
+    Component.prototype.updateScrollPosition = function(){
+      if (this.el && this.el.current) {
+        if (withX) {
+          let offsetX = -this.xPosOffset;
+          offsetX += (this.lastCurrentViewSequencePosition - this.lastStartXTile) * this.props.tileWidth;
+          if (this.currentViewSequencePosition !== this.lastCurrentViewSequencePosition) {
+            offsetX += (this.currentViewSequencePosition - this.lastCurrentViewSequencePosition) * this.props.tileWidth;
+          }
+          this.el.current.scrollLeft = offsetX;
         }
-        this.el.current.scrollLeft = offsetX;
-      }
-      if (withY) {
-        let offsetY = -this.yPosOffset;
-        offsetY += (this.lastCurrentViewSequence - this.lastStartYTile) * this.props.tileHeight;
-        if (this.currentViewSequence !== this.lastCurrentViewSequence) {
-          offsetY += (this.currentViewSequence - this.lastCurrentViewSequence) * this.props.tileHeight;
+        if (withY) {
+          let offsetY = -this.yPosOffset;
+          offsetY += (this.lastCurrentViewSequence - this.lastStartYTile) * this.props.tileHeight;
+          if (this.currentViewSequence !== this.lastCurrentViewSequence) {
+            offsetY += (this.currentViewSequence - this.lastCurrentViewSequence) * this.props.tileHeight;
+          }
+          this.el.current.scrollTop = offsetY;
         }
-        this.el.current.scrollTop = offsetY;
       }
+      return false;
     }
-    return false;
   }
 
   // inject the store via contexts

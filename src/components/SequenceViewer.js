@@ -7,8 +7,10 @@
 */
 
 import msaConnect from '../store/connect'
-import { updatePosition } from '../store/actions'
 import PropTypes from 'prop-types';
+
+import { updatePosition } from '../store/positionReducers';
+import positionStoreMixin from '../store/positionStoreMixin';
 
 import {
   flow,
@@ -32,13 +34,13 @@ class SequenceViewerComponent extends DraggingComponent {
     const sequences = this.props.sequences.raw;
     const tileWidth = this.props.tileWidth;
     const tileHeight = this.props.tileHeight;
-    const xInitPos = this.props.stats.xPosOffset;
-    let yPos = this.props.stats.yPosOffset
-    let i = this.props.stats.currentViewSequence;
+    const xInitPos = this.xPosOffset;
+    let yPos = this.yPosOffset
+    let i = this.currentViewSequence;
     for (; i < sequences.length; i++) {
       const sequence = sequences[i].sequence;
       let xPos = xInitPos;
-      let j = Math.min(sequence.length, this.props.stats.currentViewSequencePosition);
+      let j = Math.min(sequence.length, this.currentViewSequencePosition);
       for (; j < sequence.length; j++) {
         const el = sequence[j];
         this.ctx.font(this.props.tileFont);
@@ -59,18 +61,12 @@ class SequenceViewerComponent extends DraggingComponent {
     }
   }
 
-  onPositionUpdate(oldPos, newPos) {
-    // TODO: move this into a redux action
-    const pos = this.props.position;
-    pos.xPos += oldPos[0] - newPos[0];
-    pos.yPos += oldPos[1] - newPos[1];
-    // TODO: need maximum of sequence lengths here
-    const maximum = this.props.sequences.maxLength;
-    const maxWidth = maximum * this.props.tileWidth - this.props.width;
-    pos.xPos = clamp(pos.xPos, 0, maxWidth);
-    const maxHeight = this.props.sequences.raw.length * this.props.tileHeight - this.props.height;
-    pos.yPos = clamp(pos.yPos, 0, maxHeight);
-    this.props.updatePosition(pos);
+  onPositionUpdate = (oldPos, newPos) => {
+    const relativeMovement = {
+      xMovement: oldPos[0] - newPos[0],
+      yMovement: oldPos[1] - newPos[1],
+    };
+    this.context.positionMSAStore.dispatch(updatePosition(relativeMovement));
   }
 
   positionToSequence(pos) {
@@ -85,6 +81,10 @@ class SequenceViewerComponent extends DraggingComponent {
       position,
       residue: sequence.sequence[position],
     }
+  }
+
+  updateScrollPosition = () => {
+    this.draw();
   }
 
   componentDidUpdate() {
@@ -114,32 +114,32 @@ class SequenceViewerComponent extends DraggingComponent {
 
   onMouseMove = (e) => {
     if (typeof this.dragFrame === "undefined") {
-      if (this.props.onResidueMouseEnter !== undefined ||
-          this.props.onResidueMouseLeave !== undefined) {
-        const eventData = this.currentPointerPosition(e);
-        const lastValue = this.currentMouseSequencePosition;
-        if (!isEqual(lastValue, eventData)) {
-          if (lastValue !== undefined) {
-            this.sendEvent('onResidueMouseLeave', lastValue);
-          }
-          this.currentMouseSequencePosition = eventData;
-          this.sendEvent('onResidueMouseEnter', eventData);
-        }
-      }
+      //if (this.props.onResidueMouseEnter !== undefined ||
+          //this.props.onResidueMouseLeave !== undefined) {
+        //const eventData = this.currentPointerPosition(e);
+        //const lastValue = this.currentMouseSequencePosition;
+        //if (!isEqual(lastValue, eventData)) {
+          //if (lastValue !== undefined) {
+            //this.sendEvent('onResidueMouseLeave', lastValue);
+          //}
+          //this.currentMouseSequencePosition = eventData;
+          //this.sendEvent('onResidueMouseEnter', eventData);
+        //}
+      //}
     }
     super.onMouseMove(e);
   }
 
   onMouseLeave = (e) => {
-    this.sendEvent('onResidueMouseLeave', this.currentMouseSequencePosition);
+    //this.sendEvent('onResidueMouseLeave', this.currentMouseSequencePosition);
     this.currentMouseSequencePosition = undefined;
     super.onMouseLeave(e);
   }
 
   onClick = (e) => {
-    const eventData = this.currentPointerPosition(e);
-    this.sendEvent('onResidueClick', eventData);
-    super.onClick(e);
+    //const eventData = this.currentPointerPosition(e);
+    //this.sendEvent('onResidueClick', eventData);
+    //super.onClick(e);
   }
 
   onDoubleClick = (e) => {
@@ -159,6 +159,9 @@ class SequenceViewerComponent extends DraggingComponent {
     return super.render();
   }
 }
+
+positionStoreMixin(SequenceViewerComponent, {withX: true, withY: true});
+
 
 SequenceViewerComponent.defaultProps = {
   showModBar: true,
@@ -202,7 +205,7 @@ const mapStateToProps = state => {
     state.sequences.length * state.props.tileHeight
   );
   return {
-    position: state.position,
+    //position: state.position,
     sequences: state.sequences,
     width,
     height,
@@ -212,17 +215,17 @@ const mapStateToProps = state => {
     msecsPerFps: state.props.msecsPerFps,
     colorScheme: state.props.colorScheme,
     engine: state.props.engine,
-    stats: state.sequenceStats,
+    //stats: state.sequenceStats,
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    updatePosition: flow(updatePosition, dispatch),
-  }
-}
+//const mapDispatchToProps = dispatch => {
+  //return {
+    //updatePosition: flow(updatePosition, dispatch),
+  //}
+//}
 
 export default msaConnect(
   mapStateToProps,
-  mapDispatchToProps,
+  //mapDispatchToProps,
 )(SequenceViewerComponent);
