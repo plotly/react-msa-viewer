@@ -67,7 +67,7 @@ class YBarComponent extends Component {
   updateScrollPosition() {
     if (this.el.current) {
       let offset = -this.props.yPosOffset;
-      offset += (this.lastCurrentViewSequence - this.lastStartTile) * this.props.tileHeight;
+      offset += (this.lastCurrentViewSequence - this.lastStartYTile) * this.props.tileHeight;
       if (this.props.currentViewSequence !== this.lastCurrentViewSequence) {
         offset += (this.props.currentViewSequence - this.lastCurrentViewSequence) * this.props.tileHeight;
       }
@@ -97,7 +97,7 @@ class YBarComponent extends Component {
     const endTile = this.props.sequences.length;
     const maxHeight = this.props.height + this.props.cacheElements * 2 * this.props.tileHeight;
     this.lastCurrentViewSequence = this.props.currentViewSequence;
-    this.lastStartTile = startTile;
+    this.lastStartYTile = startTile;
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
