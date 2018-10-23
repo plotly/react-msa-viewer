@@ -6,7 +6,7 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import * as actions from './actions'
+import actions from './actions'
 
 // reducer utilities
 import handleActions from './reducers/handleActions'; // similar to handleActions from redux-actions
@@ -76,24 +76,24 @@ const sequenceStats = (prevState = {
   currentViewSequencePosition: 0,
 }, action, state) => {
   switch(action.type){
+    //case actions.updatePosition.key:
     case actions.updateProps.key:
-    case actions.updatePosition.key:
     case actions.updateSequences.key:
       if (state.props && state.props.tileHeight && state.props.tileWidth &&
-          state.position && state.sequences) {
+          state.sequences) {
         const stats = {};
-        stats.currentViewSequence = clamp(
-          floor(state.position.yPos / state.props.tileHeight),
-          0,
-          state.sequences.length - 1
-        );
-        stats.currentViewSequencePosition = clamp(
-          floor(state.position.xPos / state.props.tileWidth),
-          0,
-          state.sequences.maxLength,
-        );
-        stats.yPosOffset = -(state.position.yPos % state.props.tileHeight);
-        stats.xPosOffset = -(state.position.xPos % state.props.tileWidth);
+        //stats.currentViewSequence = clamp(
+          //floor(state.position.yPos / state.props.tileHeight),
+          //0,
+          //state.sequences.length - 1
+        //);
+        //stats.currentViewSequencePosition = clamp(
+          //floor(state.position.xPos / state.props.tileWidth),
+          //0,
+          //state.sequences.maxLength,
+        //);
+        //stats.yPosOffset = -(state.position.yPos % state.props.tileHeight);
+        //stats.xPosOffset = -(state.position.xPos % state.props.tileWidth);
         stats.nrTiles = Math.ceil(state.props.width / state.props.tileWidth) + 1;
         return stats;
       }
@@ -131,7 +131,7 @@ const statCombineReduce = (reducer, statReducers) => {
 };
 
 export default statCombineReduce(combineReducers({
-  position,
+  //position,
   props,
   sequences,
 }), {
