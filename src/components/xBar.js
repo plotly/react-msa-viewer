@@ -63,10 +63,6 @@ class XBarComponent extends Component {
     };
   }
 
-  componentDidUpdate() {
-    this.updateScrollPosition();
-  }
-
   render() {
     const {
       tileWidth,

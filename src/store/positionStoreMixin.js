@@ -67,6 +67,14 @@ export function positionStoreMixin(Component, {
     this.context.positionMSAStore.subscribe(this.updateFromPositionStore);
   }
 
+  const oldComponentDidUpdate = Component.prototype.componentDidUpdate;
+  Component.prototype.componentDidUpdate = function() {
+    if (oldComponentDidUpdate) {
+      oldComponentDidUpdate.call(this);
+    }
+    this.updateScrollPosition();
+  }
+
   Component.prototype.updateScrollPosition = function(){
     if (this.el.current) {
       if (withX) {
