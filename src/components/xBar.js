@@ -15,9 +15,9 @@ import positionStoreMixin from '../store/positionStoreMixin';
 
 class ListComponent extends PureComponent {
 
-  componentWillUpdate() {
-    console.log("CWU");
-  }
+  //componentWillUpdate() {
+    //console.log("CWU");
+  //}
 
   render() {
     const TileComponent = this.props.tileComponent;
