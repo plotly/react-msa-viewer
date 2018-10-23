@@ -51,6 +51,10 @@ class HTMLPositionBarComponent extends Component {
     this.updateMarker();
   }
 
+  componentWillUpdate() {
+    console.log("CWU");
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     if (["markerSteps", "startIndex", "tileWidth"].some(key=> {
       return nextProps[key] !== this.props[key];
@@ -58,7 +62,12 @@ class HTMLPositionBarComponent extends Component {
       this.updateMarker();
       return true;
     }
-    return shallowCompare(this, nextProps, nextState);
+    return false;
+    //return shallowCompare(this, nextProps, nextState);
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   updateMarker() {
@@ -125,8 +134,8 @@ const mapStateToProps = state => {
     maxLength: state.sequences.maxLength,
     width: state.props.width,
     tileWidth: state.props.tileWidth,
-    currentViewSequencePosition : state.sequenceStats.currentViewSequencePosition,
-    xPosOffset: state.sequenceStats.xPosOffset,
+    //currentViewSequencePosition : state.sequenceStats.currentViewSequencePosition,
+    //xPosOffset: state.sequenceStats.xPosOffset,
     nrTiles: state.sequenceStats.nrTiles,
   }
 }
