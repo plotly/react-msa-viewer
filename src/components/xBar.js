@@ -98,7 +98,6 @@ class XBarComponent extends Component {
     const endTile = Math.min(this.props.maxLength, startTile + this.props.nrTiles + this.props.cacheElements * 2);
     const maxWidth = this.props.width + this.props.cacheElements * 2 * this.props.tileWidth;
     this.lastStartXTile = startTile;
-    console.log(startTile, endTile);
     return (
       <div style={containerStyle} {...otherProps}>
         <div style={style} ref={this.el}>
