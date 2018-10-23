@@ -13,10 +13,8 @@ import { updatePosition } from '../store/positionReducers';
 import positionStoreMixin from '../store/positionStoreMixin';
 
 import {
-  flow,
   floor,
   clamp,
-  isEqual,
 } from 'lodash-es';
 
 import DraggingComponent from './DraggingComponent';
