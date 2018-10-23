@@ -18,7 +18,7 @@ import {
 } from 'lodash-es';
 
 import msaConnect from '../store/connect'
-import { updatePosition } from '../store/actions'
+import { updatePosition } from '../store/positionReducers';
 
 import DraggingComponent from './HTMLDraggingComponent';
 import ResidueComponent from './Residue';
@@ -94,14 +94,11 @@ class HTMLSequenceViewerComponent extends Component {
 
   onPositionUpdate = (oldPos, newPos) => {
     // TODO: move this into a redux action
-    const relativePosition = {
-      xMovement: oldPos[0] - newPos[0],
-      yMovement: oldPos[1] - newPos[1],
+    const relativeMovement = {
+      xMovement: newPos[0] - oldPos[0],
+      yMovement: newPos[1] - oldPos[1],
     };
-    this.context.positionMSAStore.dispatch({
-      type: "POSITION_UPDATE",
-      payload: relativePosition,
-    });
+    this.context.positionMSAStore.dispatch(updatePosition(relativeMovement));
     //this.props.updatePosition(pos);
   }
 
