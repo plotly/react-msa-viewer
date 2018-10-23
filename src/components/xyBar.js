@@ -94,6 +94,10 @@ class XYBarComponent extends Component {
     return false;
   }
 
+  componentWillUpdate() {
+    console.log("CWU");
+  }
+
   render() {
     const {
       xPosOffset,
@@ -116,10 +120,11 @@ class XYBarComponent extends Component {
       position: "relative",
       whiteSpace: "nowrap",
     };
+          //{ this.draw() }
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
-          { this.draw() }
+          <div style={{width, height, backgroundColor: "red"}} />
         </div>
       </div>
     );
@@ -139,10 +144,10 @@ XYBarComponent.propTypes = {
 
   tileWidth: PropTypes.number.isRequired,
   tileHeight: PropTypes.number.isRequired,
-  currentViewSequence: PropTypes.number.isRequired,
-  currentViewSequencePosition: PropTypes.number.isRequired,
-  xPosOffset: PropTypes.number.isRequired,
-  yPosOffset: PropTypes.number.isRequired,
+  //currentViewSequence: PropTypes.number.isRequired,
+  //currentViewSequencePosition: PropTypes.number.isRequired,
+  //xPosOffset: PropTypes.number.isRequired,
+  //yPosOffset: PropTypes.number.isRequired,
   maxLength: PropTypes.number.isRequired,
 }
 
