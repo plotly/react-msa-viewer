@@ -66,6 +66,7 @@ class HTMLDraggingComponent extends Component {
   }
 
   componentDidMount() {
+    console.log("umount");
     this.el.current.addEventListener('mouseenter', this.onMouseEnter);
     this.el.current.addEventListener('mouseleave', this.onMouseLeave);
     this.el.current.addEventListener('mousedown', this.onMouseDown);
@@ -87,11 +88,12 @@ class HTMLDraggingComponent extends Component {
     }
     const pos = Mouse.abs(e);
     // TODO: use global window out and not this container's out for better dragging
-    if (!this.isEventWithinComponent(e)) {
-      this.stopDragPhase();
-      return;
-    }
+    //if (!this.isEventWithinComponent(e)) {
+      //this.stopDragPhase();
+      //return;
+    //}
     const oldPos = this.mouseMovePosition
+    console.log("mousemove");
     if (this.nextFrame === undefined) {
       this.nextFrame = window.requestAnimationFrame(() => {
         this.mouseMovePosition = pos;
@@ -103,6 +105,7 @@ class HTMLDraggingComponent extends Component {
   }
 
   onMouseUp = () => {
+    console.log("mouseUp");
     this.stopDragPhase();
   }
 
@@ -117,6 +120,7 @@ class HTMLDraggingComponent extends Component {
 
   onMouseLeave = () => {
     // TODO: use global window out and not this container's out for better dragging
+    console.log("mouseleave");
     this.stopHoverPhase();
     this.stopDragPhase();
   }
