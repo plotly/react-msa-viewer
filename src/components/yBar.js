@@ -5,11 +5,32 @@
 * This source code is licensed under the MIT license found in the
 * LICENSE file in the root directory of this source tree.
 */
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import createRef from 'create-react-ref/lib/createRef';
 import createShallowCompare from '../utils/createShallowCompare';
+
+class ListComponent extends PureComponent {
+
+  render() {
+    const TileComponent = this.props.tileComponent;
+    const elements = [];
+    let yPos = 0;
+    for (let i = this.props.startTile; i < this.props.endTile; i++) {
+      elements.push(
+        <TileComponent
+          key={i}
+          index={i}
+          />
+      );
+      yPos += this.props.tileHeight;
+      if (yPos > this.props.maxHeight)
+          break;
+    }
+    return elements;
+  }
+}
 
 /**
 * Displays the sequence names with an arbitrary Marker component
@@ -37,27 +58,6 @@ class YBarComponent extends Component {
       }
       return this.updateScrollPosition();
     };
-  }
-
-  draw() {
-    const TileComponent = this.props.tileComponent;
-    const elements = [];
-    let yPos = this.props.yPosOffset;
-    const startTile = Math.max(0, this.props.currentViewSequence - this.props.cacheElements);
-    for (let i = startTile; i < this.props.sequences.length; i++) {
-      elements.push(
-        <TileComponent
-          key={i}
-          index={i}
-          />
-      );
-      yPos += this.props.tileHeight;
-      if (yPos > (this.props.height + this.props.cacheElements * 2 * this.props.tileHeight))
-          break;
-    }
-    this.lastCurrentViewSequence = this.props.currentViewSequence;
-    this.lastStartTile = startTile;
-    return elements;
   }
 
   componentDidUpdate() {
@@ -93,10 +93,20 @@ class YBarComponent extends Component {
       position: "relative",
       whiteSpace: "nowrap",
     };
+    const startTile = Math.max(0, this.props.currentViewSequence - this.props.cacheElements);
+    const endTile = this.props.sequences.length;
+    const maxHeight = this.props.height + this.props.cacheElements * 2 * this.props.tileHeight;
+    this.lastCurrentViewSequence = this.props.currentViewSequence;
+    this.lastStartTile = startTile;
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
-          { this.draw() }
+          <ListComponent
+            startTile={startTile}
+            endTile={endTile}
+            maxHeight={maxHeight}
+            tileComponent={this.props.tileComponent}
+          />
         </div>
       </div>
     );
