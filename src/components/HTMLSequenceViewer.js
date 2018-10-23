@@ -168,7 +168,6 @@ class HTMLSequenceViewerComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return false;
     if (["sequences", "tileHeight", "tileWidth", "width", "tileFont",
          "colorScheme", "cacheElements"].some(key=> {
       return nextProps[key] !== this.props[key];

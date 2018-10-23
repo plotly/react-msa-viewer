@@ -18,19 +18,19 @@ import calculateSequencesState from './reducers/calculateSequencesState';
 // other utilities
 import {ColorScheme, isColorScheme} from '../utils/ColorScheme';
 
-import {
-  floor,
-  clamp,
-} from 'lodash-es';
+//import {
+  //floor,
+  //clamp,
+//} from 'lodash-es';
 
-const position = handleActions({
-  [actions.updatePosition]: (prevState, {xPos, yPos}) => {
-    return {xPos, yPos};
-  }
-}, {
-  xPos: 0,
-  yPos: 0,
-});
+//const position = handleActions({
+  //[actions.updatePosition]: (prevState, {xPos, yPos}) => {
+    //return {xPos, yPos};
+  //}
+//}, {
+  //xPos: 0,
+  //yPos: 0,
+//});
 
 function checkColorScheme(state) {
   if (isColorScheme(state.colorScheme)) {

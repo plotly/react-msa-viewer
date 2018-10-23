@@ -62,8 +62,7 @@ class HTMLPositionBarComponent extends Component {
       this.updateMarker();
       return true;
     }
-    return false;
-    //return shallowCompare(this, nextProps, nextState);
+    return shallowCompare(this, nextProps, nextState);
   }
 
   componentWillUnmount() {
