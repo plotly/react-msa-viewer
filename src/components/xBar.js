@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 import createRef from 'create-react-ref/lib/createRef';
 import createShallowCompare from '../utils/createShallowCompare';
 
+import { positionStoreMixin } from '../store/positionReducers';
+
 class ListComponent extends PureComponent {
 
   componentWillUpdate() {
@@ -65,42 +67,6 @@ class XBarComponent extends Component {
     this.updateScrollPosition();
   }
 
-  shouldRerender() {
-      if (Math.abs(this.currentViewSequencePosition - this.lastCurrentViewSequencePosition) >= this.props.cacheElements) {
-        return true;
-      }
-      return this.updateScrollPosition();
-  }
-
-  updateFromPositionStore = () => {
-    const state = this.context.positionMSAStore.getState();
-    this.xPosOffset = state.xPosOffset;
-    this.currentViewSequencePosition = state.currentViewSequencePosition;
-    console.log(this.xPosOffset);
-    if (this.shouldRerender()) {
-      this.setState({
-        xPosOffset: this.xPosOffset,
-        currentViewSequencePosition: this.currentViewSequencePosition,
-      });
-    }
-  }
-
-  componentWillMount() {
-    this.updateFromPositionStore();
-    this.context.positionMSAStore.subscribe(this.updateFromPositionStore);
-  }
-  updateScrollPosition() {
-    if (this.el.current) {
-      let offset = -this.xPosOffset;
-      offset += (this.lastCurrentViewSequencePosition - this.lastStartTile) * this.props.tileWidth;
-      if (this.currentViewSequencePosition !== this.lastCurrentViewSequencePosition) {
-        offset += (this.currentViewSequencePosition - this.lastCurrentViewSequencePosition) * this.props.tileWidth;
-      }
-      this.el.current.scrollLeft = offset;
-    }
-    return false;
-  }
-
   render() {
     const {
       tileWidth,
@@ -131,7 +97,7 @@ class XBarComponent extends Component {
     const startTile = Math.max(0, this.currentViewSequencePosition - this.props.cacheElements);
     const endTile = Math.min(this.props.maxLength, startTile + this.props.nrTiles + this.props.cacheElements * 2);
     const maxWidth = this.props.width + this.props.cacheElements * 2 * this.props.tileWidth;
-    this.lastStartTile = startTile;
+    this.lastStartXTile = startTile;
     console.log(startTile, endTile);
     return (
       <div style={containerStyle} {...otherProps}>
@@ -147,9 +113,7 @@ class XBarComponent extends Component {
   }
 }
 
-XBarComponent.contextTypes = {
-  positionMSAStore: PropTypes.object,
-}
+positionStoreMixin(XBarComponent, {withX: true});
 
 XBarComponent.propTypes = {
   /**
