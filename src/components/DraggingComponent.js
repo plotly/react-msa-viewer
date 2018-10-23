@@ -75,7 +75,7 @@ class DraggingComponent extends Component {
     //this.onTouchMove = throttle(this.onTouchMove, msecsPerFps);
 
     // just in case requestAnimationFrame is too greedy
-    this.draw = throttle(this.draw, this.props.msecsPerFps);
+    //this.draw = throttle(this.draw, this.props.msecsPerFps);
 
     this.onViewpointChange();
     // Define internal variables for explicitness
@@ -140,7 +140,7 @@ class DraggingComponent extends Component {
 
   dragLoop = () => {
     this.draw();
-    this.dragFrame = window.requestAnimationFrame(this.dragLoop)
+    //this.dragFrame = window.requestAnimationFrame(this.dragLoop)
   }
 
   /**
@@ -170,7 +170,7 @@ class DraggingComponent extends Component {
 
   onMouseMove(e) {
     //console.log("mousemove", e);
-    if (typeof this.dragFrame === "undefined") {
+    if (this.isInDragPhase === undefined) {
       return;
     }
     const pos = Mouse.abs(e);
@@ -179,8 +179,15 @@ class DraggingComponent extends Component {
       this.stopDragPhase();
       return;
     }
-    this.onPositionUpdate(this.mouseMovePosition, pos);
+    const oldPos = this.mouseMovePosition
     this.mouseMovePosition = pos;
+    if (this.nextFrame === undefined) {
+      this.nextFrame = window.requestAnimationFrame(() => {
+        // already use the potentially updated mouse move position here
+        this.onPositionUpdate(oldPos, this.mouseMovePosition);
+        this.nextFrame = undefined;
+      });
+    }
   }
 
   onMouseUp() {
@@ -230,9 +237,10 @@ class DraggingComponent extends Component {
    */
   startDragPhase(e) {
     this.mouseMovePosition = Mouse.abs(e);
-    if(!this.dragFrame) {
-      this.dragFrame = window.requestAnimationFrame(this.dragLoop);
-    }
+    //if(!this.dragFrame) {
+      //this.dragFrame = window.requestAnimationFrame(this.dragLoop);
+    //}
+    this.isInDragPhase = true;
     this.setState(prevState => ({
       mouse: {
         ...prevState.mouse,
@@ -257,10 +265,10 @@ class DraggingComponent extends Component {
    * Called at the end of a drag action.
    */
   stopDragPhase() {
-    this.mouseMovePosition = undefined;
-    this.touchMovePosition = undefined;
-    window.cancelAnimationFrame(this.dragFrame);
-    this.dragFrame = undefined;
+    //this.mouseMovePosition = undefined;
+    //this.touchMovePosition = undefined;
+    this.isInDragPhase = false;
+    //window.cancelAnimationFrame(this.nextFrame);
     this.setState(prevState => ({
       mouse: {
         ...prevState.mouse,
