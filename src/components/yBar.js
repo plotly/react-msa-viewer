@@ -5,7 +5,7 @@
 * This source code is licensed under the MIT license found in the
 * LICENSE file in the root directory of this source tree.
 */
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import createRef from 'create-react-ref/lib/createRef';
@@ -13,26 +13,7 @@ import createShallowCompare from '../utils/createShallowCompare';
 
 import positionStoreMixin from '../store/positionStoreMixin';
 
-class ListComponent extends PureComponent {
-
-  render() {
-    const TileComponent = this.props.tileComponent;
-    const elements = [];
-    //let yPos = 0;
-    for (let i = this.props.startTile; i < this.props.endTile; i++) {
-      elements.push(
-        <TileComponent
-          key={i}
-          index={i}
-          />
-      );
-      //yPos += this.props.tileHeight;
-      //if (yPos > this.props.maxHeight)
-          //break;
-    }
-    return elements;
-  }
-}
+import ListComponent from './ListComponent';
 
 /**
 * Displays the sequence names with an arbitrary Marker component
