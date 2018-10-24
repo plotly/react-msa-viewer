@@ -87,10 +87,10 @@ class XYBarComponent extends Component {
     const startXTile = Math.max(0, this.position.currentViewSequencePosition - this.props.cacheElements);
     const startYTile = Math.max(0, this.position.currentViewSequence - this.props.cacheElements);
     const endYTile = Math.min(this.props.sequences.length,
-      startYTile + this.props.nrYTiles,
+      startYTile + this.props.nrYTiles + 2 * this.props.cacheElements,
     );
     const endXTile = Math.min(this.props.sequences.maxLength,
-      startXTile + this.props.nrXTiles,
+      startXTile + this.props.nrXTiles + 2 * this.props.cacheElements,
     );
     for (let i = startYTile; i < endYTile; i++) {
       elements.push(this.renderRow(i, startXTile, endXTile));
