@@ -21,6 +21,7 @@ export {
   createMSAStore,
   msaConnect,
   MSAProvider,
+  MSAViewer,
   VERSION as version,
 };
 
