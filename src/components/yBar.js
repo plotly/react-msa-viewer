@@ -9,7 +9,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import createRef from 'create-react-ref/lib/createRef';
-import createShallowCompare from '../utils/createShallowCompare';
 
 import positionStoreMixin from '../store/positionStoreMixin';
 
@@ -48,7 +47,6 @@ class YBarComponent extends PureComponent {
       startTile + Math.ceil(height/ this.props.tileHeight) + this.props.cacheElements * 2);
     this.position.lastCurrentViewSequence = this.position.currentViewSequence;
     this.position.lastStartYTile = startTile;
-    console.log(startTile, endTile);
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
@@ -77,8 +75,6 @@ YBarComponent.propTypes = {
   cacheElements: PropTypes.number.isRequired,
 
   tileHeight: PropTypes.number.isRequired,
-  //currentViewSequence: PropTypes.number.isRequired,
-  //yPosOffset: PropTypes.number.isRequired,
   nrYTiles: PropTypes.number.isRequired,
 }
 

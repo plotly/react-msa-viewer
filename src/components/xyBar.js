@@ -9,8 +9,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import createRef from 'create-react-ref/lib/createRef';
-import createShallowCompare from '../utils/createShallowCompare';
-
 import positionStoreMixin from '../store/positionStoreMixin';
 
 class ReactNodeCache {
@@ -85,7 +83,6 @@ class XYBarComponent extends Component {
 
   draw() {
     this.lastRenderTime = Date.now();
-    const TileComponent = this.props.tileComponent;
     const elements = [];
     const startXTile = Math.max(0, this.position.currentViewSequencePosition - this.props.cacheElements);
     const startYTile = Math.max(0, this.position.currentViewSequence - this.props.cacheElements);
@@ -169,10 +166,6 @@ XYBarComponent.propTypes = {
 
   tileWidth: PropTypes.number.isRequired,
   tileHeight: PropTypes.number.isRequired,
-  //currentViewSequence: PropTypes.number.isRequired,
-  //currentViewSequencePosition: PropTypes.number.isRequired,
-  //xPosOffset: PropTypes.number.isRequired,
-  //yPosOffset: PropTypes.number.isRequired,
   maxLength: PropTypes.number.isRequired,
 
   nrXTiles: PropTypes.number.isRequired,

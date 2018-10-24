@@ -9,7 +9,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import createRef from 'create-react-ref/lib/createRef';
-import createShallowCompare from '../utils/createShallowCompare';
 
 import positionStoreMixin from '../store/positionStoreMixin';
 
