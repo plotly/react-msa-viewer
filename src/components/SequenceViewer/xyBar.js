@@ -21,9 +21,11 @@ class ReactNodeCache {
   prepareReset() {
     this.oldCache = this.cache;
     this.cache = {};
+    this.saved = 0;
   }
 
   reset() {
+    console.log(`Removing ${Object.keys(this.oldCache).length} keys, saved: ${this.saved}`);
     this.oldCache = {};
   }
 
@@ -31,8 +33,9 @@ class ReactNodeCache {
     if (key in this.cache) {
       return this.cache[key];
     } else {
+      this.saved++;
       const el = this.oldCache[key];
-      this.oldCache[key] = undefined;
+      delete this.oldCache[key];
       this.cache[key] = el;
       return el;
     }
@@ -81,9 +84,7 @@ class XYBarComponent extends Component {
     return residues;
   }
 
-  draw() {
-    this.lastRenderTime = Date.now();
-    const elements = [];
+  getTilePositions() {
     const startXTile = Math.max(0, this.position.currentViewSequencePosition - this.props.cacheElements);
     const startYTile = Math.max(0, this.position.currentViewSequence - this.props.cacheElements);
     const endYTile = Math.min(this.props.sequences.length,
@@ -92,19 +93,30 @@ class XYBarComponent extends Component {
     const endXTile = Math.min(this.props.sequences.maxLength,
       startXTile + this.props.nrXTiles + 2 * this.props.cacheElements,
     );
-    for (let i = startYTile; i < endYTile; i++) {
+    return {startXTile, startYTile, endXTile, endYTile};
+  }
+
+  draw({startXTile, startYTile, endXTile, endYTile}) {
+    const elements = [];
+      for (let i = startYTile; i < endYTile; i++) {
       elements.push(this.renderRow(i, startXTile, endXTile));
     }
+    return elements;
+  }
+
+  updatePositionStats({startXTile, startYTile}) {
+    this.lastRenderTime = Date.now();
     this.position.lastCurrentViewSequencePosition = this.position.currentViewSequencePosition;
     this.position.lastCurrentViewSequence = this.position.currentViewSequence;
     this.position.lastStartXTile = startXTile;
     this.position.lastStartYTile = startYTile;
-    return elements;
   }
 
   componentDidUpdate() {
     console.log("SV render time", Date.now() - this.lastRenderTime);
   }
+
+  scrollCounter = 0;
 
   updateScrollPosition() {
     if (this.el && this.el.current) {
@@ -112,6 +124,12 @@ class XYBarComponent extends Component {
       this.el.current.scrollTop = scrollTop;
       const scrollLeft = this.position.currentViewSequencePosition * this.props.tileWidth - this.position.xPosOffset;
       this.el.current.scrollLeft = scrollLeft;
+
+      // recompute our component cache every now and then for faster React updates
+      //if (this.scrollCounter % 3) {
+        //this.draw(this.getTilePositions());
+      //}
+      this.scrollCounter++;
     }
     return false;
   }
@@ -139,7 +157,9 @@ class XYBarComponent extends Component {
       whiteSpace: "nowrap",
     };
     this.cache.prepareReset();
-    const elements = this.draw();
+    const positions = this.getTilePositions();
+    const elements = this.draw(positions);
+    this.updatePositionStats(positions);
     this.cache.reset();
     return (
       <div {...otherProps}>
