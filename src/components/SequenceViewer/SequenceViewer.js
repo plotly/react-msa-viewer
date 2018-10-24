@@ -39,13 +39,14 @@ class HTMLSequenceViewerComponent extends Component {
     this.residueComponent = this.residueComponent.bind(this);
   }
 
-  residueComponent({i, j, key}){
-    const rawSequence = this.props.sequences.raw[i].sequence;
-    const el = rawSequence[j];
+  residueComponent({row, column}){
+    const rawSequence = this.props.sequences.raw[row].sequence;
+    const el = rawSequence[column];
+    const key = row + "-" + column;
     const style = {
       position: "absolute",
-      top: this.props.tileHeight * i,
-      left: this.props.tileWidth * j,
+      top: this.props.tileHeight * row,
+      left: this.props.tileWidth * column,
     };
     return <ResidueComponent
       width={this.props.tileWidth}
@@ -172,7 +173,11 @@ class HTMLSequenceViewerComponent extends Component {
         width={this.props.width}
         height={this.props.height}
         onPositionUpdate={this.onPositionUpdate}>
-        <XYBar {...otherProps} tileComponent={this.residueComponent} />
+        <XYBar {...otherProps}
+          tileComponent={this.residueComponent}
+          xGridSize={5}
+          yGridSize={5}
+        />
       </DraggingComponent>
     );
   }

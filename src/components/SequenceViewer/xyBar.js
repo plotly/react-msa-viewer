@@ -5,46 +5,15 @@
 * This source code is licensed under the MIT license found in the
 * LICENSE file in the root directory of this source tree.
 */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import createRef from 'create-react-ref/lib/createRef';
 
 import positionStoreMixin from '../../store/positionStoreMixin';
 
-class ReactNodeCache {
-
-  constructor() {
-    this.cache = {};
-    this.oldCache = {};
-  }
-
-  prepareReset() {
-    this.oldCache = this.cache;
-    this.cache = {};
-    this.saved = 0;
-  }
-
-  reset() {
-    console.log(`Removing ${Object.keys(this.oldCache).length} keys, saved: ${this.saved}`);
-    this.oldCache = {};
-  }
-
-  get(key) {
-    if (key in this.cache) {
-      return this.cache[key];
-    } else {
-      this.saved++;
-      const el = this.oldCache[key];
-      delete this.oldCache[key];
-      this.cache[key] = el;
-      return el;
-    }
-  }
-
-  set(key, value) {
-    this.cache[key] = value;
-  }
-}
+import TilingGrid from './TilingGrid';
+import NodeCache from './NodeCache'
 
 /**
 * Displays the sequence names with an arbitrary Marker component
@@ -54,34 +23,26 @@ class XYBarComponent extends Component {
   constructor(props) {
     super(props);
     this.el = createRef();
-    this.cache = new ReactNodeCache();
+    this.cache = new NodeCache();
   }
 
-  renderTile = (i, j) => {
-    const TileComponent = this.props.tileComponent;
-    const key = i + "-" + j;
+  renderTile = ({row, column}) => {
+    const key = row + "-" + column;
     const el = this.cache.get(key);
     if (el === undefined) {
-      const node = TileComponent({
-        key: key,
-        i: i,
-        j:j,
-      });
+      const node = <TilingGrid
+          renderTile={this.props.tileComponent}
+          startYTile={row}
+          startXTile={column}
+          key={key}
+          endYTile={row + this.props.yGridSize}
+          endXTile={column + this.props.xGridSize}
+      />;
       this.cache.set(key, node);
       return node;
     } else {
       return el;
     }
-  }
-
-  renderRow(i, startXTile, endXTile) {
-    const rawSequence = this.props.sequences.raw[i].sequence;
-    endXTile = Math.min(rawSequence.length, endXTile);
-    const residues = [];
-    for (let j = startXTile; j < endXTile; j++) {
-      residues.push(this.renderTile(i, j));
-    }
-    return residues;
   }
 
   getTilePositions() {
@@ -98,8 +59,13 @@ class XYBarComponent extends Component {
 
   draw({startXTile, startYTile, endXTile, endYTile}) {
     const elements = [];
-      for (let i = startYTile; i < endYTile; i++) {
-      elements.push(this.renderRow(i, startXTile, endXTile));
+    const xGridSize = this.props.xGridSize;
+    const yGridSize = this.props.yGridSize;
+    // TODO: cut-off end tiles
+    for (let i = startYTile; i < endYTile; i = i + yGridSize) {
+      for (let j = startXTile; j < endXTile; j = j + xGridSize) {
+        elements.push(this.renderTile({row: i, column: j}));
+      }
     }
     return elements;
   }
@@ -146,11 +112,11 @@ class XYBarComponent extends Component {
       maxLength,
       nrXTiles,
       nrYTiles,
+      xGridSize,
+      yGridSize,
       ...otherProps
     } = this.props;
     const style = {
-      //width: this.props.tileWidth * this.props.sequences.maxLength,
-      //height: this.props.tileHeight * this.props.sequences.length,
       width, height,
       overflow: "hidden",
       position: "relative",
@@ -190,6 +156,9 @@ XYBarComponent.propTypes = {
 
   nrXTiles: PropTypes.number.isRequired,
   nrYTiles: PropTypes.number.isRequired,
+
+  xGridSize: PropTypes.number.isRequired,
+  yGridSize: PropTypes.number.isRequired,
 }
 
 export default XYBarComponent;
