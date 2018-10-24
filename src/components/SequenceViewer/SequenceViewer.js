@@ -22,7 +22,6 @@ import { updatePosition } from '../../store/positionReducers';
 
 import DraggingComponent from './DraggingComponent';
 import ResidueComponent from './Residue';
-import SequenceComponent from './Sequence';
 // TODO: withModBar
 //import ModBar from './ModBar';
 
@@ -155,7 +154,6 @@ class HTMLSequenceViewerComponent extends Component {
     const {
       showModBar,
       residueComponent,
-      sequenceComponent,
       onResidueMouseEnter,
       onResidueMouseLeave,
       onResidueClick,
@@ -185,7 +183,6 @@ HTMLSequenceViewerComponent.contextTypes = {
 HTMLSequenceViewerComponent.defaultProps = {
   showModBar: true,
   residueComponent: ResidueComponent,
-  sequenceComponent: SequenceComponent,
   cacheElements: 2,
 };
 
