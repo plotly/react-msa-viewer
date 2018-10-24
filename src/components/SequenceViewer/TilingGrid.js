@@ -28,12 +28,10 @@ import PropTypes from 'prop-types';
 class TilingGridComponent extends PureComponent {
 
   render() {
-    const TileComponent  = this.props.renderTile;
     const residues = [];
     for (let i = this.props.startYTile; i < this.props.endYTile; i++) {
       for (let j = this.props.startXTile; j < this.props.endXTile; j++) {
-        const key = i + "-" + j;
-        residues.push(<TileComponent key={key} row={i} column={j} />);
+        residues.push(this.props.renderTile({row:i, column:j}));
       }
     }
     const tileKey = this.props.startYTile + "-" + this.props.endYTile + ":" +
