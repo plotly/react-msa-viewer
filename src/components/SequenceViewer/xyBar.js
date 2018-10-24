@@ -128,7 +128,7 @@ class XYBarComponent extends Component {
       maxLength,
       nrXTiles,
       nrYTiles,
-      ...otherProps,
+      ...otherProps
     } = this.props;
     const style = {
       //width: this.props.tileWidth * this.props.sequences.maxLength,

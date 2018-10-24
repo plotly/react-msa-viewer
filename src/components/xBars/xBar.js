@@ -32,7 +32,7 @@ class XBarComponent extends PureComponent {
       tileComponent,
       nrXTiles,
       maxLength,
-      ...otherProps,
+      ...otherProps
     } = this.props;
     const style = {
       width,

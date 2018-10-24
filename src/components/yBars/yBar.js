@@ -33,7 +33,7 @@ class YBarComponent extends PureComponent {
       cacheElements,
       tileComponent,
       nrYTiles,
-      ...otherProps,
+      ...otherProps
     } = this.props;
     const style = {
       height,
