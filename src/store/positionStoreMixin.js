@@ -26,31 +26,27 @@ import PropTypes from 'prop-types';
 export function positionStoreMixin(Component, {
   withX = false,
   withY = false,
+  withPosition = false,
 }) {
   Component.prototype.updateFromPositionStore = function() {
     const state = this.context.positionMSAStore.getState();
-    let stateX = {}, stateY = {};
     this.position = this.position || {};
+    if (withPosition) {
+      this.position.xPos = state.xPos;
+      this.position.yPos = state.yPos;
+    }
     if (withX) {
       this.position.xPosOffset = state.xPosOffset;
       this.position.currentViewSequencePosition = state.currentViewSequencePosition;
-      stateX = {
-        xPosOffset: this.position.xPosOffset,
-        currentViewSequencePosition: this.position.currentViewSequencePosition,
-      }
     }
     if (withY) {
       this.position.yPosOffset = state.yPosOffset;
       this.position.currentViewSequence = state.currentViewSequence;
-      stateY = {
-        xPosOffset: this.position.yPosOffset,
-        currentViewSequence: this.position.currentViewSequence,
-      }
     }
     if (this.shouldRerender()) {
+      // this will always force a rerender as position is a new object
       this.setState({
-        ...stateX,
-        ...stateY,
+        position: this.position,
       });
     }
   }
@@ -100,29 +96,28 @@ function defaultRerender(Component, {withX = false, withY = false}) {
         }
         return this.updateScrollPosition() || false;
     }
-  }
-
-  if (Component.prototype.updateScrollPosition === undefined) {
-    Component.prototype.updateScrollPosition = function(){
-      if (this.el && this.el.current) {
-        if (withX) {
-          let offsetX = -this.position.xPosOffset;
-          offsetX += (this.position.lastCurrentViewSequencePosition - this.position.lastStartXTile) * this.props.tileWidth;
-          if (this.position.currentViewSequencePosition !== this.position.lastCurrentViewSequencePosition) {
-            offsetX += (this.position.currentViewSequencePosition - this.position.lastCurrentViewSequencePosition) * this.props.tileWidth;
+    if (Component.prototype.updateScrollPosition === undefined) {
+      Component.prototype.updateScrollPosition = function(){
+        if (this.el && this.el.current) {
+          if (withX) {
+            let offsetX = -this.position.xPosOffset;
+            offsetX += (this.position.lastCurrentViewSequencePosition - this.position.lastStartXTile) * this.props.tileWidth;
+            if (this.position.currentViewSequencePosition !== this.position.lastCurrentViewSequencePosition) {
+              offsetX += (this.position.currentViewSequencePosition - this.position.lastCurrentViewSequencePosition) * this.props.tileWidth;
+            }
+            this.el.current.scrollLeft = offsetX;
           }
-          this.el.current.scrollLeft = offsetX;
-        }
-        if (withY) {
-          let offsetY = -this.position.yPosOffset;
-          offsetY += (this.position.lastCurrentViewSequence - this.position.lastStartYTile) * this.props.tileHeight;
-          if (this.position.currentViewSequence !== this.position.lastCurrentViewSequence) {
-            offsetY += (this.position.currentViewSequence - this.position.lastCurrentViewSequence) * this.props.tileHeight;
+          if (withY) {
+            let offsetY = -this.position.yPosOffset;
+            offsetY += (this.position.lastCurrentViewSequence - this.position.lastStartYTile) * this.props.tileHeight;
+            if (this.position.currentViewSequence !== this.position.lastCurrentViewSequence) {
+              offsetY += (this.position.currentViewSequence - this.position.lastCurrentViewSequence) * this.props.tileHeight;
+            }
+            this.el.current.scrollTop = offsetY;
           }
-          this.el.current.scrollTop = offsetY;
         }
+        return false;
       }
-      return false;
     }
   }
 }
