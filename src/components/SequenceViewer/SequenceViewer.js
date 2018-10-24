@@ -175,8 +175,8 @@ class HTMLSequenceViewerComponent extends Component {
         onPositionUpdate={this.onPositionUpdate}>
         <XYBar {...otherProps}
           tileComponent={this.residueComponent}
-          xGridSize={5}
-          yGridSize={5}
+          xGridSize={10}
+          yGridSize={10}
         />
       </DraggingComponent>
     );
