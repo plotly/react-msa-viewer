@@ -15,6 +15,8 @@ import positionStoreMixin from '../../store/positionStoreMixin';
 import TilingGrid from './TilingGrid';
 import NodeCache from './NodeCache'
 
+import { roundMod } from '../../utils/math';
+
 /**
 * Displays the sequence names with an arbitrary Marker component
 */
@@ -61,6 +63,8 @@ class XYBarComponent extends Component {
     const elements = [];
     const xGridSize = this.props.xGridSize;
     const yGridSize = this.props.yGridSize;
+    startYTile = roundMod(startYTile, yGridSize);
+    startXTile = roundMod(startXTile, xGridSize);
     // TODO: cut-off end tiles
     for (let i = startYTile; i < endYTile; i = i + yGridSize) {
       for (let j = startXTile; j < endXTile; j = j + xGridSize) {
