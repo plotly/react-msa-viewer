@@ -26,6 +26,10 @@ export default {
     'prop-types',
   ],
   plugins: [
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      'MSA_DEVELOPMENT_VERSION': version,
+    }),
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
@@ -44,10 +48,6 @@ export default {
       namedExports: {
         'color-convert': ['rgb', 'hsl', 'hsv', 'hwb', 'cmyk', 'xyz', 'lab', 'lch', 'hex', 'ansi16', 'ansi256', 'hcg', 'apple', 'gray', 'keyword'],
       },
-    }),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      'MSA_DEVELOPMENT_VERSION': version,
     }),
     terser(),
     visualizer({
