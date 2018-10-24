@@ -13,8 +13,8 @@ import SequenceViewer from './SequenceViewer/SequenceViewer';
 import SequenceOverview from './Canvas/SequenceOverview';
 export {
   Labels,
-  PositionBar,
   OverviewBar,
-  SequenceViewer,
+  PositionBar,
   SequenceOverview,
+  SequenceViewer,
 };
