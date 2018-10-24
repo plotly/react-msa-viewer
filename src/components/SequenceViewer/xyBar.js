@@ -9,6 +9,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import createRef from 'create-react-ref/lib/createRef';
 
+import Grid from 'react-virtualized/dist/commonjs/Grid'
+
 import positionStoreMixin from '../../store/positionStoreMixin';
 
 class ReactNodeCache {
@@ -57,8 +59,8 @@ class XYBarComponent extends Component {
   renderTile = (i, j) => {
     const TileComponent = this.props.tileComponent;
     const key = i + "-" + j;
-    const el = this.cache.get(key);
-    if (el === undefined) {
+    //const el = this.cache.get(key);
+    //if (el === undefined) {
       const node = TileComponent({
         key: key,
         i: i,
@@ -66,40 +68,9 @@ class XYBarComponent extends Component {
       });
       this.cache.set(key, node);
       return node;
-    } else {
-      return el;
-    }
-  }
-
-  renderRow(i, startXTile, endXTile) {
-    const rawSequence = this.props.sequences.raw[i].sequence;
-    endXTile = Math.min(rawSequence.length, endXTile);
-    const residues = [];
-    for (let j = startXTile; j < endXTile; j++) {
-      residues.push(this.renderTile(i, j));
-    }
-    return residues;
-  }
-
-  draw() {
-    this.lastRenderTime = Date.now();
-    const elements = [];
-    const startXTile = Math.max(0, this.position.currentViewSequencePosition - this.props.cacheElements);
-    const startYTile = Math.max(0, this.position.currentViewSequence - this.props.cacheElements);
-    const endYTile = Math.min(this.props.sequences.length,
-      startYTile + this.props.nrYTiles,
-    );
-    const endXTile = Math.min(this.props.sequences.maxLength,
-      startXTile + this.props.nrXTiles,
-    );
-    for (let i = startYTile; i < endYTile; i++) {
-      elements.push(this.renderRow(i, startXTile, endXTile));
-    }
-    this.position.lastCurrentViewSequencePosition = this.position.currentViewSequencePosition;
-    this.position.lastCurrentViewSequence = this.position.currentViewSequence;
-    this.position.lastStartXTile = startXTile;
-    this.position.lastStartYTile = startYTile;
-    return elements;
+    //} else {
+      //return el;
+    //}
   }
 
   componentDidUpdate() {
@@ -114,6 +85,16 @@ class XYBarComponent extends Component {
       this.el.current.scrollLeft = scrollLeft;
     }
     return false;
+  }
+
+  _cellRenderer = ({columnIndex, key, rowIndex, style}) => {
+    return <div key={key} style={style}>
+        {this.renderTile(rowIndex, columnIndex)}
+      </div>
+  }
+
+  _noContentRenderer = () => {
+    return <div>No cells</div>;
   }
 
   render() {
@@ -131,20 +112,28 @@ class XYBarComponent extends Component {
       ...otherProps,
     } = this.props;
     const style = {
-      //width: this.props.tileWidth * this.props.sequences.maxLength,
-      //height: this.props.tileHeight * this.props.sequences.length,
       width, height,
       overflow: "hidden",
       position: "relative",
       whiteSpace: "nowrap",
     };
-    this.cache.prepareReset();
-    const elements = this.draw();
-    this.cache.reset();
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
-          {elements}
+          <Grid
+              cellRenderer={this._cellRenderer}
+              columnWidth={this.props.tileWidth}
+              columnCount={this.props.sequences.maxLength}
+              height={height}
+              noContentRenderer={this._noContentRenderer}
+              overscanColumnCount={3}
+              overscanRowCount={3}
+              rowHeight={this.props.tileHeight}
+              rowCount={this.props.sequences.length}
+              scrollToColumn={0}
+              scrollToRow={0}
+              width={width}
+            />
         </div>
       </div>
     );

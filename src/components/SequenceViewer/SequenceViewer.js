@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import createRef from 'create-react-ref/lib/createRef';
+import shallowCompare from 'react-addons-shallow-compare';
 
 import {
   flow,
@@ -28,7 +29,6 @@ import ResidueComponent from './Residue';
 import Mouse from '../../utils/mouse';
 import XYBar from './xyBar';
 
-import shallowCompare from 'react-addons-shallow-compare';
 
 class HTMLSequenceViewerComponent extends Component {
 
@@ -41,17 +41,12 @@ class HTMLSequenceViewerComponent extends Component {
   residueComponent({i, j, key}){
     const rawSequence = this.props.sequences.raw[i].sequence;
     const el = rawSequence[j];
-    const style = {
-      position: "absolute",
-      top: this.props.tileHeight * i,
-      left: this.props.tileWidth * j,
-    };
     return <ResidueComponent
       width={this.props.tileWidth}
       height={this.props.tileHeight}
       color={this.props.colorScheme.getColor(el)}
       font={this.props.tileFont}
-      style={style}
+      //style={style}
       name={el}
       key={key}
     />;
