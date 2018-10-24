@@ -40,7 +40,14 @@ class HTMLSequenceViewerComponent extends Component {
   }
 
   residueComponent({row, column}){
-    const rawSequence = this.props.sequences.raw[row].sequence;
+    const sequences = this.props.sequences.raw;
+    if (sequences.length <= row) {
+      return undefined;
+    }
+    const rawSequence = sequences[row].sequence;
+    if (rawSequence.length <= column) {
+      return undefined;
+    }
     const el = rawSequence[column];
     const key = row + "-" + column;
     const style = {

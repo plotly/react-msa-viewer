@@ -31,7 +31,10 @@ class TilingGridComponent extends PureComponent {
     const residues = [];
     for (let i = this.props.startYTile; i < this.props.endYTile; i++) {
       for (let j = this.props.startXTile; j < this.props.endXTile; j++) {
-        residues.push(this.props.renderTile({row:i, column:j}));
+        const el = this.props.renderTile({row:i, column:j});
+        if (el) {
+          residues.push();
+        }
       }
     }
     const tileKey = this.props.startYTile + "-" + this.props.endYTile + ":" +
