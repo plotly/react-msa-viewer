@@ -32,8 +32,8 @@ export function positionStoreMixin(Component, {
     const state = this.context.positionMSAStore.getState();
     this.position = this.position || {};
     if (withPosition) {
-      this.position.xPos = state.xPos;
-      this.position.yPos = state.yPos;
+      this.position.xPos = state.position.xPos;
+      this.position.yPos = state.position.yPos;
     }
     if (withX) {
       this.position.xPosOffset = state.xPosOffset;

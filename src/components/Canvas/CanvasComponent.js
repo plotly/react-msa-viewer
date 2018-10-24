@@ -52,6 +52,7 @@ class CanvasComponent extends Component {
   }
 
   _draw() {
+    if (!this.ctx) return;
     this.ctx.startDrawingFrame();
     this.ctx.save();
     this.draw();

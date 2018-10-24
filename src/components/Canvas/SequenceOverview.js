@@ -23,12 +23,10 @@ class SequenceOverviewComponent extends CanvasComponent {
   }
 
   shouldRerender() {
-    this.draw();
+    this._draw();
   }
 
   drawScene() {
-    if (!this.ctx) return;
-
     this.scene = {};
     ({xPos: this.scene.xViewPos, yPos: this.scene.yViewPos} = this.position);
     this.scene.xScalingFactor = 1 / this.props.globalTileWidth * this.props.tileWidth;
