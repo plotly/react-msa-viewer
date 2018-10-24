@@ -33,6 +33,9 @@ class ListComponent extends PureComponent {
     for (let i = this.props.startTile; i < this.props.endTile; i++) {
       elements.push(this.renderTile(i));
     }
+    if (elements.length === 0) {
+      console.error(`The TileComponent rendered returned 0 elements from ${this.props.startTile} to ${this.props.endTile}`);
+    }
     return elements;
   }
 }
