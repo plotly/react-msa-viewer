@@ -5,7 +5,7 @@
 * This source code is licensed under the MIT license found in the
 * LICENSE file in the root directory of this source tree.
 */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import createRef from 'create-react-ref/lib/createRef';
@@ -18,24 +18,11 @@ import ListComponent from './ListComponent';
 /**
 * Displays the sequence names with an arbitrary Marker component
 */
-class YBarComponent extends Component {
+class YBarComponent extends PureComponent {
 
   constructor(props) {
     super(props);
     this.el = createRef();
-
-    /**
-     * Updates the entire component if a property except for the position
-     * has changed. Otherwise just adjusts the scroll position;
-     */
-    const shallowCompare = createShallowCompare([
-      'yPosOffset',
-      'currentViewSequence'
-    ]);
-    this.shouldComponentUpdate = (nextProps, nextState) => {
-      return shallowCompare(this.props, nextProps) ||
-             this.shouldRerender();
-    };
   }
 
   render() {
@@ -55,11 +42,11 @@ class YBarComponent extends Component {
       position: "relative",
       whiteSpace: "nowrap",
     };
-    const startTile = Math.max(0, this.currentViewSequence - this.props.cacheElements);
+    const startTile = Math.max(0, this.position.currentViewSequence - this.props.cacheElements);
     const endTile = Math.min(this.props.sequences.length,
       startTile + Math.ceil(height/ this.props.tileHeight) + this.props.cacheElements * 2);
-    this.lastCurrentViewSequence = this.currentViewSequence;
-    this.lastStartYTile = startTile;
+    this.position.lastCurrentViewSequence = this.position.currentViewSequence;
+    this.position.lastStartYTile = startTile;
     console.log(startTile, endTile);
     return (
       <div {...otherProps}>
