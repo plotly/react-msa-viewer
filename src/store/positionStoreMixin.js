@@ -11,25 +11,22 @@ import PropTypes from 'prop-types';
 /**
  * Mixes in position store functionality in the requiring components.
  * Can't use HoC components as React Tree calculations need to be prevented at the utmost cost.
+ *
+ * It will inject the following functionality:
+ *
+ * - updateFromPositionStore (a method which updates this.position from the PositionStore)
+ *     setState(position: positionState) is called when shouldRerender returns true
+ *
+ * - shouldRerender (called to determine if the current viewpoint still has enough nodes)
+ *
+ * Also, it will:
+ * - overwrite componentWillMount and inject a subscription to the positionStore (though if a componentWillMount did exist, it will be called)
+ * - overwrite componentWillUnmount and unsubscribe from the positionStore (though if a componentWillUnmount did exist, it will be called)
  */
 export function positionStoreMixin(Component, {
   withX = false,
   withY = false,
 }) {
-  Component.prototype.shouldRerender = function() {
-      if (withY) {
-        if (Math.abs(this.currentViewSequence - this.lastCurrentViewSequence) >= this.props.cacheElements) {
-          return true;
-        }
-      }
-      if (withX) {
-        if (Math.abs(this.position.currentViewSequencePosition - this.position.lastCurrentViewSequencePosition) >= this.props.cacheElements) {
-          return true;
-        }
-      }
-      return this.updateScrollPosition();
-  }
-
   Component.prototype.updateFromPositionStore = function() {
     const state = this.context.positionMSAStore.getState();
     let stateX = {}, stateY = {};
@@ -43,8 +40,8 @@ export function positionStoreMixin(Component, {
       }
     }
     if (withY) {
-      this.position.yPosOffset = state.position.yPosOffset;
-      this.position.currentViewSequence = state.position.currentViewSequence;
+      this.position.yPosOffset = state.yPosOffset;
+      this.position.currentViewSequence = state.currentViewSequence;
       stateY = {
         xPosOffset: this.position.yPosOffset,
         currentViewSequence: this.position.currentViewSequence,
@@ -76,33 +73,57 @@ export function positionStoreMixin(Component, {
     this.updateScrollPosition();
   }
 
+  // inject the store via contexts
+  Component.contextTypes = {
+    positionMSAStore: PropTypes.object,
+  }
+
+  defaultRerender(Component, {withX, withY});
+}
+
+/**
+ * Injects a default shouldRerender and updateScrollPosition implementations.
+ * updateScrollPosition is called when the shouldRerender yields false
+ */
+function defaultRerender(Component, {withX = false, withY = false}) {
+  if (Component.prototype.shouldRerender === undefined) {
+    Component.prototype.shouldRerender = function() {
+        if (withY) {
+          if (Math.abs(this.position.currentViewSequence - this.position.lastCurrentViewSequence) >= this.props.cacheElements) {
+            return true;
+          }
+        }
+        if (withX) {
+          if (Math.abs(this.position.currentViewSequencePosition - this.position.lastCurrentViewSequencePosition) >= this.props.cacheElements) {
+            return true;
+          }
+        }
+        return this.updateScrollPosition() || false;
+    }
+  }
+
   if (Component.prototype.updateScrollPosition === undefined) {
     Component.prototype.updateScrollPosition = function(){
       if (this.el && this.el.current) {
         if (withX) {
           let offsetX = -this.position.xPosOffset;
-          offsetX += (this.position.lastCurrentViewSequencePosition - this.position.lastStartXTile) * this.position.props.tileWidth;
+          offsetX += (this.position.lastCurrentViewSequencePosition - this.position.lastStartXTile) * this.props.tileWidth;
           if (this.position.currentViewSequencePosition !== this.position.lastCurrentViewSequencePosition) {
-            offsetX += (this.position.currentViewSequencePosition - this.position.lastCurrentViewSequencePosition) * this.position.props.tileWidth;
+            offsetX += (this.position.currentViewSequencePosition - this.position.lastCurrentViewSequencePosition) * this.props.tileWidth;
           }
           this.el.current.scrollLeft = offsetX;
         }
         if (withY) {
           let offsetY = -this.position.yPosOffset;
-          offsetY += (this.position.lastCurrentViewSequence - this.position.lastStartYTile) * this.position.props.tileHeight;
+          offsetY += (this.position.lastCurrentViewSequence - this.position.lastStartYTile) * this.props.tileHeight;
           if (this.position.currentViewSequence !== this.position.lastCurrentViewSequence) {
-            offsetY += (this.position.currentViewSequence - this.position.lastCurrentViewSequence) * this.position.props.tileHeight;
+            offsetY += (this.position.currentViewSequence - this.position.lastCurrentViewSequence) * this.props.tileHeight;
           }
           this.el.current.scrollTop = offsetY;
         }
       }
       return false;
     }
-  }
-
-  // inject the store via contexts
-  Component.contextTypes = {
-    positionMSAStore: PropTypes.object,
   }
 }
 export default positionStoreMixin;

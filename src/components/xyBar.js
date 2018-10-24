@@ -13,6 +13,38 @@ import createShallowCompare from '../utils/createShallowCompare';
 
 import positionStoreMixin from '../store/positionStoreMixin';
 
+class ReactNodeCache {
+
+  constructor() {
+    this.cache = {};
+    this.oldCache = {};
+  }
+
+  prepareReset() {
+    this.oldCache = this.cache;
+    this.cache = {};
+  }
+
+  reset() {
+    this.oldCache = {};
+  }
+
+  get(key) {
+    if (key in this.cache) {
+      return this.cache[key];
+    } else {
+      const el = this.oldCache[key];
+      this.oldCache[key] = undefined;
+      this.cache[key] = el;
+      return el;
+    }
+  }
+
+  set(key, value) {
+    this.cache[key] = value;
+  }
+}
+
 /**
 * Displays the sequence names with an arbitrary Marker component
 */
@@ -21,53 +53,70 @@ class XYBarComponent extends Component {
   constructor(props) {
     super(props);
     this.el = createRef();
+    this.cache = new ReactNodeCache();
+  }
 
-    /**
-     * Updates the entire component if a property except for the position
-     * has changed. Otherwise just adjusts the scroll position;
-     */
-    const shallowCompare = createShallowCompare([
-      'xPosOffset',
-      'yPosOffset',
-      'currentViewSequence',
-      'currentViewSequencePosition',
-    ]);
-    this.shouldComponentUpdate = (nextProps, nextState) => {
-      if (shallowCompare(this.props, nextProps)) {
-        return true;
-      }
-      return this.shouldRerender();
-    };
+  renderTile = (i, j) => {
+    const TileComponent = this.props.tileComponent;
+    const key = i + "-" + j;
+    const el = this.cache.get(key);
+    if (el === undefined) {
+      const node = TileComponent({
+        key: key,
+        i: i,
+        j:j,
+      });
+      this.cache.set(key, node);
+      return node;
+    } else {
+      return el;
+    }
+  }
+
+  renderRow(i, startXTile, endXTile) {
+    const rawSequence = this.props.sequences.raw[i].sequence;
+    endXTile = Math.min(rawSequence.length, endXTile);
+    const residues = [];
+    for (let j = startXTile; j < endXTile; j++) {
+      residues.push(this.renderTile(i, j));
+    }
+    return residues;
   }
 
   draw() {
     this.lastRenderTime = Date.now();
     const TileComponent = this.props.tileComponent;
     const elements = [];
-    let yPos = this.yPosOffset;
-    const startXTile = Math.max(0, this.currentViewSequencePosition - this.props.cacheElements);
-    const startYTile = Math.max(0, this.currentViewSequence - this.props.cacheElements);
-    for (let i = startYTile; i < this.props.sequences.length; i++) {
-      elements.push(
-        <TileComponent
-          key={i}
-          i={i}
-          j={startXTile}
-          />
-      );
-      yPos += this.props.tileHeight;
-      if (yPos > (this.props.height + this.props.cacheElements * 2 * this.props.tileHeight))
-          break;
+    const startXTile = Math.max(0, this.position.currentViewSequencePosition - this.props.cacheElements);
+    const startYTile = Math.max(0, this.position.currentViewSequence - this.props.cacheElements);
+    const endYTile = Math.min(this.props.sequences.length,
+      startYTile + this.props.nrYTiles,
+    );
+    const endXTile = Math.min(this.props.sequences.maxLength,
+      startXTile + this.props.nrXTiles,
+    );
+    for (let i = startYTile; i < endYTile; i++) {
+      elements.push(this.renderRow(i, startXTile, endXTile));
     }
-    this.lastCurrentViewSequencePosition = this.currentViewSequencePosition;
-    this.lastCurrentViewSequence = this.currentViewSequence;
-    this.lastStartXTile = startXTile;
-    this.lastStartYTile = startYTile;
+    this.position.lastCurrentViewSequencePosition = this.position.currentViewSequencePosition;
+    this.position.lastCurrentViewSequence = this.position.currentViewSequence;
+    this.position.lastStartXTile = startXTile;
+    this.position.lastStartYTile = startYTile;
     return elements;
   }
 
   componentDidUpdate() {
     console.log("SV render time", Date.now() - this.lastRenderTime);
+  }
+
+  updateScrollPosition() {
+    if (this.el && this.el.current) {
+      const scrollTop = this.position.currentViewSequence * this.props.tileHeight - this.position.yPosOffset
+      this.el.current.scrollTop = scrollTop;
+      const scrollLeft = this.position.currentViewSequencePosition * this.props.tileWidth - this.position.xPosOffset;
+      this.el.current.scrollLeft = scrollLeft;
+    }
+    return false;
   }
 
   render() {
@@ -80,19 +129,25 @@ class XYBarComponent extends Component {
       cacheElements,
       tileComponent,
       maxLength,
+      nrXTiles,
+      nrYTiles,
       ...otherProps,
     } = this.props;
     const style = {
-      width,
-      height,
+      //width: this.props.tileWidth * this.props.sequences.maxLength,
+      //height: this.props.tileHeight * this.props.sequences.length,
+      width, height,
       overflow: "hidden",
       position: "relative",
       whiteSpace: "nowrap",
     };
+    this.cache.prepareReset();
+    const elements = this.draw();
+    this.cache.reset();
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
-          { this.draw() }
+          {elements}
         </div>
       </div>
     );
@@ -119,6 +174,9 @@ XYBarComponent.propTypes = {
   //xPosOffset: PropTypes.number.isRequired,
   //yPosOffset: PropTypes.number.isRequired,
   maxLength: PropTypes.number.isRequired,
+
+  nrXTiles: PropTypes.number.isRequired,
+  nrYTiles: PropTypes.number.isRequired,
 }
 
 export default XYBarComponent;

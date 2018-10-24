@@ -31,6 +31,7 @@ class Residue extends PureComponent {
     const {height, width, color, name} = this.props;
     const colorRGB = colorToHexCached(color);
     const style = {
+      ...this.props.style,
       height,
       width,
       backgroundColor: `rgba(${colorRGB[0]}, ${colorRGB[1]}, ${colorRGB[2]}, 0.7)`,

@@ -32,7 +32,7 @@ class XBarComponent extends PureComponent {
       width,
       cacheElements,
       tileComponent,
-      nrTiles,
+      nrXTiles,
       maxLength,
       ...otherProps,
     } = this.props;
@@ -53,7 +53,7 @@ class XBarComponent extends PureComponent {
     };
     this.position.lastCurrentViewSequencePosition = this.position.currentViewSequencePosition;
     const startTile = Math.max(0, this.position.currentViewSequencePosition - this.props.cacheElements);
-    const endTile = Math.min(this.props.maxLength, startTile + this.props.nrTiles + this.props.cacheElements * 2);
+    const endTile = Math.min(this.props.maxLength, startTile + this.props.nrXTiles + this.props.cacheElements * 2);
     const maxWidth = this.props.width + this.props.cacheElements * 2 * this.props.tileWidth;
     this.position.lastStartXTile = startTile;
     return (
@@ -84,7 +84,7 @@ XBarComponent.propTypes = {
   cacheElements: PropTypes.number.isRequired,
 
   tileWidth: PropTypes.number.isRequired,
-  nrTiles: PropTypes.number.isRequired,
+  nrXTiles: PropTypes.number.isRequired,
   maxLength: PropTypes.number.isRequired,
 }
 

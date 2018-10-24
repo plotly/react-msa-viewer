@@ -91,8 +91,7 @@ const mapStateToProps = state => {
     height: state.props.height,
     tileHeight: state.props.tileHeight,
     sequences: state.sequences.raw,
-    //currentViewSequence : state.sequenceStats.currentViewSequence,
-    //yPosOffset: state.sequenceStats.yPosOffset,
+    nrYTiles: state.sequenceStats.nrYTiles,
   }
 }
 

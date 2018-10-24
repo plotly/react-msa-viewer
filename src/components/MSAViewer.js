@@ -24,7 +24,7 @@ import Labels from './HTMLLabels';
 import OverviewBar from './HTMLOverviewBar';
 import PositionBar from './HTMLPositionBar';
 //import SequenceOverview from './SequenceOverview';
-import SequenceViewer from './SequenceViewer';
+import SequenceViewer from './HTMLSequenceViewer';
 
 import propsToRedux from '../store/propsToRedux';
 
@@ -132,13 +132,13 @@ class MSAViewerComponent extends Component {
         height: 10,
       };
 
+            //<Labels
+              //style={labelsStyle}
+              //{...this.forwardProps(MSAViewerComponent.labelsProps)}
+            ///>
       return (
         <MSAProvider store={msaStore}>
           <div style={labelsAndSequenceDiv}>
-            <Labels
-              style={labelsStyle}
-              {...this.forwardProps(MSAViewerComponent.labelsProps)}
-            />
             <div>
               <OverviewBar height={overviewBarHeight}
                 {...this.forwardProps(MSAViewerComponent.overviewBarProps)}

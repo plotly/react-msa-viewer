@@ -34,6 +34,7 @@ class YBarComponent extends PureComponent {
       height,
       cacheElements,
       tileComponent,
+      nrYTiles,
       ...otherProps,
     } = this.props;
     const style = {
@@ -78,6 +79,7 @@ YBarComponent.propTypes = {
   tileHeight: PropTypes.number.isRequired,
   //currentViewSequence: PropTypes.number.isRequired,
   //yPosOffset: PropTypes.number.isRequired,
+  nrYTiles: PropTypes.number.isRequired,
 }
 
 export default YBarComponent;

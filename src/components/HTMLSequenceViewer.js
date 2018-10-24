@@ -31,64 +31,31 @@ import XYBar from './xyBar';
 
 import shallowCompare from 'react-addons-shallow-compare';
 
-function createSequence({sequences, tileWidth, tileHeight,
-  width, colorScheme, tileFont, cacheElements}) {
-  class Sequence extends PureComponent {
-    render() {
-      const {i, j: jPos} = this.props;
-      const rawSequence = sequences.raw[i].sequence;
-      const residues = [];
-      let xPos = 0;
-      const Residue = ResidueComponent;
-      for (let j = jPos; j < rawSequence.length; j++) {
-        const el = rawSequence[j];
-        residues.push(<Residue
-          width={tileWidth}
-          height={tileHeight}
-          color={colorScheme.getColor(el)}
-          font={tileFont}
-          name={el}
-          key={j}
-        />);
-        xPos += tileWidth;
-        if (xPos > (width + tileWidth * cacheElements * 2))
-            break;
-      }
-      const style = {
-        width: xPos,
-        height: tileHeight,
-      }
-      return (
-        <div style={style}>
-          {residues}
-        </div>
-      );
-    }
-  }
-  return Sequence;
-};
-
 class HTMLSequenceViewerComponent extends Component {
 
   constructor(props) {
     super(props);
     this.el = createRef();
+    this.residueComponent = this.residueComponent.bind(this);
   }
 
-  componentWillMount() {
-    this.updateSequence();
-  }
-
-  updateSequence() {
-    this.sequenceComponent = createSequence({
-      sequences: this.props.sequences,
-      tileWidth: this.props.tileWidth,
-      tileHeight: this.props.tileHeight,
-      width: this.props.width,
-      tileFont: this.props.tileFont,
-      colorScheme: this.props.colorScheme,
-      cacheElements: this.props.cacheElements,
-    });
+  residueComponent({i, j, key}){
+    const rawSequence = this.props.sequences.raw[i].sequence;
+    const el = rawSequence[j];
+    const style = {
+      position: "absolute",
+      top: this.props.tileHeight * i,
+      left: this.props.tileWidth * j,
+    };
+    return <ResidueComponent
+      width={this.props.tileWidth}
+      height={this.props.tileHeight}
+      color={this.props.colorScheme.getColor(el)}
+      font={this.props.tileFont}
+      style={style}
+      name={el}
+      key={key}
+    />;
   }
 
   onPositionUpdate = (oldPos, newPos) => {
@@ -170,7 +137,7 @@ class HTMLSequenceViewerComponent extends Component {
          "colorScheme", "cacheElements"].some(key=> {
       return nextProps[key] !== this.props[key];
     }, true)){
-      this.updateSequence();
+      // TODO: clear cache
       return true;
     }
     return shallowCompare(this, nextProps, nextState);
@@ -205,7 +172,7 @@ class HTMLSequenceViewerComponent extends Component {
         width={this.props.width}
         height={this.props.height}
         onPositionUpdate={this.onPositionUpdate}>
-        <XYBar {...otherProps} tileComponent={this.sequenceComponent} />
+        <XYBar {...otherProps} tileComponent={this.residueComponent} />
       </DraggingComponent>
     );
   }
@@ -219,7 +186,7 @@ HTMLSequenceViewerComponent.defaultProps = {
   showModBar: true,
   residueComponent: ResidueComponent,
   sequenceComponent: SequenceComponent,
-  cacheElements: 3,
+  cacheElements: 2,
 };
 
 HTMLSequenceViewerComponent.propTypes = {
@@ -272,7 +239,8 @@ const mapStateToProps = state => {
     //currentViewSequence: state.sequenceStats.currentViewSequence,
     //currentViewSequencePosition: state.sequenceStats.currentViewSequencePosition,
     //yPosOffset: state.sequenceStats.yPosOffset,
-    //xPosOffset: state.sequenceStats.xPosOffset,
+    nrXTiles: state.sequenceStats.nrXTiles,
+    nrYTiles: state.sequenceStats.nrYTiles,
   }
 }
 

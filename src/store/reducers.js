@@ -94,7 +94,8 @@ const sequenceStats = (prevState = {
         //);
         //stats.yPosOffset = -(state.position.yPos % state.props.tileHeight);
         //stats.xPosOffset = -(state.position.xPos % state.props.tileWidth);
-        stats.nrTiles = Math.ceil(state.props.width / state.props.tileWidth) + 1;
+        stats.nrXTiles = Math.ceil(state.props.width / state.props.tileWidth) + 1;
+        stats.nrYTiles = Math.ceil(state.props.height / state.props.tileHeight) + 1;
         return stats;
       }
       break;

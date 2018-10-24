@@ -129,9 +129,7 @@ const mapStateToProps = state => {
     maxLength: state.sequences.maxLength,
     width: state.props.width,
     tileWidth: state.props.tileWidth,
-    //currentViewSequencePosition : state.sequenceStats.currentViewSequencePosition,
-    //xPosOffset: state.sequenceStats.xPosOffset,
-    nrTiles: state.sequenceStats.nrTiles,
+    nrXTiles: state.sequenceStats.nrXTiles,
   }
 }
 
