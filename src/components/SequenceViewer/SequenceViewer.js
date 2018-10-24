@@ -22,7 +22,6 @@ import { updatePosition } from '../../store/positionReducers';
 
 import DraggingComponent from './DraggingComponent';
 import ResidueComponent from './Residue';
-import SequenceComponent from './Sequence';
 // TODO: withModBar
 //import ModBar from './ModBar';
 
@@ -197,7 +196,6 @@ HTMLSequenceViewerComponent.contextTypes = {
 HTMLSequenceViewerComponent.defaultProps = {
   showModBar: true,
   residueComponent: ResidueComponent,
-  sequenceComponent: SequenceComponent,
   cacheElements: 5,
 };
 
@@ -239,7 +237,6 @@ const mapStateToProps = state => {
     state.sequences.length * state.props.tileHeight
   );
   return {
-    //position: state.position,
     sequences: state.sequences,
     maxLength: state.sequences.maxLength,
     width,
@@ -248,9 +245,6 @@ const mapStateToProps = state => {
     tileHeight: state.props.tileHeight,
     tileFont: state.props.tileFont,
     colorScheme: state.props.colorScheme,
-    //currentViewSequence: state.sequenceStats.currentViewSequence,
-    //currentViewSequencePosition: state.sequenceStats.currentViewSequencePosition,
-    //yPosOffset: state.sequenceStats.yPosOffset,
     nrXTiles: state.sequenceStats.nrXTiles,
     nrYTiles: state.sequenceStats.nrYTiles,
   }
