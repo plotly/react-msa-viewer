@@ -9,7 +9,7 @@
 import PropTypes from 'prop-types';
 
 import CanvasComponent from './CanvasComponent';
-import msaConnect from '../store/connect'
+import msaConnect from '../../store/connect'
 
 import { floor, clamp } from 'lodash-es';
 

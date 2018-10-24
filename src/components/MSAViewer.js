@@ -15,16 +15,12 @@ import {
   PropTypes,
 } from '../PropTypes';
 
-//import Labels from './Labels';
-//import OverviewBar from './OverviewBar';
-//import PositionBar from './PositionBar';
-//import SequenceViewer from './SequenceViewer';
-
-import Labels from './HTMLLabels';
-import OverviewBar from './HTMLOverviewBar';
-import PositionBar from './HTMLPositionBar';
-//import SequenceOverview from './SequenceOverview';
-import SequenceViewer from './HTMLSequenceViewer';
+import {
+  Labels,
+  OverviewBar,
+  PositionBar,
+  SequenceViewer,
+} from './index';
 
 import propsToRedux from '../store/propsToRedux';
 

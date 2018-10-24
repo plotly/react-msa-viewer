@@ -7,12 +7,11 @@
 */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
 import createRef from 'create-react-ref/lib/createRef';
 
-import positionStoreMixin from '../store/positionStoreMixin';
+import positionStoreMixin from '../../store/positionStoreMixin';
 
-import ListComponent from './ListComponent';
+import ListComponent from '../ListComponent';
 
 /**
 * Displays the sequence names with an arbitrary Marker component
