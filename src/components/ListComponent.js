@@ -36,7 +36,10 @@ class ListComponent extends PureComponent {
     if (elements.length === 0) {
       console.error(`The TileComponent rendered returned 0 elements from ${this.props.startTile} to ${this.props.endTile}`);
     }
-    return elements;
+    // React 15 doesn't allow to return arrays directly. Only React 16 does.
+    return <div>
+      {elements}
+    </div>
   }
 }
 export default ListComponent;

@@ -24,6 +24,7 @@ function createLabel({sequences, tileHeight}) {
         ...this.props.style,
         height: tileHeight,
       }
+      console.log("label");
       return (
         <div {...otherProps}>
           {sequences[index].name}
