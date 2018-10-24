@@ -119,6 +119,12 @@ function defaultRerender(Component, {withX = false, withY = false}) {
         return false;
       }
     }
+  } else {
+    // provide dummy updateScrollPosition
+    if (Component.prototype.updateScrollPosition === undefined) {
+      Component.prototype.updateScrollPosition = function(){
+      };
+    }
   }
 }
 export default positionStoreMixin;
