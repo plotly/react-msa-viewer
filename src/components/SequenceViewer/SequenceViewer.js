@@ -167,9 +167,9 @@ class HTMLSequenceViewerComponent extends Component {
       onResidueMouseLeave,
       onResidueClick,
       onResidueDoubleClick,
-      colorScheme,
+      //colorScheme,
       updatePosition,
-      tileFont,
+      //tileFont,
       ...otherProps
     } = this.props;
     return (

@@ -34,7 +34,7 @@ class CanvasComponent extends Component {
   constructor(props) {
     super(props);
     this.canvas = createRef();
-    this._draw = throttle(this._draw, this.props.msecsPerFps);
+    //this._draw = throttle(this._draw, this.props.msecsPerFps);
   }
 
   componentDidMount() {

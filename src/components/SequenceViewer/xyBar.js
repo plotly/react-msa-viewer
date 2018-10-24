@@ -12,7 +12,7 @@ import createRef from 'create-react-ref/lib/createRef';
 
 import positionStoreMixin from '../../store/positionStoreMixin';
 
-import TilingGrid from './TilingGrid';
+import TilingGrid from './CanvasTilingGrid';
 import NodeCache from './NodeCache'
 
 import { roundMod } from '../../utils/math';
@@ -33,7 +33,12 @@ class XYBarComponent extends Component {
     const el = this.cache.get(key);
     if (el === undefined) {
       const node = <TilingGrid
+          sequences={this.props.sequences}
+          colorScheme={this.props.colorScheme}
+          tileFont={this.props.tileFont}
           renderTile={this.props.tileComponent}
+          tileHeight={this.props.tileHeight}
+          tileWidth={this.props.tileWidth}
           startYTile={row}
           startXTile={column}
           key={key}
@@ -118,6 +123,8 @@ class XYBarComponent extends Component {
       nrYTiles,
       xGridSize,
       yGridSize,
+      tileFont,
+      colorScheme,
       ...otherProps
     } = this.props;
     const style = {
