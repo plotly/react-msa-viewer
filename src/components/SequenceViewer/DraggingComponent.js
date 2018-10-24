@@ -7,13 +7,12 @@
 */
 
 import React, { Component } from 'react';
+import createRef from 'create-react-ref/lib/createRef';
 
 //import {
   //throttle,
 //} from 'lodash-es';
-import Mouse from '../utils/mouse';
-
-import createRef from 'create-react-ref/lib/createRef';
+import Mouse from '../../utils/mouse';
 
 /**
 Provides dragging support and related callbacks:

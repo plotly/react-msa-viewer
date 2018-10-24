@@ -11,8 +11,8 @@ import PropTypes from 'prop-types';
 
 import { throttle } from 'lodash-es';
 
-import Canvas from '../drawing/canvas';
-import WebGL from '../drawing/webgl';
+import Canvas from '../../drawing/canvas';
+import WebGL from '../../drawing/webgl';
 
 import createRef from 'create-react-ref/lib/createRef';
 

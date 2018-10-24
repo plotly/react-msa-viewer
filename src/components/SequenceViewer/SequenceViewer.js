@@ -17,52 +17,53 @@ import {
   isEqual,
 } from 'lodash-es';
 
-import msaConnect from '../store/connect'
-import { updatePosition } from '../store/actions'
+import msaConnect from '../../store/connect'
+import { updatePosition } from '../../store/positionReducers';
 
-import DraggingComponent from './HTMLDraggingComponent';
+import DraggingComponent from './DraggingComponent';
 import ResidueComponent from './Residue';
 import SequenceComponent from './Sequence';
 // TODO: withModBar
 //import ModBar from './ModBar';
 
-import Mouse from '../utils/mouse';
-import createShallowCompare from '../utils/createShallowCompare';
+import Mouse from '../../utils/mouse';
+import XYBar from './xyBar';
+
+import shallowCompare from 'react-addons-shallow-compare';
 
 class HTMLSequenceViewerComponent extends Component {
 
   constructor(props) {
     super(props);
     this.el = createRef();
+    this.residueComponent = this.residueComponent.bind(this);
+  }
 
-    /**
-     * Updates the entire component if a property except for the position
-     * has changed. Otherwise just adjusts the scroll position;
-     */
-    const shallowCompare = createShallowCompare([
-      'xPosOffset',
-      'yPosOffset',
-      'position',
-    ]);
-    this.shouldComponentUpdate = (nextProps, nextState) => {
-      return shallowCompare(this.props, nextProps) ||
-        this.updateScrollPosition();
+  residueComponent({i, j, key}){
+    const rawSequence = this.props.sequences.raw[i].sequence;
+    const el = rawSequence[j];
+    const style = {
+      position: "absolute",
+      top: this.props.tileHeight * i,
+      left: this.props.tileWidth * j,
     };
-
+    return <ResidueComponent
+      width={this.props.tileWidth}
+      height={this.props.tileHeight}
+      color={this.props.colorScheme.getColor(el)}
+      font={this.props.tileFont}
+      style={style}
+      name={el}
+      key={key}
+    />;
   }
 
   onPositionUpdate = (oldPos, newPos) => {
-    // TODO: move this into a redux action
-    const pos = this.props.position;
-    pos.xPos += oldPos[0] - newPos[0];
-    pos.yPos += oldPos[1] - newPos[1];
-    // TODO: need maximum of sequence lengths here
-    const maximum = this.props.sequences.maxLength;
-    const maxWidth = maximum * this.props.tileWidth - this.props.width;
-    pos.xPos = clamp(pos.xPos, 0, maxWidth);
-    const maxHeight = this.props.sequences.raw.length * this.props.tileHeight - this.props.height;
-    pos.yPos = clamp(pos.yPos, 0, maxHeight);
-    this.props.updatePosition(pos);
+    const relativeMovement = {
+      xMovement: oldPos[0] - newPos[0],
+      yMovement: oldPos[1] - newPos[1],
+    };
+    this.context.positionMSAStore.dispatch(updatePosition(relativeMovement));
   }
 
   positionToSequence(pos) {
@@ -131,51 +132,19 @@ class HTMLSequenceViewerComponent extends Component {
     this.sendEvent('onResidueDoubleClick', eventData);
   }
 
-  /**
-   * Render the currently visible sequences.
-   * Called on every sequence movement.
-   */
-  renderSequences() {
-    const Sequence = this.props.sequenceComponent;
-    const sequences = this.props.sequences.raw;
-    let yPos = this.props.yPosOffset;
-    const htmlSequences = [];
-    for (let i = this.props.currentViewSequence; i < sequences.length; i++) {
-      const sequence = sequences[i];
-      let j = Math.min(
-        sequence.sequence.length,
-        this.props.currentViewSequencePosition
-      );
-      htmlSequences.push(<Sequence
-        key={i}
-        xPos={this.props.xPosOffset}
-        jPos={j}
-        tileWidth={this.props.tileWidth}
-        tileHeight={this.props.tileHeight}
-        colorScheme={this.props.colorScheme}
-        sequence={sequence}
-        font={this.props.tileFont}
-        width={this.props.width}
-        residueComponent={this.props.residueComponent}
-      />
-      );
-      yPos += this.props.tileHeight;
-      if (yPos > this.props.height)
-          break;
+  shouldComponentUpdate(nextProps, nextState) {
+    if (["sequences", "tileHeight", "tileWidth", "width", "tileFont",
+         "colorScheme", "cacheElements"].some(key=> {
+      return nextProps[key] !== this.props[key];
+    }, true)){
+      // TODO: clear cache
+      return true;
     }
-    return htmlSequences;
+    return shallowCompare(this, nextProps, nextState);
   }
 
-  componentDidUpdate() {
-    this.updateScrollPosition();
-  }
-
-  updateScrollPosition() {
-    if (this.el.current) {
-      this.el.current.el.current.scrollLeft = -this.props.xPosOffset;
-      this.el.current.el.current.scrollTop = -this.props.yPosOffset;
-    }
-    return false;
+  componentWillUpdate() {
+    console.log("CWU");
   }
 
   render() {
@@ -183,6 +152,19 @@ class HTMLSequenceViewerComponent extends Component {
       width: this.props.width,
       height: this.props.height,
     };
+    const {
+      showModBar,
+      residueComponent,
+      sequenceComponent,
+      onResidueMouseEnter,
+      onResidueMouseLeave,
+      onResidueClick,
+      onResidueDoubleClick,
+      colorScheme,
+      updatePosition,
+      tileFont,
+      ...otherProps
+    } = this.props;
     return (
       <DraggingComponent
         ref={this.el}
@@ -190,16 +172,21 @@ class HTMLSequenceViewerComponent extends Component {
         width={this.props.width}
         height={this.props.height}
         onPositionUpdate={this.onPositionUpdate}>
-           {this.renderSequences()}
+        <XYBar {...otherProps} tileComponent={this.residueComponent} />
       </DraggingComponent>
     );
   }
+}
+
+HTMLSequenceViewerComponent.contextTypes = {
+  positionMSAStore: PropTypes.object,
 }
 
 HTMLSequenceViewerComponent.defaultProps = {
   showModBar: true,
   residueComponent: ResidueComponent,
   sequenceComponent: SequenceComponent,
+  cacheElements: 2,
 };
 
 HTMLSequenceViewerComponent.propTypes = {
@@ -240,18 +227,20 @@ const mapStateToProps = state => {
     state.sequences.length * state.props.tileHeight
   );
   return {
-    position: state.position,
+    //position: state.position,
     sequences: state.sequences,
+    maxLength: state.sequences.maxLength,
     width,
     height,
     tileWidth: state.props.tileWidth,
     tileHeight: state.props.tileHeight,
     tileFont: state.props.tileFont,
     colorScheme: state.props.colorScheme,
-    currentViewSequence: state.sequenceStats.currentViewSequence,
-    currentViewSequencePosition: state.sequenceStats.currentViewSequencePosition,
-    yPosOffset: state.sequenceStats.yPosOffset,
-    xPosOffset: state.sequenceStats.xPosOffset,
+    //currentViewSequence: state.sequenceStats.currentViewSequence,
+    //currentViewSequencePosition: state.sequenceStats.currentViewSequencePosition,
+    //yPosOffset: state.sequenceStats.yPosOffset,
+    nrXTiles: state.sequenceStats.nrXTiles,
+    nrYTiles: state.sequenceStats.nrYTiles,
   }
 }
 

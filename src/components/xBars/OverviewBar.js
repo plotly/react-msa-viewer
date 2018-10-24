@@ -7,14 +7,11 @@
 */
 import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
-import msaConnect from '../store/connect'
+import shallowCompare from 'react-addons-shallow-compare';
 
 import XBar from './xBar';
-
-import MSAStats from '../utils/statSeqs';
-
-import shallowCompare from 'react-addons-shallow-compare';
+import msaConnect from '../../store/connect'
+import MSAStats from '../../utils/statSeqs';
 
 function createBar({columnHeights, tileWidth, height, fillColor}) {
   class Bar extends PureComponent {

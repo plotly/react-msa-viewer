@@ -11,12 +11,8 @@ import createMSAStore from './store/createMSAStore';
 import MSAProvider from './store/provider';
 
 import ColorScheme from './utils/ColorScheme';
-import Labels from './components/Labels';
 import MSAViewer from './components/MSAViewer';
-import PositionBar from './components/PositionBar';
-import SequenceViewer from './components/SequenceViewer';
-import SequenceOverview from './components/SequenceOverview';
-import OverviewBar from './components/OverviewBar';
+export * from './components';
 
 const VERSION = "MSA_DEVELOPMENT_VERSION";
 
@@ -24,13 +20,7 @@ export {
   ColorScheme,
   createMSAStore,
   msaConnect,
-  Labels,
-  MSAViewer,
   MSAProvider,
-  OverviewBar,
-  PositionBar,
-  SequenceOverview,
-  SequenceViewer,
   VERSION as version,
 };
 

@@ -6,7 +6,7 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 // Check https://plotly-icons.now.sh for a listing
 import AutoscaleIcon from 'plotly-icons/lib/components/AutoscaleIcon';
@@ -25,16 +25,7 @@ function PlotlyIcon(){
 // TODO: show as soon as the mouse enters
 // TODO: transition effect
 // TODO: tooltips
-class ModBar extends Component {
-
-  //componentDidMount() {
-    //this.ctx = new Canvas(this.canvas.current);
-    //this.draw();
-  //}
-
-  //componentDidUpdate() {
-    //this.draw();
-  //}
+class ModBar extends PureComponent {
 
   render() {
     const iconWidth = 20;

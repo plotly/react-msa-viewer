@@ -7,12 +7,11 @@
 */
 import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import shallowCompare from 'react-addons-shallow-compare';
 
-import msaConnect from '../store/connect'
+import msaConnect from '../../store/connect'
 
 import YBar from './yBar';
-
-import shallowCompare from 'react-addons-shallow-compare';
 
 function createLabel({sequences, tileHeight}) {
   /**

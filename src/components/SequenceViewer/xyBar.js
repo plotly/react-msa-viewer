@@ -7,9 +7,9 @@
 */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import createRef from 'create-react-ref/lib/createRef';
-import positionStoreMixin from '../store/positionStoreMixin';
+
+import positionStoreMixin from '../../store/positionStoreMixin';
 
 class ReactNodeCache {
 
