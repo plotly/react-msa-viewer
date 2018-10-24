@@ -23,7 +23,7 @@ export function positionStoreMixin(Component, {
         }
       }
       if (withX) {
-        if (Math.abs(this.currentViewSequencePosition - this.lastCurrentViewSequencePosition) >= this.props.cacheElements) {
+        if (Math.abs(this.position.currentViewSequencePosition - this.position.lastCurrentViewSequencePosition) >= this.props.cacheElements) {
           return true;
         }
       }
@@ -33,20 +33,21 @@ export function positionStoreMixin(Component, {
   Component.prototype.updateFromPositionStore = function() {
     const state = this.context.positionMSAStore.getState();
     let stateX = {}, stateY = {};
+    this.position = this.position || {};
     if (withX) {
-      this.xPosOffset = state.xPosOffset;
-      this.currentViewSequencePosition = state.currentViewSequencePosition;
+      this.position.xPosOffset = state.xPosOffset;
+      this.position.currentViewSequencePosition = state.currentViewSequencePosition;
       stateX = {
-        xPosOffset: this.xPosOffset,
-        currentViewSequencePosition: this.currentViewSequencePosition,
+        xPosOffset: this.position.xPosOffset,
+        currentViewSequencePosition: this.position.currentViewSequencePosition,
       }
     }
     if (withY) {
-      this.yPosOffset = state.yPosOffset;
-      this.currentViewSequence = state.currentViewSequence;
+      this.position.yPosOffset = state.position.yPosOffset;
+      this.position.currentViewSequence = state.position.currentViewSequence;
       stateY = {
-        xPosOffset: this.yPosOffset,
-        currentViewSequence: this.currentViewSequence,
+        xPosOffset: this.position.yPosOffset,
+        currentViewSequence: this.position.currentViewSequence,
       }
     }
     if (this.shouldRerender()) {
@@ -79,18 +80,18 @@ export function positionStoreMixin(Component, {
     Component.prototype.updateScrollPosition = function(){
       if (this.el && this.el.current) {
         if (withX) {
-          let offsetX = -this.xPosOffset;
-          offsetX += (this.lastCurrentViewSequencePosition - this.lastStartXTile) * this.props.tileWidth;
-          if (this.currentViewSequencePosition !== this.lastCurrentViewSequencePosition) {
-            offsetX += (this.currentViewSequencePosition - this.lastCurrentViewSequencePosition) * this.props.tileWidth;
+          let offsetX = -this.position.xPosOffset;
+          offsetX += (this.position.lastCurrentViewSequencePosition - this.position.lastStartXTile) * this.position.props.tileWidth;
+          if (this.position.currentViewSequencePosition !== this.position.lastCurrentViewSequencePosition) {
+            offsetX += (this.position.currentViewSequencePosition - this.position.lastCurrentViewSequencePosition) * this.position.props.tileWidth;
           }
           this.el.current.scrollLeft = offsetX;
         }
         if (withY) {
-          let offsetY = -this.yPosOffset;
-          offsetY += (this.lastCurrentViewSequence - this.lastStartYTile) * this.props.tileHeight;
-          if (this.currentViewSequence !== this.lastCurrentViewSequence) {
-            offsetY += (this.currentViewSequence - this.lastCurrentViewSequence) * this.props.tileHeight;
+          let offsetY = -this.position.yPosOffset;
+          offsetY += (this.position.lastCurrentViewSequence - this.position.lastStartYTile) * this.position.props.tileHeight;
+          if (this.position.currentViewSequence !== this.position.lastCurrentViewSequence) {
+            offsetY += (this.position.currentViewSequence - this.position.lastCurrentViewSequence) * this.position.props.tileHeight;
           }
           this.el.current.scrollTop = offsetY;
         }
