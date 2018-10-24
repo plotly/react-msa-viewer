@@ -5,7 +5,7 @@
 * This source code is licensed under the MIT license found in the
 * LICENSE file in the root directory of this source tree.
 */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import createRef from 'create-react-ref/lib/createRef';
@@ -18,26 +18,11 @@ import ListComponent from './ListComponent';
 /**
 * Displays the sequence names with an arbitrary Marker component
 */
-class XBarComponent extends Component {
+class XBarComponent extends PureComponent {
 
   constructor(props) {
     super(props);
     this.el = createRef();
-
-    /**
-     * Updates the entire component if a property except for the position
-     * has changed. Otherwise just adjusts the scroll position;
-     */
-    const shallowCompare = createShallowCompare([
-      'xPosOffset',
-      'currentViewSequencePosition'
-    ]);
-    this.shouldComponentUpdate = (nextProps, nextState) => {
-      if (shallowCompare(this.props, nextProps)) {
-        return true;
-      }
-      return this.shouldRerender();
-    };
   }
 
   render() {
@@ -66,11 +51,11 @@ class XBarComponent extends Component {
       sequences,
       tileComponent,
     };
-    this.lastCurrentViewSequencePosition = this.currentViewSequencePosition;
+    this.position.lastCurrentViewSequencePosition = this.currentViewSequencePosition;
     const startTile = Math.max(0, this.currentViewSequencePosition - this.props.cacheElements);
     const endTile = Math.min(this.props.maxLength, startTile + this.props.nrTiles + this.props.cacheElements * 2);
     const maxWidth = this.props.width + this.props.cacheElements * 2 * this.props.tileWidth;
-    this.lastStartXTile = startTile;
+    this.position.lastStartXTile = startTile;
     return (
       <div style={containerStyle} {...otherProps}>
         <div style={style} ref={this.el}>
@@ -99,9 +84,7 @@ XBarComponent.propTypes = {
   cacheElements: PropTypes.number.isRequired,
 
   tileWidth: PropTypes.number.isRequired,
-  //currentViewSequencePosition: PropTypes.number.isRequired,
   nrTiles: PropTypes.number.isRequired,
-  //xPosOffset: PropTypes.number.isRequired,
   maxLength: PropTypes.number.isRequired,
 }
 
