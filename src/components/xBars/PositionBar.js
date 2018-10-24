@@ -5,7 +5,7 @@
 * This source code is licensed under the MIT license found in the
 * LICENSE file in the root directory of this source tree.
 */
-import React, { Component, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import shallowCompare from 'react-addons-shallow-compare';
 
@@ -44,28 +44,14 @@ function createMarker({markerSteps, startIndex, tileWidth, font}) {
 /**
 * Displays the sequence names with an arbitrary Marker component
 */
-class HTMLPositionBarComponent extends Component {
+class HTMLPositionBarComponent extends PureComponent {
 
   componentWillMount() {
     this.updateMarker();
   }
 
   componentWillUpdate() {
-    console.log("CWU");
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (["markerSteps", "startIndex", "tileWidth"].some(key=> {
-      return nextProps[key] !== this.props[key];
-    }, true)){
-      this.updateMarker();
-      return true;
-    }
-    return shallowCompare(this, nextProps, nextState);
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
+    this.updateMarker();
   }
 
   updateMarker() {
