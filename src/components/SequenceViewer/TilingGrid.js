@@ -33,7 +33,7 @@ class TilingGridComponent extends PureComponent {
       for (let j = this.props.startXTile; j < this.props.endXTile; j++) {
         const el = this.props.renderTile({row:i, column:j});
         if (el) {
-          residues.push();
+          residues.push(el);
         }
       }
     }
