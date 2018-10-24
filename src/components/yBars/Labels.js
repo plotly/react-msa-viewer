@@ -24,7 +24,6 @@ function createLabel({sequences, tileHeight}) {
         ...this.props.style,
         height: tileHeight,
       }
-      console.log("label");
       return (
         <div {...otherProps}>
           {sequences[index].name}
@@ -76,7 +75,7 @@ class HTMLLabelsComponent extends Component {
 }
 
 HTMLLabelsComponent.defaultProps = {
-  cacheElements: 4,
+  cacheElements: 10,
 };
 
 HTMLLabelsComponent.propTypes = {
