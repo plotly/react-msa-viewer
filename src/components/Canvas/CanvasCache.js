@@ -12,8 +12,12 @@ import {
 } from 'lodash-es';
 
 /**
- * A simple, in-memory cache for Canvas tiles.
+ * A simple, in-memory cache for Canvas tiles outside of the DOM.
  * Gets automatically invalidated when called with different widths.
+ * If `maxElements` are exceed, the oldest element (by insertion time) will be
+ * removed from the cache.
+ *
+   * @param {Number} maxElements Maximal elements to keep in the cache (default: 200)
  */
 class CanvasCache {
   constructor({maxElements} = {}) {
@@ -21,8 +25,13 @@ class CanvasCache {
     this.invalidate();
   }
 
-  // creates a canvas with a single letter
-  // (for the fast font cache)
+  /**
+   * Creates a canvas element outside of the DOM that can be used for caching.
+   * @param {string} key Unique cache key of the element
+   * @param {Number} tileWidth Width of the to be created canvas
+   * @param {Number} tileWidth Width of the to be created canvas
+   * @param {function} create Callback to be called if for the given `key` to canvas exists in the cache
+   */
   createTile({key, tileWidth, tileHeight, create}) {
     // check if cache needs to be regenerated
     if (key in this.cache) {
@@ -50,6 +59,11 @@ class CanvasCache {
   /**
    * Checks whether the tile specification has changed and the cache needs
    * to be refreshed.
+   * Pass in an object of all the properties that would result in the cache to be refreshed
+   * Like React.Purecomponents the passed-in properties are compared by their
+   * shallow equality.
+   *
+   * @param {object} spec Object of all parameters that depend on this cache
    * Returns: `true` when the cache has been invalidated
    */
   updateTileSpecs(spec) {
@@ -61,6 +75,9 @@ class CanvasCache {
     return false;
   }
 
+  /**
+   * Invalidates the entire cache and removed all elements.
+   */
   invalidate() {
     // TODO: destroy the old canvas elements
     this.cache = {};
