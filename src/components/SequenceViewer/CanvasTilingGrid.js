@@ -81,11 +81,6 @@ class CanvasTilingGridComponent extends CanvasComponent {
   }
 }
 
-CanvasTilingGridComponent.defaultProps = {
-  width: 200,
-  height: 200,
-}
-
 CanvasTilingGridComponent.propTypes = {
   style: PropTypes.object,
   renderTile: PropTypes.func.isRequired,

@@ -25,16 +25,12 @@ import createRef from 'create-react-ref/lib/createRef';
 class CanvasComponent extends PureComponent {
 
   static defaultProps = {
-    width: 100,
-    height: 100,
-    msecsPerFps: 60,
     engine: "canvas",
   }
 
   constructor(props) {
     super(props);
     this.canvas = createRef();
-    //this._draw = throttle(this._draw, this.props.msecsPerFps);
   }
 
   componentDidMount() {
@@ -82,12 +78,12 @@ CanvasComponent.propTypes = {
   /**
    * Width of the component (in pixels), e.g. `100`
    */
-  width: PropTypes.number,
+  width: PropTypes.number.isRequired,
 
   /**
    * Width of the component (in pixels), e.g. `100`
    */
-  height: PropTypes.number,
+  height: PropTypes.number.isRequired,
 
   /**
    * Custom style configuration.
