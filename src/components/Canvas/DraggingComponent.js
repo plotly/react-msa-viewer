@@ -55,7 +55,7 @@ class DraggingComponent extends Component {
 
   constructor(props) {
     super(props);
-    this.canvas = createRef();
+    this.canvasBuffers = [createRef(), createRef()];
     this.container = createRef();
 
     // bind events (can't use static properties due to inheritance)
@@ -103,36 +103,48 @@ class DraggingComponent extends Component {
 
   componentDidMount() {
     // choose the best engine
-    if (this.props.engine === "webgl" && WebGL.isSupported(this.canvas.current)) {
-      this.ctx = new WebGL(this.canvas.current);
-    } else {
-      this.ctx = new Canvas(this.canvas.current);
-    }
+    this.ctxBuffers = [
+      this.canvasBuffers[0].current.getContext('2d', {alpha: 'false'}),
+      this.canvasBuffers[1].current.getContext('2d', {alpha: 'false'}),
+  ];
+    // init
+    this.swapContexts();
+    this.swapContexts();
     this.draw();
     this.container.current.addEventListener('mouseenter', this.onMouseEnter);
     this.container.current.addEventListener('mouseleave', this.onMouseLeave);
-    this.canvas.current.addEventListener('mousedown', this.onMouseDown);
-    this.canvas.current.addEventListener('mouseup', this.onMouseUp);
-    this.canvas.current.addEventListener('mousemove', this.onMouseMove);
-    this.canvas.current.addEventListener('touchstart', this.onTouchStart);
-    this.canvas.current.addEventListener('touchmove', this.onTouchMove);
-    this.canvas.current.addEventListener('touchend', this.onTouchEnd);
-    this.canvas.current.addEventListener('touchcancel', this.onTouchCancel);
-    this.canvas.current.addEventListener('click', this.onClick);
-    this.canvas.current.addEventListener('dblclick', this.onDoubleClick);
+    this.container.current.addEventListener('mousedown', this.onMouseDown);
+    this.container.current.addEventListener('mouseup', this.onMouseUp);
+    this.container.current.addEventListener('mousemove', this.onMouseMove);
+    this.container.current.addEventListener('touchstart', this.onTouchStart);
+    this.container.current.addEventListener('touchmove', this.onTouchMove);
+    this.container.current.addEventListener('touchend', this.onTouchEnd);
+    this.container.current.addEventListener('touchcancel', this.onTouchCancel);
+    this.container.current.addEventListener('click', this.onClick);
+    this.container.current.addEventListener('dblclick', this.onDoubleClick);
     // TODO: should we react do window resizes dynamically?
     //window.addEventListener('resize', this.onResize)
   }
 
+  currentContext = 1;
+  swapContexts() {
+    const current = this.currentContext;
+    // show the pre-rendered buffer
+    this.canvasBuffers[current].current.style.visibility = "visible";
+
+    // and prepare the next one
+    const next = (this.currentContext + 1) % 2;
+    this.canvasBuffers[next].current.style.visibility = "hidden";
+    this.currentContext = next;
+    this.ctx = this.ctxBuffers[next];
+  }
+
   draw() {
     if (!this.ctx) return;
-    // TODO: only update this if required
-    this.ctx.startDrawingFrame();
-    this.ctx.save();
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.onViewpointChange();
     this.drawScene();
-    this.ctx.restore();
-    this.ctx.endDrawingFrame();
+    this.swapContexts();
   }
 
   /**
@@ -312,6 +324,11 @@ class DraggingComponent extends Component {
       opacity: 0.8,
     };
     const showModBar = this.props.showModBar && this.state.mouse.isMouseWithin;
+    const canvasStyle = {
+      position: "absolute",
+      left: 0,
+      top: 0,
+    };
     return (
       <div
           style={style}
@@ -321,7 +338,16 @@ class DraggingComponent extends Component {
             <ModBar style={modBar}> Plotly Modbar</ModBar>
         )}
         <canvas
-          ref={this.canvas}
+          style={canvasStyle}
+          ref={this.canvasBuffers[0]}
+          width={this.props.width}
+          height={this.props.height}
+        >
+        Your browser does not seem to support HTML5 canvas.
+        </canvas>
+        <canvas
+          style={canvasStyle}
+          ref={this.canvasBuffers[1]}
           width={this.props.width}
           height={this.props.height}
         >

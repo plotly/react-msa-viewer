@@ -40,7 +40,13 @@ class SequenceViewerComponent extends DraggingComponent {
   // starts the drawing process
   drawScene() {
     const positions = this.getTilePositions();
+    const now = Date.now();
+    this.redrawnTiles = 0;
     const elements = this.drawTiles(positions);
+    const elapsed = Date.now() - now;
+    if (elapsed > 5) {
+      console.warn(`Took ${elapsed} msecs to redraw for ${positions.startXTile} ${positions.startYTile} (redrawnTiles: ${this.redrawnTiles})`);
+    }
   }
 
   // figures out from where to start drawing
@@ -63,6 +69,7 @@ class SequenceViewerComponent extends DraggingComponent {
       tileWidth: this.props.tileWidth * this.props.xGridSize,
       tileHeight: this.props.tileHeight * this.props.yGridSize,
       create: ({canvas}) => {
+        this.redrawnTiles++;
         this.tilingGridManager.draw({
           ctx: canvas,
           sequences:this.props.sequences,
@@ -96,7 +103,8 @@ class SequenceViewerComponent extends DraggingComponent {
         const height = yGridSize * this.props.tileHeight;
         const yPos = (i - this.position.currentViewSequence) * this.props.tileHeight + this.position.yPosOffset;
         const xPos = (j - this.position.currentViewSequencePosition) * this.props.tileWidth + this.position.xPosOffset;
-        this.ctx.ctx.drawImage(canvas, xPos, yPos, width, height);
+        this.ctx.drawImage(canvas, 0, 0, width, height,
+          xPos, yPos, width, height);
       }
     }
   }
