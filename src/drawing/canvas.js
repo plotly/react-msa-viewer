@@ -18,8 +18,8 @@ class Canvas extends DrawingBase {
 
   clear() {
     // fastest way to clear the canvas
-    // http://jsperf.com/canvas-clear-speed/25
-    this.el.width = this.el.width;
+    // http://jsperf.com/canvas-clear-speed
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
   }
 
   fillRect(x, y, width, height) {
