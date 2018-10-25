@@ -90,7 +90,7 @@ class SequenceViewerComponent extends DraggingComponent {
           endYTile:row + this.props.yGridSize,
           endXTile:column + this.props.xGridSize,
           ...pick(this.props, [
-            "sequences", "colorScheme", "tileFont", "textColor",
+            "sequences", "colorScheme", "textFont", "textColor",
             "tileHeight", "tileWidth", "border", "borderWidth", "borderColor",
           ])
         });
@@ -212,11 +212,11 @@ class SequenceViewerComponent extends DraggingComponent {
 
   updateTileSpecs() {
     this.tileCache.updateTileSpecs(pick(this.props, [
-      'tileWidth', 'tileHeight', 'colorScheme', 'tileFont',
+      'tileWidth', 'tileHeight', 'colorScheme', 'textFont',
       'xGridSize', 'yGridSize', 'sequences',
     ]));
     this.residueTileCache.updateTileSpecs(pick(this.props, [
-      'tileWidth', 'tileHeight', 'colorScheme', 'tileFont'
+      'tileWidth', 'tileHeight', 'colorScheme', 'textFont'
     ]));
   }
 
@@ -231,11 +231,12 @@ SequenceViewerComponent.defaultProps = {
   showModBar: false,
   xGridSize: 10,
   yGridSize: 10,
-  textColor: "black",
   border: false,
   borderColor: "black",
   borderWidth: 1,
   cacheElements: 20,
+  textColor: "black",
+  textFont: "18px Arial",
 };
 
 SequenceViewerComponent.propTypes = {
@@ -298,6 +299,11 @@ SequenceViewerComponent.propTypes = {
    * Color of the text residue letters (name, hex or RGB value)
    */
   textColor: PropTypes.string,
+
+  /**
+   * Font to use when drawing the individual residues.
+   */
+  textFont: PropTypes.string,
 };
 
 const mapStateToProps = state => {
@@ -316,7 +322,6 @@ const mapStateToProps = state => {
     height,
     tileWidth: state.props.tileWidth,
     tileHeight: state.props.tileHeight,
-    tileFont: state.props.tileFont,
     colorScheme: state.props.colorScheme,
     engine: state.props.engine,
     nrXTiles: state.sequenceStats.nrXTiles,

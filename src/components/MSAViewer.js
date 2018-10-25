@@ -59,6 +59,7 @@ class MSAViewerComponent extends Component {
     "sequenceBorderColor": "borderColor",
     "sequenceBorderWidth": "borderWidth",
     "sequenceTextColor": "textColor",
+    "sequenceTextFont": "textFont",
   };
 
   // List of props forwarded to the Labels component

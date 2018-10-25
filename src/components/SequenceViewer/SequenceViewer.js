@@ -61,7 +61,7 @@ class HTMLSequenceViewerComponent extends Component {
       width={this.props.tileWidth}
       height={this.props.tileHeight}
       color={this.props.colorScheme.getColor(el)}
-      font={this.props.tileFont}
+      font={this.props.textFont}
       style={style}
       name={el}
       key={key}
@@ -143,7 +143,7 @@ class HTMLSequenceViewerComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (["sequences", "tileHeight", "tileWidth", "width", "tileFont",
+    if (["sequences", "tileHeight", "tileWidth", "width", "textFont",
          "colorScheme", "cacheElements"].some(key=> {
       return nextProps[key] !== this.props[key];
     }, true)){
@@ -172,7 +172,7 @@ class HTMLSequenceViewerComponent extends Component {
       onResidueDoubleClick,
       //colorScheme,
       updatePosition,
-      //tileFont,
+      //textFont,
       ...otherProps
     } = this.props;
     //this.counter = 0;
@@ -212,6 +212,7 @@ HTMLSequenceViewerComponent.defaultProps = {
   showModBar: true,
   residueComponent: ResidueComponent,
   cacheElements: 10,
+  textFont: "18px Arial",
 };
 
 HTMLSequenceViewerComponent.propTypes = {
@@ -239,6 +240,11 @@ HTMLSequenceViewerComponent.propTypes = {
    * Callback fired when the mouse pointer clicked a residue.
    */
   onResidueDoubleClick: PropTypes.func,
+
+  /**
+   * Font to use when drawing the individual residues.
+   */
+  textFont: PropTypes.string,
 };
 
 const mapStateToProps = state => {
@@ -258,7 +264,6 @@ const mapStateToProps = state => {
     height,
     tileWidth: state.props.tileWidth,
     tileHeight: state.props.tileHeight,
-    tileFont: state.props.tileFont,
     colorScheme: state.props.colorScheme,
     nrXTiles: state.sequenceStats.nrXTiles,
     nrYTiles: state.sequenceStats.nrYTiles,

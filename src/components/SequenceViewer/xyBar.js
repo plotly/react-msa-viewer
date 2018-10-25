@@ -38,7 +38,7 @@ class XYBarComponent extends Component {
       const node = <TilingGrid
           sequences={this.props.sequences}
           colorScheme={this.props.colorScheme}
-          tileFont={this.props.tileFont}
+          textFont={this.props.textFont}
           renderTile={this.props.tileComponent}
           tileHeight={this.props.tileHeight}
           tileWidth={this.props.tileWidth}
@@ -132,7 +132,7 @@ class XYBarComponent extends Component {
       nrYTiles,
       xGridSize,
       yGridSize,
-      tileFont,
+      textFont,
       colorScheme,
       ...otherProps
     } = this.props;

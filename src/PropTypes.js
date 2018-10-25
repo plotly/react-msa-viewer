@@ -95,7 +95,7 @@ export const MSAPropTypes = {
   /**
    * Font of the individual residue tiles, e.g. `"20px Arial"`.
    */
-  tileFont: PropTypes.string,
+  textFont: PropTypes.string,
 
   /**
    * Current x and y position of the viewpoint
@@ -154,7 +154,6 @@ export const msaDefaultProps = {
   height: 100,
   tileWidth: 20,
   tileHeight: 20,
-  tileFont: "18px Arial",
   position: {
     xPos: 0,
     yPos: 0,

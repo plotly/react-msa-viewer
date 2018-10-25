@@ -87,12 +87,13 @@ class CanvasTilingGridComponent extends PureComponent {
     canvas.fillRect(0, 0, this.props.tileWidth, this.props.tileHeight);
 
     canvas.globalAlpha = 1.0;
-    canvas.font = this.props.tileFont;
     canvas.fillStyle = "#000000";
-    canvas.font = this.props.tileFont + "px mono";
+    canvas.font = this.props.textFont + "px mono";
     canvas.textBaseline = 'middle';
     canvas.textAlign = "center";
-    canvas.fillText(text, this.props.tileWidth / 2, this.props.tileHeight / 2, this.props.tileWidth, this.props.tileFont);
+    canvas.fillText(text, this.props.tileWidth / 2,
+      this.props.tileHeight / 2,
+      this.props.tileWidth);
   }
 
   render() {
