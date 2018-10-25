@@ -52,17 +52,26 @@ class CanvasTilingGridComponent extends CanvasComponent {
   }
 
   drawResidue({row, column, canvas, colorScheme, text}) {
-    canvas.font = this.props.tileFont;
     canvas.globalAlpha = 0.7;
     canvas.fillStyle = colorScheme;
     canvas.fillRect(0, 0, this.props.tileWidth, this.props.tileHeight);
-    canvas.globalAlpha = 1.0;
 
-    canvas.fillStyle = "#000000";
+    if (this.props.border) {
+      canvas.globalAlpha = 1;
+      canvas.lineWidth = this.props.borderWidth;
+      canvas.strokeStyle = this.props.borderStyle;
+      canvas.strokeRect(0, 0, this.props.tileWidth, this.props.tileHeight);
+    }
+
+    canvas.globalAlpha = 1.0;
+    canvas.fillStyle = this.props.textColor;
     canvas.font = this.props.tileFont + "px mono";
     canvas.textBaseline = 'middle';
-    canvas.textAlign = "center";
-    canvas.fillText(text, this.props.tileWidth / 2, this.props.tileHeight / 2, this.props.tileWidth, this.props.tileFont);
+    canvas.textAlign = 'center';
+    canvas.fillText(text,
+      this.props.tileWidth / 2,
+      (this.props.tileHeight / 2) + 1,
+      this.props.tileWidth);
   }
 
   draw(props) {

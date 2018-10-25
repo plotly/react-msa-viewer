@@ -84,16 +84,15 @@ class SequenceViewerComponent extends DraggingComponent {
         }
         this.tilingGridManager.draw({
           ctx: canvas,
-          sequences:this.props.sequences,
-          colorScheme:this.props.colorScheme,
-          tileFont:this.props.tileFont,
-          tileHeight:this.props.tileHeight,
-          tileWidth:this.props.tileWidth,
           startYTile:row,
           startXTile:column,
-          residueTileCache:this.residueTileCache,
+          residueTileCache: this.residueTileCache,
           endYTile:row + this.props.yGridSize,
           endXTile:column + this.props.xGridSize,
+          ...pick(this.props, [
+            "sequences", "colorScheme", "tileFont", "textColor",
+            "tileHeight", "tileWidth", "border", "borderWidth", "borderColor",
+          ])
         });
       },
     });
@@ -232,6 +231,10 @@ SequenceViewerComponent.defaultProps = {
   showModBar: false,
   xGridSize: 10,
   yGridSize: 10,
+  textColor: "black",
+  border: false,
+  borderColor: "black",
+  borderWidth: 1,
   cacheElements: 20,
 };
 
@@ -274,7 +277,27 @@ SequenceViewerComponent.propTypes = {
   /**
    * Number of residues to prerender outside of the visible viewbox.
    */
-  cacheElements: PropTypes.number.isRequired
+  cacheElements: PropTypes.number.isRequired,
+
+  /**
+   * Whether to draw a border.
+   */
+  border: PropTypes.bool,
+
+  /**
+   * Color of the border. Name, hex or RGB value.
+   */
+  borderColor: PropTypes.string,
+
+  /**
+   * Width of the border.
+   */
+  borderWidth: PropTypes.number,
+
+  /**
+   * Color of the text residue letters (name, hex or RGB value)
+   */
+  textColor: PropTypes.string,
 };
 
 const mapStateToProps = state => {
