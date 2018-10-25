@@ -31,7 +31,10 @@ class CanvasTilingGridComponent extends CanvasComponent {
     const tileHeight = this.props.tileHeight;
     const yPos = tileHeight * (row - this.props.startYTile);
     const xPos = tileWidth * (column - this.props.startXTile);
-    const text = this.props.sequences.raw[row].sequence[column];
+    if (row >= this.props.sequences.raw.length) return undefined;
+    const sequence = this.props.sequences.raw[row].sequence;
+    if (column >= sequence.length) return undefined;
+    const text = sequence[column];
     if (text !== undefined) {
       const colorScheme = this.props.colorScheme.getColor(text);
       const key = `${text}-${colorScheme}`;
