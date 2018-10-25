@@ -80,6 +80,8 @@ const sequenceStats = (prevState = {
         const stats = {};
         stats.nrXTiles = Math.ceil(state.props.width / state.props.tileWidth) + 1;
         stats.nrYTiles = Math.ceil(state.props.height / state.props.tileHeight) + 1;
+        stats.fullWidth = state.props.tileWidth * state.sequences.maxLength;
+        stats.fullHeight = state.props.tileHeight * state.sequences.length;
         return stats;
       }
       break;
