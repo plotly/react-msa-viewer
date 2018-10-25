@@ -8,6 +8,9 @@
 
 import React, { PureComponent } from 'react';
 
+/**
+ * Renders a list of tiles, but caches already seen components.
+ */
 class ListComponent extends PureComponent {
 
   componentWillMount() {
@@ -34,7 +37,7 @@ class ListComponent extends PureComponent {
       elements.push(this.renderTile(i));
     }
     if (elements.length === 0) {
-      console.error(`The TileComponent rendered returned 0 elements from ${this.props.startTile} to ${this.props.endTile}`);
+      console.warn(`The TileComponent rendered returned 0 elements from ${this.props.startTile} to ${this.props.endTile}`);
     }
     // React 15 doesn't allow to return arrays directly. Only React 16 does.
     return <div>
