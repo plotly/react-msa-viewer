@@ -26,7 +26,6 @@ import {
 
 /// Maps property changes to redux actions
 const reduxActions = {
-  "position": "updatePosition",
   "sequences": "updateSequences",
 }
 

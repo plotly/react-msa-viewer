@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import { createStore } from 'redux'
 
 import {
-  each,
   merge,
 } from 'lodash-es';
 
@@ -20,7 +19,6 @@ import { MSAPropTypes, msaDefaultProps } from '../PropTypes';
 import positionReducers from '../store/reducers';
 import {
   updateProps,
-  updatePosition,
   updateSequences,
 } from '../store/actions';
 
@@ -41,7 +39,6 @@ export const createMSAStore = (props) => {
     debug && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
   store.dispatch(updateProps(otherProps));
-  store.dispatch(updatePosition(position));
   store.dispatch(updateSequences(sequences));
   return store;
 }

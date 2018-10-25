@@ -18,20 +18,6 @@ import calculateSequencesState from './reducers/calculateSequencesState';
 // other utilities
 import {ColorScheme, isColorScheme} from '../utils/ColorScheme';
 
-//import {
-  //floor,
-  //clamp,
-//} from 'lodash-es';
-
-//const position = handleActions({
-  //[actions.updatePosition]: (prevState, {xPos, yPos}) => {
-    //return {xPos, yPos};
-  //}
-//}, {
-  //xPos: 0,
-  //yPos: 0,
-//});
-
 function checkColorScheme(state) {
   if (isColorScheme(state.colorScheme)) {
       // it's already a color scheme
@@ -87,24 +73,11 @@ const sequenceStats = (prevState = {
   currentViewSequencePosition: 0,
 }, action, state) => {
   switch(action.type){
-    //case actions.updatePosition.key:
     case actions.updateProps.key:
     case actions.updateSequences.key:
       if (state.props && state.props.tileHeight && state.props.tileWidth &&
           state.sequences) {
         const stats = {};
-        //stats.currentViewSequence = clamp(
-          //floor(state.position.yPos / state.props.tileHeight),
-          //0,
-          //state.sequences.length - 1
-        //);
-        //stats.currentViewSequencePosition = clamp(
-          //floor(state.position.xPos / state.props.tileWidth),
-          //0,
-          //state.sequences.maxLength,
-        //);
-        //stats.yPosOffset = -(state.position.yPos % state.props.tileHeight);
-        //stats.xPosOffset = -(state.position.xPos % state.props.tileWidth);
         stats.nrXTiles = Math.ceil(state.props.width / state.props.tileWidth) + 1;
         stats.nrYTiles = Math.ceil(state.props.height / state.props.tileHeight) + 1;
         return stats;
@@ -143,7 +116,6 @@ const statCombineReduce = (reducer, statReducers) => {
 };
 
 export default statCombineReduce(combineReducers({
-  //position,
   props,
   sequences,
 }), {

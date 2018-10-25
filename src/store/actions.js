@@ -39,12 +39,10 @@ export function createAction(type, ...argNames) {
 }
 
 // TODO: maybe use createActions from redux-actions here
-export const updatePosition = createAction('POSITION_UPDATE');
 export const updateProps = createAction('PROPS_UPDATE');
 export const updateProp = createAction('PROP_UPDATE', 'key', 'value');
 export const updateSequences = createAction('SEQUENCES_UPDATE');
 export const actions = {
-  updatePosition,
   updateProp,
   updateProps,
   updateSequences,
