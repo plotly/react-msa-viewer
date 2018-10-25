@@ -350,7 +350,19 @@ class DraggingComponent extends Component {
       "dispatch", "sequences",
       "fullWidth", "fullHeight",
     ]);
-    const showScrollBar = true;
+    let showScrollBar = false;
+    switch(this.props.overflow) {
+      case "auto":
+        showScrollBar = this.props.fullWidth > this.props.width || this.props.fullHeight > this.props.height;
+        break;
+      case "hidden":
+        showScrollBar = false;
+        break;
+      case "scroll":
+        showScrollBar = true;
+        break;
+      default:
+    }
     return (
       <div
           style={style}
