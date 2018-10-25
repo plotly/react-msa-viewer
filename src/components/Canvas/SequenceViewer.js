@@ -195,15 +195,19 @@ class SequenceViewerComponent extends DraggingComponent {
     super.onDoubleClick(e);
   }
 
-  //shouldComponentUpdate(newProps) {
-    //// TODO: check recursively
-    ////return this.props.target !== newProps.target;
-    //return true;
-  //}
+  componentWillUnmount() {
+    this.invalidateCaches();
+  }
+
+  invalidateCaches() {
+    // TODO: be smarter about this and only about the caches when exactly required
+    this.tileCache.invalidate();
+    this.residueTileCache.invalidate();
+  }
 
   // to make react-docgen happy
-  counter = 0;
   render() {
+    this.invalidateCaches();
     return super.render();
   }
 }
