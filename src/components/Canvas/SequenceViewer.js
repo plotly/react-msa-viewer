@@ -245,6 +245,8 @@ SequenceViewerComponent.defaultProps = {
   textColor: "black",
   textFont: "18px Arial",
   overflow: "auto",
+  overflowX: "auto",
+  overflowY: "auto",
 };
 
 SequenceViewerComponent.propTypes = {
@@ -317,6 +319,16 @@ SequenceViewerComponent.propTypes = {
    * What should happen if content overflows.
    */
   overflow: PropTypes.oneOf(["hidden", "auto", "scroll"]),
+
+  /**
+   * What should happen if x-axis content overflows (overwrites "overflow")
+   */
+  overflowX: PropTypes.oneOf(["hidden", "auto", "scroll"]),
+
+  /**
+   * What should happen if y-axis content overflows (overwrites "overflow")
+   */
+  overflowY: PropTypes.oneOf(["hidden", "auto", "scroll"]),
 };
 
 const mapStateToProps = state => {

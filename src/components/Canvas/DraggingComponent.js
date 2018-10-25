@@ -350,19 +350,6 @@ class DraggingComponent extends Component {
       "dispatch", "sequences",
       "fullWidth", "fullHeight",
     ]);
-    let showScrollBar = false;
-    switch(this.props.overflow) {
-      case "auto":
-        showScrollBar = this.props.fullWidth > this.props.width || this.props.fullHeight > this.props.height;
-        break;
-      case "hidden":
-        showScrollBar = false;
-        break;
-      case "scroll":
-        showScrollBar = true;
-        break;
-      default:
-    }
     return (
       <div
           style={style}
@@ -388,12 +375,15 @@ class DraggingComponent extends Component {
         >
         Your browser does not seem to support HTML5 canvas.
         </canvas>
-        { showScrollBar &&
-          <FakeScroll
-            width={this.props.width} height={this.props.height}
-            fullWidth={this.props.fullWidth} fullHeight={this.props.fullHeight}
-          />
-        }
+        <FakeScroll
+          overflow={this.props.overflow}
+          overflowX={this.props.overflowX}
+          overflowY={this.props.overflowY}
+          width={this.props.width}
+          height={this.props.height}
+          fullWidth={this.props.fullWidth}
+          fullHeight={this.props.fullHeight}
+        />
       </div>
     );
   }
