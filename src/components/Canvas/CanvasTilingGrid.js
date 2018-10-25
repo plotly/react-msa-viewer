@@ -42,7 +42,8 @@ class CanvasTilingGridComponent extends CanvasComponent {
         }
       });
       this.props.ctx.drawImage(
-        canvasTile, xPos, yPos, tileWidth, tileHeight
+        canvasTile, 0, 0, tileWidth, tileHeight,
+        xPos, yPos, tileWidth, tileHeight,
       );
     }
   }
