@@ -82,12 +82,12 @@ class CanvasTilingGridComponent extends PureComponent {
   }
 
   drawResidue({row, column, canvas, colorScheme, text}) {
-    canvas.font = this.props.tileFont;
     canvas.globalAlpha = 0.7;
     canvas.fillStyle = colorScheme;
     canvas.fillRect(0, 0, this.props.tileWidth, this.props.tileHeight);
-    canvas.globalAlpha = 1.0;
 
+    canvas.globalAlpha = 1.0;
+    canvas.font = this.props.tileFont;
     canvas.fillStyle = "#000000";
     canvas.font = this.props.tileFont + "px mono";
     canvas.textBaseline = 'middle';
