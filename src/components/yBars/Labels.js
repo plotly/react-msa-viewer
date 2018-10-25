@@ -16,7 +16,8 @@ import msaConnect from '../../store/connect'
 
 import YBar from './yBar';
 
-function createLabel({sequences, tileHeight, labelComponent}) {
+function createLabel({sequences, tileHeight, labelComponent,
+  labelStyle, labelAttributes}) {
   /**
    * Displays an individual sequence name.
    */
@@ -30,9 +31,11 @@ function createLabel({sequences, tileHeight, labelComponent}) {
         otherProps.style = {
           ...this.props.style,
           height: tileHeight,
+          ...labelStyle
         }
+        const attributes = {...otherProps, ...labelAttributes};
         return (
-          <div {...otherProps}>
+          <div {...attributes} >
             {sequences[index].name}
           </div>
         );
@@ -62,13 +65,18 @@ class HTMLLabelsComponent extends Component {
   }
 
   updateLabel() {
-    this.label = createLabel(pick(this.props, ["sequences", "tileHeight", "labelComponent"]));
+    this.label = createLabel(pick(this.props, [
+      "sequences", "tileHeight",
+      "labelComponent", "labelStyle", "labelAttributes"
+    ]));
   }
 
   render() {
     const {cacheElements,
       dispatch,
       labelComponent,
+      labelStyle,
+      labelAttributes,
       ...otherProps} = this.props;
     return (
       <YBar
@@ -82,6 +90,7 @@ class HTMLLabelsComponent extends Component {
 
 HTMLLabelsComponent.defaultProps = {
   cacheElements: 10,
+  labelStyle: {},
 };
 
 HTMLLabelsComponent.propTypes = {
@@ -94,6 +103,21 @@ HTMLLabelsComponent.propTypes = {
    * Component to create labels from.
    */
   labelComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+
+  /**
+   * Inline styles to apply to the Label component
+   */
+  style: PropTypes.object,
+
+  /**
+   * Inline styles to apply to each label.
+   */
+  labelStyle: PropTypes.object,
+
+  /**
+   * Attributes to apply to each label.
+   */
+  labelAttributes: PropTypes.object,
 }
 
 const mapStateToProps = state => {
