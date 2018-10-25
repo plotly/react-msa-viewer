@@ -55,7 +55,6 @@ const mapStateToProps = state => {
     position: state.position,
     height: state.props.height,
     tileHeight: state.props.tileHeight,
-    msecsPerFps: state.props.msecsPerFps,
     nrSequences: state.sequences.raw.length,
     labels: state.sequences.raw.map(s => s.name),
   }

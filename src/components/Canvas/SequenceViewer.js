@@ -273,7 +273,6 @@ const mapStateToProps = state => {
     tileWidth: state.props.tileWidth,
     tileHeight: state.props.tileHeight,
     tileFont: state.props.tileFont,
-    msecsPerFps: state.props.msecsPerFps,
     colorScheme: state.props.colorScheme,
     engine: state.props.engine,
     nrXTiles: state.sequenceStats.nrXTiles,

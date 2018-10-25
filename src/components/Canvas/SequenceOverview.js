@@ -122,7 +122,6 @@ const mapStateToProps = state => {
     width: state.props.width,
     globalWidth: state.props.width,
     globalHeight: state.props.height,
-    msecsPerFps: state.props.msecsPerFps,
     globalTileWidth: state.props.tileWidth,
     globalTileHeight: state.props.tileHeight,
     colorScheme: state.props.colorScheme,

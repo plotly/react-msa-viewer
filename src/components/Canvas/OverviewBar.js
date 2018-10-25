@@ -97,7 +97,6 @@ const mapStateToProps = state => {
     width: state.props.width,
     tileHeight: state.props.tileHeight,
     tileWidth: state.props.tileWidth,
-    msecsPerFps: state.props.msecsPerFps,
     stats: state.sequenceStats,
   }
 }

@@ -21,7 +21,7 @@ Sub-classes are expected to implement:
 
 Moreover, a component's viewpoint needs to be passed in via its properties:
 
-  <MyDraggingComponent width="200" height="300" msecsPerFps="60" />
+  <MyDraggingComponent width="200" height="300" />
 */
 // TODO: handle wheel events
 // TODO: share requestAnimationFrame with multiple components

@@ -98,11 +98,6 @@ export const MSAPropTypes = {
   tileFont: PropTypes.string,
 
   /**
-   * Maximum number of frames per second, e.g. `10000 / 60`.
-   */
-  msecsPerFps: PropTypes.number,
-
-  /**
    * Current x and y position of the viewpoint
    * in the main sequence viewer (in pixels).
    * This specifies the position of the top-left corner
@@ -160,7 +155,6 @@ export const msaDefaultProps = {
   tileWidth: 20,
   tileHeight: 20,
   tileFont: "20px Arial",
-  msecsPerFps: 1000  / 60,
   position: {
     xPos: 0,
     yPos: 0,
