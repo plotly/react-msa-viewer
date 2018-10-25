@@ -66,6 +66,12 @@ class DraggingComponent extends Component {
     this.mouseMovePosition = undefined;
     this.touchMovePosition = undefined;
     this.isInDragPhase = undefined;
+
+    /**
+     * Set by mouseMouse, reset after the drag phase
+     * Used to check whether an `onClick` event comes from a drag phase.
+     */
+    this.mouseHasMoved = undefined;
   }
 
   /**
@@ -180,6 +186,7 @@ class DraggingComponent extends Component {
     if (this.isInDragPhase === undefined) {
       return;
     }
+    this.mouseHasMoved = true;
     const pos = Mouse.abs(e);
     // TODO: use global window out and not this container's out for better dragging
     if (!this.isEventWithinComponent(e)) {
@@ -244,6 +251,7 @@ class DraggingComponent extends Component {
    */
   startDragPhase(e) {
     this.mouseMovePosition = Mouse.abs(e);
+    this.mouseHasMoved = undefined;
     this.isInDragPhase = true;
     this.setState(prevState => ({
       mouse: {
