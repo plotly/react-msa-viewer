@@ -9,7 +9,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import CanvasComponent from '../Canvas/CanvasComponent';
+import createRef from 'create-react-ref/lib/createRef';
 
 /**
  * Allows rendering in tiles of grids.
@@ -27,7 +27,28 @@ import CanvasComponent from '../Canvas/CanvasComponent';
  * This split-up is required to avoid frequent repaints and keeps the React
  * Tree calculations slim.
  */
-class CanvasTilingGridComponent extends CanvasComponent {
+class CanvasTilingGridComponent extends PureComponent {
+
+  constructor(props) {
+    super(props);
+    this.canvas = createRef();
+  }
+
+  componentDidMount() {
+    // choose the best engine
+    this.ctx = this.canvas.current.createContext("2d");
+    this.draw();
+  }
+
+  componentDidUpdate() {
+    this._draw();
+  }
+
+  _draw() {
+    if (!this.ctx) return;
+    this.ctx.clearReact(0, 0, this.ctx.canvas.width, this.context.canvas.height);
+    this.draw();
+  }
 
   drawTile({row, column}) {
     const tileWidth = this.props.tileWidth;
@@ -52,8 +73,6 @@ class CanvasTilingGridComponent extends CanvasComponent {
   }
 
   draw() {
-    this.drawCounter = 0;
-    console.log(this.drawCounter);
     const residues = [];
     for (let i = this.props.startYTile; i < this.props.endYTile; i++) {
       for (let j = this.props.startXTile; j < this.props.endXTile; j++) {
