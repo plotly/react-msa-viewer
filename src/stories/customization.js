@@ -83,14 +83,14 @@ storiesOf('Customization', module)
  .add('Custom Markers', function(){
     const options = {
       sequences,
-      markerComponent: ({name}) => {
+      markerComponent: ({index}) => {
         return (
           <div style={{
             width: 20,
             display: "inline-block",
             textAlign: "center",
             fontWeight: 'bold'}}>
-            {name}
+            {index}
           </div>
         );
       }

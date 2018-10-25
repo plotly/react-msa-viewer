@@ -7,34 +7,42 @@
 */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import {
+  pick
+} from 'lodash-es';
 
 import msaConnect from '../../store/connect'
 
 import XBar from './xBar';
 
-function createMarker({markerSteps, startIndex, tileWidth, font}) {
+function createMarker({markerSteps, startIndex, tileWidth, font, markerComponent}) {
   /**
    * Displays an individual sequence name.
    */
   class Marker extends PureComponent {
     render() {
       const {index, ...otherProps} = this.props;
-      otherProps.style = {
-        width: tileWidth,
-        display: "inline-block",
-        textAlign: "center",
-      }
-      let name;
-      if (index % markerSteps === 0) {
-        name = index+ 0 + startIndex;
+      if (markerComponent) {
+        const MarkerComponent = markerComponent;
+        return <MarkerComponent index={index} />
       } else {
-        name = '.';
+        otherProps.style = {
+          width: tileWidth,
+          display: "inline-block",
+          textAlign: "center",
+        }
+        let name;
+        if (index % markerSteps === 0) {
+          name = index+ 0 + startIndex;
+        } else {
+          name = '.';
+        }
+        return (
+          <div {...otherProps}>
+            {name}
+          </div>
+        );
       }
-      return (
-        <div {...otherProps}>
-          {name}
-        </div>
-      );
     }
   }
   return Marker;
@@ -54,11 +62,9 @@ class HTMLPositionBarComponent extends PureComponent {
   }
 
   updateMarker() {
-    this.marker = createMarker({
-      markerSteps: this.props.markerSteps,
-      startIndex: this.props.startIndex,
-      tileWidth: this.props.tileWidth,
-    });
+    this.marker = createMarker(pick(this.props, [
+      "markerSteps", "startIndex", "tileWidth", "markerComponent"
+    ]));
   }
 
   render() {
@@ -66,11 +72,11 @@ class HTMLPositionBarComponent extends PureComponent {
       markerSteps,
       startIndex,
       dispatch,
+      markerComponent,
       ...otherProps} = this.props;
-    const Marker = this.marker;
     return (
       <XBar
-        tileComponent={Marker}
+        tileComponent={this.marker}
         cacheElements={cacheElements}
         {...otherProps}
       />
@@ -109,6 +115,11 @@ HTMLPositionBarComponent.propTypes = {
    * Typical values are: `1` (1-based indexing) and `0` (0-based indexing).
    */
   startIndex: PropTypes.number,
+
+  /**
+   * Component to create markers from.
+   */
+  markerComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 }
 
 const mapStateToProps = state => {
