@@ -9,11 +9,16 @@ import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import shallowCompare from 'react-addons-shallow-compare';
 
+import {
+  pick
+} from 'lodash-es';
+
 import XBar from './xBar';
 import msaConnect from '../../store/connect'
 import MSAStats from '../../utils/statSeqs';
 
-function createBar({columnHeights, tileWidth, height, fillColor}) {
+function createBar({columnHeights, tileWidth, height, fillColor,
+  barStyle, barAttributes}) {
   class Bar extends PureComponent {
     render() {
       const { index, ...otherProps} = this.props;
@@ -71,9 +76,10 @@ class HTMLOverviewBarComponent extends Component {
 
     this.statsBar = createBar({
       columnHeights: columnHeights,
-      tileWidth: this.props.tileWidth,
-      height: this.props.height,
-      fillColor: this.props.fillColor,
+      ...pick(this.props, [
+        "tileWidth", "height", "fillColor",
+        "barStyle", "barAttributes",
+      ])
     });
   }
 
@@ -83,6 +89,8 @@ class HTMLOverviewBarComponent extends Component {
       method,
       fillColor,
       dispatch,
+      barStyle,
+      barAttributes,
       ...otherProps} = this.props;
     return (
       <XBar
@@ -118,6 +126,21 @@ HTMLOverviewBarComponent.propTypes = {
    * Fill color of the OverviewBar, e.g. `#999999`
    */
   fillColor: PropTypes.string,
+
+  /**
+   * Inline styles to apply to the OverviewBar component
+   */
+  style: PropTypes.object,
+
+  /**
+   * Inline styles to apply to each bar.
+   */
+  barStyle: PropTypes.object,
+
+  /**
+   * Attributes to apply to each bar.
+   */
+  barAttributes: PropTypes.object,
 };
 
 const mapStateToProps = state => {
