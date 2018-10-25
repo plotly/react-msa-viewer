@@ -46,7 +46,9 @@ export function positionStoreMixin(Component, {
     if (this.shouldRerender()) {
       // this will always force a rerender as position is a new object
       this.setState({
-        position: this.position,
+        position: {
+          ...this.position,
+        }
       });
     }
   }

@@ -49,11 +49,11 @@ class XBarComponent extends PureComponent {
       sequences,
       tileComponent,
     };
-    this.position.lastCurrentViewSequencePosition = this.position.currentViewSequencePosition;
     const startTile = Math.max(0, this.position.currentViewSequencePosition - this.props.cacheElements);
     const endTile = Math.min(this.props.maxLength, startTile + this.props.nrXTiles + this.props.cacheElements * 2);
     const maxWidth = this.props.width + this.props.cacheElements * 2 * this.props.tileWidth;
     this.position.lastStartXTile = startTile;
+    this.position.lastCurrentViewSequencePosition = this.position.currentViewSequencePosition;
     return (
       <div style={containerStyle} {...otherProps}>
         <div style={style} ref={this.el}>
