@@ -54,16 +54,22 @@ class MSAViewerComponent extends Component {
   // List of props forwarded to the Labels component
   static labelsProps = [
     "labelComponent",
+    "labelStyle",
+    "labelAttributes",
   ];
 
   // List of props forwarded to the PositionBar component
   static positionBarProps = [
     "markerComponent",
+    "markerStyle",
+    "markerAttributes",
   ];
 
   // List of props forwarded to the OverviewBar component
   static overviewBarProps = [
     "barComponent",
+    "barStyle",
+    "barAttributes",
   ];
 
   forwardProps(propsToBeForwarded) {

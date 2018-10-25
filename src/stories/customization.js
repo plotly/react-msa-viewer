@@ -99,4 +99,18 @@ storiesOf('Customization', module)
       <MSAViewer {...options} />
     )
   })
+ .add('Custom styling', function(){
+    const options = {
+      sequences,
+      labelStyle: {
+        outline: "1px solid black",
+      },
+      markerStyle: {
+        outline: "1px solid black",
+      }
+     };
+    return (
+      <MSAViewer {...options} />
+    )
+  })
  ;
