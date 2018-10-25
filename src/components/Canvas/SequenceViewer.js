@@ -29,16 +29,21 @@ class SequenceViewerComponent extends DraggingComponent {
 
   constructor(props) {
     super(props);
+    // cache fully drawn tiles (TODO: limit this cache)
     this.tileCache = new CanvasCache();
+    // cache individual residue cells
     this.residueTileCache = new CanvasCache();
+    // the manager which is in charge of drawing residues
     this.tilingGridManager = new TilingGrid();
   }
 
+  // starts the drawing process
   drawScene() {
     const positions = this.getTilePositions();
     const elements = this.drawTiles(positions);
   }
 
+  // figures out from where to start drawing
   getTilePositions() {
     const startXTile = Math.max(0, this.position.currentViewSequencePosition - this.props.cacheElements);
     const startYTile = Math.max(0, this.position.currentViewSequence - this.props.cacheElements);
@@ -80,20 +85,17 @@ class SequenceViewerComponent extends DraggingComponent {
     const elements = [];
     const xGridSize = this.props.xGridSize;
     const yGridSize = this.props.yGridSize;
-    startYTile = roundMod(startYTile, yGridSize);
-    startXTile = roundMod(startXTile, xGridSize);
-
-    const yOffset = (this.position.currentViewSequence - startYTile) * this.props.tileHeight - this.position.yPosOffset
-    const xOffset = (this.position.currentViewSequencePosition - startXTile) * this.props.tileWidth - this.position.xPosOffset;
+    const startY = roundMod(startYTile, yGridSize);
+    const startX = roundMod(startXTile, xGridSize);
 
     // TODO: cut-off end tiles
-    for (let i = startYTile; i < endYTile; i = i + yGridSize) {
-      for (let j = startXTile; j < endXTile; j = j + xGridSize) {
+    for (let i = startY; i < endYTile; i = i + yGridSize) {
+      for (let j = startX; j < endXTile; j = j + xGridSize) {
         const canvas = this.renderTile({row: i, column: j, canvas: this.ctx});
         const width = xGridSize * this.props.tileWidth;
         const height = yGridSize * this.props.tileHeight;
-        const yPos = i * this.props.tileHeight - yOffset;
-        const xPos = j * this.props.tileWidth - xOffset;
+        const yPos = (i - this.position.currentViewSequence) * this.props.tileHeight + this.position.yPosOffset;
+        const xPos = (j - this.position.currentViewSequencePosition) * this.props.tileWidth + this.position.xPosOffset;
         this.ctx.ctx.drawImage(canvas, xPos, yPos, width, height);
       }
     }
