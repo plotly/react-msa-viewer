@@ -6,6 +6,8 @@
 * LICENSE file in the root directory of this source tree.
 */
 
+import * as shallowEqual from 'shallowequal';
+
 /**
  * A simple, in-memory cache for Canvas tiles.
  * Gets automatically invalidated when called with different widths.
@@ -13,17 +15,12 @@
 class CanvasCache {
   constructor() {
     this.cache = {};
-    this.tileHeight = 0;
-    this.tileWidth = 0;
   }
 
   // creates a canvas with a single letter
   // (for the fast font cache)
   createTile({key, tileWidth, tileHeight, create}) {
-    if (tileWidth !== this.tileWidth || tileHeight !== this.tileHeight) {
-      // check if cache needs to be regenerated
-      this.updateTileSpecs({tileWidth, tileHeight});
-    }
+    // check if cache needs to be regenerated
     if (key in this.cache) {
       return this.cache[key];
     }
@@ -36,15 +33,25 @@ class CanvasCache {
     return canvas;
   }
 
-  updateTileSpecs({tileWidth, tileHeight}) {
-    this.invalidate();
-    this.tileWidth = tileWidth;
-    this.tileHeight = tileHeight;
+  /**
+   * Checks whether the tile specification has changed and the cache needs
+   * to be refreshed.
+   * Returns: `true` when the cache has been invalidated
+   */
+  updateTileSpecs(spec) {
+    if (!shallowEqual(spec, this.spec)) {
+      console.log("invalidate", spec, this.spec);
+      this.invalidate();
+      this.spec = spec;
+      return true;
+    }
+    return false;
   }
 
   invalidate() {
     // TODO: destroy the old canvas elements
     this.cache = {};
+    this.spec = {};
   }
 }
 

@@ -28,7 +28,8 @@
     "react": "15.4.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.1",
-    "rollup-plugin-uglify": "^6.0.0"
+    "rollup-plugin-uglify": "^6.0.0",
+    "shallowequal": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

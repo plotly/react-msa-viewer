@@ -9,8 +9,9 @@
 import PropTypes from 'prop-types';
 
 import {
-  floor,
   clamp,
+  floor,
+  pick,
 } from 'lodash-es';
 
 import DraggingComponent from './DraggingComponent';
@@ -40,6 +41,7 @@ class SequenceViewerComponent extends DraggingComponent {
   // starts the drawing process
   drawScene() {
     const positions = this.getTilePositions();
+    this.updateTileSpecs();
     const now = Date.now();
     this.redrawnTiles = 0;
     this.drawTiles(positions);
@@ -196,18 +198,21 @@ class SequenceViewerComponent extends DraggingComponent {
   }
 
   componentWillUnmount() {
-    this.invalidateCaches();
-  }
-
-  invalidateCaches() {
-    // TODO: be smarter about this and only about the caches when exactly required
     this.tileCache.invalidate();
     this.residueTileCache.invalidate();
   }
 
-  // to make react-docgen happy
+  updateTileSpecs() {
+    this.tileCache.updateTileSpecs(pick(this.props, [
+      'tileWidth', 'tileHeight', 'colorScheme', 'tileFont',
+      'xGridSize', 'yGridSize', 'sequences',
+    ]));
+    this.residueTileCache.updateTileSpecs(pick(this.props, [
+      'tileWidth', 'tileHeight', 'colorScheme', 'tileFont'
+    ]));
+  }
+
   render() {
-    this.invalidateCaches();
     return super.render();
   }
 }
