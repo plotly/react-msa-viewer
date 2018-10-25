@@ -8,27 +8,35 @@
 import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import shallowCompare from 'react-addons-shallow-compare';
+import {
+  pick
+} from 'lodash-es';
 
 import msaConnect from '../../store/connect'
 
 import YBar from './yBar';
 
-function createLabel({sequences, tileHeight}) {
+function createLabel({sequences, tileHeight, labelComponent}) {
   /**
    * Displays an individual sequence name.
    */
   class Label extends PureComponent {
     render() {
       const {index, ...otherProps} = this.props;
-      otherProps.style = {
-        ...this.props.style,
-        height: tileHeight,
+      if (labelComponent) {
+        const LabelComponent = labelComponent;
+        return <LabelComponent sequence={sequences[index]} index={index} />;
+      } else {
+        otherProps.style = {
+          ...this.props.style,
+          height: tileHeight,
+        }
+        return (
+          <div {...otherProps}>
+            {sequences[index].name}
+          </div>
+        );
       }
-      return (
-        <div {...otherProps}>
-          {sequences[index].name}
-        </div>
-      );
     }
   }
   return Label;
@@ -44,7 +52,7 @@ class HTMLLabelsComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (["sequences", "tileHeight"].some(key=> {
+    if (["sequences", "tileHeight", "labelComponent"].some(key=> {
       return nextProps[key] !== this.props[key];
     }, true)){
       this.updateLabel();
@@ -54,15 +62,13 @@ class HTMLLabelsComponent extends Component {
   }
 
   updateLabel() {
-    this.label = createLabel({
-      sequences: this.props.sequences,
-      tileWidth: this.props.tileWidth,
-    });
+    this.label = createLabel(pick(this.props, ["sequences", "tileHeight", "labelComponent"]));
   }
 
   render() {
     const {cacheElements,
       dispatch,
+      labelComponent,
       ...otherProps} = this.props;
     return (
       <YBar
@@ -83,6 +89,11 @@ HTMLLabelsComponent.propTypes = {
    * Font of the sequence labels, e.g. `20px Arial`
    */
   font: PropTypes.string,
+
+  /**
+   * Component to create labels from.
+   */
+  labelComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 }
 
 const mapStateToProps = state => {
