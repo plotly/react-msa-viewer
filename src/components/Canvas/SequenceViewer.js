@@ -42,7 +42,7 @@ class SequenceViewerComponent extends DraggingComponent {
     const positions = this.getTilePositions();
     const now = Date.now();
     this.redrawnTiles = 0;
-    const elements = this.drawTiles(positions);
+    this.drawTiles(positions);
     const elapsed = Date.now() - now;
     if (elapsed > 5) {
       console.warn(`Took ${elapsed} msecs to redraw for ${positions.startXTile} ${positions.startYTile} (redrawnTiles: ${this.redrawnTiles})`);
@@ -89,7 +89,6 @@ class SequenceViewerComponent extends DraggingComponent {
 
 
   drawTiles({startXTile, startYTile, endXTile, endYTile}) {
-    const elements = [];
     const xGridSize = this.props.xGridSize;
     const yGridSize = this.props.yGridSize;
     const startY = roundMod(startYTile, yGridSize);

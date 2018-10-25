@@ -9,8 +9,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { throttle } from 'lodash-es';
-
 import Canvas from '../../drawing/canvas';
 import WebGL from '../../drawing/webgl';
 

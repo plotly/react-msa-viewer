@@ -9,12 +9,7 @@
 import React, { Component } from 'react';
 import createRef from 'create-react-ref/lib/createRef';
 
-//import {
-  //throttle,
-//} from 'lodash-es';
 import Mouse from '../../utils/mouse';
-import Canvas from '../../drawing/canvas';
-import WebGL from '../../drawing/webgl';
 
 import ModBar from '../ModBar';
 
@@ -66,12 +61,6 @@ class DraggingComponent extends Component {
     ].forEach(prop => {
         this[prop] = this[prop].bind(this);
     });
-
-    //this.onMouseMove = throttle(this.onMouseMove, msecsPerFps);
-    //this.onTouchMove = throttle(this.onTouchMove, msecsPerFps);
-
-    // just in case requestAnimationFrame is too greedy
-    //this.draw = throttle(this.draw, this.props.msecsPerFps);
 
     this.onViewpointChange();
     // Define internal variables for explicitness
