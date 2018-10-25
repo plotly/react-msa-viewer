@@ -25,6 +25,8 @@ import msaConnect from '../../store/connect'
 import Mouse from '../../utils/mouse';
 import { roundMod } from '../../utils/math';
 
+import debug from '../../debug';
+
 // TODO: maybe move into the store
 class SequenceViewerComponent extends DraggingComponent {
 
@@ -42,12 +44,16 @@ class SequenceViewerComponent extends DraggingComponent {
   drawScene() {
     const positions = this.getTilePositions();
     this.updateTileSpecs();
-    const now = Date.now();
-    this.redrawnTiles = 0;
+    if (debug) {
+      this.redrawStarted = Date.now();
+      this.redrawnTiles = 0;
+    }
     this.drawTiles(positions);
-    const elapsed = Date.now() - now;
-    if (elapsed > 5) {
-      console.warn(`Took ${elapsed} msecs to redraw for ${positions.startXTile} ${positions.startYTile} (redrawnTiles: ${this.redrawnTiles})`);
+    if (debug) {
+      const elapsed = Date.now() - this.redrawStarted;
+      if (elapsed > 5) {
+        console.log(`Took ${elapsed} msecs to redraw for ${positions.startXTile} ${positions.startYTile} (redrawnTiles: ${this.redrawnTiles})`);
+      }
     }
   }
 
@@ -71,7 +77,9 @@ class SequenceViewerComponent extends DraggingComponent {
       tileWidth: this.props.tileWidth * this.props.xGridSize,
       tileHeight: this.props.tileHeight * this.props.yGridSize,
       create: ({canvas}) => {
-        this.redrawnTiles++;
+        if (debug) {
+          this.redrawnTiles++;
+        }
         this.tilingGridManager.draw({
           ctx: canvas,
           sequences:this.props.sequences,
