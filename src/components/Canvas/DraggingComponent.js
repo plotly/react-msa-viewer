@@ -42,9 +42,6 @@ class DraggingComponent extends Component {
    */
 
   static defaultProps = {
-    width: 500,
-    height: 500,
-    msecsPerFps: 60,
     engine: "canvas",
     showModBar: true,
   }
@@ -78,9 +75,9 @@ class DraggingComponent extends Component {
 
     this.onViewpointChange();
     // Define internal variables for explicitness
-    this.dragFrame = undefined;
     this.mouseMovePosition = undefined;
     this.touchMovePosition = undefined;
+    this.isInDragPhase = undefined;
   }
 
   /**
@@ -210,7 +207,7 @@ class DraggingComponent extends Component {
   }
 
   onTouchMove(e) {
-    if (typeof this.dragFrame === "undefined") {
+    if (this.isInDragPhase === undefined) {
       return;
     }
 
@@ -259,7 +256,7 @@ class DraggingComponent extends Component {
   stopDragPhase() {
     //this.mouseMovePosition = undefined;
     //this.touchMovePosition = undefined;
-    this.isInDragPhase = false;
+    this.isInDragPhase = undefined;
     //window.cancelAnimationFrame(this.nextFrame);
     this.setState(prevState => ({
       mouse: {
