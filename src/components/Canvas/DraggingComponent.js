@@ -9,6 +9,10 @@
 import React, { Component } from 'react';
 import createRef from 'create-react-ref/lib/createRef';
 
+import {
+  omit
+} from 'lodash-es';
+
 import Mouse from '../../utils/mouse';
 
 import ModBar from '../ModBar';
@@ -338,10 +342,17 @@ class DraggingComponent extends Component {
       left: 0,
       top: 0,
     };
+    const otherProps = omit(this.props, [
+      ...Object.keys(this.constructor.propTypes),
+      "tileWidth", "tileHeight", "colorScheme",
+      "nrXTiles", "nrYTiles",
+      "dispatch", "sequences",
+    ]);
     return (
       <div
           style={style}
           ref={this.container}
+          {...otherProps}
       >
         { showModBar && (
             <ModBar style={modBar}> Plotly Modbar</ModBar>
