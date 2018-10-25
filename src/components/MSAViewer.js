@@ -10,6 +10,10 @@ import React, { Component } from 'react';
 import MSAProvider from '../store/provider';
 
 import {
+  forOwn,
+} from 'lodash-es'
+
+import {
   msaDefaultProps,
   MSAPropTypes,
   PropTypes,
@@ -33,6 +37,8 @@ const labelsAndSequenceDiv = {
   display: "flex",
 };
 
+const same = "FORWARD_SAME_PROP_NAME";
+
 /**
  * A general-purpose layout for the MSA components
  *
@@ -43,40 +49,45 @@ const labelsAndSequenceDiv = {
 class MSAViewerComponent extends Component {
 
   // List of props forwarded to the SequenceViewer component
-  static sequenceViewerProps = [
-    "showModBar",
-    "onResidueMouseEnter",
-    "onResidueMouseLeave",
-    "onResidueClick",
-    "onResidueDoubleClick",
-  ];
+  static sequenceViewerProps = {
+    "showModBar": same,
+    "onResidueMouseEnter": same,
+    "onResidueMouseLeave": same,
+    "onResidueClick": same,
+    "onResidueDoubleClick": same,
+    "sequenceBorder": "border",
+    "sequenceBorderColor": "borderColor",
+    "sequenceBorderWidth": "borderWidth",
+    "sequenceTextColor": "textColor",
+  };
 
   // List of props forwarded to the Labels component
-  static labelsProps = [
-    "labelComponent",
-    "labelStyle",
-    "labelAttributes",
-  ];
+  static labelsProps = {
+    "labelComponent": same,
+    "labelStyle": same,
+    "labelAttributes": same,
+  };
 
   // List of props forwarded to the PositionBar component
-  static positionBarProps = [
-    "markerComponent",
-    "markerStyle",
-    "markerAttributes",
-  ];
+  static positionBarProps = {
+    "markerComponent": same,
+    "markerStyle": same,
+    "markerAttributes": same,
+  };
 
   // List of props forwarded to the OverviewBar component
-  static overviewBarProps = [
-    "barComponent",
-    "barStyle",
-    "barAttributes",
-  ];
+  static overviewBarProps = {
+    "barComponent": same,
+    "barStyle": same,
+    "barAttributes": same,
+  };
 
   forwardProps(propsToBeForwarded) {
-    const options = {}
-    propsToBeForwarded.forEach(prop => {
-      if (this.props[prop] !== undefined) {
-        options[prop] = this.props[prop];
+    const options = {};
+    forOwn(propsToBeForwarded, (forwardedName, currentName) => {
+      if (this.props[currentName] !== undefined) {
+        const name = forwardedName === same ? currentName : forwardedName;
+        options[name] = this.props[currentName];
       }
     });
     return options;

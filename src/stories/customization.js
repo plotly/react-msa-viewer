@@ -107,7 +107,8 @@ storiesOf('Customization', module)
       },
       markerStyle: {
         outline: "1px solid black",
-      }
+      },
+      sequenceTextColor: "blue",
      };
     return (
       <MSAViewer {...options} />
