@@ -76,6 +76,10 @@ export function positionStoreMixin(Component, {
     positionMSAStore: PropTypes.object,
   }
 
+  Component.prototype.dispatch = function(payload) {
+    this.context.positionMSAStore.dispatch(payload);
+  };
+
   defaultRerender(Component, {withX, withY});
 }
 
