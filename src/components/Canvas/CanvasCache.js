@@ -6,7 +6,7 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import * as shallowEqual from 'shallowequal';
+import shallowEqual from '../../utils/shallowEqual';
 import {
   minBy
 } from 'lodash-es';
