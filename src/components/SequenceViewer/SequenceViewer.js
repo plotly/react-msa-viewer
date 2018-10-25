@@ -30,6 +30,9 @@ import XYBar from './xyBar';
 
 import shallowCompare from 'react-addons-shallow-compare';
 
+/**
+ * Component to draw the main sequence alignment.
+ */
 class HTMLSequenceViewerComponent extends Component {
 
   constructor(props) {

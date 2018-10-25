@@ -27,7 +27,9 @@ import { roundMod } from '../../utils/math';
 
 import debug from '../../debug';
 
-// TODO: maybe move into the store
+/**
+ * Component to draw the main sequence alignment.
+ */
 class SequenceViewerComponent extends DraggingComponent {
 
   constructor(props) {
@@ -145,7 +147,6 @@ class SequenceViewerComponent extends DraggingComponent {
   }
 
   componentDidUpdate() {
-    // TODO: smarter updates
     this.draw();
   }
 
@@ -260,8 +261,20 @@ SequenceViewerComponent.propTypes = {
    */
   onResidueDoubleClick: PropTypes.func,
 
+  /**
+   * Number of residues to cluster in one tile (x-axis) (default: 10)
+   */
   xGridSize: PropTypes.number.isRequired,
+
+  /**
+   * Number of residues to cluster in one tile (y-axis) (default: 10)
+   */
   yGridSize: PropTypes.number.isRequired,
+
+  /**
+   * Number of residues to prerender outside of the visible viewbox.
+   */
+  cacheElements: PropTypes.number.isRequired
 };
 
 const mapStateToProps = state => {

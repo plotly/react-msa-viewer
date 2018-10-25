@@ -24,7 +24,6 @@ Moreover, a component's viewpoint needs to be passed in via its properties:
   <MyDraggingComponent width="200" height="300" />
 */
 // TODO: handle wheel events
-// TODO: share requestAnimationFrame with multiple components
 class DraggingComponent extends Component {
 
   /**
@@ -33,7 +32,7 @@ class DraggingComponent extends Component {
    * this.mouseMovePosition = [x, y]; // relative to the canvas
    * this.touchMovePosition = [x, y]; // relative to the canvas
    *
-   * If no movement is happening, these two variables are undefined.
+   * If no movement is happening, inInDragPhase is undefined
    */
 
   static defaultProps = {
@@ -114,6 +113,16 @@ class DraggingComponent extends Component {
     //window.addEventListener('resize', this.onResize)
   }
 
+  /**
+   * We buffer the canvas to display and allow to be redrawn while not being visible.
+   * Only after it has been drawn, the canvas element will be flipped to a visible state.
+   * In other words, we have two canvas elements (1 visible, 1 hidden) and
+   * a new `draw` happens on the hidden one. After a `draw` operation these canvas
+   * elements are "swapped" by this method.
+   *
+   * This method swaps the visibility of the DOM nodes and sets `this.ctx`
+   * to the hidden canvas.
+   */
   currentContext = 1;
   swapContexts() {
     const current = this.currentContext;
@@ -127,6 +136,12 @@ class DraggingComponent extends Component {
     this.ctx = this.ctxBuffers[next];
   }
 
+  /**
+   * Starts a draw operation by essentially:
+   * - clearing the current context (the hidden canvas)
+   * - calling `drawScene` to render the current canvas
+   * - swapping canvas contexts with `swapContexts`
+   */
   draw() {
     if (!this.ctx) return;
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
@@ -174,8 +189,8 @@ class DraggingComponent extends Component {
     const oldPos = this.mouseMovePosition
     if (this.nextFrame === undefined) {
       this.nextFrame = window.requestAnimationFrame(() => {
-        this.mouseMovePosition = pos;
         // already use the potentially updated mouse move position here
+        this.mouseMovePosition = pos;
         this.onPositionUpdate(oldPos, this.mouseMovePosition);
         this.nextFrame = undefined;
       });
@@ -254,10 +269,7 @@ class DraggingComponent extends Component {
    * Called at the end of a drag action.
    */
   stopDragPhase() {
-    //this.mouseMovePosition = undefined;
-    //this.touchMovePosition = undefined;
     this.isInDragPhase = undefined;
-    //window.cancelAnimationFrame(this.nextFrame);
     this.setState(prevState => ({
       mouse: {
         ...prevState.mouse,
@@ -286,15 +298,15 @@ class DraggingComponent extends Component {
     //window.removeEventListener('resize', this.onResize);
     this.container.current.removeEventListener('mouseenter', this.onMouseEnter);
     this.container.current.removeEventListener('mouseleave', this.onMouseLeave);
-    this.canvas.current.removeEventListener('mouseup', this.onMouseUp);
-    this.canvas.current.removeEventListener('mousedown', this.onMouseDown);
-    this.canvas.current.removeEventListener('mousemove', this.onMouseMove);
-    this.canvas.current.removeEventListener('click', this.onClick);
-    this.canvas.current.removeEventListener('dblclick', this.onDoubleClick);
-    this.canvas.current.removeEventListener('touchstart', this.onTouchStart);
-    this.canvas.current.removeEventListener('touchend', this.onTouchEnd);
-    this.canvas.current.removeEventListener('touchcancel', this.onTouchCancel);
-    this.canvas.current.removeEventListener('touchmove', this.onTouchMove);
+    this.container.current.removeEventListener('mouseup', this.onMouseUp);
+    this.container.current.removeEventListener('mousedown', this.onMouseDown);
+    this.container.current.removeEventListener('mousemove', this.onMouseMove);
+    this.container.current.removeEventListener('click', this.onClick);
+    this.container.current.removeEventListener('dblclick', this.onDoubleClick);
+    this.container.current.removeEventListener('touchstart', this.onTouchStart);
+    this.container.current.removeEventListener('touchend', this.onTouchEnd);
+    this.container.current.removeEventListener('touchcancel', this.onTouchCancel);
+    this.container.current.removeEventListener('touchmove', this.onTouchMove);
     this.stopDragPhase();
   }
 
