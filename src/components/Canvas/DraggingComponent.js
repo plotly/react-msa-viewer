@@ -314,6 +314,7 @@ class DraggingComponent extends Component {
     // TODO: adapt to parent height/width
     const style = {
       width: this.props.width,
+      height: this.props.height,
       ...this.props.style,
       cursor: this.state.mouse.cursorState,
       position: "relative",
