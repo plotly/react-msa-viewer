@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import {
   clamp,
   floor,
+  isEqual,
   pick,
 } from 'lodash-es';
 
@@ -170,32 +171,32 @@ class SequenceViewerComponent extends DraggingComponent {
   }
 
   onMouseMove = (e) => {
-    if (typeof this.dragFrame === "undefined") {
-      //if (this.props.onResidueMouseEnter !== undefined ||
-          //this.props.onResidueMouseLeave !== undefined) {
-        //const eventData = this.currentPointerPosition(e);
-        //const lastValue = this.currentMouseSequencePosition;
-        //if (!isEqual(lastValue, eventData)) {
-          //if (lastValue !== undefined) {
-            //this.sendEvent('onResidueMouseLeave', lastValue);
-          //}
-          //this.currentMouseSequencePosition = eventData;
-          //this.sendEvent('onResidueMouseEnter', eventData);
-        //}
-      //}
+    if (typeof this.isInDragPhase === "undefined") {
+      if (this.props.onResidueMouseEnter !== undefined ||
+          this.props.onResidueMouseLeave !== undefined) {
+        const eventData = this.currentPointerPosition(e);
+        const lastValue = this.currentMouseSequencePosition;
+        if (!isEqual(lastValue, eventData)) {
+          if (lastValue !== undefined) {
+            this.sendEvent('onResidueMouseLeave', lastValue);
+          }
+          this.currentMouseSequencePosition = eventData;
+          this.sendEvent('onResidueMouseEnter', eventData);
+        }
+      }
     }
     super.onMouseMove(e);
   }
 
   onMouseLeave = (e) => {
-    //this.sendEvent('onResidueMouseLeave', this.currentMouseSequencePosition);
+    this.sendEvent('onResidueMouseLeave', this.currentMouseSequencePosition);
     this.currentMouseSequencePosition = undefined;
     super.onMouseLeave(e);
   }
 
   onClick = (e) => {
-    //const eventData = this.currentPointerPosition(e);
-    //this.sendEvent('onResidueClick', eventData);
+    const eventData = this.currentPointerPosition(e);
+    this.sendEvent('onResidueClick', eventData);
     super.onClick(e);
   }
 
@@ -225,7 +226,11 @@ class SequenceViewerComponent extends DraggingComponent {
   }
 }
 
-positionStoreMixin(SequenceViewerComponent, {withX: true, withY: true});
+positionStoreMixin(SequenceViewerComponent, {
+  withX: true,
+  withY: true,
+  withPosition: true,
+});
 
 SequenceViewerComponent.defaultProps = {
   showModBar: false,
