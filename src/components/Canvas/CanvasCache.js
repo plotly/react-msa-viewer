@@ -15,17 +15,15 @@ class CanvasCache {
     this.cache = {};
     this.tileHeight = 0;
     this.tileWidth = 0;
-    this.tileFont = "";
   }
 
   // creates a canvas with a single letter
   // (for the fast font cache)
-  createTile({text, tileWidth, tileHeight, tileFont, colorScheme}) {
-    if (tileWidth !== this.tileWidth || tileHeight !== this.tileFont) {
+  createTile({key, tileWidth, tileHeight, create}) {
+    if (tileWidth !== this.tileWidth || tileHeight !== this.tileHeight) {
       // check if cache needs to be regenerated
-      this.updateTileSpecs({tileWidth, tileHeight, tileFont});
+      this.updateTileSpecs({tileWidth, tileHeight});
     }
-    const key = text + "-" + colorScheme;
     if (key in this.cache) {
       return this.cache[key];
     }
@@ -34,25 +32,14 @@ class CanvasCache {
     canvas.height = tileHeight;
     this.ctx = canvas.getContext('2d');
 
-    this.ctx.font = tileFont;
-    this.ctx.globalAlpha = 0.7;
-    this.ctx.fillStyle = colorScheme;
-    this.ctx.fillRect(0, 0, tileWidth, tileHeight);
-    this.ctx.globalAlpha = 1.0;
-
-    this.ctx.fillStyle = "#000000";
-    this.ctx.font = tileFont + "px mono";
-    this.ctx.textBaseline = 'middle';
-    this.ctx.textAlign = "center";
-    this.ctx.fillText(text, tileWidth / 2, tileHeight / 2, tileWidth, tileFont);
+    create({canvas: this.ctx});
     return canvas;
   }
 
-  updateTileSpecs({tileWidth, tileHeight, tileFont}) {
+  updateTileSpecs({tileWidth, tileHeight}) {
     this.invalidate();
     this.tileWidth = tileWidth;
     this.tileHeight = tileHeight;
-    this.tileFont = tileFont;
   }
 
   invalidate() {

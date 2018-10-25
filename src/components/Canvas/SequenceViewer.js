@@ -14,48 +14,88 @@ import {
 } from 'lodash-es';
 
 import DraggingComponent from './DraggingComponent';
+import TilingGrid from './CanvasTilingGrid';
+import CanvasCache from './CanvasCache';
 
 import { updatePosition } from '../../store/positionReducers';
 import positionStoreMixin from '../../store/positionStoreMixin';
 import msaConnect from '../../store/connect'
 
 import Mouse from '../../utils/mouse';
+import { roundMod } from '../../utils/math';
 
 // TODO: maybe move into the store
 class SequenceViewerComponent extends DraggingComponent {
 
-  /**
-   * Draws the currently visible sequences.
-   * Called on every sequence movement.
-   */
+  constructor(props) {
+    super(props);
+    this.tileCache = new CanvasCache();
+    this.residueTileCache = new CanvasCache();
+    this.tilingGridManager = new TilingGrid();
+  }
+
   drawScene() {
-    const sequences = this.props.sequences.raw;
-    const tileWidth = this.props.tileWidth;
-    const tileHeight = this.props.tileHeight;
-    const xInitPos = this.position.xPosOffset;
-    let yPos = this.position.yPosOffset
-    let i = this.position.currentViewSequence;
-    for (; i < sequences.length; i++) {
-      const sequence = sequences[i].sequence;
-      let xPos = xInitPos;
-      let j = Math.min(sequence.length, this.position.currentViewSequencePosition);
-      for (; j < sequence.length; j++) {
-        const el = sequence[j];
-        this.ctx.font(this.props.tileFont);
-        this.ctx.fillStyle(this.props.colorScheme.getColor(el));
-        this.ctx.globalAlpha(0.7);
-        this.ctx.fillRect(xPos, yPos, tileWidth, tileHeight);
-        this.ctx.fillStyle("#000000");
-        this.ctx.globalAlpha(1.0);
-        // TODO: center the font tile
-        this.ctx.fillText(el, xPos, yPos, tileWidth, tileHeight);
-        xPos += tileWidth;
-        if (xPos > this.props.width)
-            break;
+    const positions = this.getTilePositions();
+    const elements = this.drawTiles(positions);
+  }
+
+  getTilePositions() {
+    const startXTile = Math.max(0, this.position.currentViewSequencePosition - this.props.cacheElements);
+    const startYTile = Math.max(0, this.position.currentViewSequence - this.props.cacheElements);
+    const endYTile = Math.min(this.props.sequences.length,
+      startYTile + this.props.nrYTiles + 2 * this.props.cacheElements,
+    );
+    const endXTile = Math.min(this.props.sequences.maxLength,
+      startXTile + this.props.nrXTiles + 2 * this.props.cacheElements,
+    );
+    return {startXTile, startYTile, endXTile, endYTile};
+  }
+
+  renderTile = ({row, column}) => {
+    const key = row + "-" + column;
+    return this.tileCache.createTile({
+      key: key,
+      tileWidth: this.props.tileWidth * this.props.xGridSize,
+      tileHeight: this.props.tileHeight * this.props.yGridSize,
+      create: ({canvas}) => {
+        this.tilingGridManager.draw({
+          ctx: canvas,
+          sequences:this.props.sequences,
+          colorScheme:this.props.colorScheme,
+          tileFont:this.props.tileFont,
+          tileHeight:this.props.tileHeight,
+          tileWidth:this.props.tileWidth,
+          startYTile:row,
+          startXTile:column,
+          residueTileCache:this.residueTileCache,
+          endYTile:row + this.props.yGridSize,
+          endXTile:column + this.props.xGridSize,
+        });
+      },
+    });
+  }
+
+
+  drawTiles({startXTile, startYTile, endXTile, endYTile}) {
+    const elements = [];
+    const xGridSize = this.props.xGridSize;
+    const yGridSize = this.props.yGridSize;
+    startYTile = roundMod(startYTile, yGridSize);
+    startXTile = roundMod(startXTile, xGridSize);
+
+    const yOffset = (this.position.currentViewSequence - startYTile) * this.props.tileHeight - this.position.yPosOffset
+    const xOffset = (this.position.currentViewSequencePosition - startXTile) * this.props.tileWidth - this.position.xPosOffset;
+
+    // TODO: cut-off end tiles
+    for (let i = startYTile; i < endYTile; i = i + yGridSize) {
+      for (let j = startXTile; j < endXTile; j = j + xGridSize) {
+        const canvas = this.renderTile({row: i, column: j, canvas: this.ctx});
+        const width = xGridSize * this.props.tileWidth;
+        const height = yGridSize * this.props.tileHeight;
+        const yPos = i * this.props.tileHeight - yOffset;
+        const xPos = j * this.props.tileWidth - xOffset;
+        this.ctx.ctx.drawImage(canvas, xPos, yPos, width, height);
       }
-      yPos += tileHeight;
-      if (yPos > this.props.height)
-          break;
     }
   }
 
@@ -162,6 +202,9 @@ positionStoreMixin(SequenceViewerComponent, {withX: true, withY: true});
 
 SequenceViewerComponent.defaultProps = {
   showModBar: false,
+  xGridSize: 10,
+  yGridSize: 10,
+  cacheElements: 10,
 };
 
 SequenceViewerComponent.propTypes = {
@@ -189,6 +232,9 @@ SequenceViewerComponent.propTypes = {
    * Callback fired when the mouse pointer clicked a residue.
    */
   onResidueDoubleClick: PropTypes.func,
+
+  xGridSize: PropTypes.number.isRequired,
+  yGridSize: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -211,6 +257,8 @@ const mapStateToProps = state => {
     msecsPerFps: state.props.msecsPerFps,
     colorScheme: state.props.colorScheme,
     engine: state.props.engine,
+    nrXTiles: state.sequenceStats.nrXTiles,
+    nrYTiles: state.sequenceStats.nrYTiles,
   }
 }
 
