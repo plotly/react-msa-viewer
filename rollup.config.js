@@ -5,6 +5,7 @@ import replace from 'rollup-plugin-replace';
 import visualizer from 'rollup-plugin-visualizer';
 import { terser } from "rollup-plugin-terser";
 import { version } from "./package.json";
+import strip from 'rollup-plugin-strip';
 
 export default {
   input: 'src/lib.js',
@@ -40,6 +41,11 @@ export default {
         "lodash",
       ],
       //externalHelpers: false,
+    }),
+    strip({
+      debugger: true,
+      // defaults to `[ 'console.*', 'assert.*' ]`
+      functions: [ 'console.log', 'assert.*', 'debug', 'alert' ],
     }),
     resolve({
       browser: true,
