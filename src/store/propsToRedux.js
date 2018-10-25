@@ -62,7 +62,7 @@ export const propsToRedux = (WrappedComponent) => {
           if (prop in reduxActions) {
             let action;
             switch(reduxActions[prop]){
-              case 'updateProps':
+              case 'updateProp':
                 action = actions[reduxActions[prop]](prop, newProps[prop]);
                 break;
               default:

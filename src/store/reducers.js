@@ -46,11 +46,22 @@ function checkColorScheme(state) {
 const props = (state = {}, {type, payload}) => {
   switch(type){
     case actions.updateProps.key:
+      state = {
+        ...state,
+        ...payload,
+      };
+      // has the colorScheme been updated?
+      if ("colorScheme" in payload) {
+        checkColorScheme(state);
+      }
+      return state;
+    case actions.updateProp.key:
       const {key, value} = payload;
       state = {
         ...state,
         [key]: value
       };
+      // has the colorScheme been updated?
       if (key === "colorScheme") {
         checkColorScheme(state);
       }

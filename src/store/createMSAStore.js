@@ -40,9 +40,7 @@ export const createMSAStore = (props) => {
     // https://github.com/zalmoxisus/redux-devtools-extension
     debug && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
-  each(otherProps, (v, k) => {
-    store.dispatch(updateProps(k, v));
-  });
+  store.dispatch(updateProps(otherProps));
   store.dispatch(updatePosition(position));
   store.dispatch(updateSequences(sequences));
   return store;
