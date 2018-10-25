@@ -9,7 +9,7 @@
 import Labels from './yBars/Labels';
 import PositionBar from './xBars/PositionBar';
 import OverviewBar from './xBars/OverviewBar';
-import SequenceViewer from './SequenceViewer/SequenceViewer';
+import SequenceViewer from './Canvas/SequenceViewer';
 import SequenceOverview from './Canvas/SequenceOverview';
 export {
   Labels,
