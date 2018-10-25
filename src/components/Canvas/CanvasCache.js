@@ -30,9 +30,9 @@ class CanvasCache {
     const canvas = this.cache[key] = document.createElement("canvas");
     canvas.width = tileWidth;
     canvas.height = tileHeight;
-    this.ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
 
-    create({canvas: this.ctx});
+    create({canvas: ctx});
     return canvas;
   }
 

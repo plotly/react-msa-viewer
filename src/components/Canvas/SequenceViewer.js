@@ -203,6 +203,7 @@ class SequenceViewerComponent extends DraggingComponent {
   //}
 
   // to make react-docgen happy
+  counter = 0;
   render() {
     return super.render();
   }
@@ -214,7 +215,7 @@ SequenceViewerComponent.defaultProps = {
   showModBar: false,
   xGridSize: 10,
   yGridSize: 10,
-  cacheElements: 10,
+  cacheElements: 20,
 };
 
 SequenceViewerComponent.propTypes = {

@@ -109,7 +109,6 @@ class DraggingComponent extends Component {
   ];
     // init
     this.swapContexts();
-    this.swapContexts();
     this.draw();
     this.container.current.addEventListener('mouseenter', this.onMouseEnter);
     this.container.current.addEventListener('mouseleave', this.onMouseLeave);

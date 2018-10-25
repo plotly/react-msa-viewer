@@ -64,11 +64,6 @@ class CanvasTilingGridComponent extends CanvasComponent {
 
   draw(props) {
     this.props = props;
-    //props.ctx.fillStyle = "#0000" + (props.startXTile / 10) % 10 + "" + (props.startYTile /10) % 10;
-    //console.log(props.ctx.fillStyle);
-    //const width = props.tileWidth * (props.endXTile - props.startXTile);
-    //const height = width;
-    //props.ctx.fillRect(0, 0, width, height);
     for (let i = this.props.startYTile; i < this.props.endYTile; i++) {
       for (let j = this.props.startXTile; j < this.props.endXTile; j++) {
         this.drawTile({row:i, column:j});
