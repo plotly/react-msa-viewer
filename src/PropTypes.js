@@ -154,7 +154,7 @@ export const msaDefaultProps = {
   height: 100,
   tileWidth: 20,
   tileHeight: 20,
-  tileFont: "20px Arial",
+  tileFont: "18px Arial",
   position: {
     xPos: 0,
     yPos: 0,
