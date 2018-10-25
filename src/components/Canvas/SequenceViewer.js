@@ -244,6 +244,7 @@ SequenceViewerComponent.defaultProps = {
   cacheElements: 20,
   textColor: "black",
   textFont: "18px Arial",
+  overflow: "hidden",
 };
 
 SequenceViewerComponent.propTypes = {
@@ -311,6 +312,11 @@ SequenceViewerComponent.propTypes = {
    * Font to use when drawing the individual residues.
    */
   textFont: PropTypes.string,
+
+  /**
+   * What should happen if content overflows.
+   */
+  overflow: PropTypes.oneOf(["hidden", "auto", "visible", "scroll", "initial", "inherit"]),
 };
 
 const mapStateToProps = state => {
@@ -332,6 +338,8 @@ const mapStateToProps = state => {
     colorScheme: state.props.colorScheme,
     nrXTiles: state.sequenceStats.nrXTiles,
     nrYTiles: state.sequenceStats.nrYTiles,
+    fullWidth: state.sequenceStats.fullWidth,
+    fullHeight: state.sequenceStats.fullHeight,
   }
 }
 

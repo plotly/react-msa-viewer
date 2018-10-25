@@ -16,6 +16,7 @@ import {
 import Mouse from '../../utils/mouse';
 
 import ModBar from '../ModBar';
+import FakeScroll from './FakeScroll';
 
 /**
 Provides dragging support in a canvas for sub-classes.
@@ -347,7 +348,9 @@ class DraggingComponent extends Component {
       "tileWidth", "tileHeight", "colorScheme",
       "nrXTiles", "nrYTiles",
       "dispatch", "sequences",
+      "fullWidth", "fullHeight",
     ]);
+    const showScrollBar = true;
     return (
       <div
           style={style}
@@ -373,6 +376,12 @@ class DraggingComponent extends Component {
         >
         Your browser does not seem to support HTML5 canvas.
         </canvas>
+        { showScrollBar &&
+          <FakeScroll
+            width={this.props.width} height={this.props.height}
+            fullWidth={this.props.fullWidth} fullHeight={this.props.fullHeight}
+          />
+        }
       </div>
     );
   }
