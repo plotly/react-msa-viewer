@@ -6,11 +6,7 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import msaConnect from '../store/connect'
 import PropTypes from 'prop-types';
-
-import { updatePosition } from '../store/positionReducers';
-import positionStoreMixin from '../store/positionStoreMixin';
 
 import {
   floor,
@@ -19,7 +15,11 @@ import {
 
 import DraggingComponent from './DraggingComponent';
 
-import Mouse from '../utils/mouse';
+import { updatePosition } from '../../store/positionReducers';
+import positionStoreMixin from '../../store/positionStoreMixin';
+import msaConnect from '../../store/connect'
+
+import Mouse from '../../utils/mouse';
 
 // TODO: maybe move into the store
 class SequenceViewerComponent extends DraggingComponent {
@@ -32,13 +32,13 @@ class SequenceViewerComponent extends DraggingComponent {
     const sequences = this.props.sequences.raw;
     const tileWidth = this.props.tileWidth;
     const tileHeight = this.props.tileHeight;
-    const xInitPos = this.xPosOffset;
-    let yPos = this.yPosOffset
-    let i = this.currentViewSequence;
+    const xInitPos = this.position.xPosOffset;
+    let yPos = this.position.yPosOffset
+    let i = this.position.currentViewSequence;
     for (; i < sequences.length; i++) {
       const sequence = sequences[i].sequence;
       let xPos = xInitPos;
-      let j = Math.min(sequence.length, this.currentViewSequencePosition);
+      let j = Math.min(sequence.length, this.position.currentViewSequencePosition);
       for (; j < sequence.length; j++) {
         const el = sequence[j];
         this.ctx.font(this.props.tileFont);
@@ -69,10 +69,10 @@ class SequenceViewerComponent extends DraggingComponent {
 
   positionToSequence(pos) {
     const sequences = this.props.sequences.raw;
-    const seqNr = clamp(floor((this.props.position.yPos + pos.yPos) / this.props.tileHeight), 0, sequences.length - 1);
+    const seqNr = clamp(floor((this.position.yPos + pos.yPos) / this.props.tileHeight), 0, sequences.length - 1);
     const sequence = sequences[seqNr];
 
-    const position = clamp(floor((this.props.position.xPos + pos.xPos) / this.props.tileWidth), 0, sequence.sequence.length - 1);
+    const position = clamp(floor((this.position.xPos + pos.xPos) / this.props.tileWidth), 0, sequence.sequence.length - 1);
     return {
       i: seqNr,
       sequence,
@@ -160,9 +160,8 @@ class SequenceViewerComponent extends DraggingComponent {
 
 positionStoreMixin(SequenceViewerComponent, {withX: true, withY: true});
 
-
 SequenceViewerComponent.defaultProps = {
-  showModBar: true,
+  showModBar: false,
 };
 
 SequenceViewerComponent.propTypes = {
@@ -203,7 +202,6 @@ const mapStateToProps = state => {
     state.sequences.length * state.props.tileHeight
   );
   return {
-    //position: state.position,
     sequences: state.sequences,
     width,
     height,
@@ -213,7 +211,6 @@ const mapStateToProps = state => {
     msecsPerFps: state.props.msecsPerFps,
     colorScheme: state.props.colorScheme,
     engine: state.props.engine,
-    //stats: state.sequenceStats,
   }
 }
 
