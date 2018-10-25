@@ -6,7 +6,7 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import { throttle } from 'lodash-es';
@@ -22,7 +22,7 @@ import createRef from 'create-react-ref/lib/createRef';
  *
  * On every redraw, this.draw() gets called.
  */
-class CanvasComponent extends Component {
+class CanvasComponent extends PureComponent {
 
   static defaultProps = {
     width: 100,

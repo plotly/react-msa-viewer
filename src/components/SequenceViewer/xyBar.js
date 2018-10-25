@@ -17,6 +17,8 @@ import NodeCache from './NodeCache'
 
 import { roundMod } from '../../utils/math';
 
+import CanvasCache from '../CanvasCache';
+
 /**
 * Displays the sequence names with an arbitrary Marker component
 */
@@ -26,6 +28,7 @@ class XYBarComponent extends Component {
     super(props);
     this.el = createRef();
     this.cache = new NodeCache();
+    this.residueTileCache = new CanvasCache();
   }
 
   renderTile = ({row, column}) => {
@@ -42,6 +45,7 @@ class XYBarComponent extends Component {
           startYTile={row}
           startXTile={column}
           key={key}
+          residueTileCache={this.residueTileCache}
           endYTile={row + this.props.yGridSize}
           endXTile={column + this.props.xGridSize}
       />;

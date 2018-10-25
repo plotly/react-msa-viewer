@@ -11,68 +11,6 @@ import PropTypes from 'prop-types';
 
 import CanvasComponent from '../Canvas/CanvasComponent';
 
-class CanvasCache {
-  constructor(g) {
-    this.cache = {};
-    this.cacheHeight = 0;
-    this.cacheWidth = 0;
-  }
-
-  // returns a cached canvas
-  getFontTile(letter, width, height, font) {
-    // validate cache
-    if (width !== this.cacheWidth || height !== this.cacheHeight || font !== this.font) {
-      this.updateDimensions(width, height);
-      this.font = font;
-    }
-
-    if (this.cache[letter] === undefined) {
-      this.createTile(letter, width, height);
-    }
-
-    return this.cache[letter];
-  }
-
-  // creates a canvas with a single letter
-  // (for the fast font cache)
-  createTile({text, tileWidth, tileHeight, tileFont, colorScheme}) {
-    const key = text + "-" + colorScheme;
-    if (key in this.cache) {
-      return this.cache[key];
-    }
-    const canvas = this.cache[key] = document.createElement("canvas");
-    canvas.width = tileWidth;
-    canvas.height = tileHeight;
-    this.ctx = canvas.getContext('2d');
-
-    this.ctx.font = tileFont;
-    this.ctx.globalAlpha = 0.7;
-    this.ctx.fillStyle = colorScheme;
-    this.ctx.fillRect(0, 0, tileWidth, tileHeight);
-    this.ctx.globalAlpha = 1.0;
-
-    this.ctx.fillStyle = "#000000";
-    this.ctx.font = tileFont + "px mono";
-    this.ctx.textBaseline = 'middle';
-    this.ctx.textAlign = "center";
-    this.ctx.fillText(text, tileWidth / 2, tileHeight / 2, tileWidth, tileFont);
-    return canvas;
-  }
-
-  updateDimensions(width, height) {
-    this.invalidate();
-    this.cacheWidth = width;
-    this.cacheHeight = height;
-  }
-
-  invalidate() {
-    // TODO: destroy the old canvas elements
-    this.cache = {};
-  }
-}
-
-const cache = new CanvasCache();
-
 /**
  * Allows rendering in tiles of grids.
  *
@@ -99,7 +37,7 @@ class CanvasTilingGridComponent extends CanvasComponent {
     const el = this.props.sequences.raw[row].sequence[column];
     if (el !== undefined) {
       const colorScheme = this.props.colorScheme.getColor(el)
-      const canvasTile = cache.createTile({
+      const canvasTile = this.props.residueTileCache.createTile({
         colorScheme,
         text: el,
         tileWidth, tileHeight,
@@ -112,6 +50,8 @@ class CanvasTilingGridComponent extends CanvasComponent {
   }
 
   draw() {
+    this.drawCounter = 0;
+    console.log(this.drawCounter);
     const residues = [];
     for (let i = this.props.startYTile; i < this.props.endYTile; i++) {
       for (let j = this.props.startXTile; j < this.props.endXTile; j++) {
@@ -126,12 +66,14 @@ class CanvasTilingGridComponent extends CanvasComponent {
       top: 20 * this.props.startYTile,
       left: 20 * this.props.startXTile,
     }
+    const width = this.props.tileWidth * (this.props.endXTile - this.props.startXTile);
+    const height = this.props.tileHeight * (this.props.endYTile - this.props.startYTile);
     return (
       <div style={style}>
         <canvas
           ref={this.canvas}
-          width={this.props.width}
-          height={this.props.height}
+          width={width}
+          height={height}
         >
         </canvas>
       </div>
@@ -151,6 +93,7 @@ CanvasTilingGridComponent.propTypes = {
   startYTile: PropTypes.number.isRequired,
   endXTile: PropTypes.number.isRequired,
   endYTile: PropTypes.number.isRequired,
+  residueTileCache: PropTypes.object.isRequired,
 };
 
 export default CanvasTilingGridComponent;
