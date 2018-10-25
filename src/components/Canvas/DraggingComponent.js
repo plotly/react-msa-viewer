@@ -7,6 +7,7 @@
 */
 
 import React, { Component } from 'react';
+import createRef from 'create-react-ref/lib/createRef';
 
 //import {
   //throttle,
@@ -15,9 +16,7 @@ import Mouse from '../../utils/mouse';
 import Canvas from '../../drawing/canvas';
 import WebGL from '../../drawing/webgl';
 
-import ModBar from './ModBar';
-
-import createRef from 'create-react-ref/lib/createRef';
+import ModBar from '../ModBar';
 
 /**
 Provides dragging support in a canvas for sub-classes.
@@ -139,11 +138,6 @@ class DraggingComponent extends Component {
     this.ctx.endDrawingFrame();
   }
 
-  dragLoop = () => {
-    this.draw();
-    //this.dragFrame = window.requestAnimationFrame(this.dragLoop)
-  }
-
   /**
   // TODO: should we react do window resizes dynamically?
   onResize = (e) => {
@@ -238,9 +232,6 @@ class DraggingComponent extends Component {
    */
   startDragPhase(e) {
     this.mouseMovePosition = Mouse.abs(e);
-    //if(!this.dragFrame) {
-      //this.dragFrame = window.requestAnimationFrame(this.dragLoop);
-    //}
     this.isInDragPhase = true;
     this.setState(prevState => ({
       mouse: {
