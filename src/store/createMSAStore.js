@@ -24,6 +24,8 @@ import {
   updateSequences,
 } from '../store/actions';
 
+import debug from '../debug';
+
 /**
 Initializes a new MSAViewer store-like structure.
 For performance reasons, the frequently changing position information
@@ -36,7 +38,7 @@ export const createMSAStore = (props) => {
   const {sequences, position, ...otherProps} = propsWithDefaultValues;
   const store = createStore(positionReducers,
     // https://github.com/zalmoxisus/redux-devtools-extension
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    debug && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
   each(otherProps, (v, k) => {
     store.dispatch(updateProps(k, v));
