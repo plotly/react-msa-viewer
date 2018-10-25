@@ -15,7 +15,8 @@ import msaConnect from '../../store/connect'
 
 import XBar from './xBar';
 
-function createMarker({markerSteps, startIndex, tileWidth, font, markerComponent}) {
+function createMarker({markerSteps, startIndex, tileWidth,
+  font, markerComponent, markerStyle, markerAttributes}) {
   /**
    * Displays an individual sequence name.
    */
@@ -30,6 +31,7 @@ function createMarker({markerSteps, startIndex, tileWidth, font, markerComponent
           width: tileWidth,
           display: "inline-block",
           textAlign: "center",
+          ...markerStyle
         }
         let name;
         if (index % markerSteps === 0) {
@@ -37,8 +39,9 @@ function createMarker({markerSteps, startIndex, tileWidth, font, markerComponent
         } else {
           name = '.';
         }
+        const attributes = {...otherProps, ...markerAttributes};
         return (
-          <div {...otherProps}>
+          <div {...attributes} >
             {name}
           </div>
         );
@@ -63,7 +66,8 @@ class HTMLPositionBarComponent extends PureComponent {
 
   updateMarker() {
     this.marker = createMarker(pick(this.props, [
-      "markerSteps", "startIndex", "tileWidth", "markerComponent"
+      "markerSteps", "startIndex", "tileWidth",
+      "markerComponent", "markerStyle", "markerAttributes",
     ]));
   }
 
@@ -73,6 +77,7 @@ class HTMLPositionBarComponent extends PureComponent {
       startIndex,
       dispatch,
       markerComponent,
+      markerStyle,
       ...otherProps} = this.props;
     return (
       <XBar
@@ -92,6 +97,7 @@ HTMLPositionBarComponent.defaultProps = {
   markerSteps: 2,
   startIndex: 1,
   cacheElements: 10,
+  markerStyle: {},
 };
 
 HTMLPositionBarComponent.propTypes = {
@@ -120,6 +126,21 @@ HTMLPositionBarComponent.propTypes = {
    * Component to create markers from.
    */
   markerComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+
+  /**
+   * Inline styles to apply to the PositionBar component
+   */
+  style: PropTypes.object,
+
+  /**
+   * Inline styles to apply to each marker.
+   */
+  markerStyle: PropTypes.object,
+
+  /**
+   * Attributes to apply to each marker.
+   */
+  markerAttributes: PropTypes.object,
 }
 
 const mapStateToProps = state => {
