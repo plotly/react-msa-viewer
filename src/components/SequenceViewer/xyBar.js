@@ -17,7 +17,7 @@ import NodeCache from './NodeCache'
 
 import { roundMod } from '../../utils/math';
 
-import CanvasCache from '../CanvasCache';
+import CanvasCache from './CanvasCache';
 
 /**
 * Displays the sequence names with an arbitrary Marker component
@@ -103,6 +103,11 @@ class XYBarComponent extends Component {
       this.el.current.scrollTop = scrollTop;
       const scrollLeft = this.position.currentViewSequencePosition * this.props.tileWidth - this.position.xPosOffset;
       this.el.current.scrollLeft = scrollLeft;
+      // Ideas: use CSS transfrom for hardware accelerated scrolling
+      //for (let i = 0; i < this.el.current.children.length; i++) {
+        //const el = this.el.current.children[i];
+        //el.style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
+      //}
 
       // recompute our component cache every now and then for faster React updates
       //if (this.scrollCounter % 3) {

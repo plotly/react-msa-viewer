@@ -172,6 +172,18 @@ class HTMLSequenceViewerComponent extends Component {
       //tileFont,
       ...otherProps
     } = this.props;
+    //this.counter = 0;
+    //this.loop = () => {
+      //const xMov = this.counter % 40 < 20 ? 5 : -5;
+      //const mov = {
+        //xMovement: xMov,
+        //yMovement: xMov,
+      //}
+      //this.counter++;
+      //this.context.positionMSAStore.dispatch(updatePosition(mov));
+      //requestAnimationFrame(this.loop);
+    //};
+    //requestAnimationFrame(this.loop);
     return (
       <DraggingComponent
         ref={this.el}

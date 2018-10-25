@@ -34,14 +34,16 @@ class CanvasTilingGridComponent extends CanvasComponent {
     const tileHeight = this.props.tileHeight;
     const yPos = tileHeight * (row - this.props.startYTile);
     const xPos = tileWidth * (column - this.props.startXTile);
-    const el = this.props.sequences.raw[row].sequence[column];
-    if (el !== undefined) {
-      const colorScheme = this.props.colorScheme.getColor(el)
+    const text = this.props.sequences.raw[row].sequence[column];
+    if (text !== undefined) {
+      const colorScheme = this.props.colorScheme.getColor(text);
+      const key = `${text}-${colorScheme}`;
       const canvasTile = this.props.residueTileCache.createTile({
-        colorScheme,
-        text: el,
+        key,
         tileWidth, tileHeight,
-        tileFont: this.props.tileFont,
+        create: ({canvas}) => {
+          return this.drawResidue({text, canvas, row, column, colorScheme});
+        }
       });
       this.ctx.ctx.drawImage(
         canvasTile, xPos, yPos, tileWidth, tileHeight
@@ -58,6 +60,20 @@ class CanvasTilingGridComponent extends CanvasComponent {
         this.drawTile({row:i, column:j});
       }
     }
+  }
+
+  drawResidue({row, column, canvas, colorScheme, text}) {
+    canvas.font = this.props.tileFont;
+    canvas.globalAlpha = 0.7;
+    canvas.fillStyle = colorScheme;
+    canvas.fillRect(0, 0, this.props.tileWidth, this.props.tileHeight);
+    canvas.globalAlpha = 1.0;
+
+    canvas.fillStyle = "#000000";
+    canvas.font = this.props.tileFont + "px mono";
+    canvas.textBaseline = 'middle';
+    canvas.textAlign = "center";
+    canvas.fillText(text, this.props.tileWidth / 2, this.props.tileHeight / 2, this.props.tileWidth, this.props.tileFont);
   }
 
   render() {

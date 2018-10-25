@@ -19,7 +19,7 @@ class CanvasCache {
 
   // creates a canvas with a single letter
   // (for the fast font cache)
-  createTile({key, tileWidth, tileHeight, createCanvas}) {
+  createTile({key, tileWidth, tileHeight, create}) {
     if (tileWidth !== this.tileWidth || tileHeight !== this.tileHeight) {
       // check if cache needs to be regenerated
       this.updateTileSpecs({tileWidth, tileHeight});
@@ -32,7 +32,7 @@ class CanvasCache {
     canvas.height = tileHeight;
     this.ctx = canvas.getContext('2d');
 
-    createCanvas({canvas: this.ctx});
+    create({canvas: this.ctx});
     return canvas;
   }
 

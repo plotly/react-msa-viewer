@@ -93,12 +93,14 @@ class HTMLDraggingComponent extends Component {
     //}
     const oldPos = this.mouseMovePosition
     if (this.nextFrame === undefined) {
+      this.mouseMovePosition = pos;
       this.nextFrame = window.requestAnimationFrame(() => {
-        this.mouseMovePosition = pos;
         // already use the potentially updated mouse move position here
         this.props.onPositionUpdate(oldPos, this.mouseMovePosition);
         this.nextFrame = undefined;
       });
+    } else {
+      console.log("skipped frame.");
     }
   }
 
@@ -219,6 +221,7 @@ class HTMLDraggingComponent extends Component {
       userSelect: "none",
       MozUserSelect: "none",
       msUserSelect: "none",
+      touchAction: "none",
     };
     return (
       <div
