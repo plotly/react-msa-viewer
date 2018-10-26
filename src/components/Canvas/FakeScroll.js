@@ -76,20 +76,30 @@ class FakeScroll extends PureComponent {
     } = this.props;
     const style = {
       position: "absolute",
-      overflow: "scroll",
+      overflow: this.props.overflow,
+      overflowX: this.props.overflowX,
+      overflowY: this.props.overflowY,
+      width, height,
     };
     const {showX, showY} = this.shouldShow();
-    const childStyle = {};
+    const childStyle = {
+      height: 1,
+      width: 1,
+    };
     if (!showY && !showX) {
       return <div />;
     }
     if (showX) {
-      style.width = width;
       childStyle.width = fullWidth;
+      if (this.props.positionX === "top") {
+        style.transform = "rotateX(180deg)";
+      }
     }
     if (showY) {
-      style.height = height;
       childStyle.height = fullHeight;
+      if (this.props.positionY === "left") {
+        style.transform = "rotateY(180deg)";
+      }
     }
     return <div style={style} onScroll={this.onScroll} ref={this.el}>
       <div style={childStyle} />
@@ -101,6 +111,9 @@ FakeScroll.defaultProps = {
   overflow: "auto",
   overflowX: "auto",
   overflowY: "auto",
+  positionX: "bottom",
+  positionY: "right",
+  scrollBarWidth: 5,
 }
 
 FakeScroll.propTypes = {
@@ -111,6 +124,8 @@ FakeScroll.propTypes = {
   height: PropTypes.number.isRequired,
   fullHeight: PropTypes.number.isRequired,
   fullWidth: PropTypes.number.isRequired,
+  positionX: PropTypes.oneOf(["top", "bottom"]),
+  positionY: PropTypes.oneOf(["left", "right"]),
 }
 
 positionStoreMixin(FakeScroll, {
