@@ -1,15 +1,12 @@
 # `PositionBar` (component)
 
-Creates a PositionBar of markers for every n-th sequence column.
+Displays the sequence names with an arbitrary Marker component
 
 ## Props
 
-### `engine`
+### `cacheElements`
 
-Rendering engine: `canvas` or `webgl` (experimental).
-
-type: `enum('canvas'|'webgl')`
-defaultValue: `"canvas"`
+defaultValue: `10`
 
 
 ### `font`
@@ -17,15 +14,28 @@ defaultValue: `"canvas"`
 Font of the sequence labels, e.g. `20px Arial`
 
 type: `string`
-defaultValue: `"12px Arial"`
 
 
 ### `height`
 
-Width of the component (in pixels), e.g. `100`
+Height of the PositionBar (in pixels), e.g. `100`
 
 type: `number`
-defaultValue: `100`
+defaultValue: `15`
+
+
+### `markerAttributes`
+
+Attributes to apply to each marker.
+
+type: `object`
+
+
+### `markerComponent`
+
+Component to create markers from.
+
+type: `union(object|func)`
 
 
 ### `markerSteps`
@@ -36,16 +46,12 @@ type: `number`
 defaultValue: `2`
 
 
-### `msecsPerFps`
+### `markerStyle`
 
-defaultValue: `60`
+Inline styles to apply to each marker.
 
-
-### `msecsPerSecs`
-
-Maximum number of frames per second, e.g. `1000 / 60`
-
-type: `number`
+type: `object`
+defaultValue: `{}`
 
 
 ### `startIndex`
@@ -59,15 +65,10 @@ defaultValue: `1`
 
 ### `style`
 
-Custom style configuration.
+Inline styles to apply to the PositionBar component
 
 type: `object`
-
-
-### `width`
-
-Width of the component (in pixels), e.g. `100`
-
-type: `number`
-defaultValue: `100`
+defaultValue: `{
+  font: "12px Arial",
+}`
 

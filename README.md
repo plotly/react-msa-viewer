@@ -166,13 +166,67 @@ Props
 
 __Warning__: these properties are still susceptible to a _change at any moment_.
 
+<!-- run `npm run docs` to regenerate this -->
+
 ### `MSAViewer` (component)
 
-TBD.
+A general-purpose layout for the MSA components
 
+When children are passed it acts as a Context Provider for the msaStore,
+otherwise it provides a default layout and forwards it props the respective
+components.
+
+TBD
 ### `Labels` (component)
 
 Displays the sequence names.
+
+#### Props
+
+##### `cacheElements`
+
+defaultValue: `10`
+
+
+##### `font`
+
+Font of the sequence labels, e.g. `20px Arial`
+
+type: `string`
+
+
+##### `labelAttributes`
+
+Attributes to apply to each label.
+
+type: `object`
+
+
+##### `labelComponent`
+
+Component to create labels from.
+
+type: `union(object|func)`
+
+
+##### `labelStyle`
+
+Inline styles to apply to each label.
+
+type: `object`
+defaultValue: `{}`
+
+
+##### `style`
+
+Inline styles to apply to the Label component
+
+type: `object`
+
+
+### `OverviewBar` (component)
+
+Creates a small overview box of the sequences for a general overview.
 
 #### Props
 
@@ -184,31 +238,30 @@ type: `enum('canvas'|'webgl')`
 defaultValue: `"canvas"`
 
 
-##### `font`
+##### `fillColor`
 
-Font of the sequence labels, e.g. `20px Arial`
+Fill color of the OverviewBar, e.g. `#999999`
 
 type: `string`
+defaultValue: `"#999999"`
 
 
-##### `height`
+##### `height` (required)
 
 Width of the component (in pixels), e.g. `100`
 
 type: `number`
-defaultValue: `100`
+defaultValue: `50`
 
 
-##### `msecsPerFps`
+##### `method`
 
-defaultValue: `60`
+Method to use for the OverviewBar:
+ - `information-content`: Information entropy after Shannon of a column (scaled)
+ - `conservation`: Conservation of a column (scaled)
 
-
-##### `msecsPerSecs`
-
-Maximum number of frames per second, e.g. `1000 / 60`
-
-type: `number`
+type: `enum('information-content'|'conservation')`
+defaultValue: `"conservation"`
 
 
 ##### `style`
@@ -218,47 +271,22 @@ Custom style configuration.
 type: `object`
 
 
-##### `width`
+##### `width` (required)
 
 Width of the component (in pixels), e.g. `100`
 
 type: `number`
-defaultValue: `100`
-
-
-### `OverviewBar` (component)
-
-Creates a small overview box of the sequences for a general overview.
-
-#### Props
-
-##### `fillColor`
-
-defaultValue: `"#999999"`
-
-
-##### `height`
-
-defaultValue: `50`
-
-
-##### `method`
-
-defaultValue: `"conservation"`
 
 
 ### `PositionBar` (component)
 
-Creates a PositionBar of markers for every n-th sequence column.
+Displays the sequence names with an arbitrary Marker component
 
 #### Props
 
-##### `engine`
+##### `cacheElements`
 
-Rendering engine: `canvas` or `webgl` (experimental).
-
-type: `enum('canvas'|'webgl')`
-defaultValue: `"canvas"`
+defaultValue: `10`
 
 
 ##### `font`
@@ -266,15 +294,28 @@ defaultValue: `"canvas"`
 Font of the sequence labels, e.g. `20px Arial`
 
 type: `string`
-defaultValue: `"12px Arial"`
 
 
 ##### `height`
 
-Width of the component (in pixels), e.g. `100`
+Height of the PositionBar (in pixels), e.g. `100`
 
 type: `number`
-defaultValue: `100`
+defaultValue: `15`
+
+
+##### `markerAttributes`
+
+Attributes to apply to each marker.
+
+type: `object`
+
+
+##### `markerComponent`
+
+Component to create markers from.
+
+type: `union(object|func)`
 
 
 ##### `markerSteps`
@@ -285,16 +326,12 @@ type: `number`
 defaultValue: `2`
 
 
-##### `msecsPerFps`
+##### `markerStyle`
 
-defaultValue: `60`
+Inline styles to apply to each marker.
 
-
-##### `msecsPerSecs`
-
-Maximum number of frames per second, e.g. `1000 / 60`
-
-type: `number`
+type: `object`
+defaultValue: `{}`
 
 
 ##### `startIndex`
@@ -308,17 +345,12 @@ defaultValue: `1`
 
 ##### `style`
 
-Custom style configuration.
+Inline styles to apply to the PositionBar component
 
 type: `object`
-
-
-##### `width`
-
-Width of the component (in pixels), e.g. `100`
-
-type: `number`
-defaultValue: `100`
+defaultValue: `{
+  font: "12px Arial",
+}`
 
 
 ### `SequenceOverview` (component)
@@ -327,12 +359,27 @@ defaultValue: `100`
 
 #### Props
 
-##### `height`
+##### `engine`
 
-Height of the SequenceOverview (in pixels), e.g. `50`
+Rendering engine: `canvas` or `webgl` (experimental).
+
+type: `enum('canvas'|'webgl')`
+defaultValue: `"canvas"`
+
+
+##### `height` (required)
+
+Width of the component (in pixels), e.g. `100`
 
 type: `number`
 defaultValue: `50`
+
+
+##### `style`
+
+Custom style configuration.
+
+type: `object`
 
 
 ##### `tileHeight`
@@ -351,14 +398,160 @@ type: `number`
 defaultValue: `5`
 
 
+##### `width` (required)
+
+Width of the component (in pixels), e.g. `100`
+
+type: `number`
+
+
 ### `SequenceViewer` (component)
 
+Component to draw the main sequence alignment.
 
 #### Props
 
+##### `border`
+
+Whether to draw a border.
+
+type: `bool`
+defaultValue: `false`
+
+
+##### `borderColor`
+
+Color of the border. Name, hex or RGB value.
+
+type: `string`
+defaultValue: `"black"`
+
+
+##### `borderWidth`
+
+Width of the border.
+
+type: `number`
+defaultValue: `1`
+
+
+##### `cacheElements`
+
+Number of residues to prerender outside of the visible viewbox.
+
+type: `number`
+defaultValue: `20`
+
+
+##### `onResidueClick`
+
+Callback fired when the mouse pointer clicked a residue.
+
+type: `func`
+
+
+##### `onResidueDoubleClick`
+
+Callback fired when the mouse pointer clicked a residue.
+
+type: `func`
+
+
+##### `onResidueMouseEnter`
+
+Callback fired when the mouse pointer is entering a residue.
+
+type: `func`
+
+
+##### `onResidueMouseLeave`
+
+Callback fired when the mouse pointer is leaving a residue.
+
+type: `func`
+
+
+##### `overflow`
+
+What should happen if content overflows.
+
+type: `enum("hidden"|"auto"|"scroll")`
+defaultValue: `"hidden"`
+
+
+##### `overflowX`
+
+What should happen if x-axis content overflows (overwrites "overflow")
+
+type: `enum("hidden"|"auto"|"scroll"|"initial")`
+defaultValue: `"auto"`
+
+
+##### `overflowY`
+
+What should happen if y-axis content overflows (overwrites "overflow")
+
+type: `enum("hidden"|"auto"|"scroll"|"initial")`
+defaultValue: `"auto"`
+
+
+##### `scrollBarPositionX`
+
+X Position of the scroll bar ("top or "bottom")
+
+type: `enum("top"|"bottom")`
+defaultValue: `"bottom"`
+
+
+##### `scrollBarPositionY`
+
+Y Position of the scroll bar ("left" or "right")
+
+type: `enum("left"|"right")`
+defaultValue: `"right"`
+
+
 ##### `showModBar`
 
-defaultValue: `true`
+Show the custom ModBar
+
+type: `bool`
+defaultValue: `false`
+
+
+##### `textColor`
+
+Color of the text residue letters (name, hex or RGB value)
+
+type: `string`
+defaultValue: `"black"`
+
+
+##### `textFont`
+
+Font to use when drawing the individual residues.
+
+type: `string`
+defaultValue: `"18px Arial"`
+
+
+##### `xGridSize`
+
+Number of residues to cluster in one tile (x-axis) (default: 10)
+
+type: `number`
+defaultValue: `10`
+
+
+##### `yGridSize`
+
+Number of residues to cluster in one tile (y-axis) (default: 10)
+
+type: `number`
+defaultValue: `10`
+
+
+<!-- end generated documentation -->
 
 ### Creating your own MSA components
 
