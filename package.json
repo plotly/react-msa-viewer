@@ -36,12 +36,13 @@
     "build:lib-umd": "NODE_ENV=production rollup -c",
     "build:lib": "npm run build:lib-umd && npm run build:lib-esm",
     "test": "jest",
+    "test:watch": "jest --watch",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "prepare": "npm run build:lib",
     "docs": "./docs/build",
-    "watch": "rollup -w -c rollup.config.js"
+    "watch": "rollup -w -c"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
