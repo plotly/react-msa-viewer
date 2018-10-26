@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import {
+  actions,
   MSAViewer,
   SequenceViewer,
 } from '../lib';
@@ -163,6 +164,25 @@ storiesOf('Events', module)
       }
     };
     return <ExtraInformation />;
+  })
+  .add('dispatch', () => {
+    class MSADispatch extends Component {
+      onSpecificClick = (e) => {
+        this.el.updatePosition({xPos: 100, yPos: 100});
+      }
+      onGenericClick = (e) => {
+        const action = actions.updatePosition({xPos: 100, yPos: 100});
+        this.el.dispatch(action);
+      }
+      render() {
+        return <div>
+          <MSAViewer ref={(ref) => this.el = ref} sequences={sequences} />
+          <button onClick={this.onSpecificClick}>Specific method</button>
+          <button onClick={this.onGenericClick}>Generic dispatch</button>
+        </div>;
+      }
+    };
+    return <MSADispatch />;
   })
   .add('Tooltips (WIP)', () => {
 

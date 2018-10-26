@@ -19,7 +19,7 @@ import { actions as positionStoreActions } from './store/positionReducers';
 
 const VERSION = "MSA_DEVELOPMENT_VERSION";
 
-const actions = [...mainStoreActions, ...positionStoreActions];
+const actions = {...mainStoreActions, ...positionStoreActions};
 
 export * from './components';
 export {

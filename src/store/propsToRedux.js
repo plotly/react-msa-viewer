@@ -21,8 +21,9 @@ import { actions as positionStoreActions } from './positionReducers';
 import {MSAPropTypes, PropTypes} from '../PropTypes';
 
 import {
-  partialRight,
+  forOwn,
   isEqual,
+  partialRight,
   pick,
   reduce,
   omit,
@@ -50,7 +51,7 @@ const mainStoreActionKeys = mapToActionKeys(mainStoreActions);
 const positionStoreActionKeys = mapToActionKeys(positionStoreActions);
 
 export const PropsToRedux = (WrappedComponent) => {
-  return class PropsToReduxComponent extends Component {
+  class PropsToReduxComponent extends Component {
 
     constructor(props) {
       super(props);
@@ -131,6 +132,20 @@ export const PropsToRedux = (WrappedComponent) => {
       }
     }
   }
+  forOwn(mainStoreActions, (v, k) => {
+    PropsToReduxComponent.prototype[k] = function(payload){
+      console.log(k, payload);
+      this.msaStore.dispatch(v(payload));
+    };
+  });
+  forOwn(positionStoreActions, (v, k) => {
+    if (!(k in PropsToReduxComponent.prototype)) {
+      PropsToReduxComponent.prototype[k] = function(payload){
+        this.el.current.positionStore.dispatch(v(payload));
+      };
+    }
+  });
+  return PropsToReduxComponent;
 }
 
 export default PropsToRedux;
