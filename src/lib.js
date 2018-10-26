@@ -13,11 +13,17 @@ import positionStoreMixin from './store/positionStoreMixin';
 
 import ColorScheme from './utils/ColorScheme';
 import MSAViewer from './components/MSAViewer';
-export * from './components';
+
+import mainStoreActions from './store/actions';
+import { actions as positionStoreActions } from './store/positionReducers';
 
 const VERSION = "MSA_DEVELOPMENT_VERSION";
 
+const actions = [...mainStoreActions, ...positionStoreActions];
+
+export * from './components';
 export {
+  actions,
   ColorScheme,
   createMSAStore,
   msaConnect,
