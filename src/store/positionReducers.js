@@ -52,14 +52,20 @@ function commonPositionReducer(prevState, pos) {
  * Reducer for the {move,update}Position events
  */
 const relativePositionReducer = (prevState = {position: {xPos: 0, yPos: 0}}, action) => {
+  const pos = prevState.position;
   switch (action.type) {
     case movePosition.key:
-      const pos = prevState.position;
-      pos.xPos += action.payload.xMovement;
-      pos.yPos += action.payload.yMovement;
-      return commonPositionReducer(prevState, pos);
+      const movePayload = {
+        xPos: pos.xPos + (action.payload.xMovement || 0),
+        yPos: pos.yPos + (action.payload.yMovement || 0),
+      }
+      return commonPositionReducer(prevState, movePayload);
     case updatePosition.key:
-      return commonPositionReducer(prevState, action.payload);
+      const updatePayload = {
+        xPos: action.payload.xPos || pos.xPos,
+        yPos: action.payload.yPos || pos.yPos,
+      };
+      return commonPositionReducer(prevState, updatePayload);
     default:
       return prevState;
   }
