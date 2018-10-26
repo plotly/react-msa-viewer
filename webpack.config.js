@@ -6,6 +6,7 @@ const config = {
     index: ['./src/lib.js'],
   },
   devtool: 'eval-source-map',
+  mode: "production", // or --mode=development
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
@@ -37,15 +38,12 @@ const config = {
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader',
-      options: {
-        presets: ['react-app'],
-      },
     }],
   },
+  optimization: {
+    minimize: true,
+  },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      comments: false,
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
