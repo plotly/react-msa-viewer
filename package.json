@@ -26,6 +26,7 @@
     "lodash-es": "^4.17.11",
     "plotly-icons": "^1.2.2",
     "prop-types": "^15.6.2",
+    "react-addons-shallow-compare": "^15.6.2",
     "react-redux": "^5.1.0",
     "redux": "^4.0.1"
   },
@@ -65,7 +66,6 @@
     "immutable": "^3.8.2",
     "jest-canvas-mock": "^1.1.0",
     "react": "16.4.2",
-    "react-addons-shallow-compare": "^15.6.2",
     "react-docgen": "^2.21.0",
     "react-docgen-external-proptypes-handler": "^1.0.0",
     "react-dom": "16.4.2",
