@@ -6,10 +6,10 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import './basic'
-import './customization'
-import './layouts'
-import './events'
-import './navigation'
-import './plugins'
-import './wip'
+require('./basic');
+require('./customization')
+require('./layouts');
+require('./events');
+require('./navigation');
+require('./plugins');
+require('./wip');

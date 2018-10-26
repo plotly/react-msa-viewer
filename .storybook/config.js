@@ -1,12 +1,12 @@
 import { configure, addDecorator } from '@storybook/react';
-import { setOptions } from '@storybook/addon-options';
+import { withOptions } from '@storybook/addon-options';
 
 function loadStories() {
   require('../src/stories');
 }
 
 // Option defaults:
-setOptions({
+addDecorator(withOptions({
   /**
    * name to display in the top left corner
    * @type {String}
@@ -80,6 +80,6 @@ setOptions({
    * @type {Boolean}
    */
   enableShortcuts: false,
-});
+}));
 
 configure(loadStories, module);
