@@ -342,6 +342,10 @@ SequenceViewerComponent.propTypes = {
   scrollBarPositionY: PropTypes.oneOf(["left", "right"]),
 };
 
+// hoist the list of accepted properties to the parent
+// eslint-disable-next-line react/forbid-foreign-prop-types
+SequenceViewerComponent.propKeys = Object.keys(SequenceViewerComponent.propTypes);
+
 const mapStateToProps = state => {
   // Fallback to a smaller size if the given area is too large
   const width = Math.min(
@@ -365,6 +369,7 @@ const mapStateToProps = state => {
     fullHeight: state.sequenceStats.fullHeight,
   }
 }
+
 
 //const mapDispatchToProps = dispatch => {
   //return {
