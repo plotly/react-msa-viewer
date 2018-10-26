@@ -17,6 +17,7 @@ import Mouse from '../../utils/mouse';
 
 import ModBar from '../ModBar';
 import FakeScroll from './FakeScroll';
+import requestAnimation from '../../utils/requestAnimation';
 
 /**
 Provides dragging support in a canvas for sub-classes.
@@ -199,14 +200,11 @@ class DraggingComponent extends Component {
       return;
     }
     const oldPos = this.mouseMovePosition
-    if (this.nextFrame === undefined) {
-      this.nextFrame = window.requestAnimationFrame(() => {
-        // already use the potentially updated mouse move position here
-        this.mouseMovePosition = pos;
-        this.onPositionUpdate(oldPos, this.mouseMovePosition);
-        this.nextFrame = undefined;
-      });
-    }
+    requestAnimation(this, () => {
+      // already use the potentially updated mouse move position here
+      this.mouseMovePosition = pos;
+      this.onPositionUpdate(oldPos, this.mouseMovePosition);
+    });
   }
 
   onMouseUp() {

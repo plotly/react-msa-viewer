@@ -13,25 +13,7 @@ import createRef from 'create-react-ref/lib/createRef';
 import { updatePosition } from '../../store/positionReducers';
 import positionStoreMixin from '../../store/positionStoreMixin';
 
-
-/**
- * Perform updates in a browser-requested animation frame.
- * If this is called multiple times before a new animation frame was provided,
- * the subsequent calls will be dropped.
- * Thus, make sure to use the current data in the callback
- * (it might have been updated once the callback fired)
- *
- * @param {Object} Class instance to bind the callback too
- * @param {Function} callback Function to be called in the animation frame
- */
-function requestAnimation(instance, callback) {
-  if (instance.nextFrame === undefined) {
-    instance.nextFrame = window.requestAnimationFrame(function(){
-      callback();
-      this.nextFrame = undefined;
-    }.bind(instance));
-  }
-}
+import requestAnimation from '../../utils/requestAnimation';
 
 class FakeScroll extends PureComponent {
 

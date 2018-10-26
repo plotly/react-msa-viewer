@@ -9,10 +9,8 @@
 import React, { Component } from 'react';
 import createRef from 'create-react-ref/lib/createRef';
 
-//import {
-  //throttle,
-//} from 'lodash-es';
 import Mouse from '../../utils/mouse';
+import requestAnimation from '../../utils/requestAnimation';
 
 /**
 Provides dragging support and related callbacks:
@@ -24,7 +22,6 @@ Moreover, a component's viewpoint needs to be passed in via its properties:
   <MyDraggingComponent width="200" height="300" />
 */
 // TODO: handle wheel events
-// TODO: share requestAnimationFrame with multiple components
 class HTMLDraggingComponent extends Component {
 
   /**
@@ -92,16 +89,10 @@ class HTMLDraggingComponent extends Component {
       //return;
     //}
     const oldPos = this.mouseMovePosition
-    if (this.nextFrame === undefined) {
-      this.mouseMovePosition = pos;
-      this.nextFrame = window.requestAnimationFrame(() => {
-        // already use the potentially updated mouse move position here
-        this.props.onPositionUpdate(oldPos, this.mouseMovePosition);
-        this.nextFrame = undefined;
-      });
-    } else {
-      console.log("skipped frame.");
-    }
+    requestAnimation(this, () => {
+      // already use the potentially updated mouse move position here
+      this.props.onPositionUpdate(oldPos, this.mouseMovePosition);
+    });
   }
 
   onMouseUp = () => {
