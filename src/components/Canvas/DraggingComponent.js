@@ -188,17 +188,16 @@ class DraggingComponent extends Component {
   }
 
   onMouseMove(e) {
-    //console.log("mousemove", e);
     if (this.isInDragPhase === undefined) {
       return;
     }
     this.mouseHasMoved = true;
     const pos = Mouse.abs(e);
     // TODO: use global window out and not this container's out for better dragging
-    if (!this.isEventWithinComponent(e)) {
-      this.stopDragPhase();
-      return;
-    }
+    //if (!this.isEventWithinComponent(e)) {
+      //this.stopDragPhase();
+      //return;
+    //}
     const oldPos = this.mouseMovePosition
     requestAnimation(this, () => {
       // already use the potentially updated mouse move position here
