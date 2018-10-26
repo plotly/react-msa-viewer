@@ -53,6 +53,7 @@ export default {
     commonjs({
       namedExports: {
         'color-convert': ['rgb', 'hsl', 'hsv', 'hwb', 'cmyk', 'xyz', 'lab', 'lch', 'hex', 'ansi16', 'ansi256', 'hcg', 'apple', 'gray', 'keyword'],
+        'react-is': ['isValidElementType'],
       },
     }),
     terser(),

@@ -341,7 +341,7 @@ class DraggingComponent extends Component {
       top: 0,
     };
     const otherProps = omit(this.props, [
-      ...Object.keys(this.constructor.propTypes),
+      ...this.constructor.propKeys,
       "tileWidth", "tileHeight", "colorScheme",
       "nrXTiles", "nrYTiles",
       "dispatch", "sequences",

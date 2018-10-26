@@ -4,10 +4,23 @@ node_js:
 cache:
   directories:
   - node_modules
+addons:
+  apt:
+    packages:
+      - libcairo2-dev
+      - libjpeg-dev
+      - libpango1.0-dev
+      - libgif-dev
+      - build-essential
+      - g++
 script:
-  - npm test || true # temporarily disabled
+  - npm test
   - npm run build
 branches:
   only:
   - master
   - stable
+after_success:
+  - export CODECOV_TOKEN="a2cb72ad-d773-4f47-ab17-398b2670489d"
+  - npm i codecov
+  - codecov
