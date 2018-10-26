@@ -32,15 +32,7 @@ export default {
       'MSA_DEVELOPMENT_VERSION': version,
     }),
     babel({
-      babelrc: false,
       exclude: 'node_modules/**',
-      presets: ['@babel/preset-react', '@babel/preset-env'],
-      plugins: [
-        '@babel/plugin-proposal-object-rest-spread',
-        '@babel/plugin-proposal-class-properties',
-        "lodash",
-      ],
-      //externalHelpers: false,
     }),
     strip({
       debugger: true,
