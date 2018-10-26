@@ -95,12 +95,7 @@ export const MSAPropTypes = {
   /**
    * Font of the individual residue tiles, e.g. `"20px Arial"`.
    */
-  tileFont: PropTypes.string,
-
-  /**
-   * Maximum number of frames per second, e.g. `10000 / 60`.
-   */
-  msecsPerFps: PropTypes.number,
+  textFont: PropTypes.string,
 
   /**
    * Current x and y position of the viewpoint
@@ -159,12 +154,6 @@ export const msaDefaultProps = {
   height: 100,
   tileWidth: 20,
   tileHeight: 20,
-  tileFont: "20px Arial",
-  msecsPerFps: 1000  / 60,
-  position: {
-    xPos: 0,
-    yPos: 0,
-  },
   colorScheme: "clustal",
   backgroundColor: "red",
   engine: "canvas", // experimental

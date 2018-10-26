@@ -7,7 +7,11 @@
 */
 
 import React, { Component } from 'react';
-import MSAProvider from '../store/provider';
+import createRef from 'create-react-ref/lib/createRef';
+
+import {
+  forOwn,
+} from 'lodash-es'
 
 import {
   msaDefaultProps,
@@ -15,58 +19,130 @@ import {
   PropTypes,
 } from '../PropTypes';
 
-//import PositionBar from './PositionBar';
-//import OverviewBar from './OverviewBar';
-//import Labels from './Labels';
-import PositionBar from './HTMLPositionBar';
-import SequenceViewer from './SequenceViewer';
-import SequenceOverview from './SequenceOverview';
-import OverviewBar from './HTMLOverviewBar';
-import Labels from './HTMLLabels';
+import {
+  Labels,
+  OverviewBar,
+  PositionBar,
+  SequenceViewer,
+} from './index';
 
+import MSAProvider from '../store/provider';
 import propsToRedux from '../store/propsToRedux';
 
-const labelsAndSequenceDiv = {
-  display: "flex",
+import {
+  actions,
+  positionReducer,
+  createPositionStore,
+} from '../store/positionReducers';
+
+const same = "FORWARD_SAME_PROP_NAME";
+
+// list of events with a default implementation
+// mapping: eventName -> DOM event name
+const defaultEvents = {
+  "onResidueClick": "residueClick",
 };
 
-// TODO: support changing the store dynamically
-// TODO: when props of children update -> update store
-// TODO: support using the child components in stand-alone mode
+/**
+ * A general-purpose layout for the MSA components
+ *
+ * When children are passed it acts as a Context Provider for the msaStore,
+ * otherwise it provides a default layout and forwards it props the respective
+ * components.
+ */
 class MSAViewerComponent extends Component {
 
+    constructor(props) {
+      super(props);
+      this.el = createRef();
+      // add default event callback
+      forOwn(defaultEvents, (domEventName, eventName) => {
+        this["_" + eventName] = (e) => {
+          const event = new CustomEvent(domEventName, {
+            detail: e,
+            bubbles: true,
+          });
+          this.el.current.dispatchEvent(event);
+        };
+      });
+    }
+
   // List of props forwarded to the SequenceViewer component
-  static sequenceViewerProps = [
-    "showModBar",
-    "onResidueMouseEnter",
-    "onResidueMouseLeave",
-    "onResidueClick",
-    "onResidueDoubleClick",
-  ];
+  static sequenceViewerProps = {
+    "showModBar": same,
+    "onResidueMouseEnter": same,
+    "onResidueMouseLeave": same,
+    "onResidueClick": same,
+    "onResidueDoubleClick": same,
+    "sequenceBorder": "border",
+    "sequenceBorderColor": "borderColor",
+    "sequenceBorderWidth": "borderWidth",
+    "sequenceTextColor": "textColor",
+    "sequenceTextFont": "textFont",
+    "sequenceOverflow": "overflow",
+    "sequenceOverflowX": "overflowX",
+    "sequenceOverflowy": "overflowY",
+    "sequenceScrollBarPositionX": "scrollBarPositionX",
+    "sequenceScrollBarPositionY": "scrollBarPositionY",
+  };
 
   // List of props forwarded to the Labels component
-  static labelsProps = [
-    "labelComponent",
-  ];
+  static labelsProps = {
+    "labelComponent": same,
+    "labelStyle": same,
+    "labelAttributes": same,
+  };
 
   // List of props forwarded to the PositionBar component
-  static positionBarProps = [
-    "markerComponent",
-  ];
+  static positionBarProps = {
+    "markerComponent": same,
+    "markerStyle": same,
+    "markerAttributes": same,
+  };
 
   // List of props forwarded to the OverviewBar component
-  static overviewBarProps = [
-    "barComponent",
-  ];
+  static overviewBarProps = {
+    "barComponent": same,
+    "barStyle": same,
+    "barAttributes": same,
+  };
 
   forwardProps(propsToBeForwarded) {
-    const options = {}
-    propsToBeForwarded.forEach(prop => {
-      if (this.props[prop] !== undefined) {
-        options[prop] = this.props[prop];
+    const options = {};
+    forOwn(propsToBeForwarded, (forwardedName, currentName) => {
+      if (this.props[currentName] !== undefined) {
+        const name = forwardedName === same ? currentName : forwardedName;
+        options[name] = this.props[currentName];
+      } else if (currentName in defaultEvents) {
+        // inject default event handler
+        options[currentName] = this["_" + currentName];
       }
     });
     return options;
+  }
+
+  componentWillMount() {
+    this.positionStore = createPositionStore(positionReducer);
+    this.positionStore.dispatch(
+      actions.updateMainStore(this.props.msaStore.getState())
+    );
+    this.msaStoreUnsubscribe = this.props.msaStore.subscribe(() => {
+      // forward the msaStore to the positionStore for convenience
+      this.positionStore.dispatch(
+        actions.updateMainStore(this.props.msaStore.getState())
+      );
+    });
+  }
+
+  componentWillUnmount() {
+    this.msaStoreUnsubscribe();
+  }
+
+  // TODO: we could inject this in the main redux store for better compatibility
+  getChildContext() {
+    return {
+      positionMSAStore: this.positionStore,
+    };
   }
 
   render() {
@@ -74,7 +150,7 @@ class MSAViewerComponent extends Component {
     if (children) {
       return (
         <MSAProvider store={msaStore}>
-          <div {...otherProps}>
+          <div {...otherProps} ref={this.el}>
             {children}
           </div>
         </MSAProvider>
@@ -84,16 +160,18 @@ class MSAViewerComponent extends Component {
       const currentState = msaStore.getState();
       const labelsPadding = currentState.props.tileHeight;
       const overviewBarHeight = 50;
+      const labelsAndSequenceDiv = {
+        display: "flex",
+      };
       const labelsStyle = {
         paddingTop: labelsPadding + overviewBarHeight,
       }
       const separatorPadding = {
         height: 10,
       };
-
       return (
         <MSAProvider store={msaStore}>
-          <div style={labelsAndSequenceDiv}>
+          <div style={labelsAndSequenceDiv} ref={this.el}>
             <Labels
               style={labelsStyle}
               {...this.forwardProps(MSAViewerComponent.labelsProps)}
@@ -109,19 +187,22 @@ class MSAViewerComponent extends Component {
                 {...this.forwardProps(MSAViewerComponent.sequenceViewerProps)}
               />
               <div style={separatorPadding} />
-              <SequenceOverview />
             </div>
           </div>
         </MSAProvider>
       );
+      //<SequenceOverview />
     }
   }
 }
 
+MSAViewerComponent.childContextTypes = {
+  positionMSAStore: PropTypes.object,
+};
+
 const MSAViewer = propsToRedux(MSAViewerComponent);
 
 MSAViewer.defaultProps = msaDefaultProps;
-
 MSAViewer.propTypes = {
   /**
    * A custom msaStore (created with `createMSAStore`).

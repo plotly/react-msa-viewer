@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import { createStore } from 'redux'
 
 import {
-  each,
   merge,
 } from 'lodash-es';
 
@@ -20,9 +19,10 @@ import { MSAPropTypes, msaDefaultProps } from '../PropTypes';
 import positionReducers from '../store/reducers';
 import {
   updateProps,
-  updatePosition,
   updateSequences,
 } from '../store/actions';
+
+import debug from '../debug';
 
 /**
 Initializes a new MSAViewer store-like structure.
@@ -36,12 +36,9 @@ export const createMSAStore = (props) => {
   const {sequences, position, ...otherProps} = propsWithDefaultValues;
   const store = createStore(positionReducers,
     // https://github.com/zalmoxisus/redux-devtools-extension
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    debug && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
-  each(otherProps, (v, k) => {
-    store.dispatch(updateProps(k, v));
-  });
-  store.dispatch(updatePosition(position));
+  store.dispatch(updateProps(otherProps));
   store.dispatch(updateSequences(sequences));
   return store;
 }

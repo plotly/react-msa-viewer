@@ -9,9 +9,11 @@
 import PropTypes from 'prop-types';
 
 import CanvasComponent from './CanvasComponent';
-import msaConnect from '../store/connect'
+import msaConnect from '../../store/connect'
 
 import { floor, clamp } from 'lodash-es';
+
+import positionStoreMixin from '../../store/positionStoreMixin';
 
 class SequenceOverviewComponent extends CanvasComponent {
 
@@ -20,9 +22,13 @@ class SequenceOverviewComponent extends CanvasComponent {
     this.drawScene();
   }
 
+  shouldRerender() {
+    this._draw();
+  }
+
   drawScene() {
     this.scene = {};
-    ({xPos: this.scene.xViewPos, yPos: this.scene.yViewPos} = this.props.position);
+    ({xPos: this.scene.xViewPos, yPos: this.scene.yViewPos} = this.position);
     this.scene.xScalingFactor = 1 / this.props.globalTileWidth * this.props.tileWidth;
     this.scene.yScalingFactor = 1 / this.props.globalTileHeight * this.props.tileHeight;
     this.drawCurrentViewpoint();
@@ -83,6 +89,8 @@ class SequenceOverviewComponent extends CanvasComponent {
   }
 }
 
+positionStoreMixin(SequenceOverviewComponent, {withPosition: true});
+
 SequenceOverviewComponent.defaultProps = {
   ...CanvasComponent.defaultProps,
   height: 50,
@@ -110,14 +118,10 @@ SequenceOverviewComponent.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    position: state.position,
-    viewpoint: state.viewpoint,
-    ui: state.ui,
     sequences: state.sequences,
     width: state.props.width,
     globalWidth: state.props.width,
     globalHeight: state.props.height,
-    msecsPerFps: state.props.msecsPerFps,
     globalTileWidth: state.props.tileWidth,
     globalTileHeight: state.props.tileHeight,
     colorScheme: state.props.colorScheme,

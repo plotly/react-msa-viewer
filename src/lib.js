@@ -9,28 +9,27 @@
 import msaConnect from './store/connect'
 import createMSAStore from './store/createMSAStore';
 import MSAProvider from './store/provider';
+import positionStoreMixin from './store/positionStoreMixin';
 
 import ColorScheme from './utils/ColorScheme';
-import Labels from './components/Labels';
 import MSAViewer from './components/MSAViewer';
-import PositionBar from './components/PositionBar';
-import SequenceViewer from './components/SequenceViewer';
-import SequenceOverview from './components/SequenceOverview';
-import OverviewBar from './components/OverviewBar';
+
+import mainStoreActions from './store/actions';
+import { actions as positionStoreActions } from './store/positionReducers';
 
 const VERSION = "MSA_DEVELOPMENT_VERSION";
 
+const actions = {...mainStoreActions, ...positionStoreActions};
+
+export * from './components';
 export {
+  actions,
   ColorScheme,
   createMSAStore,
   msaConnect,
-  Labels,
-  MSAViewer,
   MSAProvider,
-  OverviewBar,
-  PositionBar,
-  SequenceOverview,
-  SequenceViewer,
+  MSAViewer,
+  positionStoreMixin,
   VERSION as version,
 };
 

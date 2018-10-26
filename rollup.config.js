@@ -5,6 +5,7 @@ import replace from 'rollup-plugin-replace';
 import visualizer from 'rollup-plugin-visualizer';
 import { terser } from "rollup-plugin-terser";
 import { version } from "./package.json";
+import strip from 'rollup-plugin-strip';
 
 export default {
   input: 'src/lib.js',
@@ -26,6 +27,10 @@ export default {
     'prop-types',
   ],
   plugins: [
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      'MSA_DEVELOPMENT_VERSION': version,
+    }),
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
@@ -37,6 +42,11 @@ export default {
       ],
       //externalHelpers: false,
     }),
+    strip({
+      debugger: true,
+      // defaults to `[ 'console.*', 'assert.*' ]`
+      functions: [ 'console.log', 'assert.*', 'debug', 'alert' ],
+    }),
     resolve({
       browser: true,
     }),
@@ -44,10 +54,6 @@ export default {
       namedExports: {
         'color-convert': ['rgb', 'hsl', 'hsv', 'hwb', 'cmyk', 'xyz', 'lab', 'lch', 'hex', 'ansi16', 'ansi256', 'hcg', 'apple', 'gray', 'keyword'],
       },
-    }),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      'MSA_DEVELOPMENT_VERSION': version,
     }),
     terser(),
     visualizer({

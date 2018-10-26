@@ -6,7 +6,7 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import * as actions from './actions'
+import actions from './actions'
 
 // reducer utilities
 import handleActions from './reducers/handleActions'; // similar to handleActions from redux-actions
@@ -17,20 +17,6 @@ import calculateSequencesState from './reducers/calculateSequencesState';
 
 // other utilities
 import {ColorScheme, isColorScheme} from '../utils/ColorScheme';
-
-import {
-  floor,
-  clamp,
-} from 'lodash-es';
-
-const position = handleActions({
-  [actions.updatePosition]: (prevState, {xPos, yPos}) => {
-    return {xPos, yPos};
-  }
-}, {
-  xPos: 0,
-  yPos: 0,
-});
 
 function checkColorScheme(state) {
   if (isColorScheme(state.colorScheme)) {
@@ -46,11 +32,22 @@ function checkColorScheme(state) {
 const props = (state = {}, {type, payload}) => {
   switch(type){
     case actions.updateProps.key:
+      state = {
+        ...state,
+        ...payload,
+      };
+      // has the colorScheme been updated?
+      if ("colorScheme" in payload) {
+        checkColorScheme(state);
+      }
+      return state;
+    case actions.updateProp.key:
       const {key, value} = payload;
       state = {
         ...state,
         [key]: value
       };
+      // has the colorScheme been updated?
       if (key === "colorScheme") {
         checkColorScheme(state);
       }
@@ -77,24 +74,14 @@ const sequenceStats = (prevState = {
 }, action, state) => {
   switch(action.type){
     case actions.updateProps.key:
-    case actions.updatePosition.key:
     case actions.updateSequences.key:
       if (state.props && state.props.tileHeight && state.props.tileWidth &&
-          state.position && state.sequences) {
+          state.sequences) {
         const stats = {};
-        stats.currentViewSequence = clamp(
-          floor(state.position.yPos / state.props.tileHeight),
-          0,
-          state.sequences.length - 1
-        );
-        stats.currentViewSequencePosition = clamp(
-          floor(state.position.xPos / state.props.tileWidth),
-          0,
-          state.sequences.maxLength,
-        );
-        stats.yPosOffset = -(state.position.yPos % state.props.tileHeight);
-        stats.xPosOffset = -(state.position.xPos % state.props.tileWidth);
-        stats.nrTiles = Math.ceil(state.props.width / state.props.tileWidth) + 1;
+        stats.nrXTiles = Math.ceil(state.props.width / state.props.tileWidth) + 1;
+        stats.nrYTiles = Math.ceil(state.props.height / state.props.tileHeight) + 1;
+        stats.fullWidth = state.props.tileWidth * state.sequences.maxLength;
+        stats.fullHeight = state.props.tileHeight * state.sequences.length;
         return stats;
       }
       break;
@@ -131,7 +118,6 @@ const statCombineReduce = (reducer, statReducers) => {
 };
 
 export default statCombineReduce(combineReducers({
-  position,
   props,
   sequences,
 }), {

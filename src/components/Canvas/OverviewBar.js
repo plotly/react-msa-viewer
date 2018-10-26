@@ -70,8 +70,8 @@ OverviewBarComponent.defaultProps = {
   method: "conservation",
 }
 
-OverviewBarComponent.PropTypes = {
-  ...CanvasComponent.PropTypes,
+OverviewBarComponent.propTypes = {
+  ...CanvasComponent.propTypes,
   /**
    * Method to use for the OverviewBar:
    *  - `information-content`: Information entropy after Shannon of a column (scaled)
@@ -97,7 +97,6 @@ const mapStateToProps = state => {
     width: state.props.width,
     tileHeight: state.props.tileHeight,
     tileWidth: state.props.tileWidth,
-    msecsPerFps: state.props.msecsPerFps,
     stats: state.sequenceStats,
   }
 }

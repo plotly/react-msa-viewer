@@ -6,13 +6,11 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { throttle } from 'lodash-es';
-
-import Canvas from '../drawing/canvas';
-import WebGL from '../drawing/webgl';
+import Canvas from '../../drawing/canvas';
+import WebGL from '../../drawing/webgl';
 
 import createRef from 'create-react-ref/lib/createRef';
 
@@ -22,19 +20,15 @@ import createRef from 'create-react-ref/lib/createRef';
  *
  * On every redraw, this.draw() gets called.
  */
-class CanvasComponent extends Component {
+class CanvasComponent extends PureComponent {
 
   static defaultProps = {
-    width: 100,
-    height: 100,
-    msecsPerFps: 60,
     engine: "canvas",
   }
 
   constructor(props) {
     super(props);
     this.canvas = createRef();
-    this._draw = throttle(this._draw, this.props.msecsPerFps);
   }
 
   componentDidMount() {
@@ -52,6 +46,7 @@ class CanvasComponent extends Component {
   }
 
   _draw() {
+    if (!this.ctx) return;
     this.ctx.startDrawingFrame();
     this.ctx.save();
     this.draw();
@@ -81,12 +76,12 @@ CanvasComponent.propTypes = {
   /**
    * Width of the component (in pixels), e.g. `100`
    */
-  width: PropTypes.number,
+  width: PropTypes.number.isRequired,
 
   /**
    * Width of the component (in pixels), e.g. `100`
    */
-  height: PropTypes.number,
+  height: PropTypes.number.isRequired,
 
   /**
    * Custom style configuration.
@@ -97,11 +92,6 @@ CanvasComponent.propTypes = {
    * Rendering engine: `canvas` or `webgl` (experimental).
    */
   engine: PropTypes.oneOf(['canvas', 'webgl']),
-
-  /**
-   * Maximum number of frames per second, e.g. `1000 / 60`
-   */
-  msecsPerSecs: PropTypes.number,
 }
 
 export default CanvasComponent;
