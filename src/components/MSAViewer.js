@@ -7,7 +7,7 @@
 */
 
 import React, { Component } from 'react';
-import MSAProvider from '../store/provider';
+import createRef from 'create-react-ref/lib/createRef';
 
 import {
   forOwn,
@@ -26,6 +26,7 @@ import {
   SequenceViewer,
 } from './index';
 
+import MSAProvider from '../store/provider';
 import propsToRedux from '../store/propsToRedux';
 
 import {
@@ -42,6 +43,12 @@ const labelsAndSequenceDiv = {
 
 const same = "FORWARD_SAME_PROP_NAME";
 
+// list of events with a default implementation
+// mapping: eventName -> DOM event name
+const defaultEvents = {
+  "onResidueClick": "residueClick",
+};
+
 /**
  * A general-purpose layout for the MSA components
  *
@@ -50,6 +57,22 @@ const same = "FORWARD_SAME_PROP_NAME";
  * components.
  */
 class MSAViewerComponent extends Component {
+
+    constructor(props) {
+      super(props);
+      this.el = createRef();
+      // add default event callback
+      forOwn(defaultEvents, (domEventName, eventName) => {
+        this["_" + eventName] = (e) => {
+          console.log("onResidueClick");
+          const event = new CustomEvent(domEventName, {
+            detail: e,
+            bubbles: true,
+          });
+          this.el.current.dispatchEvent(event);
+        };
+      });
+    }
 
   // List of props forwarded to the SequenceViewer component
   static sequenceViewerProps = {
@@ -97,6 +120,9 @@ class MSAViewerComponent extends Component {
       if (this.props[currentName] !== undefined) {
         const name = forwardedName === same ? currentName : forwardedName;
         options[name] = this.props[currentName];
+      } else if (currentName in defaultEvents) {
+        // inject default event handler
+        options[currentName] = this["_" + currentName];
       }
     });
     return options;
@@ -143,7 +169,7 @@ class MSAViewerComponent extends Component {
     if (children) {
       return (
         <MSAProvider store={msaStore}>
-          <div {...otherProps}>
+          <div {...otherProps} ref={this.el}>
             {children}
           </div>
         </MSAProvider>
@@ -162,7 +188,7 @@ class MSAViewerComponent extends Component {
 
       return (
         <MSAProvider store={msaStore}>
-          <div style={labelsAndSequenceDiv}>
+          <div style={labelsAndSequenceDiv} ref={this.el}>
             <Labels
               style={labelsStyle}
               {...this.forwardProps(MSAViewerComponent.labelsProps)}
