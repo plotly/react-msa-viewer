@@ -29,9 +29,12 @@ import {
 import propsToRedux from '../store/propsToRedux';
 
 import {
+  actions,
   positionReducer,
   createPositionStore,
 } from '../store/positionReducers';
+
+import requestAnimation from '../utils/requestAnimation';
 
 const labelsAndSequenceDiv = {
   display: "flex",
@@ -115,6 +118,12 @@ class MSAViewerComponent extends Component {
         type: "MAINSTORE_UPDATE",
         payload: this.props.msaStore.getState(),
       });
+    });
+  }
+
+  updatePosition(payload) {
+    requestAnimation(this, () => {
+      this.positionStore.dispatch(actions.updatePosition(payload));
     });
   }
 

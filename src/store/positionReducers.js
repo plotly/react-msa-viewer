@@ -23,6 +23,11 @@ import {
 export const updateMainStore = createAction("MAINSTORE_UPDATE");
 export const updatePosition = createAction("POSITION_UPDATE");
 
+export const actions = {
+  updateMainStore,
+  updatePosition,
+}
+
 const relativePositionReducer = (prevState = {position: {xPos: 0, yPos: 0}}, action) => {
   switch (action.type) {
     case "POSITION_UPDATE":

@@ -12,6 +12,7 @@
  */
 
 import React, { Component } from 'react';
+import createRef from 'create-react-ref/lib/createRef';
 
 import createMSAStore from './createMSAStore';
 import * as actions from './actions';
@@ -44,6 +45,7 @@ export const propsToRedux = (WrappedComponent) => {
     constructor(props) {
       super(props);
       const storeProps = pick(props, attributesToStore) || {};
+      this.el = createRef();
       this.msaStore = props.msaStore;
       if (storeProps.sequences !== undefined) {
         this.msaStore = createMSAStore(storeProps);
@@ -52,13 +54,30 @@ export const propsToRedux = (WrappedComponent) => {
       }
     }
 
+    componentDidMount() {
+      if (this.props.position) {
+        this.updatePosition(this.props.position);
+      }
+    }
+
+    updatePosition(position) {
+      const {xPos, yPos} = this.el.current.positionStore.getState().position;
+      const movement = {
+        xMovement: (position.xPos || xPos) - xPos,
+        yMovement: (position.yPos || yPos) - yPos,
+      };
+      this.el.current.updatePosition(movement);
+    }
+
     // Notify the internal Redux store about property updates
     componentDidUpdate(oldProps) {
       const newProps = this.props;
       // TODO: support batch updates
       for (const prop in pick(newProps, attributesToStore)) {
         if (!isEqual(oldProps[prop], newProps[prop])) {
-          if (prop in reduxActions) {
+          if (prop === "position") {
+            this.updatePosition(newProps[prop]);
+          } else if (prop in reduxActions) {
             let action;
             switch(reduxActions[prop]){
               case 'updateProp':
@@ -82,7 +101,7 @@ export const propsToRedux = (WrappedComponent) => {
         return (<div> Error initializing the MSAViewer. </div>)
       } else {
         return (
-          <WrappedComponent msaStore={msaStore || this.msaStore} {...props} />
+          <WrappedComponent ref={this.el} msaStore={msaStore || this.msaStore} {...props} />
         );
       }
     }
