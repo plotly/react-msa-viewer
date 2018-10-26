@@ -15,6 +15,10 @@ import positionStoreMixin from '../../store/positionStoreMixin';
 
 import requestAnimation from '../../utils/requestAnimation';
 
+/**
+ * Creates a DOM element with absolute position that can have scrollbars.
+ * However, no actual content is displayed by this element.
+ */
 class FakeScroll extends PureComponent {
 
   componentWillMount() {
@@ -37,7 +41,7 @@ class FakeScroll extends PureComponent {
     this.el.current.scrollLeft = this.position.xPos;
   }
 
-  shouldShowTester(overflow, {withX = false, withY = false}) {
+  checkOverflow(overflow, {withX = false, withY = false}) {
     let show = false;
     switch(this.props.overflow) {
       case "auto":
@@ -64,10 +68,10 @@ class FakeScroll extends PureComponent {
     const withY = {withY: true};
     const overflowX = this.props.overflowX === "initial" ? this.props.overflow : this.props.overflowX;
     const overflowY = this.props.overflowY === "initial" ? this.props.overflow : this.props.overflowY;
-    const showX = this.shouldShowTester(overflowX, withX) &&
-      this.shouldShowTester(this.props.overflow, withX);
-    const showY = this.shouldShowTester(overflowY, withY) &&
-      this.shouldShowTester(this.props.overflow, withY);
+    const showX = this.checkOverflow(overflowX, withX) &&
+      this.checkOverflow(this.props.overflow, withX);
+    const showY = this.checkOverflow(overflowY, withY) &&
+      this.checkOverflow(this.props.overflow, withY);
     return {showX, showY};
   }
 
