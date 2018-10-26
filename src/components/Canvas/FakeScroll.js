@@ -10,7 +10,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import createRef from 'create-react-ref/lib/createRef';
-import { updatePosition } from '../../store/positionReducers';
+import { movePosition } from '../../store/positionReducers';
 import positionStoreMixin from '../../store/positionStoreMixin';
 
 import requestAnimation from '../../utils/requestAnimation';
@@ -27,7 +27,7 @@ class FakeScroll extends PureComponent {
         xMovement: this.el.current.scrollLeft - this.position.xPos,
         yMovement: this.el.current.scrollTop - this.position.yPos,
       };
-      this.dispatch(updatePosition(movement));
+      this.dispatch(movePosition(movement));
     });
   };
 

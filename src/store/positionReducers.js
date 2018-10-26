@@ -20,37 +20,59 @@ import {
   clamp,
 } from 'lodash-es';
 
+// send when the main store changes
 export const updateMainStore = createAction("MAINSTORE_UPDATE");
+// move the position relatively by {xMovement, yMovement}
+export const movePosition = createAction("POSITION_MOVE");
+// set an absolute position with {yPos, xPos}
 export const updatePosition = createAction("POSITION_UPDATE");
 
 export const actions = {
   updateMainStore,
   updatePosition,
+  movePosition,
 }
 
+/**
+ * Makes sure that the position isn't set isn't out of its boundaries.
+ */
+function commonPositionReducer(prevState, pos) {
+  const maximum = prevState.sequences.maxLength;
+  const maxWidth = maximum * prevState.props.tileWidth - prevState.props.width;
+  pos.xPos = clamp(pos.xPos, 0, maxWidth);
+  const maxHeight = prevState.sequences.raw.length * prevState.props.tileHeight - prevState.props.height;
+  pos.yPos = clamp(pos.yPos, 0, maxHeight);
+  return {
+    ...prevState,
+    position: pos,
+  };
+}
+
+/**
+ * Reducer for the {move,update}Position events
+ */
 const relativePositionReducer = (prevState = {position: {xPos: 0, yPos: 0}}, action) => {
   switch (action.type) {
-    case "POSITION_UPDATE":
+    case movePosition.key:
       const pos = prevState.position;
       pos.xPos += action.payload.xMovement;
       pos.yPos += action.payload.yMovement;
-      const maximum = prevState.sequences.maxLength;
-      const maxWidth = maximum * prevState.props.tileWidth - prevState.props.width;
-      pos.xPos = clamp(pos.xPos, 0, maxWidth);
-      const maxHeight = prevState.sequences.raw.length * prevState.props.tileHeight - prevState.props.height;
-      pos.yPos = clamp(pos.yPos, 0, maxHeight);
-      return {
-        ...prevState,
-        position: pos,
-      };
+      return commonPositionReducer(prevState, pos);
+    case updatePosition.key:
+      return commonPositionReducer(prevState, action.payload);
     default:
       return prevState;
   }
 }
 
+/**
+ * The main position store reducer which adds "position" to
+ * the reduced main store.
+ */
 export function positionReducer(state = {position: {xPos: 0, yPos: 0}}, action){
   switch(action.type) {
     case updatePosition.key:
+    case movePosition.key:
       const position = relativePositionReducer(state, action).position;
       const payload = {
         xPosOffset: -(position.xPos % state.props.tileWidth),

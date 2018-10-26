@@ -19,7 +19,7 @@ import DraggingComponent from './DraggingComponent';
 import TilingGrid from './CanvasTilingGrid';
 import CanvasCache from './CanvasCache';
 
-import { updatePosition } from '../../store/positionReducers';
+import { movePosition } from '../../store/positionReducers';
 import positionStoreMixin from '../../store/positionStoreMixin';
 import msaConnect from '../../store/connect'
 
@@ -125,7 +125,7 @@ class SequenceViewerComponent extends DraggingComponent {
       xMovement: oldPos[0] - newPos[0],
       yMovement: oldPos[1] - newPos[1],
     };
-    this.context.positionMSAStore.dispatch(updatePosition(relativeMovement));
+    this.dispatch(movePosition(relativeMovement));
   }
 
   positionToSequence(pos) {

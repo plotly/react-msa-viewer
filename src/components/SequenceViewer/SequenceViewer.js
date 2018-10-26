@@ -18,7 +18,7 @@ import {
 } from 'lodash-es';
 
 import msaConnect from '../../store/connect'
-import { updatePosition } from '../../store/positionReducers';
+import { movePosition } from '../../store/positionReducers';
 
 import DraggingComponent from './DraggingComponent';
 import ResidueComponent from './Residue';
@@ -73,7 +73,7 @@ class HTMLSequenceViewerComponent extends Component {
       xMovement: oldPos[0] - newPos[0],
       yMovement: oldPos[1] - newPos[1],
     };
-    this.context.positionMSAStore.dispatch(updatePosition(relativeMovement));
+    this.dispatch(movePosition(relativeMovement));
   }
 
   positionToSequence(pos) {
@@ -175,18 +175,6 @@ class HTMLSequenceViewerComponent extends Component {
       //textFont,
       ...otherProps
     } = this.props;
-    //this.counter = 0;
-    //this.loop = () => {
-      //const xMov = this.counter % 40 < 20 ? 5 : -5;
-      //const mov = {
-        //xMovement: xMov,
-        //yMovement: xMov,
-      //}
-      //this.counter++;
-      //this.context.positionMSAStore.dispatch(updatePosition(mov));
-      //requestAnimationFrame(this.loop);
-    //};
-    //requestAnimationFrame(this.loop);
     return (
       <DraggingComponent
         ref={this.el}

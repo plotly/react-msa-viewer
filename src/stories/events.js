@@ -171,7 +171,7 @@ storiesOf('Events', module)
         this.el.updatePosition({xPos: 100, yPos: 100});
       }
       onGenericClick = (e) => {
-        const action = actions.updatePosition({xPos: 100, yPos: 100});
+        const action = actions.movePosition({xPos: 50, yPos: 50});
         this.el.dispatch(action);
       }
       render() {

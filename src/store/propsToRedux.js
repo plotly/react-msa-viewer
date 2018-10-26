@@ -14,12 +14,6 @@
 import React, { Component } from 'react';
 import createRef from 'create-react-ref/lib/createRef';
 
-import createMSAStore from './createMSAStore';
-import mainStoreActions from './actions';
-import { actions as positionStoreActions } from './positionReducers';
-
-import {MSAPropTypes, PropTypes} from '../PropTypes';
-
 import {
   forOwn,
   isEqual,
@@ -28,6 +22,12 @@ import {
   reduce,
   omit,
 } from 'lodash-es';
+
+import createMSAStore from './createMSAStore';
+import {MSAPropTypes, PropTypes} from '../PropTypes';
+import mainStoreActions from './actions';
+import { actions as positionStoreActions } from './positionReducers';
+import requestAnimation from '../utils/requestAnimation';
 
 /// Maps property changes to redux actions
 const reduxActions = {
@@ -69,15 +69,6 @@ export const PropsToRedux = (WrappedComponent) => {
       if (this.props.position) {
         this.updatePosition(this.props.position);
       }
-    }
-
-    updatePosition(position) {
-      const {xPos, yPos} = this.el.current.positionStore.getState().position;
-      const movement = {
-        xMovement: (position.xPos || xPos) - xPos,
-        yMovement: (position.yPos || yPos) - yPos,
-      };
-      this.el.current.updatePosition(movement);
     }
 
     // Notify the internal Redux store about property updates
@@ -132,17 +123,18 @@ export const PropsToRedux = (WrappedComponent) => {
       }
     }
   }
+  // add action from the main store directly to the main MSA instance
   forOwn(mainStoreActions, (v, k) => {
     PropsToReduxComponent.prototype[k] = function(payload){
-      console.log(k, payload);
       this.msaStore.dispatch(v(payload));
     };
   });
+  // add action from the position store directly to the main MSA instance
   forOwn(positionStoreActions, (v, k) => {
-    if (!(k in PropsToReduxComponent.prototype)) {
-      PropsToReduxComponent.prototype[k] = function(payload){
+    PropsToReduxComponent.prototype[k] = function(payload){
+      requestAnimation(this, () => {
         this.el.current.positionStore.dispatch(v(payload));
-      };
+      });
     }
   });
   return PropsToReduxComponent;
