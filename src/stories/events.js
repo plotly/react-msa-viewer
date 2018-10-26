@@ -162,9 +162,7 @@ storiesOf('Events', module)
         );
       }
     };
-    return (
-      <ExtraInformation />
-    );
+    return <ExtraInformation />;
   })
   .add('Tooltips (WIP)', () => {
 
@@ -221,9 +219,7 @@ storiesOf('Events', module)
         );
       }
     };
-    return (
-      <SimpleTooltip />
-    );
+    return <SimpleTooltip />;
   })
 
 ;
