@@ -17,7 +17,7 @@ import {
  * If `maxElements` are exceed, the oldest element (by insertion time) will be
  * removed from the cache.
  *
-   * @param {Number} maxElements Maximal elements to keep in the cache (default: 200)
+ * @param {Number} maxElements Maximal elements to keep in the cache (default: 200)
  */
 class CanvasCache {
   constructor({maxElements} = {}) {
@@ -60,7 +60,7 @@ class CanvasCache {
    * Checks whether the tile specification has changed and the cache needs
    * to be refreshed.
    * Pass in an object of all the properties that would result in the cache to be refreshed
-   * Like React.Purecomponents the passed-in properties are compared by their
+   * Like React.PureComponents the passed-in properties are compared by their
    * shallow equality.
    *
    * @param {object} spec Object of all parameters that depend on this cache
@@ -79,7 +79,6 @@ class CanvasCache {
    * Invalidates the entire cache and removed all elements.
    */
   invalidate() {
-    // TODO: destroy the old canvas elements
     this.cache = {};
     this.spec = {};
     this.cachedElements = 0;
