@@ -3,9 +3,6 @@
 
 module.exports = {
   "setupFiles": ["jest-canvas-mock"],
-  "transform": {
-      "^.+\\.(mjs|jsx|js)$": "babel-jest"
-  },
   "coverageDirectory": "./coverage/",
   "collectCoverage": true,
   "transformIgnorePatterns": [
