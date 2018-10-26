@@ -377,6 +377,8 @@ class DraggingComponent extends Component {
           overflow={this.props.overflow}
           overflowX={this.props.overflowX}
           overflowY={this.props.overflowY}
+          positionX={this.props.scrollBarPositionX}
+          positionY={this.props.scrollBarPositionY}
           width={this.props.width}
           height={this.props.height}
           fullWidth={this.props.fullWidth}

@@ -114,4 +114,15 @@ storiesOf('Customization', module)
       <MSAViewer {...options} />
     )
   })
+ .add('Custom scollbars', function(){
+    const options = {
+      sequences,
+      sequenceScrollBarPositionX: "top",
+      sequenceScrollBarPositionY: "left",
+      sequenceOverflow: "scroll",
+     };
+    return (
+      <MSAViewer {...options} />
+    )
+  })
  ;

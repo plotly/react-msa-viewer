@@ -247,6 +247,8 @@ SequenceViewerComponent.defaultProps = {
   overflow: "auto",
   overflowX: "auto",
   overflowY: "auto",
+  scrollBarPositionX: "bottom",
+  scrollBarPositionY: "right",
 };
 
 SequenceViewerComponent.propTypes = {
@@ -323,12 +325,22 @@ SequenceViewerComponent.propTypes = {
   /**
    * What should happen if x-axis content overflows (overwrites "overflow")
    */
-  overflowX: PropTypes.oneOf(["hidden", "auto", "scroll"]),
+  overflowX: PropTypes.oneOf(["hidden", "auto", "scroll", "initial"]),
 
   /**
    * What should happen if y-axis content overflows (overwrites "overflow")
    */
-  overflowY: PropTypes.oneOf(["hidden", "auto", "scroll"]),
+  overflowY: PropTypes.oneOf(["hidden", "auto", "scroll", "initial"]),
+
+  /**
+   * X Position of the scroll bar ("top or "bottom")
+   */
+  scrollBarPositionX: PropTypes.oneOf(["top", "bottom"]),
+
+  /**
+   * Y Position of the scroll bar ("left" or "right")
+   */
+  scrollBarPositionY: PropTypes.oneOf(["left", "right"]),
 };
 
 const mapStateToProps = state => {

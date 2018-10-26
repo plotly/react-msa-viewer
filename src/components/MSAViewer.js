@@ -60,6 +60,11 @@ class MSAViewerComponent extends Component {
     "sequenceBorderWidth": "borderWidth",
     "sequenceTextColor": "textColor",
     "sequenceTextFont": "textFont",
+    "sequenceOverflow": "overflow",
+    "sequenceOverflowX": "overflowX",
+    "sequenceOverflowy": "overflowY",
+    "sequenceScrollBarPositionX": "scrollBarPositionX",
+    "sequenceScrollBarPositionY": "scrollBarPositionY",
   };
 
   // List of props forwarded to the Labels component

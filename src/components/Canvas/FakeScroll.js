@@ -62,9 +62,11 @@ class FakeScroll extends PureComponent {
   shouldShow() {
     const withX = {withX: true};
     const withY = {withY: true};
-    const showX = this.shouldShowTester(this.props.overflowX, withX) &&
+    const overflowX = this.props.overflowX === "initial" ? this.props.overflow : this.props.overflowX;
+    const overflowY = this.props.overflowY === "initial" ? this.props.overflow : this.props.overflowY;
+    const showX = this.shouldShowTester(overflowX, withX) &&
       this.shouldShowTester(this.props.overflow, withX);
-    const showY = this.shouldShowTester(this.props.overflowY, withY) &&
+    const showY = this.shouldShowTester(overflowY, withY) &&
       this.shouldShowTester(this.props.overflow, withY);
     return {showX, showY};
   }
@@ -76,10 +78,10 @@ class FakeScroll extends PureComponent {
     } = this.props;
     const style = {
       position: "absolute",
-      overflow: this.props.overflow,
-      overflowX: this.props.overflowX,
-      overflowY: this.props.overflowY,
+      overflowX: "auto",
+      overflowY: "auto",
       width, height,
+      transform: "",
     };
     const {showX, showY} = this.shouldShow();
     const childStyle = {
@@ -91,14 +93,16 @@ class FakeScroll extends PureComponent {
     }
     if (showX) {
       childStyle.width = fullWidth;
+      style.overflowX = "scroll";
       if (this.props.positionX === "top") {
-        style.transform = "rotateX(180deg)";
+        style.transform += "rotateX(180deg)";
       }
     }
     if (showY) {
       childStyle.height = fullHeight;
+      style.overflowY = "scroll";
       if (this.props.positionY === "left") {
-        style.transform = "rotateY(180deg)";
+        style.transform += "rotateY(180deg)";
       }
     }
     return <div style={style} onScroll={this.onScroll} ref={this.el}>
@@ -109,8 +113,8 @@ class FakeScroll extends PureComponent {
 
 FakeScroll.defaultProps = {
   overflow: "auto",
-  overflowX: "auto",
-  overflowY: "auto",
+  overflowX: "initial",
+  overflowY: "initial",
   positionX: "bottom",
   positionY: "right",
   scrollBarWidth: 5,
@@ -118,8 +122,8 @@ FakeScroll.defaultProps = {
 
 FakeScroll.propTypes = {
   overflow: PropTypes.oneOf(["hidden", "auto", "scroll"]),
-  overflowX: PropTypes.oneOf(["hidden", "auto", "scroll"]),
-  overflowY: PropTypes.oneOf(["hidden", "auto", "scroll"]),
+  overflowX: PropTypes.oneOf(["hidden", "auto", "scroll", "initial"]),
+  overflowY: PropTypes.oneOf(["hidden", "auto", "scroll", "initial"]),
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   fullHeight: PropTypes.number.isRequired,
