@@ -4,12 +4,9 @@ Displays the sequence names.
 
 ## Props
 
-### `engine`
+### `cacheElements`
 
-Rendering engine: `canvas` or `webgl` (experimental).
-
-type: `enum('canvas'|'webgl')`
-defaultValue: `"canvas"`
+defaultValue: `10`
 
 
 ### `font`
@@ -19,37 +16,31 @@ Font of the sequence labels, e.g. `20px Arial`
 type: `string`
 
 
-### `height`
+### `labelAttributes`
 
-Width of the component (in pixels), e.g. `100`
-
-type: `number`
-defaultValue: `100`
-
-
-### `msecsPerFps`
-
-defaultValue: `60`
-
-
-### `msecsPerSecs`
-
-Maximum number of frames per second, e.g. `1000 / 60`
-
-type: `number`
-
-
-### `style`
-
-Custom style configuration.
+Attributes to apply to each label.
 
 type: `object`
 
 
-### `width`
+### `labelComponent`
 
-Width of the component (in pixels), e.g. `100`
+Component to create labels from.
 
-type: `number`
-defaultValue: `100`
+type: `union(object|func)`
+
+
+### `labelStyle`
+
+Inline styles to apply to each label.
+
+type: `object`
+defaultValue: `{}`
+
+
+### `style`
+
+Inline styles to apply to the Label component
+
+type: `object`
 

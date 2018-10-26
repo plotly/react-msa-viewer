@@ -40,7 +40,6 @@ function MSA() {
         sequence: "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP"
       },
     ],
-    height: 60,
     colorScheme: "zappo",
   };
   return (
@@ -96,7 +95,6 @@ function MSA() {
         sequence: "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP"
       },
     ],
-    height: 60,
   };
   return (
     <MSAViewer {...options}>
@@ -147,7 +145,6 @@ However, it can be used in Vanilla JS:
         sequence: "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP"
       },
     ],
-    height: 60,
     colorScheme: "zappo",
    };
   ReactDOM.render(
@@ -166,13 +163,67 @@ Props
 
 __Warning__: these properties are still susceptible to a _change at any moment_.
 
+<!-- run `npm run docs` to regenerate this -->
+
 ### `MSAViewer` (component)
 
-TBD.
+A general-purpose layout for the MSA components
 
+When children are passed it acts as a Context Provider for the msaStore,
+otherwise it provides a default layout and forwards it props the respective
+components.
+
+TBD
 ### `Labels` (component)
 
 Displays the sequence names.
+
+#### Props
+
+##### `cacheElements`
+
+defaultValue: `10`
+
+
+##### `font`
+
+Font of the sequence labels, e.g. `20px Arial`
+
+type: `string`
+
+
+##### `labelAttributes`
+
+Attributes to apply to each label.
+
+type: `object`
+
+
+##### `labelComponent`
+
+Component to create labels from.
+
+type: `union(object|func)`
+
+
+##### `labelStyle`
+
+Inline styles to apply to each label.
+
+type: `object`
+defaultValue: `{}`
+
+
+##### `style`
+
+Inline styles to apply to the Label component
+
+type: `object`
+
+
+### `OverviewBar` (component)
+
+Creates a small overview box of the sequences for a general overview.
 
 #### Props
 
@@ -184,31 +235,30 @@ type: `enum('canvas'|'webgl')`
 defaultValue: `"canvas"`
 
 
-##### `font`
+##### `fillColor`
 
-Font of the sequence labels, e.g. `20px Arial`
+Fill color of the OverviewBar, e.g. `#999999`
 
 type: `string`
+defaultValue: `"#999999"`
 
 
-##### `height`
+##### `height` (required)
 
 Width of the component (in pixels), e.g. `100`
 
 type: `number`
-defaultValue: `100`
+defaultValue: `50`
 
 
-##### `msecsPerFps`
+##### `method`
 
-defaultValue: `60`
+Method to use for the OverviewBar:
+ - `information-content`: Information entropy after Shannon of a column (scaled)
+ - `conservation`: Conservation of a column (scaled)
 
-
-##### `msecsPerSecs`
-
-Maximum number of frames per second, e.g. `1000 / 60`
-
-type: `number`
+type: `enum('information-content'|'conservation')`
+defaultValue: `"conservation"`
 
 
 ##### `style`
@@ -218,47 +268,22 @@ Custom style configuration.
 type: `object`
 
 
-##### `width`
+##### `width` (required)
 
 Width of the component (in pixels), e.g. `100`
 
 type: `number`
-defaultValue: `100`
-
-
-### `OverviewBar` (component)
-
-Creates a small overview box of the sequences for a general overview.
-
-#### Props
-
-##### `fillColor`
-
-defaultValue: `"#999999"`
-
-
-##### `height`
-
-defaultValue: `50`
-
-
-##### `method`
-
-defaultValue: `"conservation"`
 
 
 ### `PositionBar` (component)
 
-Creates a PositionBar of markers for every n-th sequence column.
+Displays the sequence names with an arbitrary Marker component
 
 #### Props
 
-##### `engine`
+##### `cacheElements`
 
-Rendering engine: `canvas` or `webgl` (experimental).
-
-type: `enum('canvas'|'webgl')`
-defaultValue: `"canvas"`
+defaultValue: `10`
 
 
 ##### `font`
@@ -266,15 +291,28 @@ defaultValue: `"canvas"`
 Font of the sequence labels, e.g. `20px Arial`
 
 type: `string`
-defaultValue: `"12px Arial"`
 
 
 ##### `height`
 
-Width of the component (in pixels), e.g. `100`
+Height of the PositionBar (in pixels), e.g. `100`
 
 type: `number`
-defaultValue: `100`
+defaultValue: `15`
+
+
+##### `markerAttributes`
+
+Attributes to apply to each marker.
+
+type: `object`
+
+
+##### `markerComponent`
+
+Component to create markers from.
+
+type: `union(object|func)`
 
 
 ##### `markerSteps`
@@ -285,16 +323,12 @@ type: `number`
 defaultValue: `2`
 
 
-##### `msecsPerFps`
+##### `markerStyle`
 
-defaultValue: `60`
+Inline styles to apply to each marker.
 
-
-##### `msecsPerSecs`
-
-Maximum number of frames per second, e.g. `1000 / 60`
-
-type: `number`
+type: `object`
+defaultValue: `{}`
 
 
 ##### `startIndex`
@@ -308,17 +342,12 @@ defaultValue: `1`
 
 ##### `style`
 
-Custom style configuration.
+Inline styles to apply to the PositionBar component
 
 type: `object`
-
-
-##### `width`
-
-Width of the component (in pixels), e.g. `100`
-
-type: `number`
-defaultValue: `100`
+defaultValue: `{
+  font: "12px Arial",
+}`
 
 
 ### `SequenceOverview` (component)
@@ -327,12 +356,27 @@ defaultValue: `100`
 
 #### Props
 
-##### `height`
+##### `engine`
 
-Height of the SequenceOverview (in pixels), e.g. `50`
+Rendering engine: `canvas` or `webgl` (experimental).
+
+type: `enum('canvas'|'webgl')`
+defaultValue: `"canvas"`
+
+
+##### `height` (required)
+
+Width of the component (in pixels), e.g. `100`
 
 type: `number`
 defaultValue: `50`
+
+
+##### `style`
+
+Custom style configuration.
+
+type: `object`
 
 
 ##### `tileHeight`
@@ -351,14 +395,160 @@ type: `number`
 defaultValue: `5`
 
 
+##### `width` (required)
+
+Width of the component (in pixels), e.g. `100`
+
+type: `number`
+
+
 ### `SequenceViewer` (component)
 
+Component to draw the main sequence alignment.
 
 #### Props
 
+##### `border`
+
+Whether to draw a border.
+
+type: `bool`
+defaultValue: `false`
+
+
+##### `borderColor`
+
+Color of the border. Name, hex or RGB value.
+
+type: `string`
+defaultValue: `"black"`
+
+
+##### `borderWidth`
+
+Width of the border.
+
+type: `number`
+defaultValue: `1`
+
+
+##### `cacheElements`
+
+Number of residues to prerender outside of the visible viewbox.
+
+type: `number`
+defaultValue: `20`
+
+
+##### `onResidueClick`
+
+Callback fired when the mouse pointer clicked a residue.
+
+type: `func`
+
+
+##### `onResidueDoubleClick`
+
+Callback fired when the mouse pointer clicked a residue.
+
+type: `func`
+
+
+##### `onResidueMouseEnter`
+
+Callback fired when the mouse pointer is entering a residue.
+
+type: `func`
+
+
+##### `onResidueMouseLeave`
+
+Callback fired when the mouse pointer is leaving a residue.
+
+type: `func`
+
+
+##### `overflow`
+
+What should happen if content overflows.
+
+type: `enum("hidden"|"auto"|"scroll")`
+defaultValue: `"hidden"`
+
+
+##### `overflowX`
+
+What should happen if x-axis content overflows (overwrites "overflow")
+
+type: `enum("hidden"|"auto"|"scroll"|"initial")`
+defaultValue: `"auto"`
+
+
+##### `overflowY`
+
+What should happen if y-axis content overflows (overwrites "overflow")
+
+type: `enum("hidden"|"auto"|"scroll"|"initial")`
+defaultValue: `"auto"`
+
+
+##### `scrollBarPositionX`
+
+X Position of the scroll bar ("top or "bottom")
+
+type: `enum("top"|"bottom")`
+defaultValue: `"bottom"`
+
+
+##### `scrollBarPositionY`
+
+Y Position of the scroll bar ("left" or "right")
+
+type: `enum("left"|"right")`
+defaultValue: `"right"`
+
+
 ##### `showModBar`
 
-defaultValue: `true`
+Show the custom ModBar
+
+type: `bool`
+defaultValue: `false`
+
+
+##### `textColor`
+
+Color of the text residue letters (name, hex or RGB value)
+
+type: `string`
+defaultValue: `"black"`
+
+
+##### `textFont`
+
+Font to use when drawing the individual residues.
+
+type: `string`
+defaultValue: `"18px Arial"`
+
+
+##### `xGridSize`
+
+Number of residues to cluster in one tile (x-axis) (default: 10)
+
+type: `number`
+defaultValue: `10`
+
+
+##### `yGridSize`
+
+Number of residues to cluster in one tile (y-axis) (default: 10)
+
+type: `number`
+defaultValue: `10`
+
+
+<!-- end generated documentation -->
 
 ### Creating your own MSA components
 
@@ -367,15 +557,23 @@ You can connect your components with it too.
 
 ```jsx
 import React, {Component} from 'react';
-import msaConnect from 'react-msa-viewer';
+import {
+  msaConnect,
+  MSAViewer,
+  SequenceViewer,
+} from '@plotly/react-msa-viewer';
 
-class MyFirstMSAPluginComponent extends Component {
-
+class MyFirstMSAPluginComponent extends React.Component {
   render() {
+    const residue = "E";
+    const style = {
+      width: this.props.tileWidth,
+      height: this.props.tileHeight,
+      backgroundColor: this.props.colorScheme.getColor(residue),
+    }
     return (
-      <div>
-        x: {this.props.xPos},
-        y: {this.props.yPos}
+      <div style={style}>
+        {residue}
       </div>
     );
   }
@@ -383,37 +581,201 @@ class MyFirstMSAPluginComponent extends Component {
 
 const mapStateToProps = state => {
   return {
-    xPos: state.position.xPos,
-    yPos: state.position.yPos,
+    tileHeight: state.props.tileHeight,
+    tileWidth: state.props.tileWidth,
+    colorScheme: state.props.colorScheme,
   }
 }
 
-export default msaConnect(
+const MyFirstMSAPlugin = msaConnect(
   mapStateToProps,
 )(MyFirstMSAPluginComponent);
-```
 
-And then use your plugin in your App:
-
-```js
-import {
-  MSAViewer,
-  SequenceViewer,
-} from 'react-msa-viewer';
-
-import MyFirstMSAPlugin from './MyFirstMSAPlugin'
-
-function MyApp() {
+function MyMSA() {
   return (
-    <MSAViewer sequences={sequences} height={60}>
+    <MSAViewer sequences={sequences}>
       <SequenceViewer />
-      <MyFirstMSA />
+      <br />
+      <MyFirstMSAPlugin />
     </MSAViewer>
   );
 }
 ```
 
+[Open on CodePen](https://codepen.io/greenify/pen/MPLOZE?editors=0010)
+
+However, for performance reasons you need to use a special mixin to listen for
+position events.
+
+```jsx
+import {
+  positionStoreMixin,
+  MSAViewer,
+  SequenceViewer,
+} from '@plotly/react-msa-viewer';
+
+
+class MyFirstMSAPlugin extends React.Component {
+  shouldRerender() {
+     return true;
+  }
+  render() {
+    return (
+      <div>
+        x: {this.position.xPos}, y: {this.position.yPos}
+      </div>
+    );
+  }
+}
+
+// inject the MSAPositionStore as this.position
+positionStoreMixin(MyFirstMSAPlugin, { withPosition: true });
+
+function MyMSA() {
+  return (
+    <MSAViewer sequences={sequences}>
+      <SequenceViewer />
+      <MyFirstMSAPlugin />
+    </MSAViewer>
+  );
+}
+
+ReactDOM.render(<MyMSA />, document.getElementById("my-msa"));
+```
+
+[Open on CodePen](https://codepen.io/greenify/pen/PyVOKM?editors=0010)
+
 Alternatively, you can also listen to events.
+
+Listen to events
+----------------
+
+The `MSAViewer` components (and its subcomponents) provide a variety of callbacks
+like `onResidueClick` that can be used to plug with your code:
+
+```jsx
+import {
+  MSAViewer,
+} from 'react-msa-viewer';
+
+function MyMSA() {
+  return <MSAViewer sequences={sequences} onResidueClick={console.log} />
+}
+```
+
+[Open on CodePen](https://codepen.io/greenify/pen/QZYOep?editors=1011)
+
+Some events also trigger custom DOM events which might simply subscription
+outside of React:
+
+```html
+<html>
+<meta charset="utf-8" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.4.2/react-dom.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.5.2/prop-types.js"></script>
+<script src="https://unpkg.com/@plotly/react-msa-viewer/dist/index.js"></script>
+<body>
+  <div id="my-msa" />
+  <script>
+    var options = {
+      sequences: [
+        {
+          name: "seq.1",
+          sequence: "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED"
+        },
+        {
+          name: "seq.2",
+          sequence: "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP"
+        },
+        {
+          name: "seq.3",
+          sequence: "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP"
+        }
+      ],
+      colorScheme: "zappo"
+    };
+    var el = document.getElementById("my-msa");
+    ReactDOM.render(React.createElement(ReactMSAViewer.MSAViewer, options), el);
+    el.addEventListener('residueClick', (e) => console.log(e.detail));
+  </script>
+</body>
+</html>
+```
+
+[Open on CodePen](https://codepen.io/greenify/pen/yRZPga?editors=1011).
+
+The custom DOM events bubble up the tree and contain their payload in`.detail`.
+
+Sending actions
+---------------
+
+While the most common way to update the MSA is to update its properties, you
+can also send a variety of actions to the MSAViewer.
+
+```jsx
+import {
+  MSAViewer,
+} from 'react-msa-viewer';
+
+class MyMSA extends React.Component {
+  moveLeft = () => {
+    this.msa.movePosition({yMovement: -10})
+  }
+  moveRight = () => {
+    this.msa.movePosition({yMovement: 10})
+  }
+  jumpOrigin = () => {
+    debugger;
+    this.msa.movePosition({yPos: 0})
+  }
+  render() {
+    return (
+      <div>
+        <MSAViewer sequences={sequences} ref={(ref) => this.msa = ref} />
+        <button onClick={this.moveLeft}>Move left</button>
+        <button onClick={this.moveRight}>Move right</button>
+        <button onClick={this.jumpOrigin}>Jump to the origin</button>
+      </div>
+    );
+  }
+}
+```
+
+[Open on CodePen](https://codepen.io/greenify/pen/LgqeNo?editors=0010)
+
+It's also possible to use `actions` to create a payload and dispatch it later:
+
+```jsx
+import {
+  MSAViewer,
+} from 'react-msa-viewer';
+
+class MyMSA extends React.Component {
+  moveLeft = () => {
+    const payload = actions.movePosition({yMovement: -10});
+    this.msa.dispatch(payload);
+  }
+  moveRight = () => {
+    const payload = actions.movePosition({yMovement: 10});
+    this.msa.dispatch(payload);
+  }
+  jumpOrigin = () => {
+    const payload = actions.updatePosition({yPos: 0});
+    this.msa.dispatch(payload);
+  }
+  render() {
+    return (
+      <div>
+        <MSAViewer sequences={sequences} ref={(ref) => this.msa = ref} />
+        <button onClick={this.moveLeft}>Move left</button>
+        <button onClick={this.moveRight}>Move right</button>
+        <button onClick={this.jumpOrigin}>Jump to the origin</button>
+      </div>
+    );
+  }
+}
+```
 
 Development
 -----------

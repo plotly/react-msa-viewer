@@ -16,18 +16,18 @@ const externalProptypesHandler = require('react-docgen-external-proptypes-handle
 const baseDir = __dirname;
 const components = [
   'MSAViewer',
-  'CanvasComponent',
-  'DraggingComponent',
-  'Labels',
-  'OverviewBar',
-  'PositionBar',
-  'SequenceOverview',
-  'SequenceViewer',
+  'Canvas/CanvasComponent',
+  'Canvas/DraggingComponent',
+  'yBars/Labels',
+  'Canvas/OverviewBar',
+  'xBars/PositionBar',
+  'Canvas/SequenceOverview',
+  'Canvas/SequenceViewer',
 ];
 const files = components.map(f => `${__dirname}/../src/components/${f}.js`);
 const ignoredComponents = [
-  'DraggingComponent',
-  'CanvasComponent',
+  'Canvas/DraggingComponent',
+  'Canvas/CanvasComponent',
 ];
 const componentCache = {};
 
@@ -53,8 +53,9 @@ Object.keys(componentCache).forEach(key => {
   }
 });
 
+// build components (except for the ignored ones)
 _.difference(components, ignoredComponents).forEach(component => {
-  buildComponent(component, componentCache[component]);
+  buildComponent(component, componentCache[getComponentName(component)]);
 });
 
 function buildComponent(filepath, api) {
