@@ -244,7 +244,7 @@ SequenceViewerComponent.defaultProps = {
   cacheElements: 20,
   textColor: "black",
   textFont: "18px Arial",
-  overflow: "auto",
+  overflow: "hidden",
   overflowX: "auto",
   overflowY: "auto",
   scrollBarPositionX: "bottom",
