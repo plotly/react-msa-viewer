@@ -6,6 +6,8 @@ module.exports = {
   "transform": {
       "^.+\\.(mjs|jsx|js)$": "babel-jest"
   },
+  "coverageDirectory": "./coverage/",
+  "collectCoverage": true,
   "transformIgnorePatterns": [
     "/node_modules/(?!lodash-es)"
   ]
