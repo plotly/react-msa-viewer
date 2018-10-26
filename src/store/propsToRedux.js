@@ -49,7 +49,7 @@ const mapToActionKeys = partialRight(reduce, (acc, v, k) => {
 const mainStoreActionKeys = mapToActionKeys(mainStoreActions);
 const positionStoreActionKeys = mapToActionKeys(positionStoreActions);
 
-export const propsToRedux = (WrappedComponent) => {
+export const PropsToRedux = (WrappedComponent) => {
   return class PropsToReduxComponent extends Component {
 
     constructor(props) {
@@ -133,4 +133,4 @@ export const propsToRedux = (WrappedComponent) => {
   }
 }
 
-export default propsToRedux;
+export default PropsToRedux;
