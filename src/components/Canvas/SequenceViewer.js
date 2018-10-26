@@ -35,7 +35,7 @@ class SequenceViewerComponent extends DraggingComponent {
 
   constructor(props) {
     super(props);
-    // cache fully drawn tiles (TODO: limit this cache)
+    // cache fully drawn tiles
     this.tileCache = new CanvasCache();
     // cache individual residue cells
     this.residueTileCache = new CanvasCache();
@@ -106,7 +106,6 @@ class SequenceViewerComponent extends DraggingComponent {
     const startY = roundMod(startYTile, yGridSize);
     const startX = roundMod(startXTile, xGridSize);
 
-    // TODO: cut-off end tiles
     for (let i = startY; i < endYTile; i = i + yGridSize) {
       for (let j = startX; j < endXTile; j = j + xGridSize) {
         const canvas = this.renderTile({row: i, column: j, canvas: this.ctx});

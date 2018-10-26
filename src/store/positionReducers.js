@@ -8,7 +8,7 @@
 
 /**
  * A special Redux store that DOES NOT trigger automatically React Tree calculations.
- * This is only used to dispatch very frequent events like `POS_UPDATE`.
+ * This is only used to dispatch very frequent events like `POSITION_{MOVE,UPDATE}`.
  */
 
 import { createStore } from 'redux';

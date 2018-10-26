@@ -12,16 +12,39 @@ import PropTypes from 'prop-types';
  * Mixes in position store functionality in the requiring components.
  * Can't use HoC components as React Tree calculations need to be prevented at the utmost cost.
  *
+ * @param {Object} Component - class to inject the position store into
+ * @param {Object} Configuration - which parts of the position store to inject
+ *
+ * Select from:
+ * - `withY` (`yPosOffset`, `currentViewSequence`)
+ * - `withX` (`xPosOffset`, `currentViewSequencePosition`)
+ * - `withPosition` (`xPos`, yPos`)
+ *
+ * Multiple selections are allowed.
+ *
  * It will inject the following functionality:
  *
- * - updateFromPositionStore (a method which updates this.position from the PositionStore)
- *     setState(position: positionState) is called when shouldRerender returns true
+ * (1) `updateFromPositionStore`
+ *   - a method which updates this.position from the PositionStore)
+ *   - `setState({position: positionState})` is called when `shouldRerender` returns true
+ * (2) `shouldRerender`
+ *  - only if not defined
+ *  - called to determine if the current viewpoint still has enough nodes)
+ *  - checks the respective viewports when `withX` or `withY` have been set
+ *  - calls `updateScrollPosition`
  *
- * - shouldRerender (called to determine if the current viewpoint still has enough nodes)
+ * (3) `updateScrollPosition`
+ *  - only if not defined
+ *  - the default implementation sets `this.el.current.scroll{Left,Top}`
  *
- * Also, it will:
- * - overwrite componentWillMount and inject a subscription to the positionStore (though if a componentWillMount did exist, it will be called)
- * - overwrite componentWillUnmount and unsubscribe from the positionStore (though if a componentWillUnmount did exist, it will be called)
+ * (4) `dispatch` (to access the PositionStore for event dispatching)
+ *
+ * Additionally, it will:
+ * (5) enhance `componentWillMount` to inject a subscription to the positionStore
+ * (6) enhance `componentWillUnmount` to unsubscribe from the positionStore
+ *
+ * However, if a `componentWillMount` or `componentWillUnmount` method did exist,
+ * this will be called first.
  */
 export function positionStoreMixin(Component, {
   withX = false,

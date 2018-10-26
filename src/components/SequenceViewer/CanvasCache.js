@@ -43,7 +43,6 @@ class CanvasCache {
   }
 
   invalidate() {
-    // TODO: destroy the old canvas elements
     this.cache = {};
   }
 }

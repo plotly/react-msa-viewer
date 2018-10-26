@@ -155,5 +155,4 @@ const mapStateToProps = state => {
 
 export default msaConnect(
   mapStateToProps,
-  //mapDispatchToProps
 )(HTMLOverviewBarComponent);
