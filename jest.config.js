@@ -5,6 +5,7 @@ module.exports = {
   "setupFiles": ["jest-canvas-mock"],
   "coverageDirectory": "./coverage/",
   "collectCoverage": true,
+  "coverageReporters": ["lcov", "json"],
   "transformIgnorePatterns": [
     "/node_modules/(?!lodash-es)"
   ]
