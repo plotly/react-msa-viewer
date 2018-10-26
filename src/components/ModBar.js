@@ -51,15 +51,15 @@ class ModBar extends PureComponent {
         //</a>
     return (
       <div style={style}>
-        <a href="" style={linkStyle}>
+        <div style={linkStyle}>
           <ZoomPlusIcon width={iconWidth} height={iconHeight} />
-        </a>
-        <a href="" style={linkStyle}>
+        </div>
+        <div style={linkStyle}>
           <ZoomMinusIcon width={iconWidth} height={iconHeight} />
-        </a>
-        <a href="" style={linkStyle}>
+        </div>
+        <div style={linkStyle}>
           <AutoscaleIcon width={iconWidth} height={iconHeight} />
-        </a>
+        </div>
         <a href="https://plot.ly/"
           target="_blank"
           rel='noreferrer noopener'
