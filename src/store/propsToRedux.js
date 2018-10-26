@@ -15,13 +15,16 @@ import React, { Component } from 'react';
 import createRef from 'create-react-ref/lib/createRef';
 
 import createMSAStore from './createMSAStore';
-import * as actions from './actions';
+import mainStoreActions from './actions';
+import { actions as positionStoreActions } from './positionReducers';
 
 import {MSAPropTypes, PropTypes} from '../PropTypes';
 
 import {
+  partialRight,
   isEqual,
   pick,
+  reduce,
   omit,
 } from 'lodash-es';
 
@@ -38,6 +41,13 @@ Object.keys(MSAPropTypes).forEach(key => {
 
 const attributesToStore = Object.keys(reduxActions);
 
+// precompute [action.key]: action for performance
+const mapToActionKeys = partialRight(reduce, (acc, v, k) => {
+  acc[v.key] = v;
+  return acc;
+}, {})
+const mainStoreActionKeys = mapToActionKeys(mainStoreActions);
+const positionStoreActionKeys = mapToActionKeys(positionStoreActions);
 
 export const propsToRedux = (WrappedComponent) => {
   return class PropsToReduxComponent extends Component {
@@ -81,10 +91,10 @@ export const propsToRedux = (WrappedComponent) => {
             let action;
             switch(reduxActions[prop]){
               case 'updateProp':
-                action = actions[reduxActions[prop]](prop, newProps[prop]);
+                action = mainStoreActions[reduxActions[prop]](prop, newProps[prop]);
                 break;
               default:
-                action = actions[reduxActions[prop]](newProps[prop]);
+                action = mainStoreActions[reduxActions[prop]](newProps[prop]);
             }
             console.log("Prop -> Redux: ", action);
             this.msaStore.dispatch(action);
@@ -92,6 +102,21 @@ export const propsToRedux = (WrappedComponent) => {
             console.error(prop, " is unknown.");
           }
         }
+      }
+    }
+
+    /**
+     * Dispatch actions into the MSAViewer component.
+     *
+     * @param {Object} Action to be be dispatched. Must contain "type" and "payload"
+     */
+    dispatch(action) {
+      if (action.type in mainStoreActionKeys) {
+        this.msaStore.dispatch(action);
+      } else if (action.type in positionStoreActionKeys) {
+        this.el.current.positionStore.dispatch(action);
+      } else {
+        throw new Error("Invalid action", action);
       }
     }
 
