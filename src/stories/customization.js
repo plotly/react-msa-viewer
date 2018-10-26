@@ -9,7 +9,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MSAViewer } from '../lib';
-import { select, withKnobs } from '@storybook/addon-knobs';
+import { select, text, withKnobs } from '@storybook/addon-knobs';
 
 const sequences = [
   {
@@ -66,11 +66,12 @@ storiesOf('Customization', module)
     )
   })
  .add('Custom Labels', function(){
+    const fontSize = select("Font size", ["6px", "8px", "10px", "12px", "14px", "16px", "18px", "20px"], "14px");
     const options = {
       sequences,
       labelComponent: ({sequence}) => {
         return (
-          <div style={{height: 20, fontWeight: 'bold'}}>
+          <div style={{height: 20, fontWeight: 'bold', fontSize}}>
             My: {sequence.name}
           </div>
         );
@@ -81,6 +82,7 @@ storiesOf('Customization', module)
     )
   })
  .add('Custom Markers', function(){
+    const fontSize = select("Font size", ["6px", "8px", "10px", "12px", "14px", "16px", "18px"], "10px");
     const options = {
       sequences,
       markerComponent: ({index}) => {
@@ -89,6 +91,7 @@ storiesOf('Customization', module)
             width: 20,
             display: "inline-block",
             textAlign: "center",
+            fontSize: fontSize,
             fontWeight: 'bold'}}>
             {index}
           </div>
@@ -103,12 +106,12 @@ storiesOf('Customization', module)
     const options = {
       sequences,
       labelStyle: {
-        outline: "1px solid black",
+        outline: text("Label style (outline)", "1px solid black"),
       },
       markerStyle: {
-        outline: "1px solid black",
+        outline: text("Marker style (outline)", "1px solid black"),
       },
-      sequenceTextColor: "blue",
+      sequenceTextColor: text("Sequence color", "blue"),
      };
     return (
       <MSAViewer {...options} />
@@ -117,9 +120,9 @@ storiesOf('Customization', module)
  .add('Custom scollbars', function(){
     const options = {
       sequences,
-      sequenceScrollBarPositionX: "top",
-      sequenceScrollBarPositionY: "left",
-      sequenceOverflow: "scroll",
+      sequenceScrollBarPositionX: select("ScrollBarPositionX", ["top", "bottom"], "top"),
+      sequenceScrollBarPositionY: select("ScrollBarPositionY", ["left", "right"], "left"),
+      sequenceOverflow: select("Overflow", ["scroll", "auto", "hidden"], "scroll"),
      };
     return (
       <MSAViewer {...options} />
