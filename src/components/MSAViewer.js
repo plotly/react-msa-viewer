@@ -35,10 +35,6 @@ import {
   createPositionStore,
 } from '../store/positionReducers';
 
-const labelsAndSequenceDiv = {
-  display: "flex",
-};
-
 const same = "FORWARD_SAME_PROP_NAME";
 
 // list of events with a default implementation
@@ -62,7 +58,6 @@ class MSAViewerComponent extends Component {
       // add default event callback
       forOwn(defaultEvents, (domEventName, eventName) => {
         this["_" + eventName] = (e) => {
-          console.log("onResidueClick");
           const event = new CustomEvent(domEventName, {
             detail: e,
             bubbles: true,
@@ -128,20 +123,14 @@ class MSAViewerComponent extends Component {
 
   componentWillMount() {
     this.positionStore = createPositionStore(positionReducer);
-    this.positionStore.dispatch({
-      type: "MAINSTORE_UPDATE",
-      payload: this.props.msaStore.getState(),
-    });
-    this.positionStore.dispatch({
-      type: "POSITION_UPDATE",
-      payload: {xMovement: 0, yMovement: 0},
-    });
+    this.positionStore.dispatch(
+      actions.updateMainStore(this.props.msaStore.getState())
+    );
     this.msaStoreUnsubscribe = this.props.msaStore.subscribe(() => {
       // forward the msaStore to the positionStore for convenience
-      this.positionStore.dispatch({
-        type: "MAINSTORE_UPDATE",
-        payload: this.props.msaStore.getState(),
-      });
+      this.positionStore.dispatch(
+        actions.updateMainStore(this.props.msaStore.getState())
+      );
     });
   }
 
@@ -171,13 +160,15 @@ class MSAViewerComponent extends Component {
       const currentState = msaStore.getState();
       const labelsPadding = currentState.props.tileHeight;
       const overviewBarHeight = 50;
+      const labelsAndSequenceDiv = {
+        display: "flex",
+      };
       const labelsStyle = {
         paddingTop: labelsPadding + overviewBarHeight,
       }
       const separatorPadding = {
         height: 10,
       };
-
       return (
         <MSAProvider store={msaStore}>
           <div style={labelsAndSequenceDiv} ref={this.el}>
