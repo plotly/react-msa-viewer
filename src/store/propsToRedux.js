@@ -66,7 +66,7 @@ export const PropsToRedux = (WrappedComponent) => {
     }
 
     componentDidMount() {
-      if (this.props.position) {
+      if (this.props.position !== undefined) {
         this.updatePosition(this.props.position);
       }
     }

@@ -154,10 +154,6 @@ export const msaDefaultProps = {
   height: 100,
   tileWidth: 20,
   tileHeight: 20,
-  position: {
-    xPos: 0,
-    yPos: 0,
-  },
   colorScheme: "clustal",
   backgroundColor: "red",
   engine: "canvas", // experimental
