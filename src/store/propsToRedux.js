@@ -17,7 +17,6 @@ import createRef from 'create-react-ref/lib/createRef';
 import {
   forOwn,
   isEqual,
-  partialRight,
   pick,
   reduce,
   omit,
@@ -43,10 +42,10 @@ Object.keys(MSAPropTypes).forEach(key => {
 const attributesToStore = Object.keys(reduxActions);
 
 // precompute [action.key]: action for performance
-const mapToActionKeys = partialRight(reduce, (acc, v, k) => {
+const mapToActionKeys = (obj) => reduce(obj, (acc, v, k) => {
   acc[v.key] = v;
   return acc;
-}, {})
+}, {});
 const mainStoreActionKeys = mapToActionKeys(mainStoreActions);
 const positionStoreActionKeys = mapToActionKeys(positionStoreActions);
 
