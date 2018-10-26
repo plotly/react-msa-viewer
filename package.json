@@ -83,5 +83,11 @@
     "react": ">= 15 < 17",
     "react-dom": ">= 15 < 17"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
