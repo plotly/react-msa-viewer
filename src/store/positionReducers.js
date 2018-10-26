@@ -69,39 +69,43 @@ const relativePositionReducer = (prevState = {position: {xPos: 0, yPos: 0}}, act
  * The main position store reducer which adds "position" to
  * the reduced main store.
  */
-export function positionReducer(state = {position: {xPos: 0, yPos: 0}}, action){
+export function positionReducer(oldState = {position: {xPos: 0, yPos: 0}}, action){
+  let state = oldState;
+  let position = oldState.position;
   switch(action.type) {
-    case updatePosition.key:
-    case movePosition.key:
-      const position = relativePositionReducer(state, action).position;
-      const payload = {
-        xPosOffset: -(position.xPos % state.props.tileWidth),
-        yPosOffset: -(position.yPos % state.props.tileWidth),
-        currentViewSequence: clamp(
-          floor(state.position.yPos / state.props.tileHeight),
-          0,
-          state.sequences.length - 1
-        ),
-        currentViewSequencePosition: clamp(
-          floor(position.xPos / state.props.tileWidth),
-          0,
-          state.sequences.maxLength,
-        ),
-        position,
-      };
-      return {
-        ...state,
-        ...payload,
-      };
-    // merge updates of the main store with this store for now
     case updateMainStore.key:
-      return {
+      // merge updates of the main store with this store for now
+      state = {
         ...state,
         ...action.payload,
-      };
+      }
+      break;
+    case updatePosition.key:
+    case movePosition.key:
+      position = relativePositionReducer(state, action).position;
+      break;
     default:
       return state;
   }
+  const addedState = {
+    xPosOffset: -(position.xPos % state.props.tileWidth),
+    yPosOffset: -(position.yPos % state.props.tileWidth),
+    currentViewSequence: clamp(
+      floor(state.position.yPos / state.props.tileHeight),
+      0,
+      state.sequences.length - 1
+    ),
+    currentViewSequencePosition: clamp(
+      floor(position.xPos / state.props.tileWidth),
+      0,
+      state.sequences.maxLength,
+    ),
+    position,
+  };
+  return {
+    ...state,
+    ...addedState,
+  };
 }
 
 // for future flexibility
