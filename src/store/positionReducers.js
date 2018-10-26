@@ -20,6 +20,8 @@ import {
   clamp,
 } from 'lodash-es';
 
+import assert from '../assert';
+
 // send when the main store changes
 export const updateMainStore = createAction("MAINSTORE_UPDATE");
 // move the position relatively by {xMovement, yMovement}
@@ -55,12 +57,18 @@ const relativePositionReducer = (prevState = {position: {xPos: 0, yPos: 0}}, act
   const pos = prevState.position;
   switch (action.type) {
     case movePosition.key:
+      assert(action.payload.xMovement !== undefined ||
+        action.payload.yMovement !== undefined, "must contain at least xMovement" +
+        " or yMovement");
       const movePayload = {
         xPos: pos.xPos + (action.payload.xMovement || 0),
         yPos: pos.yPos + (action.payload.yMovement || 0),
       }
       return commonPositionReducer(prevState, movePayload);
     case updatePosition.key:
+      assert(action.payload.xPos !== undefined ||
+        action.payload.yPos !== undefined, "must contain at least xPos" +
+        " or yPos");
       const updatePayload = {
         xPos: action.payload.xPos || pos.xPos,
         yPos: action.payload.yPos || pos.yPos,
