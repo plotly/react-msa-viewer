@@ -7,8 +7,6 @@
 */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import renderer from 'react-test-renderer';
 
 import {
   dummySequences,
@@ -17,20 +15,21 @@ import {
 
 import { OverviewBar } from './OverviewBar';
 
+import { mount } from 'enzyme';
+
 it('renders properly', () => {
-  const component = renderer.create(
+  const component = mount(
     <FakePositionStore currentViewSequencePosition={0}>
       <OverviewBar nrXTiles={5} tileWidth={20} width={200} maxLength={100} sequences={[...dummySequences]} />
     </FakePositionStore>
   );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(component).toMatchSnapshot();
 });
 
 it('renders properly with a moved viewport', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<FakePositionStore currentViewSequencePosition={40}>
+  let subscribee;
+  const subscribeHandler = s => subscribee = s;
+  mount(<FakePositionStore currentViewSequencePosition={40} subscribe={subscribeHandler}>
       <OverviewBar nrXTiles={5} tileWidth={20} width={200} maxLength={100} sequences={[...dummySequences]} />
-    </FakePositionStore>, div);
-  ReactDOM.unmountComponentAtNode(div);
+    </FakePositionStore>);
 });
