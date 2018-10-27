@@ -13,6 +13,10 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import MSAViewer from './MSAViewer';
 import dummySequences from '../test/dummySequences';
 
+import {
+  mount
+} from 'enzyme';
+
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<MSAViewer sequences={[...dummySequences]} />, div);
@@ -28,3 +32,7 @@ it('renders without crashing', () => {
   expect(tree).toMatchSnapshot();
 });
 
+it('renders without crashing in enzyome', () => {
+  const msa = mount(<MSAViewer sequences={[...dummySequences]} />);
+  expect(msa).toMatchSnapshot();
+});
