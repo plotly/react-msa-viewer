@@ -10,6 +10,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MSAViewer } from '../lib';
 import { select, text, withKnobs } from '@storybook/addon-knobs';
+import {
+  zipObject,
+} from 'lodash-es';
 
 const sequences = [
   {
@@ -26,6 +29,11 @@ const sequences = [
   },
 ];
 
+// Storybook 4 selects only accepts key/value objects
+function createObject(options) {
+  return zipObject(options, options);
+}
+
 storiesOf('Customization', module)
   .addDecorator(withKnobs)
   .add('Colorschemes', function(){
@@ -37,7 +45,7 @@ storiesOf('Customization', module)
       "zappo",
     ];
     const options = {
-      colorScheme: select("Colorscheme", colorschemes, "zappo"),
+      colorScheme: select("Colorscheme", createObject(colorschemes), "zappo"),
       sequences,
     };
     return (
@@ -66,7 +74,8 @@ storiesOf('Customization', module)
     )
   })
  .add('Custom Labels', function(){
-    const fontSize = select("Font size", ["6px", "8px", "10px", "12px", "14px", "16px", "18px", "20px"], "14px");
+    const fontSizes = ["6px", "8px", "10px", "12px", "14px", "16px", "18px", "20px"];
+    const fontSize = select("Font size", createObject(fontSizes), "14px");
     const options = {
       sequences,
       labelComponent: ({sequence}) => {
@@ -82,7 +91,8 @@ storiesOf('Customization', module)
     )
   })
  .add('Custom Markers', function(){
-    const fontSize = select("Font size", ["6px", "8px", "10px", "12px", "14px", "16px", "18px"], "10px");
+    const fontSizes = ["6px", "8px", "10px", "12px", "14px", "16px", "18px"];
+    const fontSize = select("Font size", createObject(fontSizes), "10px");
     const options = {
       sequences,
       markerComponent: ({index}) => {
@@ -120,9 +130,9 @@ storiesOf('Customization', module)
  .add('Custom scollbars', function(){
     const options = {
       sequences,
-      sequenceScrollBarPositionX: select("ScrollBarPositionX", ["top", "bottom"], "top"),
-      sequenceScrollBarPositionY: select("ScrollBarPositionY", ["left", "right"], "left"),
-      sequenceOverflow: select("Overflow", ["scroll", "auto", "hidden"], "scroll"),
+      sequenceScrollBarPositionX: select("ScrollBarPositionX", createObject(["top", "bottom"]), "top"),
+      sequenceScrollBarPositionY: select("ScrollBarPositionY", createObject(["left", "right"]), "left"),
+      sequenceOverflow: select("Overflow", createObject(["scroll", "auto", "hidden"]), "scroll"),
      };
     return (
       <MSAViewer {...options} />
