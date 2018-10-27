@@ -1,0 +1,300 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders properly 1`] = `
+<div
+  style={
+    Object {
+      "height": undefined,
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "overflow": "hidden",
+        "position": "relative",
+        "whiteSpace": "nowrap",
+        "width": 200,
+      }
+    }
+  >
+    <div>
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 34,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 32,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 35,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 28,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 21,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 35,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 35,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;

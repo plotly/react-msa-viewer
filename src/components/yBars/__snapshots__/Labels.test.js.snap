@@ -1,0 +1,244 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders properly 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "height": 400,
+        "overflow": "hidden",
+        "position": "relative",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    <div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 1
+      </div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 2
+      </div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 3
+      </div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 4
+      </div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 5
+      </div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 6
+      </div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 7
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders properly when only 3 1/2 labels should be visible 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "height": 400,
+        "overflow": "hidden",
+        "position": "relative",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    <div>
+      <div
+        style={
+          Object {
+            "height": 100,
+          }
+        }
+      >
+        sequence 1
+      </div>
+      <div
+        style={
+          Object {
+            "height": 100,
+          }
+        }
+      >
+        sequence 2
+      </div>
+      <div
+        style={
+          Object {
+            "height": 100,
+          }
+        }
+      >
+        sequence 3
+      </div>
+      <div
+        style={
+          Object {
+            "height": 100,
+          }
+        }
+      >
+        sequence 4
+      </div>
+      <div
+        style={
+          Object {
+            "height": 100,
+          }
+        }
+      >
+        sequence 5
+      </div>
+      <div
+        style={
+          Object {
+            "height": 100,
+          }
+        }
+      >
+        sequence 6
+      </div>
+      <div
+        style={
+          Object {
+            "height": 100,
+          }
+        }
+      >
+        sequence 7
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders properly with a moved viewport 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "height": 400,
+        "overflow": "hidden",
+        "position": "relative",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    <div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 1
+      </div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 2
+      </div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 3
+      </div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 4
+      </div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 5
+      </div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 6
+      </div>
+      <div
+        style={
+          Object {
+            "height": 40,
+          }
+        }
+      >
+        sequence 7
+      </div>
+    </div>
+  </div>
+</div>
+`;

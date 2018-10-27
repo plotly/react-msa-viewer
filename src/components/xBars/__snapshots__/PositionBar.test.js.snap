@@ -1,0 +1,546 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders properly 1`] = `
+<div
+  height={15}
+  style={
+    Object {
+      "font": "12px Arial",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "overflow": "hidden",
+        "position": "relative",
+        "whiteSpace": "nowrap",
+        "width": undefined,
+      }
+    }
+  >
+    <div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        1
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        3
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        5
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        7
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        9
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        11
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        13
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        15
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        17
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        19
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders properly with moved viewport 1`] = `
+<div
+  height={15}
+  style={
+    Object {
+      "font": "12px Arial",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "overflow": "hidden",
+        "position": "relative",
+        "whiteSpace": "nowrap",
+        "width": undefined,
+      }
+    }
+  >
+    <div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        61
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        63
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        65
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        67
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        69
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        71
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        73
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        75
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        77
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        79
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        81
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        83
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        .
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      >
+        85
+      </div>
+    </div>
+  </div>
+</div>
+`;

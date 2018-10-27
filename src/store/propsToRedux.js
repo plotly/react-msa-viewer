@@ -35,7 +35,7 @@ const reduxActions = {
 
 Object.keys(MSAPropTypes).forEach(key => {
   if(!(key in reduxActions) && MSAPropTypes[key] !== PropTypes.func) {
-    reduxActions[key] = 'updateProps';
+    reduxActions[key] = 'updateProp';
   }
 });
 
@@ -87,7 +87,7 @@ export const PropsToRedux = (WrappedComponent) => {
               default:
                 action = mainStoreActions[reduxActions[prop]](newProps[prop]);
             }
-            console.log("Prop -> Redux: ", action);
+            console.log("Prop -> Redux: ", action, newProps[prop]);
             this.msaStore.dispatch(action);
           } else {
             console.error(prop, " is unknown.");

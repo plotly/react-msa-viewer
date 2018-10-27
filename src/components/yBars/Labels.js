@@ -132,3 +132,7 @@ const mapStateToProps = state => {
 export default msaConnect(
   mapStateToProps,
 )(HTMLLabelsComponent);
+// for testing
+export {
+  HTMLLabelsComponent as Labels,
+}

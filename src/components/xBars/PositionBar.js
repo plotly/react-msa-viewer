@@ -156,3 +156,7 @@ const mapStateToProps = state => {
 export default msaConnect(
   mapStateToProps,
 )(HTMLPositionBarComponent);
+
+export {
+  HTMLPositionBarComponent as PositionBar,
+}
