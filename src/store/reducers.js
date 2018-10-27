@@ -73,6 +73,7 @@ const sequenceStats = (prevState = {
   currentViewSequencePosition: 0,
 }, action, state) => {
   switch(action.type){
+    case actions.updateProp.key:
     case actions.updateProps.key:
     case actions.updateSequences.key:
       if (state.props && state.props.tileHeight && state.props.tileWidth &&

@@ -32,7 +32,13 @@ it('renders without crashing', () => {
   expect(tree).toMatchSnapshot();
 });
 
-it('renders without crashing in enzyome', () => {
+it('renders without crashing in enzyme', () => {
   const msa = mount(<MSAViewer sequences={[...dummySequences]} />);
+  expect(msa).toMatchSnapshot();
+});
+
+it('it should rerender when new props are given', () => {
+  const msa = mount(<MSAViewer sequences={[...dummySequences]} />);
+  msa.setProps({width: 200, height: 300});
   expect(msa).toMatchSnapshot();
 });
