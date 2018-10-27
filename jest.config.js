@@ -2,7 +2,7 @@
 // https://jestjs.io/docs/en/configuration.html
 
 module.exports = {
-  "setupFiles": ["jest-canvas-mock"],
+  "setupFiles": ["./src/test/setupJest.js", "jest-canvas-mock"],
   "coverageDirectory": "./coverage/",
   "collectCoverage": true,
   "coverageReporters": ["lcov", "json"],
