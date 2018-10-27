@@ -1,10 +1,11 @@
+import { Map } from  'immutable';
 import {
   actions,
   createPositionStore,
   positionReducer,
 } from './positionReducers';
 
-const fakeMainStore = {
+const fakeMainStore = Map({
   props: {
     tileWidth: 50,
     tileHeight: 50,
@@ -18,9 +19,9 @@ const fakeMainStore = {
       length: 20,
     }
   },
-}
+});
 
-describe('positionStore', () => {
+describe('Basic positionStore tests', () => {
   it('should create actions properly', () => {
     const payload = {xPos: 10, yPos: 20};
     expect(actions.updatePosition(payload)).toEqual({
@@ -40,10 +41,10 @@ describe('positionStore', () => {
 
   it('should update the position store after an updateMainStore', () => {
     const store = createPositionStore(positionReducer);
-    store.dispatch(actions.updateMainStore(fakeMainStore));
+    store.dispatch(actions.updateMainStore(fakeMainStore.toObject()));
     expect(store.getState()).toEqual({
       position: { xPos: 0, yPos: 0 },
-      ...fakeMainStore,
+      ...fakeMainStore.toObject(),
       xPosOffset: -0,
       yPosOffset: -0,
       currentViewSequence: 0,
@@ -51,13 +52,18 @@ describe('positionStore', () => {
     });
     expect(fakeMainStore.position).toBeUndefined();
   })
+})
 
+describe('PositionStore tests with an existing mainStore', () => {
+  let store;
+  beforeEach(() => {
+    store = createPositionStore(positionReducer);
+    store.dispatch(actions.updateMainStore(fakeMainStore.toObject()));
+  })
   it('should update the position store after an updatePosition', () => {
-    const store = createPositionStore(positionReducer);
-    store.dispatch(actions.updateMainStore(fakeMainStore));
     store.dispatch(actions.updatePosition({xPos: 20, yPos: 60}));
     expect(store.getState()).toEqual({
-      ...fakeMainStore,
+      ...fakeMainStore.toObject(),
      "currentViewSequencePosition" : 0,
      "xPosOffset" : -20,
      "position" : {
@@ -65,16 +71,14 @@ describe('positionStore', () => {
         "yPos" : 60,
      },
      "yPosOffset" : -10,
-     "currentViewSequence" : 0,
+     "currentViewSequence" : 1,
     });
   })
 
   it('should update the position store after an updatePosition with only xPos', () => {
-    const store = createPositionStore(positionReducer);
-    store.dispatch(actions.updateMainStore(fakeMainStore));
     store.dispatch(actions.updatePosition({xPos: 20}));
     expect(store.getState()).toEqual({
-      ...fakeMainStore,
+      ...fakeMainStore.toObject(),
      "currentViewSequencePosition" : 0,
      "xPosOffset" : -20,
      "position" : {
@@ -87,11 +91,9 @@ describe('positionStore', () => {
   })
 
   it('should update the position store after an updatePosition with only yPos', () => {
-    const store = createPositionStore(positionReducer);
-    store.dispatch(actions.updateMainStore(fakeMainStore));
     store.dispatch(actions.updatePosition({yPos: 60}));
     expect(store.getState()).toEqual({
-      ...fakeMainStore,
+      ...fakeMainStore.toObject(),
      "currentViewSequencePosition" : 0,
      "xPosOffset" : -0,
      "position" : {
@@ -99,17 +101,15 @@ describe('positionStore', () => {
         "yPos" : 60,
      },
      "yPosOffset" : -10,
-     "currentViewSequence" : 0,
+     "currentViewSequence" : 1,
     });
   })
 
   it('should update the position store after multiple updatePosition', () => {
-    const store = createPositionStore(positionReducer);
-    store.dispatch(actions.updateMainStore(fakeMainStore));
     store.dispatch(actions.updatePosition({xPos: 20}));
     store.dispatch(actions.updatePosition({yPos: 60}));
     expect(store.getState()).toEqual({
-      ...fakeMainStore,
+      ...fakeMainStore.toObject(),
      "currentViewSequencePosition" : 0,
      "xPosOffset" : -20,
      "position" : {
@@ -117,16 +117,14 @@ describe('positionStore', () => {
         "yPos" : 60,
      },
      "yPosOffset" : -10,
-     "currentViewSequence" : 0,
+     "currentViewSequence" : 1,
     });
   })
 
   it('should update the position store after an movePosition', () => {
-    const store = createPositionStore(positionReducer);
-    store.dispatch(actions.updateMainStore(fakeMainStore));
     store.dispatch(actions.movePosition({xMovement: 30, yMovement: 40}));
     expect(store.getState()).toEqual({
-      ...fakeMainStore,
+      ...fakeMainStore.toObject(),
      "currentViewSequencePosition" : 0,
      "xPosOffset" : -30,
      "position" : {
@@ -139,11 +137,9 @@ describe('positionStore', () => {
   })
 
   it('should update the position store after an movePosition with only xMovement', () => {
-    const store = createPositionStore(positionReducer);
-    store.dispatch(actions.updateMainStore(fakeMainStore));
     store.dispatch(actions.movePosition({xMovement: 30}));
     expect(store.getState()).toEqual({
-      ...fakeMainStore,
+      ...fakeMainStore.toObject(),
      "currentViewSequencePosition" : 0,
      "xPosOffset" : -30,
      "position" : {
@@ -156,11 +152,9 @@ describe('positionStore', () => {
   })
 
   it('should update the position store after an movePosition with only yMovement', () => {
-    const store = createPositionStore(positionReducer);
-    store.dispatch(actions.updateMainStore(fakeMainStore));
     store.dispatch(actions.movePosition({yMovement: 40}));
     expect(store.getState()).toEqual({
-      ...fakeMainStore,
+      ...fakeMainStore.toObject(),
      "currentViewSequencePosition" : 0,
      "xPosOffset" : -0,
      "position" : {
@@ -173,12 +167,10 @@ describe('positionStore', () => {
   })
 
   it('should update the position store after multiple movePosition', () => {
-    const store = createPositionStore(positionReducer);
-    store.dispatch(actions.updateMainStore(fakeMainStore));
     store.dispatch(actions.movePosition({xMovement: 30, yMovement: 40}));
     store.dispatch(actions.movePosition({xMovement: 50, yMovement: 20}));
     expect(store.getState()).toEqual({
-      ...fakeMainStore,
+      ...fakeMainStore.toObject(),
      "currentViewSequencePosition" : 1,
      "xPosOffset" : -30,
      "position" : {
@@ -186,6 +178,32 @@ describe('positionStore', () => {
         "yPos" : 60,
      },
      "yPosOffset" : -10,
+     "currentViewSequence" : 1,
+    });
+  })
+
+  it('should update the position store after multiple movePosition', () => {
+    const movements = [
+      [0, 1],
+      [1, 0],
+      [1, 2],
+      [1, 1],
+      [1, 0],
+      [0, 1],
+      [0, 0],
+    ];
+    movements.forEach(m => {
+      store.dispatch(actions.movePosition({xMovement: m[0], yMovement: m[1]}));
+    });
+    expect(store.getState()).toEqual({
+      ...fakeMainStore.toObject(),
+     "currentViewSequencePosition" : 0,
+     "xPosOffset" : -4,
+     "position" : {
+        "xPos" : 4,
+        "yPos" : 5,
+     },
+     "yPosOffset" : -5,
      "currentViewSequence" : 0,
     });
   })

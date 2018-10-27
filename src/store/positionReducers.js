@@ -16,8 +16,9 @@ import { createStore } from 'redux';
 import { createAction } from './actions';
 
 import {
-  floor,
   clamp,
+  floor,
+  pick,
 } from 'lodash-es';
 
 import assert from '../assert';
@@ -58,17 +59,17 @@ const relativePositionReducer = (prevState = {position: {xPos: 0, yPos: 0}}, act
   switch (action.type) {
     case movePosition.key:
       assert(action.payload.xMovement !== undefined ||
-        action.payload.yMovement !== undefined, "must contain at least xMovement" +
-        " or yMovement");
-      const movePayload = {
-        xPos: pos.xPos + (action.payload.xMovement || 0),
-        yPos: pos.yPos + (action.payload.yMovement || 0),
-      }
+        action.payload.yMovement !== undefined,
+        "must contain at least xMovement or yMovement");
+      // be sure to copy the previous state
+      const movePayload = {...pos}
+      movePayload.xPos += action.payload.xMovement || 0;
+      movePayload.yPos += action.payload.yMovement || 0;
       return commonPositionReducer(prevState, movePayload);
     case updatePosition.key:
       assert(action.payload.xPos !== undefined ||
-        action.payload.yPos !== undefined, "must contain at least xPos" +
-        " or yPos");
+             action.payload.yPos !== undefined,
+        "must contain at least xPos or yPos");
       const updatePayload = {
         xPos: action.payload.xPos || pos.xPos,
         yPos: action.payload.yPos || pos.yPos,
@@ -90,7 +91,7 @@ export function positionReducer(oldState = {position: {xPos: 0, yPos: 0}}, actio
     case updateMainStore.key:
       // merge updates of the main store with this store for now
       state = {
-        ...state,
+        ...pick(state, ["props", "sequenceStats", "sequences"]),
         ...action.payload,
       }
       break;
@@ -105,7 +106,7 @@ export function positionReducer(oldState = {position: {xPos: 0, yPos: 0}}, actio
     xPosOffset: -(position.xPos % state.props.tileWidth),
     yPosOffset: -(position.yPos % state.props.tileWidth),
     currentViewSequence: clamp(
-      floor(state.position.yPos / state.props.tileHeight),
+      floor(position.yPos / state.props.tileHeight),
       0,
       state.sequences.length - 1
     ),
