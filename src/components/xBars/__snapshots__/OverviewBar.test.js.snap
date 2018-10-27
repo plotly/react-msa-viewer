@@ -14,7 +14,7 @@ exports[`renders properly 1`] = `
         "overflow": "hidden",
         "position": "relative",
         "whiteSpace": "nowrap",
-        "width": undefined,
+        "width": 200,
       }
     }
   >
@@ -234,6 +234,61 @@ exports[`renders properly 1`] = `
             "backgroundColor": "#999999",
             "display": "inline-block",
             "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 50,
+            "textAlign": "center",
+            "width": 20,
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "backgroundColor": "#999999",
+            "display": "inline-block",
+            "height": 35,
             "textAlign": "center",
             "width": 20,
           }

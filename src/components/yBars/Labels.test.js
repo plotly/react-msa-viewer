@@ -15,17 +15,30 @@ import FakePositionStore from '../../test/FakePositionStore';
 import { Labels } from './Labels';
 import MSAViewer from '../MSAViewer';
 
-
 it('renders properly', () => {
   const component = renderer.create(
-    <FakePositionStore
-      currentViewSequence={0}
-    >
-      <Labels
-        nrYTiles={7}
-        tileHeight={40}
-        height={400}
-        sequences={[...dummySequences]} />
+    <FakePositionStore currentViewSequence={0} >
+      <Labels nrYTiles={10} tileHeight={40} height={400} sequences={[...dummySequences]} />
+    </FakePositionStore>
+  );
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+it('renders properly with a moved viewport', () => {
+  const component = renderer.create(
+    <FakePositionStore currentViewSequence={3} >
+      <Labels nrYTiles={10} tileHeight={40} height={400} sequences={[...dummySequences]} />
+    </FakePositionStore>
+  );
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+it('renders properly when only 3 1/2 labels should be visible', () => {
+  const component = renderer.create(
+    <FakePositionStore currentViewSequence={0} yPosOffset={-50} >
+      <Labels nrYTiles={10} tileHeight={100} height={400} sequences={[...dummySequences]} />
     </FakePositionStore>
   );
   let tree = component.toJSON();

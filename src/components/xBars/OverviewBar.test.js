@@ -7,6 +7,7 @@
 */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 
 import {
@@ -19,9 +20,17 @@ import { OverviewBar } from './OverviewBar';
 it('renders properly', () => {
   const component = renderer.create(
     <FakePositionStore currentViewSequencePosition={0}>
-      <OverviewBar nrXTiles={5} tileWidth={20} maxLength={20} sequences={[...dummySequences]} />
+      <OverviewBar nrXTiles={5} tileWidth={20} width={200} maxLength={100} sequences={[...dummySequences]} />
     </FakePositionStore>
   );
   let tree = component.toJSON();
   expect(tree).toMatchSnapshot();
+});
+
+it('renders properly with a moved viewport', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<FakePositionStore currentViewSequencePosition={40}>
+      <OverviewBar nrXTiles={5} tileWidth={20} width={200} maxLength={100} sequences={[...dummySequences]} />
+    </FakePositionStore>, div);
+  ReactDOM.unmountComponentAtNode(div);
 });

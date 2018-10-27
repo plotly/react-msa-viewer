@@ -25,3 +25,13 @@ it('renders properly', () => {
   let tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+it('renders properly with moved viewport', () => {
+  const component = renderer.create(
+    <FakePositionStore currentViewSequencePosition={70}>
+      <PositionBar nrXTiles={5} tileWidth={20} maxLength={100} />
+    </FakePositionStore>
+  );
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});
