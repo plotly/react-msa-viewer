@@ -43,7 +43,7 @@ class YBarComponent extends PureComponent {
     };
     const startTile = Math.max(0, this.position.currentViewSequence - this.props.cacheElements);
     const endTile = Math.min(this.props.sequences.length,
-      startTile + Math.ceil(height/ this.props.tileHeight) + this.props.cacheElements * 2);
+      startTile + Math.ceil(height / this.props.tileHeight) + this.props.cacheElements * 2);
     this.position.lastCurrentViewSequence = this.position.currentViewSequence;
     this.position.lastStartYTile = startTile;
     return (

@@ -6,18 +6,27 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import renderer from 'react-test-renderer';
 
 import dummySequences from '../../test/dummySequences';
+import FakePositionStore from '../../test/FakePositionStore';
 import { Labels } from './Labels';
 import MSAViewer from '../MSAViewer';
 
+
 it('renders properly', () => {
   const component = renderer.create(
-    <MSAViewer sequences={[...dummySequences]}>
-      <Labels nrYTiles={7} tileHeight={40} sequences={[...dummySequences]} />
-    </MSAViewer>
+    <FakePositionStore
+      currentViewSequence={0}
+    >
+      <Labels
+        nrYTiles={7}
+        tileHeight={40}
+        height={400}
+        sequences={[...dummySequences]} />
+    </FakePositionStore>
   );
   let tree = component.toJSON();
   expect(tree).toMatchSnapshot();
