@@ -8,12 +8,23 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ShallowRenderer from 'react-test-renderer/shallow';
+
 import MSAViewer from './MSAViewer';
 import dummySequences from '../test/dummySequences';
-
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<MSAViewer sequences={[...dummySequences]} />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+
+it('renders without crashing', () => {
+  const renderer = new ShallowRenderer();
+  renderer.render(
+    <MSAViewer sequences={[...dummySequences]} />
+  );
+  let tree = renderer.getRenderOutput();
+  expect(tree).toMatchSnapshot();
+});
+
