@@ -9,15 +9,18 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import dummySequences from '../../test/dummySequences';
+import {
+  dummySequences,
+  FakePositionStore,
+} from '../../test';
+
 import { PositionBar } from './PositionBar';
-import MSAViewer from '../MSAViewer';
 
 it('renders properly', () => {
   const component = renderer.create(
-    <MSAViewer sequences={[...dummySequences]}>
+    <FakePositionStore currentViewSequencePosition={0}>
       <PositionBar nrXTiles={5} tileWidth={20} maxLength={20} />
-    </MSAViewer>
+    </FakePositionStore>
   );
   let tree = component.toJSON();
   expect(tree).toMatchSnapshot();
