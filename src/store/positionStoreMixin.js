@@ -7,6 +7,7 @@
 */
 
 import PropTypes from 'prop-types';
+import assert from '../assert';
 
 /**
  * Mixes in position store functionality in the requiring components.
@@ -52,6 +53,9 @@ export function positionStoreMixin(Component, {
   withPosition = false,
 }) {
   Component.prototype.updateFromPositionStore = function() {
+    assert(this.context && this.context.positionMSAStore,
+      "MSA PositionStore needs to be injected"
+    );
     const state = this.context.positionMSAStore.getState();
     this.position = this.position || {};
     if (withPosition) {
