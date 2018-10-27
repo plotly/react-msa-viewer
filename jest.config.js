@@ -8,5 +8,10 @@ module.exports = {
   "coverageReporters": ["lcov", "json"],
   "transformIgnorePatterns": [
     "/node_modules/(?!lodash-es)"
-  ]
+  ],
+  // will come with jest 24
+  // https://github.com/facebook/jest/pull/6143
+  //resolveSnapshotPath: (testPath, snapshotExtension) => {
+    //return testPath.replace('__tests__', '__snapshots__') + snapshotExtension;
+  //},
 };
