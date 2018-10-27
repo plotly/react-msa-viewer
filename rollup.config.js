@@ -30,6 +30,7 @@ export default {
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
       'MSA_DEVELOPMENT_VERSION': version,
+      "const assert = require('assert')": "const assert = {}",
     }),
     babel({
       exclude: 'node_modules/**',
@@ -37,7 +38,7 @@ export default {
     strip({
       debugger: true,
       // defaults to `[ 'console.*', 'assert.*' ]`
-      functions: [ 'console.log', 'assert.*', 'debug', 'alert' ],
+      functions: [ 'console.log', 'assert', 'assert.*', 'debug', 'alert' ],
     }),
     resolve({
       browser: true,
