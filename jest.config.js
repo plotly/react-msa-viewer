@@ -9,6 +9,7 @@ module.exports = {
   "transformIgnorePatterns": [
     "/node_modules/(?!lodash-es)"
   ],
+  "snapshotSerializers": ["enzyme-to-json/serializer"],
   // will come with jest 24
   // https://github.com/facebook/jest/pull/6143
   //resolveSnapshotPath: (testPath, snapshotExtension) => {

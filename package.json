@@ -65,6 +65,7 @@
     "canvas": "^2.0.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
+    "enzyme-to-json": "^3.3.4",
     "immutable": "^3.8.2",
     "jest-canvas-mock": "^1.1.0",
     "react": "16.4.2",
