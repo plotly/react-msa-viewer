@@ -8,3 +8,12 @@ Enzyme.configure({ adapter: new Adapter() });
 global.shallow = shallow;
 global.render = render;
 global.mount = mount;
+
+// Make requestAnimationFrame fire immediately
+global.requestAnimationFrame = (cb) => {
+  // remember to call jest.runAllTimers() for fast-forwarding
+  setTimeout(cb, 0);
+};
+
+// https://jestjs.io/docs/en/timer-mocks.html
+jest.useFakeTimers();
