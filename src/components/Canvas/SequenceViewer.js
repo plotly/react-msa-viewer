@@ -381,3 +381,7 @@ export default msaConnect(
   mapStateToProps,
   //mapDispatchToProps,
 )(SequenceViewerComponent);
+
+export {
+  SequenceViewerComponent as SequenceViewer,
+}

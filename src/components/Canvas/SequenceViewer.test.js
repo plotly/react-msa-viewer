@@ -10,6 +10,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import SequenceViewer from './SequenceViewer';
+import { SequenceViewer as CanvasSequenceViewer } from './SequenceViewer';
 import MSAViewer from '../MSAViewer';
 import {
   dummySequences
@@ -43,13 +44,29 @@ describe('sends movement actions on mousemove events', () => {
     expect(props.width).toBe(400);
     expect(props.height).toBe(140); // only 7 dummy sequences
   });
+})
 
-  //it('should have change the cursor on mousedown', () => {
-  //});
-
-  //it('should move the viewport on mousemove', () => {
-  //});
-
-  //it("shouldn't move the viewport on mousemove after an mouseup", () => {
-  //});
+it("should fire an event on mouseclick", () => {
+  const mockOnClick = jest.fn();
+  const msa = mount(<MSAViewer
+    sequences={[...dummySequences]}
+    width={400} height={200}
+    >
+    <SequenceViewer onResidueClick={mockOnClick} />
+  </MSAViewer>);
+  expect(msa).toMatchSnapshot();
+  const sv = msa.find(CanvasSequenceViewer).instance();
+  const fakeClickEvent = {
+    offsetX: 50,
+    offsetY: 20,
+  };
+  sv.onClick(fakeClickEvent);
+  expect(mockOnClick.mock.calls.length).toBe(1);
+  expect(mockOnClick.mock.calls[0][0]).toEqual({
+    "i": 1, "position": 2, "residue": "E",
+    "sequence": {
+      "name": "sequence 2",
+      "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP"
+    }
+  });
 })
