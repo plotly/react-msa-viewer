@@ -7,23 +7,22 @@
 */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import SequenceViewer from './SequenceViewer';
 import { SequenceViewer as CanvasSequenceViewer } from './SequenceViewer';
 import MSAViewer from '../MSAViewer';
 import {
-  dummySequences
+  dummySequences,
+  FakePositionStore,
 } from '../../test';
 
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<MSAViewer sequences={[...dummySequences]}>
+  const wrapper = mount(<MSAViewer sequences={[...dummySequences]}>
     <SequenceViewer />
-  </MSAViewer>, div);
-  ReactDOM.unmountComponentAtNode(div);
+  </MSAViewer>);
+  expect(wrapper).toMatchSnapshot();
 });
 
 describe('sends movement actions on mousemove events', () => {
@@ -44,6 +43,16 @@ describe('sends movement actions on mousemove events', () => {
     expect(props.width).toBe(400);
     expect(props.height).toBe(140); // only 7 dummy sequences
   });
+
+  it("should change the cursor state on mousedown/mouseup", () => {
+    expect(msa).toMatchSnapshot();
+    const sv = msa.find(CanvasSequenceViewer);
+    expect(sv.state().mouse.cursorState).toBe('grab');
+    sv.instance().onMouseDown({});
+    expect(sv.state().mouse.cursorState).toBe('grabbing');
+    sv.instance().onMouseUp({});
+    expect(sv.state().mouse.cursorState).toBe('grab');
+  })
 })
 
 it("should fire an event on mouseclick", () => {
@@ -70,3 +79,4 @@ it("should fire an event on mouseclick", () => {
     }
   });
 })
+
