@@ -16,14 +16,13 @@ import {
 
 import { PositionBar } from './PositionBar';
 
-it('renders properly', () => {
+it('renders properly (full render)', () => {
   const component = renderer.create(
     <FakePositionStore currentViewSequencePosition={0}>
       <PositionBar nrXTiles={5} tileWidth={20} maxLength={20} />
     </FakePositionStore>
   );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(component).toMatchSnapshot();
 });
 
 it('renders properly with moved viewport', () => {
@@ -32,6 +31,5 @@ it('renders properly with moved viewport', () => {
       <PositionBar nrXTiles={5} tileWidth={20} maxLength={100} />
     </FakePositionStore>
   );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(component).toMatchSnapshot();
 });
