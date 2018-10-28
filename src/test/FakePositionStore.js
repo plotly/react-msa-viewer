@@ -24,15 +24,22 @@ class FakePositionStore extends Component {
     super(props);
     this.positionStore = {
       getState: () => ({
-      ...omit(props, ["subscribe"]),
+        ...omit(this.props, ["subscribe"]),
       }),
-      subscribe: this.props.subscribe,
+      subscribe: this.subscribe,
     };
   }
   getChildContext() {
     return {
       positionMSAStore: this.positionStore,
     };
+  }
+  subscribe = (fn) => {
+    this._subscribe = fn;
+  }
+  componentDidUpdate() {
+    // notify listeners
+    if (this._subscribe) this._subscribe();
   }
   render() {
     return this.props.children;
