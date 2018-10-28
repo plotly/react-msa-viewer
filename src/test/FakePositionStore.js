@@ -9,7 +9,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import createMSAStore from '../store/createMSAStore';
+import MSAProvider from '../store/provider';
+
 import {
+  pick,
   omit,
 } from 'lodash-es';
 
@@ -22,12 +26,20 @@ import {
 class FakePositionStore extends Component {
   constructor(props) {
     super(props);
+    const positionAttributes = [
+      "xPosOffset", "yPosOffset",
+      "currentViewSequence", "currentViewSequencePosition", "position",
+    ]
     this.positionStore = {
       getState: () => ({
-        ...omit(this.props, ["subscribe"]),
+        ...pick(this.props, positionAttributes),
       }),
       subscribe: this.subscribe,
     };
+    // only if defined
+    if (this.props.sequences) {
+      this.msaStore = createMSAStore(omit(props, positionAttributes));
+    }
   }
   getChildContext() {
     return {
@@ -42,7 +54,16 @@ class FakePositionStore extends Component {
     if (this._subscribe) this._subscribe();
   }
   render() {
-    return this.props.children;
+    // only inject the msaStore if defined
+    if (this.msaStore) {
+      return (<MSAProvider store={this.msaStore}>
+        <div>
+          { this.props.children }
+        </div>
+      </MSAProvider>);
+    } else {
+      return this.props.children;
+    }
   }
 }
 
