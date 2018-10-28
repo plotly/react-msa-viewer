@@ -7,8 +7,6 @@
 */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import renderer from 'react-test-renderer';
 
 import {
   dummySequences,
@@ -16,21 +14,48 @@ import {
 } from '../../test';
 
 import { OverviewBar } from './OverviewBar';
+import xBar from './xBar';
 
-it('renders properly', () => {
-  const component = renderer.create(
+import { mount, shallow } from 'enzyme';
+
+it('renders properly (full render)', () => {
+  const component = mount(
     <FakePositionStore currentViewSequencePosition={0}>
       <OverviewBar nrXTiles={5} tileWidth={20} width={200} maxLength={100} sequences={[...dummySequences]} />
     </FakePositionStore>
   );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(component).toMatchSnapshot();
 });
 
 it('renders properly with a moved viewport', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<FakePositionStore currentViewSequencePosition={40}>
-      <OverviewBar nrXTiles={5} tileWidth={20} width={200} maxLength={100} sequences={[...dummySequences]} />
-    </FakePositionStore>, div);
-  ReactDOM.unmountComponentAtNode(div);
+  let msa = mount(<FakePositionStore
+    currentViewSequencePosition={40} xPosOffset={0}>
+    <OverviewBar nrXTiles={5} tileWidth={20} width={100}
+      maxLength={100} sequences={[...dummySequences]} cacheElements={5} />
+    </FakePositionStore>);
+  expect(msa).toMatchSnapshot();
+  const bar = msa.find(xBar);
+  const xBarDiv = bar.instance().el.current;
+  expect(xBarDiv.scrollLeft).toBe(0); // fresh render
+  // call store subscribees
+  msa.setProps({currentViewSequencePosition: 10});
+  msa = msa.update(); // tell enzyme to update itself
+  // view should have moved
+  expect(msa).toMatchSnapshot();
+  expect(xBarDiv.scrollLeft).toBe(100);
+});
+
+it('renders properly with a moved viewport', () => {
+  const msa = shallow(<OverviewBar
+      nrXTiles={5} tileWidth={20} width={100}
+      maxLength={100} sequences={[...dummySequences]} cacheElements={5} />);
+  const positionMSAStore = {
+    getState: () => ({
+      currentViewSequencePosition: 40,
+      xPosOffset: 0,
+    }),
+    subscribe: () => {},
+  };
+  const wrapper = msa.dive({context: {positionMSAStore}});
+  expect(wrapper).toMatchSnapshot();
 });

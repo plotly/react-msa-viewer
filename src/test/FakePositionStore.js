@@ -9,7 +9,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import createMSAStore from '../store/createMSAStore';
+import MSAProvider from '../store/provider';
+
 import {
+  pick,
   omit,
 } from 'lodash-es';
 
@@ -22,25 +26,61 @@ import {
 class FakePositionStore extends Component {
   constructor(props) {
     super(props);
+    const positionAttributes = [
+      "xPosOffset", "yPosOffset",
+      "currentViewSequence", "currentViewSequencePosition", "position",
+    ]
     this.positionStore = {
+      actions: [],
       getState: () => ({
-      ...omit(props, ["subscribe"]),
+        ...pick(this.props, positionAttributes),
       }),
-      subscribe: this.props.subscribe,
+      subscribe: this.subscribe,
+      dispatch: (e) => {
+        this.positionStore.actions.push(e);
+      }
     };
+    // only if defined
+    if (this.props.sequences) {
+      this.msaStore = createMSAStore(omit(props, positionAttributes));
+    }
   }
   getChildContext() {
     return {
       positionMSAStore: this.positionStore,
     };
   }
+  subscribe = (fn) => {
+    this._subscribe = fn;
+  }
+  componentDidUpdate() {
+    // notify listeners
+    if (this._subscribe) this._subscribe();
+  }
   render() {
-    return this.props.children;
+    // only inject the msaStore if defined
+    if (this.msaStore) {
+      return (<MSAProvider store={this.msaStore}>
+        <div>
+          { this.props.children }
+        </div>
+      </MSAProvider>);
+    } else {
+      return this.props.children;
+    }
   }
 }
 
 FakePositionStore.defaultProps = {
   subscribe: () => {},
+  yPosOffset: 0,
+  xPosOffset: 0,
+  currentViewSequence: 0,
+  currentViewSequencePosition: 0,
+  position: {
+    xPos: 0,
+    yPos: 0,
+  },
 }
 
 FakePositionStore.childContextTypes = {

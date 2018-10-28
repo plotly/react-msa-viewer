@@ -7,49 +7,107 @@
 */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import SequenceViewer from './SequenceViewer';
+import { SequenceViewer as CanvasSequenceViewer } from './SequenceViewer';
 import MSAViewer from '../MSAViewer';
 import {
-  dummySequences
+  dummySequences,
+  FakePositionStore,
 } from '../../test';
 
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<MSAViewer sequences={[...dummySequences]}>
+  const wrapper = mount(<MSAViewer sequences={[...dummySequences]}>
     <SequenceViewer />
-  </MSAViewer>, div);
-  ReactDOM.unmountComponentAtNode(div);
+  </MSAViewer>);
+  expect(wrapper).toMatchSnapshot();
 });
 
 describe('sends movement actions on mousemove events', () => {
-  const msa = mount(<MSAViewer sequences={[...dummySequences]}
-    width={400} height={200}
-    >
-    <SequenceViewer />
-  </MSAViewer>);
-  const el = msa.find('canvas').first();
+  let msa;
+  beforeEach(() =>
+    msa = mount(<FakePositionStore sequences={[...dummySequences]}
+      width={400} height={200}
+      >
+      <SequenceViewer />
+    </FakePositionStore>)
+  );
   it('should have correctly rendered the canvas', () => {
+    const el = msa.find('canvas').first();
     const props = el.props();
     expect(props.width).toBe(400);
     expect(props.height).toBe(140); // only 7 dummy sequences
   });
 
   it('should have correctly rendered the parent div', () => {
+    const el = msa.find('canvas').first();
     const props = el.parent().props();
     expect(props.width).toBe(400);
     expect(props.height).toBe(140); // only 7 dummy sequences
   });
 
-  //it('should have change the cursor on mousedown', () => {
-  //});
+  it("should change the cursor state on mousedown/mouseup", () => {
+    expect(msa).toMatchSnapshot();
+    const sv = msa.find(CanvasSequenceViewer);
+    expect(sv.state().mouse.cursorState).toBe('grab');
+    sv.instance().onMouseDown({});
+    expect(sv.state().mouse.cursorState).toBe('grabbing');
+    sv.instance().onMouseUp({});
+    expect(sv.state().mouse.cursorState).toBe('grab');
+  })
 
-  //it('should move the viewport on mousemove', () => {
-  //});
+  it("should send store updates on mousemove between mousedown/mouseup", () => {
+    const sv = msa.find(CanvasSequenceViewer).instance();
+    const ps = msa.instance().positionStore;
+    sv.onMouseMove({pageX: 20, pageY: 10});
+    // shouldn't send updates here
+    expect(ps.actions).toEqual([]);
 
-  //it("shouldn't move the viewport on mousemove after an mouseup", () => {
-  //});
+    sv.onMouseDown({
+      pageX: 20,
+      pageY: 10,
+    });
+    expect(ps.actions).toEqual([]);
+
+    sv.onMouseMove({
+      pageX: 40,
+      pageY: 20,
+    });
+    // should send updates here, but we need to wait for requestAnimationFrame
+    jest.runAllTimers();
+    const expected = [{"payload": {"xMovement": -20, "yMovement": -10}, "type": "POSITION_MOVE"}];
+    expect(ps.actions).toEqual(expected);
+
+    sv.onMouseUp({});
+    // shouldn't send updates here
+    expect(ps.actions).toEqual(expected);
+  })
 })
+
+it("should fire an event on mouseclick", () => {
+  const mockOnClick = jest.fn();
+  const msa = mount(<MSAViewer
+    sequences={[...dummySequences]}
+    width={400} height={200}
+    >
+    <SequenceViewer onResidueClick={mockOnClick} />
+  </MSAViewer>);
+  expect(msa).toMatchSnapshot();
+  const sv = msa.find(CanvasSequenceViewer).instance();
+  const fakeClickEvent = {
+    offsetX: 50,
+    offsetY: 20,
+  };
+  sv.onClick(fakeClickEvent);
+  expect(mockOnClick.mock.calls.length).toBe(1);
+  expect(mockOnClick.mock.calls[0][0]).toEqual({
+    "i": 1, "position": 2, "residue": "E",
+    "sequence": {
+      "name": "sequence 2",
+      "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP"
+    }
+  });
+})
+
