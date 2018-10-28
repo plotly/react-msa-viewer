@@ -31,10 +31,14 @@ class FakePositionStore extends Component {
       "currentViewSequence", "currentViewSequencePosition", "position",
     ]
     this.positionStore = {
+      actions: [],
       getState: () => ({
         ...pick(this.props, positionAttributes),
       }),
       subscribe: this.subscribe,
+      dispatch: (e) => {
+        this.positionStore.actions.push(e);
+      }
     };
     // only if defined
     if (this.props.sequences) {
