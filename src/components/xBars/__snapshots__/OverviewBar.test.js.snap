@@ -1053,7 +1053,7 @@ exports[`renders properly with a moved viewport 2`] = `
           }
         >
           <ListComponent
-            endTile={50}
+            endTile={20}
             maxWidth={300}
             sequences={
               Array [
@@ -1087,190 +1087,14 @@ exports[`renders properly with a moved viewport 2`] = `
                 },
               ]
             }
-            startTile={35}
+            startTile={5}
             tileComponent={[Function]}
             tileWidth={20}
           >
             <div>
               <Bar
-                index={35}
-                key="35"
-              >
-                <div
-                  style={
-                    Object {
-                      "backgroundColor": "#999999",
-                      "display": "inline-block",
-                      "height": 50,
-                      "textAlign": "center",
-                      "width": 20,
-                    }
-                  }
-                />
-              </Bar>
-              <Bar
-                index={36}
-                key="36"
-              >
-                <div
-                  style={
-                    Object {
-                      "backgroundColor": "#999999",
-                      "display": "inline-block",
-                      "height": 50,
-                      "textAlign": "center",
-                      "width": 20,
-                    }
-                  }
-                />
-              </Bar>
-              <Bar
-                index={37}
-                key="37"
-              >
-                <div
-                  style={
-                    Object {
-                      "backgroundColor": "#999999",
-                      "display": "inline-block",
-                      "height": 50,
-                      "textAlign": "center",
-                      "width": 20,
-                    }
-                  }
-                />
-              </Bar>
-              <Bar
-                index={38}
-                key="38"
-              >
-                <div
-                  style={
-                    Object {
-                      "backgroundColor": "#999999",
-                      "display": "inline-block",
-                      "height": 50,
-                      "textAlign": "center",
-                      "width": 20,
-                    }
-                  }
-                />
-              </Bar>
-              <Bar
-                index={39}
-                key="39"
-              >
-                <div
-                  style={
-                    Object {
-                      "backgroundColor": "#999999",
-                      "display": "inline-block",
-                      "height": 35,
-                      "textAlign": "center",
-                      "width": 20,
-                    }
-                  }
-                />
-              </Bar>
-              <Bar
-                index={40}
-                key="40"
-              >
-                <div
-                  style={
-                    Object {
-                      "backgroundColor": "#999999",
-                      "display": "inline-block",
-                      "height": 35,
-                      "textAlign": "center",
-                      "width": 20,
-                    }
-                  }
-                />
-              </Bar>
-              <Bar
-                index={41}
-                key="41"
-              >
-                <div
-                  style={
-                    Object {
-                      "backgroundColor": "#999999",
-                      "display": "inline-block",
-                      "height": 50,
-                      "textAlign": "center",
-                      "width": 20,
-                    }
-                  }
-                />
-              </Bar>
-              <Bar
-                index={42}
-                key="42"
-              >
-                <div
-                  style={
-                    Object {
-                      "backgroundColor": "#999999",
-                      "display": "inline-block",
-                      "height": 35,
-                      "textAlign": "center",
-                      "width": 20,
-                    }
-                  }
-                />
-              </Bar>
-              <Bar
-                index={43}
-                key="43"
-              >
-                <div
-                  style={
-                    Object {
-                      "backgroundColor": "#999999",
-                      "display": "inline-block",
-                      "height": 35,
-                      "textAlign": "center",
-                      "width": 20,
-                    }
-                  }
-                />
-              </Bar>
-              <Bar
-                index={44}
-                key="44"
-              >
-                <div
-                  style={
-                    Object {
-                      "backgroundColor": "#999999",
-                      "display": "inline-block",
-                      "height": 35,
-                      "textAlign": "center",
-                      "width": 20,
-                    }
-                  }
-                />
-              </Bar>
-              <Bar
-                index={45}
-                key="45"
-              >
-                <div
-                  style={
-                    Object {
-                      "backgroundColor": "#999999",
-                      "display": "inline-block",
-                      "height": 50,
-                      "textAlign": "center",
-                      "width": 20,
-                    }
-                  }
-                />
-              </Bar>
-              <Bar
-                index={46}
-                key="46"
+                index={5}
+                key="5"
               >
                 <div
                   style={
@@ -1285,15 +1109,15 @@ exports[`renders properly with a moved viewport 2`] = `
                 />
               </Bar>
               <Bar
-                index={47}
-                key="47"
+                index={6}
+                key="6"
               >
                 <div
                   style={
                     Object {
                       "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 34,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1301,8 +1125,40 @@ exports[`renders properly with a moved viewport 2`] = `
                 />
               </Bar>
               <Bar
-                index={48}
-                key="48"
+                index={7}
+                key="7"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 32,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={8}
+                key="8"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={9}
+                key="9"
               >
                 <div
                   style={
@@ -1317,8 +1173,104 @@ exports[`renders properly with a moved viewport 2`] = `
                 />
               </Bar>
               <Bar
-                index={49}
-                key="49"
+                index={10}
+                key="10"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 28,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={11}
+                key="11"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 21,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={12}
+                key="12"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={13}
+                key="13"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={14}
+                key="14"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={15}
+                key="15"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={16}
+                key="16"
               >
                 <div
                   style={
@@ -1326,6 +1278,54 @@ exports[`renders properly with a moved viewport 2`] = `
                       "backgroundColor": "#999999",
                       "display": "inline-block",
                       "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={17}
+                key="17"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={18}
+                key="18"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={19}
+                key="19"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }

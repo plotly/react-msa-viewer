@@ -28,7 +28,7 @@ it('renders properly (full render)', () => {
 });
 
 it('renders properly with a moved viewport', () => {
-  const msa = mount(<FakePositionStore
+  let msa = mount(<FakePositionStore
     currentViewSequencePosition={40} xPosOffset={0}>
     <OverviewBar nrXTiles={5} tileWidth={20} width={100}
       maxLength={100} sequences={[...dummySequences]} cacheElements={5} />
@@ -39,6 +39,7 @@ it('renders properly with a moved viewport', () => {
   expect(xBarDiv.scrollLeft).toBe(0); // fresh render
   // call store subscribees
   msa.setProps({currentViewSequencePosition: 10});
+  msa = msa.update(); // tell enzyme to update itself
   // view should have moved
   expect(msa).toMatchSnapshot();
   expect(xBarDiv.scrollLeft).toBe(100);
