@@ -48,6 +48,14 @@ class FakePositionStore extends Component {
 
 FakePositionStore.defaultProps = {
   subscribe: () => {},
+  yPosOffset: 0,
+  xPosOffset: 0,
+  currentViewSequence: 0,
+  currentViewSequencePosition: 0,
+  position: {
+    xPos: 0,
+    yPos: 0,
+  },
 }
 
 FakePositionStore.childContextTypes = {

@@ -2,8 +2,17 @@
 
 exports[`renders properly (full render) 1`] = `
 <FakePositionStore
+  currentViewSequence={0}
   currentViewSequencePosition={0}
+  position={
+    Object {
+      "xPos": 0,
+      "yPos": 0,
+    }
+  }
   subscribe={[Function]}
+  xPosOffset={0}
+  yPosOffset={0}
 >
   <HTMLOverviewBarComponent
     cacheElements={10}
@@ -555,9 +564,17 @@ exports[`renders properly (full render) 1`] = `
 
 exports[`renders properly with a moved viewport 1`] = `
 <FakePositionStore
+  currentViewSequence={0}
   currentViewSequencePosition={40}
+  position={
+    Object {
+      "xPos": 0,
+      "yPos": 0,
+    }
+  }
   subscribe={[Function]}
   xPosOffset={0}
+  yPosOffset={0}
 >
   <HTMLOverviewBarComponent
     cacheElements={5}
@@ -949,9 +966,17 @@ exports[`renders properly with a moved viewport 1`] = `
 
 exports[`renders properly with a moved viewport 2`] = `
 <FakePositionStore
+  currentViewSequence={0}
   currentViewSequencePosition={10}
+  position={
+    Object {
+      "xPos": 0,
+      "yPos": 0,
+    }
+  }
   subscribe={[Function]}
   xPosOffset={0}
+  yPosOffset={0}
 >
   <HTMLOverviewBarComponent
     cacheElements={5}

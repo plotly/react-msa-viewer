@@ -3,7 +3,16 @@
 exports[`renders properly 1`] = `
 <FakePositionStore
   currentViewSequence={0}
+  currentViewSequencePosition={0}
+  position={
+    Object {
+      "xPos": 0,
+      "yPos": 0,
+    }
+  }
   subscribe={[Function]}
+  xPosOffset={0}
+  yPosOffset={0}
 >
   <HTMLLabelsComponent
     cacheElements={10}
@@ -210,7 +219,15 @@ exports[`renders properly 1`] = `
 exports[`renders properly when only 3 1/2 labels should be visible 1`] = `
 <FakePositionStore
   currentViewSequence={0}
+  currentViewSequencePosition={0}
+  position={
+    Object {
+      "xPos": 0,
+      "yPos": 0,
+    }
+  }
   subscribe={[Function]}
+  xPosOffset={0}
   yPosOffset={-50}
 >
   <HTMLLabelsComponent
@@ -418,7 +435,15 @@ exports[`renders properly when only 3 1/2 labels should be visible 1`] = `
 exports[`renders properly with a moved viewport (provider version) 1`] = `
 <FakePositionStore
   currentViewSequence={3}
+  currentViewSequencePosition={0}
+  position={
+    Object {
+      "xPos": 0,
+      "yPos": 0,
+    }
+  }
   subscribe={[Function]}
+  xPosOffset={0}
   yPosOffset={0}
 >
   <HTMLLabelsComponent
@@ -623,7 +648,15 @@ Object {
 exports[`renders properly with a moved viewport (provider version) 3`] = `
 <FakePositionStore
   currentViewSequence={6}
+  currentViewSequencePosition={0}
+  position={
+    Object {
+      "xPos": 0,
+      "yPos": 0,
+    }
+  }
   subscribe={[Function]}
+  xPosOffset={0}
   yPosOffset={-20}
 >
   <HTMLLabelsComponent
@@ -775,7 +808,16 @@ exports[`renders properly with a moved viewport (provider version) 3`] = `
 exports[`renders properly with a moved viewport 1`] = `
 <FakePositionStore
   currentViewSequence={3}
+  currentViewSequencePosition={0}
+  position={
+    Object {
+      "xPos": 0,
+      "yPos": 0,
+    }
+  }
   subscribe={[Function]}
+  xPosOffset={0}
+  yPosOffset={0}
 >
   <HTMLLabelsComponent
     cacheElements={10}
