@@ -13,7 +13,8 @@ import React, { PureComponent } from 'react';
  */
 class ListComponent extends PureComponent {
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     this.cache = {};
   }
 

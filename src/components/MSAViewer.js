@@ -65,6 +65,7 @@ class MSAViewerComponent extends Component {
           this.el.current.dispatchEvent(event);
         };
       });
+      this._setupStores();
     }
 
   // List of props forwarded to the SequenceViewer component
@@ -121,7 +122,7 @@ class MSAViewerComponent extends Component {
     return options;
   }
 
-  componentWillMount() {
+  _setupStores() {
     this.positionStore = createPositionStore(positionReducer);
     this.positionStore.dispatch(
       actions.updateMainStore(this.props.msaStore.getState())
