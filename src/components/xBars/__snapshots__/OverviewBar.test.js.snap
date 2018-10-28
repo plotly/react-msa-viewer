@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders properly 1`] = `
+exports[`renders properly (full render) 1`] = `
 <FakePositionStore
   currentViewSequencePosition={0}
   subscribe={[Function]}
@@ -551,4 +551,853 @@ exports[`renders properly 1`] = `
     </XBarComponent>
   </HTMLOverviewBarComponent>
 </FakePositionStore>
+`;
+
+exports[`renders properly with a moved viewport 1`] = `
+<FakePositionStore
+  currentViewSequencePosition={40}
+  subscribe={[Function]}
+  xPosOffset={0}
+>
+  <HTMLOverviewBarComponent
+    cacheElements={5}
+    fillColor="#999999"
+    height={50}
+    maxLength={100}
+    method="conservation"
+    nrXTiles={5}
+    sequences={
+      Array [
+        Object {
+          "name": "sequence 1",
+          "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+        },
+        Object {
+          "name": "sequence 2",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 3",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 4",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 5",
+          "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 6",
+          "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 7",
+          "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+        },
+      ]
+    }
+    tileWidth={20}
+    width={100}
+  >
+    <XBarComponent
+      cacheElements={5}
+      maxLength={100}
+      nrXTiles={5}
+      sequences={
+        Array [
+          Object {
+            "name": "sequence 1",
+            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+          },
+          Object {
+            "name": "sequence 2",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 3",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 4",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 5",
+            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 6",
+            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 7",
+            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+          },
+        ]
+      }
+      tileComponent={[Function]}
+      tileWidth={20}
+      width={100}
+    >
+      <div
+        style={
+          Object {
+            "height": undefined,
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "width": 100,
+            }
+          }
+        >
+          <ListComponent
+            endTile={50}
+            maxWidth={300}
+            sequences={
+              Array [
+                Object {
+                  "name": "sequence 1",
+                  "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                },
+                Object {
+                  "name": "sequence 2",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 3",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 4",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 5",
+                  "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 6",
+                  "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 7",
+                  "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                },
+              ]
+            }
+            startTile={35}
+            tileComponent={[Function]}
+            tileWidth={20}
+          >
+            <div>
+              <Bar
+                index={35}
+                key="35"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={36}
+                key="36"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={37}
+                key="37"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={38}
+                key="38"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={39}
+                key="39"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={40}
+                key="40"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={41}
+                key="41"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={42}
+                key="42"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={43}
+                key="43"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={44}
+                key="44"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={45}
+                key="45"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={46}
+                key="46"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 34,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={47}
+                key="47"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 34,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={48}
+                key="48"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={49}
+                key="49"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+            </div>
+          </ListComponent>
+        </div>
+      </div>
+    </XBarComponent>
+  </HTMLOverviewBarComponent>
+</FakePositionStore>
+`;
+
+exports[`renders properly with a moved viewport 2`] = `
+<FakePositionStore
+  currentViewSequencePosition={10}
+  subscribe={[Function]}
+  xPosOffset={0}
+>
+  <HTMLOverviewBarComponent
+    cacheElements={5}
+    fillColor="#999999"
+    height={50}
+    maxLength={100}
+    method="conservation"
+    nrXTiles={5}
+    sequences={
+      Array [
+        Object {
+          "name": "sequence 1",
+          "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+        },
+        Object {
+          "name": "sequence 2",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 3",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 4",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 5",
+          "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 6",
+          "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 7",
+          "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+        },
+      ]
+    }
+    tileWidth={20}
+    width={100}
+  >
+    <XBarComponent
+      cacheElements={5}
+      maxLength={100}
+      nrXTiles={5}
+      sequences={
+        Array [
+          Object {
+            "name": "sequence 1",
+            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+          },
+          Object {
+            "name": "sequence 2",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 3",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 4",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 5",
+            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 6",
+            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 7",
+            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+          },
+        ]
+      }
+      tileComponent={[Function]}
+      tileWidth={20}
+      width={100}
+    >
+      <div
+        style={
+          Object {
+            "height": undefined,
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "width": 100,
+            }
+          }
+        >
+          <ListComponent
+            endTile={50}
+            maxWidth={300}
+            sequences={
+              Array [
+                Object {
+                  "name": "sequence 1",
+                  "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                },
+                Object {
+                  "name": "sequence 2",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 3",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 4",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 5",
+                  "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 6",
+                  "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 7",
+                  "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                },
+              ]
+            }
+            startTile={35}
+            tileComponent={[Function]}
+            tileWidth={20}
+          >
+            <div>
+              <Bar
+                index={35}
+                key="35"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={36}
+                key="36"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={37}
+                key="37"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={38}
+                key="38"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={39}
+                key="39"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={40}
+                key="40"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={41}
+                key="41"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={42}
+                key="42"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={43}
+                key="43"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={44}
+                key="44"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={45}
+                key="45"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={46}
+                key="46"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 34,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={47}
+                key="47"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 34,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={48}
+                key="48"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={49}
+                key="49"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+            </div>
+          </ListComponent>
+        </div>
+      </div>
+    </XBarComponent>
+  </HTMLOverviewBarComponent>
+</FakePositionStore>
+`;
+
+exports[`renders properly with a moved viewport 3`] = `
+<div
+  style={
+    Object {
+      "height": undefined,
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "overflow": "hidden",
+        "position": "relative",
+        "whiteSpace": "nowrap",
+        "width": 100,
+      }
+    }
+  >
+    <ListComponent
+      endTile={50}
+      maxWidth={300}
+      sequences={
+        Array [
+          Object {
+            "name": "sequence 1",
+            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+          },
+          Object {
+            "name": "sequence 2",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 3",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 4",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 5",
+            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 6",
+            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 7",
+            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+          },
+        ]
+      }
+      startTile={35}
+      tileComponent={[Function]}
+      tileWidth={20}
+    />
+  </div>
+</div>
 `;
