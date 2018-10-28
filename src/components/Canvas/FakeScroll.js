@@ -21,7 +21,8 @@ import requestAnimation from '../../utils/requestAnimation';
  */
 class FakeScroll extends PureComponent {
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     this.el = createRef();
   }
 

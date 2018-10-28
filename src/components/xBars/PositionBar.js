@@ -56,7 +56,8 @@ function createMarker({markerSteps, startIndex, tileWidth,
 */
 class HTMLPositionBarComponent extends PureComponent {
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     this.updateMarker();
   }
 
