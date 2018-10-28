@@ -14,6 +14,7 @@ import {
 } from '../../test';
 
 import { OverviewBar } from './OverviewBar';
+import xBar from './xBar';
 
 import { mount, shallow } from 'enzyme';
 
@@ -27,21 +28,17 @@ it('renders properly (full render)', () => {
 });
 
 it('renders properly with a moved viewport', () => {
-  let subscribee;
-  const subscribeHandler = s => subscribee = s;
   const msa = mount(<FakePositionStore
-    currentViewSequencePosition={40} subscribe={subscribeHandler}
-    xPosOffset={0}>
+    currentViewSequencePosition={40} xPosOffset={0}>
     <OverviewBar nrXTiles={5} tileWidth={20} width={100}
       maxLength={100} sequences={[...dummySequences]} cacheElements={5} />
     </FakePositionStore>);
   expect(msa).toMatchSnapshot();
-  const bar = msa.find(OverviewBar);
-  const xBarDiv = bar.children().first().instance().el.current;
+  const bar = msa.find(xBar);
+  const xBarDiv = bar.instance().el.current;
   expect(xBarDiv.scrollLeft).toBe(0); // fresh render
   // call store subscribees
   msa.setProps({currentViewSequencePosition: 10});
-  subscribee();
   // view should have moved
   expect(msa).toMatchSnapshot();
   expect(xBarDiv.scrollLeft).toBe(100);
