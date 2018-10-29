@@ -14,6 +14,7 @@ import {
 
 import msaConnect from '../../store/connect'
 import shallowSelect from '../../utils/shallowSelect';
+import autobind from '../../utils/autobind';
 
 import XBar from './xBar';
 
@@ -66,7 +67,11 @@ class HTMLPositionBarComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.cache = function(){};
-    this.marker = shallowSelect(partialRight(pick, this.constructor.markerAttributes), this.createMarker.bind(this));
+    autobind(this, 'createMarker');
+    this.marker = shallowSelect(
+      partialRight(pick, this.constructor.markerAttributes),
+      this.createMarker
+    );
   }
 
   createMarker(props) {

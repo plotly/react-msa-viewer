@@ -19,6 +19,7 @@ import { createSelector } from 'reselect';
 import XBar from './xBar';
 import msaConnect from '../../store/connect'
 import shallowSelect from '../../utils/shallowSelect';
+import autobind from '../../utils/autobind';
 import MSAStats from '../../utils/statSeqs';
 
 function createBar({columnHeights, tileWidth, height, fillColor,
@@ -55,7 +56,7 @@ class HTMLOverviewBarComponent extends PureComponent {
     super(props);
     this.cache = function(){};
     this.initializeColumnHeights();
-    this.createBar = this.createBar.bind(this);
+    autobind(this, 'createBar');
     this.bar = shallowSelect(
       s => pick(s, this.constructor.barAttributes),
       this.columnHeights,

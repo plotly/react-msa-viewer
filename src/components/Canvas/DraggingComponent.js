@@ -18,6 +18,7 @@ import Mouse from '../../utils/mouse';
 import ModBar from '../ModBar';
 import FakeScroll from './FakeScroll';
 import requestAnimation from '../../utils/requestAnimation';
+import autobind from '../../utils/autobind';
 
 /**
 Provides dragging support in a canvas for sub-classes.
@@ -59,13 +60,12 @@ class DraggingComponent extends Component {
     this.container = createRef();
 
     // bind events (can't use static properties due to inheritance)
-    ["onMouseEnter", "onMouseLeave", "onMouseDown", "onMouseUp", "onMouseMove",
+    autobind(this,
+      "onMouseEnter", "onMouseLeave", "onMouseDown", "onMouseUp", "onMouseMove",
       "onTouchStart", "onTouchMove", "onTouchEnd", "onTouchCancel",
       "onClick", "onDoubleClick",
-      "draw",
-    ].forEach(prop => {
-        this[prop] = this[prop].bind(this);
-    });
+      "draw"
+    );
 
     this.onViewpointChange();
     // Define internal variables for explicitness
