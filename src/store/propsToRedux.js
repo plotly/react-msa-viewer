@@ -87,7 +87,7 @@ export const PropsToRedux = (WrappedComponent) => {
               default:
                 action = mainStoreActions[reduxActions[prop]](newProps[prop]);
             }
-            console.log("Prop -> Redux: ", action, newProps[prop]);
+            //console.log("Prop -> Redux: ", action, newProps[prop]);
             this.msaStore.dispatch(action);
           } else {
             console.error(prop, " is unknown.");
