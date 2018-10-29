@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import createRef from 'create-react-ref/lib/createRef';
 import {
   forOwn,
-  omit,
 } from 'lodash-es';
 
 import assert from '../assert';
@@ -109,7 +108,7 @@ function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
       if (it.shouldRerender !== undefined) {
         return it.shouldRerender();
       }
-      const cacheElements = this.props.cacheElements || it.props.cacheElements; // TODO
+      const cacheElements = it.props.cacheElements;
       if (withY) {
         if (Math.abs(this.position.currentViewSequence - this.position.lastCurrentViewSequence) >= cacheElements) {
           return true;
@@ -136,7 +135,7 @@ function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
       }
       if (it.el && it.el.current) {
         if (withX) {
-          const tileWidth = this.props.tileWidth || it.props.tileWidth;
+          const tileWidth = it.props.tileWidth;
           let offsetX = -this.position.xPosOffset;
           offsetX += (this.position.lastCurrentViewSequencePosition - this.position.lastStartXTile) * tileWidth;
           if (this.position.currentViewSequencePosition !== this.position.lastCurrentViewSequencePosition) {
@@ -145,7 +144,7 @@ function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
           it.el.current.scrollLeft = offsetX;
         }
         if (withY) {
-          const tileHeight = this.props.tileHeight || it.props.tileHeight;
+          const tileHeight = it.props.tileHeight;
           let offsetY = -this.position.yPosOffset;
           offsetY += (this.position.lastCurrentViewSequence - this.position.lastStartYTile) * tileHeight;
           if (this.position.currentViewSequence !== this.position.lastCurrentViewSequence) {
@@ -169,7 +168,7 @@ function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
         ref:this.el,
         position: this.position,
         positionDispatch: this.dispatch,
-        ...omit(this.props, ['withX', 'withY']),
+        ...this.props,
       });
     }
   }
