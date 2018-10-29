@@ -106,10 +106,9 @@ class DraggingComponent extends Component {
     this.ctxBuffers = [
       this.canvasBuffers[0].current.getContext('2d', {alpha: 'false'}),
       this.canvasBuffers[1].current.getContext('2d', {alpha: 'false'}),
-  ];
+    ];
     // init
     this.swapContexts();
-    this.draw();
     this.container.current.addEventListener('mouseenter', this.onMouseEnter);
     this.container.current.addEventListener('mouseleave', this.onMouseLeave);
     this.container.current.addEventListener('mousedown', this.onMouseDown);
@@ -293,11 +292,6 @@ class DraggingComponent extends Component {
     const relPos = Mouse.rel(e);
     return 0 <= relPos[0] && relPos[0] <= this.props.width &&
            0 <= relPos[1] && relPos[1] <= this.props.height;
-  }
-
-  componentDidUpdate() {
-    // TODO: smarter updates
-    this.draw();
   }
 
   /**
