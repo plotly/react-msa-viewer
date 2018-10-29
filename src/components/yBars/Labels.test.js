@@ -73,7 +73,7 @@ it('renders properly with a moved viewport', () => {
   const bar = mount(msa.getElement(), {context: {positionMSAStore}});
   expect(bar).toMatchSnapshot();
   const yBarDiv = bar.childAt(0).instance().el.current;
-  expect(yBarDiv.scrollTop).toBe(0); // fresh render
+  expect(yBarDiv.scrollTop).toBe(50); // fresh render (with scroll offset set)
   state.currentViewSequence = 5;
   state.yPosOffset = -20;
   subscribee();
@@ -89,7 +89,7 @@ it('renders properly with a moved viewport (provider version)', () => {
       sequences={[...dummySequences]} cacheElements={2} />
     </FakePositionStore>);
   expect(msa).toMatchSnapshot();
-  expect(msa.find(yBar).instance().el.current.scrollTop).toBe(0); // fresh render
+  expect(msa.find(yBar).instance().el.current.scrollTop).toBe(100); // fresh render (with scroll offset set)
   msa.setProps({currentViewSequence: 6, yPosOffset: -20});
   expect(msa.find('withPosition(YBarComponent)').state()).toMatchSnapshot();
   msa = msa.update(); // tell enzyme to update its state to reality
