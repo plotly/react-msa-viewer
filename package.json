@@ -28,7 +28,8 @@
     "prop-types": "^15.6.2",
     "react-addons-shallow-compare": "^15.6.2",
     "react-redux": "^5.1.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "reselect": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
