@@ -63,7 +63,9 @@ class App extends Component {
     });
     return (
       <div>
-        <MSAViewer {...options} />
+        <React.StrictMode>
+          <MSAViewer {...options} />
+        </React.StrictMode>
       </div>
     );
   }
