@@ -177,10 +177,6 @@ exports[`it should rerender when new props are given 1`] = `
                     "currentViewSequencePosition": 0,
                     "lastCurrentViewSequence": 0,
                     "lastStartYTile": 0,
-                    "position": Object {
-                      "xPos": 0,
-                      "yPos": 0,
-                    },
                     "props": Object {
                       "backgroundColor": "red",
                       "colorScheme": ColorScheme {
@@ -538,10 +534,6 @@ exports[`it should rerender when new props are given 1`] = `
                       "currentViewSequencePosition": 0,
                       "lastCurrentViewSequencePosition": 0,
                       "lastStartXTile": 0,
-                      "position": Object {
-                        "xPos": 0,
-                        "yPos": 0,
-                      },
                       "props": Object {
                         "backgroundColor": "red",
                         "colorScheme": ColorScheme {
@@ -1577,10 +1569,6 @@ exports[`it should rerender when new props are given 1`] = `
                       "currentViewSequencePosition": 0,
                       "lastCurrentViewSequencePosition": 0,
                       "lastStartXTile": 0,
-                      "position": Object {
-                        "xPos": 0,
-                        "yPos": 0,
-                      },
                       "props": Object {
                         "backgroundColor": "red",
                         "colorScheme": ColorScheme {
@@ -2661,10 +2649,6 @@ exports[`it should rerender when new props are given 1`] = `
                   Object {
                     "currentViewSequence": 0,
                     "currentViewSequencePosition": 0,
-                    "position": Object {
-                      "xPos": 0,
-                      "yPos": 0,
-                    },
                     "props": Object {
                       "backgroundColor": "red",
                       "colorScheme": ColorScheme {
@@ -2863,10 +2847,6 @@ exports[`it should rerender when new props are given 1`] = `
                         Object {
                           "currentViewSequence": 0,
                           "currentViewSequencePosition": 0,
-                          "position": Object {
-                            "xPos": 0,
-                            "yPos": 0,
-                          },
                           "props": Object {
                             "backgroundColor": "red",
                             "colorScheme": ColorScheme {
@@ -3175,10 +3155,6 @@ exports[`renders without crashing in enzyme 1`] = `
                     "currentViewSequencePosition": 0,
                     "lastCurrentViewSequence": 0,
                     "lastStartYTile": 0,
-                    "position": Object {
-                      "xPos": 0,
-                      "yPos": 0,
-                    },
                     "props": Object {
                       "backgroundColor": "red",
                       "colorScheme": ColorScheme {
@@ -3536,10 +3512,6 @@ exports[`renders without crashing in enzyme 1`] = `
                       "currentViewSequencePosition": 0,
                       "lastCurrentViewSequencePosition": 0,
                       "lastStartXTile": 0,
-                      "position": Object {
-                        "xPos": 0,
-                        "yPos": 0,
-                      },
                       "props": Object {
                         "backgroundColor": "red",
                         "colorScheme": ColorScheme {
@@ -4575,10 +4547,6 @@ exports[`renders without crashing in enzyme 1`] = `
                       "currentViewSequencePosition": 0,
                       "lastCurrentViewSequencePosition": 0,
                       "lastStartXTile": 0,
-                      "position": Object {
-                        "xPos": 0,
-                        "yPos": 0,
-                      },
                       "props": Object {
                         "backgroundColor": "red",
                         "colorScheme": ColorScheme {
@@ -5659,10 +5627,6 @@ exports[`renders without crashing in enzyme 1`] = `
                   Object {
                     "currentViewSequence": 0,
                     "currentViewSequencePosition": 0,
-                    "position": Object {
-                      "xPos": 0,
-                      "yPos": 0,
-                    },
                     "props": Object {
                       "backgroundColor": "red",
                       "colorScheme": ColorScheme {
@@ -5861,10 +5825,6 @@ exports[`renders without crashing in enzyme 1`] = `
                         Object {
                           "currentViewSequence": 0,
                           "currentViewSequencePosition": 0,
-                          "position": Object {
-                            "xPos": 0,
-                            "yPos": 0,
-                          },
                           "props": Object {
                             "backgroundColor": "red",
                             "colorScheme": ColorScheme {

@@ -207,10 +207,6 @@ exports[`renders without crashing 1`] = `
                 Object {
                   "currentViewSequence": 0,
                   "currentViewSequencePosition": 0,
-                  "position": Object {
-                    "xPos": 0,
-                    "yPos": 0,
-                  },
                   "props": Object {
                     "backgroundColor": "red",
                     "colorScheme": ColorScheme {
@@ -409,10 +405,6 @@ exports[`renders without crashing 1`] = `
                       Object {
                         "currentViewSequence": 0,
                         "currentViewSequencePosition": 0,
-                        "position": Object {
-                          "xPos": 0,
-                          "yPos": 0,
-                        },
                         "props": Object {
                           "backgroundColor": "red",
                           "colorScheme": ColorScheme {
@@ -724,10 +716,6 @@ exports[`sends movement actions on mousemove events should change the cursor sta
               Object {
                 "currentViewSequence": 0,
                 "currentViewSequencePosition": 0,
-                "position": Object {
-                  "xPos": 0,
-                  "yPos": 0,
-                },
                 "xPos": 0,
                 "xPosOffset": 0,
                 "yPos": 0,
@@ -842,10 +830,6 @@ exports[`sends movement actions on mousemove events should change the cursor sta
                     Object {
                       "currentViewSequence": 0,
                       "currentViewSequencePosition": 0,
-                      "position": Object {
-                        "xPos": 0,
-                        "yPos": 0,
-                      },
                       "xPos": 0,
                       "xPosOffset": 0,
                       "yPos": 0,
@@ -1081,10 +1065,6 @@ exports[`should fire an event on mouseclick 1`] = `
                 Object {
                   "currentViewSequence": 0,
                   "currentViewSequencePosition": 0,
-                  "position": Object {
-                    "xPos": 0,
-                    "yPos": 0,
-                  },
                   "props": Object {
                     "backgroundColor": "red",
                     "colorScheme": ColorScheme {
@@ -1283,10 +1263,6 @@ exports[`should fire an event on mouseclick 1`] = `
                       Object {
                         "currentViewSequence": 0,
                         "currentViewSequencePosition": 0,
-                        "position": Object {
-                          "xPos": 0,
-                          "yPos": 0,
-                        },
                         "props": Object {
                           "backgroundColor": "red",
                           "colorScheme": ColorScheme {

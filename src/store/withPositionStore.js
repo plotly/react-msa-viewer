@@ -76,7 +76,9 @@ function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
       this.position = this.position || {};
       // copy-over the entire state
       forOwn(state, (v, k) => {
-        this.position[k] = v;
+        if (k !== "position") {
+          this.position[k] = v;
+        }
       });
       if (state.position) {
         this.position.xPos = state.position.xPos;

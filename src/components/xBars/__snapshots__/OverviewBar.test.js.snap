@@ -106,10 +106,6 @@ exports[`renders properly (full render) 1`] = `
             "currentViewSequencePosition": 0,
             "lastCurrentViewSequencePosition": 0,
             "lastStartXTile": 0,
-            "position": Object {
-              "xPos": 0,
-              "yPos": 0,
-            },
             "xPos": 0,
             "xPosOffset": 0,
             "yPos": 0,
@@ -726,10 +722,6 @@ exports[`renders properly with a moved viewport 1`] = `
             "currentViewSequencePosition": 40,
             "lastCurrentViewSequencePosition": 40,
             "lastStartXTile": 35,
-            "position": Object {
-              "xPos": 0,
-              "yPos": 0,
-            },
             "xPos": 0,
             "xPosOffset": 0,
             "yPos": 0,
@@ -1186,10 +1178,6 @@ exports[`renders properly with a moved viewport 2`] = `
             "currentViewSequencePosition": 10,
             "lastCurrentViewSequencePosition": 10,
             "lastStartXTile": 5,
-            "position": Object {
-              "xPos": 0,
-              "yPos": 0,
-            },
             "xPos": 0,
             "xPosOffset": 0,
             "yPos": 0,
