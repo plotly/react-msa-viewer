@@ -10,11 +10,15 @@ import PropTypes from 'prop-types';
 import shallowCompare from 'react-addons-shallow-compare';
 
 import {
-  pick
+  partialRight,
+  pick,
 } from 'lodash-es';
+
+import { createSelector } from 'reselect';
 
 import XBar from './xBar';
 import msaConnect from '../../store/connect'
+import shallowSelect from '../../utils/shallowSelect';
 import MSAStats from '../../utils/statSeqs';
 
 function createBar({columnHeights, tileWidth, height, fillColor,
@@ -41,47 +45,51 @@ function createBar({columnHeights, tileWidth, height, fillColor,
 /**
  * Creates a small overview box of the sequences for a general overview.
  */
-class HTMLOverviewBarComponent extends Component {
+class HTMLOverviewBarComponent extends PureComponent {
+
+  static barAttributes = [
+    "tileWidth", "height", "fillColor", "barStyle", "barAttributes"
+  ];
 
   constructor(props) {
     super(props);
-    this.calculateStats();
+    this.cache = function(){};
+    this.initializeColumnHeights();
+    this.createBar = this.createBar.bind(this);
+    this.bar = shallowSelect(
+      s => pick(s, this.constructor.barAttributes),
+      this.columnHeights,
+      this.createBar,
+    );
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (["height", "sequences", "tileWidth"].some(key=> {
-      return nextProps[key] !== this.props[key];
-    }, true)){
-      if (nextProps["sequences"] !== this.props.sequences) {
-        this.calculateStats();
+  createBar(props, columnHeights) {
+    this.cache = function(){};
+    return createBar({...props, columnHeights});
+  }
+
+  /**
+   * Reduces the `props` object to column height by a `props.method`
+   */
+  initializeColumnHeights() {
+    this.columnHeights = createSelector(
+      p => p.sequences,
+      p => p.method,
+      (sequences, method) => {
+      const stats = MSAStats(sequences.map(e => e.sequence));
+      let result;
+      switch (method) {
+        case "conservation":
+          result = stats.scale(stats.conservation());
+          break;
+        case "information-content":
+          result = stats.scale(stats.ic());
+          break;
+        default:
+          console.error(method + "is an invalid aggregation method for <OverviewBar />");
       }
-      return true;
-    }
-    return shallowCompare(this, nextProps, nextState);
-  }
-
-  // TODO: do smarter caching here (reselect)
-  calculateStats() {
-    const stats = MSAStats(this.props.sequences.map(e => e.sequence));
-    let columnHeights;
-    switch (this.props.method) {
-      case "conservation":
-        columnHeights = stats.scale(stats.conservation());
-        break;
-      case "information-content":
-        columnHeights = stats.scale(stats.ic());
-        break;
-      default:
-        console.error(this.props.method + "is an invalid aggregation method for <OverviewBar />");
-    }
-
-    this.statsBar = createBar({
-      columnHeights: columnHeights,
-      ...pick(this.props, [
-        "tileWidth", "height", "fillColor",
-        "barStyle", "barAttributes",
-      ])
-    });
+      return result;
+    }).bind(this);
   }
 
   render() {
@@ -95,8 +103,9 @@ class HTMLOverviewBarComponent extends Component {
       ...otherProps} = this.props;
     return (
       <XBar
-        tileComponent={this.statsBar}
+        tileComponent={this.bar(this.props)}
         cacheElements={cacheElements}
+        componentCache={this.cache}
         {...otherProps}
       />
     );
