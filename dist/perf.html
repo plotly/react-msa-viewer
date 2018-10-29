@@ -1,0 +1,42 @@
+<html>
+<meta charset="utf-8" />
+<title>react-msa-viewer Demo</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.5.2/prop-types.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.4.2/react-dom.min.js"></script>
+<script src="./index.umd.js"></script>
+<body>
+  <div id="my-msa" />
+  <script>
+  var sequences = [
+    "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+    "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+    "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+    "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+    "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+    "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+    "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+  ];
+
+  var options = {
+    sequences: [],
+    width: 800,
+    height: 800,
+  };
+  for(let i = 0; i < 1000; i++) {
+  	let sequence = "";
+  	for(let j = 0; j < 10; j++) {
+  		sequence += sequences[i % 7];
+  	}
+    options.sequences.push({
+  		name: `sequence ${i}`,
+  		sequence: sequence,
+    });
+  }
+  ReactDOM.render(
+    React.createElement(ReactMSAViewer.MSAViewer, options),
+    document.getElementById('my-msa')
+  );
+  </script>
+</body>
+</html>
