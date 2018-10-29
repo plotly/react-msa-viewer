@@ -9,7 +9,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
   partialRight,
-  pick
+  pick,
 } from 'lodash-es';
 
 import msaConnect from '../../store/connect'
@@ -66,10 +66,12 @@ class HTMLPositionBarComponent extends PureComponent {
   constructor(props) {
     super(props);
     this.cache = function(){};
-    this.marker = shallowSelect(partialRight(pick, this.constructor.markerAttributes), (props) => {
-      this.cache = function(){};
-      return createMarker(props);
-    });
+    this.marker = shallowSelect(partialRight(pick, this.constructor.markerAttributes), this.createMarker.bind(this));
+  }
+
+  createMarker(props) {
+    this.cache = function(){};
+    return createMarker(props);
   }
 
   render() {

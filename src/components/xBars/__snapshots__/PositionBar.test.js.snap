@@ -1,546 +1,1803 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders properly (full render) 1`] = `
-<div
+exports[`renders differently after changed properties 1`] = `
+<HTMLPositionBarComponent
+  cacheElements={10}
   height={15}
+  markerSteps={2}
+  markerStyle={Object {}}
+  maxLength={20}
+  nrXTiles={20}
+  startIndex={1}
   style={
     Object {
       "font": "12px Arial",
     }
   }
+  tileWidth={20}
+/>
+`;
+
+exports[`renders differently after changed properties 2`] = `
+<HTMLPositionBarComponent
+  cacheElements={10}
+  height={15}
+  markerSteps={2}
+  markerStyle={Object {}}
+  maxLength={20}
+  nrXTiles={20}
+  startIndex={1}
+  style={
+    Object {
+      "font": "12px Arial",
+    }
+  }
+  tileWidth={20}
 >
-  <div
+  <withPosition(XBarComponent)
+    cacheElements={10}
+    componentCache={[Function]}
+    height={15}
+    maxLength={20}
+    nrXTiles={20}
     style={
       Object {
-        "overflow": "hidden",
-        "position": "relative",
-        "whiteSpace": "nowrap",
-        "width": undefined,
+        "font": "12px Arial",
       }
     }
+    tileComponent={[Function]}
+    tileWidth={20}
   >
-    <div>
+    <XBarComponent
+      cacheElements={10}
+      componentCache={[Function]}
+      height={15}
+      maxLength={20}
+      nrXTiles={20}
+      position={
+        Object {
+          "currentViewSequence": 0,
+          "currentViewSequencePosition": 10,
+          "lastCurrentViewSequencePosition": 10,
+          "lastStartXTile": 0,
+          "xPos": 0,
+          "xPosOffset": 0,
+          "yPos": 0,
+          "yPosOffset": 0,
+        }
+      }
+      positionDispatch={[Function]}
+      style={
+        Object {
+          "font": "12px Arial",
+        }
+      }
+      tileComponent={[Function]}
+      tileWidth={20}
+    >
       <div
+        height={15}
         style={
           Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
+            "font": "12px Arial",
           }
         }
       >
-        1
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "width": undefined,
+            }
+          }
+        >
+          <ListComponent
+            componentCache={[Function]}
+            endTile={20}
+            maxWidth={NaN}
+            startTile={0}
+            tileComponent={[Function]}
+            tileWidth={20}
+          >
+            <div>
+              <Marker
+                index={0}
+                key="0"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  1
+                </div>
+              </Marker>
+              <Marker
+                index={1}
+                key="1"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={2}
+                key="2"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  3
+                </div>
+              </Marker>
+              <Marker
+                index={3}
+                key="3"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={4}
+                key="4"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  5
+                </div>
+              </Marker>
+              <Marker
+                index={5}
+                key="5"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={6}
+                key="6"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  7
+                </div>
+              </Marker>
+              <Marker
+                index={7}
+                key="7"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={8}
+                key="8"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  9
+                </div>
+              </Marker>
+              <Marker
+                index={9}
+                key="9"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={10}
+                key="10"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  11
+                </div>
+              </Marker>
+              <Marker
+                index={11}
+                key="11"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={12}
+                key="12"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  13
+                </div>
+              </Marker>
+              <Marker
+                index={13}
+                key="13"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={14}
+                key="14"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  15
+                </div>
+              </Marker>
+              <Marker
+                index={15}
+                key="15"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={16}
+                key="16"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  17
+                </div>
+              </Marker>
+              <Marker
+                index={17}
+                key="17"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={18}
+                key="18"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  19
+                </div>
+              </Marker>
+              <Marker
+                index={19}
+                key="19"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+            </div>
+          </ListComponent>
+        </div>
       </div>
+    </XBarComponent>
+  </withPosition(XBarComponent)>
+</HTMLPositionBarComponent>
+`;
+
+exports[`renders differently after changed properties 3`] = `
+<HTMLPositionBarComponent
+  cacheElements={10}
+  height={15}
+  markerSteps={2}
+  markerStyle={
+    Object {
+      "fontColor": "red",
+    }
+  }
+  maxLength={20}
+  nrXTiles={20}
+  startIndex={100}
+  style={
+    Object {
+      "font": "12px Arial",
+    }
+  }
+  tileWidth={20}
+>
+  <withPosition(XBarComponent)
+    cacheElements={10}
+    componentCache={[Function]}
+    height={15}
+    maxLength={20}
+    nrXTiles={20}
+    style={
+      Object {
+        "font": "12px Arial",
+      }
+    }
+    tileComponent={[Function]}
+    tileWidth={20}
+  >
+    <XBarComponent
+      cacheElements={10}
+      componentCache={[Function]}
+      height={15}
+      maxLength={20}
+      nrXTiles={20}
+      position={
+        Object {
+          "currentViewSequence": 0,
+          "currentViewSequencePosition": 10,
+          "lastCurrentViewSequencePosition": 10,
+          "lastStartXTile": 0,
+          "xPos": 0,
+          "xPosOffset": 0,
+          "yPos": 0,
+          "yPosOffset": 0,
+        }
+      }
+      positionDispatch={[Function]}
+      style={
+        Object {
+          "font": "12px Arial",
+        }
+      }
+      tileComponent={[Function]}
+      tileWidth={20}
+    >
       <div
+        height={15}
         style={
           Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
+            "font": "12px Arial",
           }
         }
       >
-        .
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "width": undefined,
+            }
+          }
+        >
+          <ListComponent
+            componentCache={[Function]}
+            endTile={20}
+            maxWidth={NaN}
+            startTile={0}
+            tileComponent={[Function]}
+            tileWidth={20}
+          >
+            <div>
+              <Marker
+                index={0}
+                key="0"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  100
+                </div>
+              </Marker>
+              <Marker
+                index={1}
+                key="1"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={2}
+                key="2"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  102
+                </div>
+              </Marker>
+              <Marker
+                index={3}
+                key="3"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={4}
+                key="4"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  104
+                </div>
+              </Marker>
+              <Marker
+                index={5}
+                key="5"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={6}
+                key="6"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  106
+                </div>
+              </Marker>
+              <Marker
+                index={7}
+                key="7"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={8}
+                key="8"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  108
+                </div>
+              </Marker>
+              <Marker
+                index={9}
+                key="9"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={10}
+                key="10"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  110
+                </div>
+              </Marker>
+              <Marker
+                index={11}
+                key="11"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={12}
+                key="12"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  112
+                </div>
+              </Marker>
+              <Marker
+                index={13}
+                key="13"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={14}
+                key="14"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  114
+                </div>
+              </Marker>
+              <Marker
+                index={15}
+                key="15"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={16}
+                key="16"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  116
+                </div>
+              </Marker>
+              <Marker
+                index={17}
+                key="17"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+              <Marker
+                index={18}
+                key="18"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  118
+                </div>
+              </Marker>
+              <Marker
+                index={19}
+                key="19"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "fontColor": "red",
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                >
+                  .
+                </div>
+              </Marker>
+            </div>
+          </ListComponent>
+        </div>
       </div>
-      <div
-        style={
+    </XBarComponent>
+  </withPosition(XBarComponent)>
+</HTMLPositionBarComponent>
+`;
+
+exports[`renders properly (full render) 1`] = `
+<FakePositionStore
+  currentViewSequence={0}
+  currentViewSequencePosition={0}
+  position={
+    Object {
+      "xPos": 0,
+      "yPos": 0,
+    }
+  }
+  subscribe={[Function]}
+  xPosOffset={0}
+  yPosOffset={0}
+>
+  <HTMLPositionBarComponent
+    cacheElements={10}
+    height={15}
+    markerSteps={2}
+    markerStyle={Object {}}
+    maxLength={20}
+    nrXTiles={5}
+    startIndex={1}
+    style={
+      Object {
+        "font": "12px Arial",
+      }
+    }
+    tileWidth={20}
+  >
+    <withPosition(XBarComponent)
+      cacheElements={10}
+      componentCache={[Function]}
+      height={15}
+      maxLength={20}
+      nrXTiles={5}
+      style={
+        Object {
+          "font": "12px Arial",
+        }
+      }
+      tileComponent={[Function]}
+      tileWidth={20}
+    >
+      <XBarComponent
+        cacheElements={10}
+        componentCache={[Function]}
+        height={15}
+        maxLength={20}
+        nrXTiles={5}
+        position={
           Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
+            "currentViewSequence": 0,
+            "currentViewSequencePosition": 0,
+            "lastCurrentViewSequencePosition": 0,
+            "lastStartXTile": 0,
+            "xPos": 0,
+            "xPosOffset": 0,
+            "yPos": 0,
+            "yPosOffset": 0,
           }
         }
-      >
-        3
-      </div>
-      <div
+        positionDispatch={[Function]}
         style={
           Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
+            "font": "12px Arial",
           }
         }
+        tileComponent={[Function]}
+        tileWidth={20}
       >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
+        <div
+          height={15}
+          style={
+            Object {
+              "font": "12px Arial",
+            }
           }
-        }
-      >
-        5
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        7
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        9
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        11
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        13
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        15
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        17
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        19
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-    </div>
-  </div>
-</div>
+        >
+          <div
+            style={
+              Object {
+                "overflow": "hidden",
+                "position": "relative",
+                "whiteSpace": "nowrap",
+                "width": undefined,
+              }
+            }
+          >
+            <ListComponent
+              componentCache={[Function]}
+              endTile={20}
+              maxWidth={NaN}
+              startTile={0}
+              tileComponent={[Function]}
+              tileWidth={20}
+            >
+              <div>
+                <Marker
+                  index={0}
+                  key="0"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    1
+                  </div>
+                </Marker>
+                <Marker
+                  index={1}
+                  key="1"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={2}
+                  key="2"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    3
+                  </div>
+                </Marker>
+                <Marker
+                  index={3}
+                  key="3"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={4}
+                  key="4"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    5
+                  </div>
+                </Marker>
+                <Marker
+                  index={5}
+                  key="5"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={6}
+                  key="6"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    7
+                  </div>
+                </Marker>
+                <Marker
+                  index={7}
+                  key="7"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={8}
+                  key="8"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    9
+                  </div>
+                </Marker>
+                <Marker
+                  index={9}
+                  key="9"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={10}
+                  key="10"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    11
+                  </div>
+                </Marker>
+                <Marker
+                  index={11}
+                  key="11"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={12}
+                  key="12"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    13
+                  </div>
+                </Marker>
+                <Marker
+                  index={13}
+                  key="13"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={14}
+                  key="14"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    15
+                  </div>
+                </Marker>
+                <Marker
+                  index={15}
+                  key="15"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={16}
+                  key="16"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    17
+                  </div>
+                </Marker>
+                <Marker
+                  index={17}
+                  key="17"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={18}
+                  key="18"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    19
+                  </div>
+                </Marker>
+                <Marker
+                  index={19}
+                  key="19"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+              </div>
+            </ListComponent>
+          </div>
+        </div>
+      </XBarComponent>
+    </withPosition(XBarComponent)>
+  </HTMLPositionBarComponent>
+</FakePositionStore>
 `;
 
 exports[`renders properly with moved viewport 1`] = `
-<div
-  height={15}
-  style={
+<FakePositionStore
+  currentViewSequence={0}
+  currentViewSequencePosition={70}
+  position={
     Object {
-      "font": "12px Arial",
+      "xPos": 0,
+      "yPos": 0,
     }
   }
+  subscribe={[Function]}
+  xPosOffset={0}
+  yPosOffset={0}
 >
-  <div
+  <HTMLPositionBarComponent
+    cacheElements={10}
+    height={15}
+    markerSteps={2}
+    markerStyle={Object {}}
+    maxLength={100}
+    nrXTiles={5}
+    startIndex={1}
     style={
       Object {
-        "overflow": "hidden",
-        "position": "relative",
-        "whiteSpace": "nowrap",
-        "width": undefined,
+        "font": "12px Arial",
       }
     }
+    tileWidth={20}
   >
-    <div>
-      <div
-        style={
+    <withPosition(XBarComponent)
+      cacheElements={10}
+      componentCache={[Function]}
+      height={15}
+      maxLength={100}
+      nrXTiles={5}
+      style={
+        Object {
+          "font": "12px Arial",
+        }
+      }
+      tileComponent={[Function]}
+      tileWidth={20}
+    >
+      <XBarComponent
+        cacheElements={10}
+        componentCache={[Function]}
+        height={15}
+        maxLength={100}
+        nrXTiles={5}
+        position={
           Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
+            "currentViewSequence": 0,
+            "currentViewSequencePosition": 70,
+            "lastCurrentViewSequencePosition": 70,
+            "lastStartXTile": 60,
+            "xPos": 0,
+            "xPosOffset": 0,
+            "yPos": 0,
+            "yPosOffset": 0,
           }
         }
-      >
-        61
-      </div>
-      <div
+        positionDispatch={[Function]}
         style={
           Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
+            "font": "12px Arial",
           }
         }
+        tileComponent={[Function]}
+        tileWidth={20}
       >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
+        <div
+          height={15}
+          style={
+            Object {
+              "font": "12px Arial",
+            }
           }
-        }
-      >
-        63
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        65
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        67
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        69
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        71
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        73
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        75
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        77
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        79
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        81
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        83
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        .
-      </div>
-      <div
-        style={
-          Object {
-            "display": "inline-block",
-            "textAlign": "center",
-            "width": 20,
-          }
-        }
-      >
-        85
-      </div>
-    </div>
-  </div>
-</div>
+        >
+          <div
+            style={
+              Object {
+                "overflow": "hidden",
+                "position": "relative",
+                "whiteSpace": "nowrap",
+                "width": undefined,
+              }
+            }
+          >
+            <ListComponent
+              componentCache={[Function]}
+              endTile={85}
+              maxWidth={NaN}
+              startTile={60}
+              tileComponent={[Function]}
+              tileWidth={20}
+            >
+              <div>
+                <Marker
+                  index={60}
+                  key="60"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    61
+                  </div>
+                </Marker>
+                <Marker
+                  index={61}
+                  key="61"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={62}
+                  key="62"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    63
+                  </div>
+                </Marker>
+                <Marker
+                  index={63}
+                  key="63"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={64}
+                  key="64"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    65
+                  </div>
+                </Marker>
+                <Marker
+                  index={65}
+                  key="65"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={66}
+                  key="66"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    67
+                  </div>
+                </Marker>
+                <Marker
+                  index={67}
+                  key="67"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={68}
+                  key="68"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    69
+                  </div>
+                </Marker>
+                <Marker
+                  index={69}
+                  key="69"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={70}
+                  key="70"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    71
+                  </div>
+                </Marker>
+                <Marker
+                  index={71}
+                  key="71"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={72}
+                  key="72"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    73
+                  </div>
+                </Marker>
+                <Marker
+                  index={73}
+                  key="73"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={74}
+                  key="74"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    75
+                  </div>
+                </Marker>
+                <Marker
+                  index={75}
+                  key="75"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={76}
+                  key="76"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    77
+                  </div>
+                </Marker>
+                <Marker
+                  index={77}
+                  key="77"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={78}
+                  key="78"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    79
+                  </div>
+                </Marker>
+                <Marker
+                  index={79}
+                  key="79"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={80}
+                  key="80"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    81
+                  </div>
+                </Marker>
+                <Marker
+                  index={81}
+                  key="81"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={82}
+                  key="82"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    83
+                  </div>
+                </Marker>
+                <Marker
+                  index={83}
+                  key="83"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    .
+                  </div>
+                </Marker>
+                <Marker
+                  index={84}
+                  key="84"
+                >
+                  <div
+                    style={
+                      Object {
+                        "display": "inline-block",
+                        "textAlign": "center",
+                        "width": 20,
+                      }
+                    }
+                  >
+                    85
+                  </div>
+                </Marker>
+              </div>
+            </ListComponent>
+          </div>
+        </div>
+      </XBarComponent>
+    </withPosition(XBarComponent)>
+  </HTMLPositionBarComponent>
+</FakePositionStore>
 `;

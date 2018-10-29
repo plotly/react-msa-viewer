@@ -7,17 +7,18 @@
 */
 
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { mount, shallow } from 'enzyme';
+
+import { mountWithContext } from '../../test/withContext';
 
 import {
-  dummySequences,
   FakePositionStore,
 } from '../../test';
 
 import { PositionBar } from './PositionBar';
 
 it('renders properly (full render)', () => {
-  const component = renderer.create(
+  const component = mount(
     <FakePositionStore currentViewSequencePosition={0}>
       <PositionBar nrXTiles={5} tileWidth={20} maxLength={20} />
     </FakePositionStore>
@@ -26,10 +27,31 @@ it('renders properly (full render)', () => {
 });
 
 it('renders properly with moved viewport', () => {
-  const component = renderer.create(
+  const component = mount(
     <FakePositionStore currentViewSequencePosition={70}>
       <PositionBar nrXTiles={5} tileWidth={20} maxLength={100} />
     </FakePositionStore>
   );
   expect(component).toMatchSnapshot();
+});
+
+it('renders differently after changed properties', () => {
+  const spy = jest.spyOn(PositionBar.prototype, "createMarker");
+  const component = shallow(
+    <FakePositionStore currentViewSequencePosition={10}>
+      <PositionBar nrXTiles={20} tileWidth={20} maxLength={20} />
+    </FakePositionStore>
+  );
+  expect(component).toMatchSnapshot();
+  let wrapper = mountWithContext(component);
+  expect(wrapper).toMatchSnapshot();
+  expect(spy.mock.calls.length).toBe(1);
+
+  wrapper.setProps({
+    startIndex: 100,
+    markerStyle: {fontColor: "red"},
+  });
+  expect(wrapper).toMatchSnapshot();
+  expect(spy.mock.calls.length).toBe(2);
+  spy.mockRestore();
 });
