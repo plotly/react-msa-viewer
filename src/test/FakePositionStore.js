@@ -38,6 +38,9 @@ class FakePositionStore extends Component {
       subscribe: this.subscribe,
       dispatch: (e) => {
         this.positionStore.actions.push(e);
+        if (this._subscribe !== undefined) {
+          this._subscribe();
+        }
       }
     };
     // only if defined
