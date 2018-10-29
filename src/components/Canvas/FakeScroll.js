@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 
 import createRef from 'create-react-ref/lib/createRef';
 import { movePosition } from '../../store/positionReducers';
-import positionStoreMixin from '../../store/positionStoreMixin';
+import withPositionStore from '../../store/withPositionStore';
 
 import requestAnimation from '../../utils/requestAnimation';
 
@@ -28,17 +28,17 @@ class FakeScroll extends PureComponent {
   onScroll = (e) => {
     requestAnimation(this, () => {
       const movement = {
-        xMovement: this.el.current.scrollLeft - this.position.xPos,
-        yMovement: this.el.current.scrollTop - this.position.yPos,
+        xMovement: this.el.current.scrollLeft - this.props.position.xPos,
+        yMovement: this.el.current.scrollTop - this.props.position.yPos,
       };
-      this.dispatch(movePosition(movement));
+      this.props.positionDispatch(movePosition(movement));
     });
   };
 
   updateScrollPosition = () => {
     if (!this.el || !this.el.current) return;
-    this.el.current.scrollTop = this.position.yPos;
-    this.el.current.scrollLeft = this.position.xPos;
+    this.el.current.scrollTop = this.props.position.yPos;
+    this.el.current.scrollLeft = this.props.position.xPos;
   }
 
   checkOverflow(overflow, {withX = false, withY = false}) {
@@ -136,8 +136,4 @@ FakeScroll.propTypes = {
   positionY: PropTypes.oneOf(["left", "right"]),
 }
 
-positionStoreMixin(FakeScroll, {
-  withPosition: true,
-});
-
-export default FakeScroll;
+export default withPositionStore(FakeScroll, {withX: true, withY: true});

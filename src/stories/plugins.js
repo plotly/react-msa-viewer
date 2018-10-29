@@ -11,7 +11,7 @@ import { storiesOf } from '@storybook/react';
 import {
   msaConnect,
   MSAViewer,
-  positionStoreMixin,
+  withPositionStore,
   SequenceViewer,
 } from '../lib';
 
@@ -35,14 +35,14 @@ storiesOf('Plugins', module)
 
     class MyFirstMSAPluginComponent extends Component {
       // called on every position update (e.g. mouse movement or scrolling)
-      shouldRerender() {
+      shouldRerender(newPosition) {
         return true;
       }
       render() {
         return (
           <div>
-            x: {this.position.xPos},
-            y: {this.position.yPos}
+            x: {this.props.position.xPos},
+            y: {this.props.position.yPos}
           </div>
         );
       }
@@ -50,7 +50,7 @@ storiesOf('Plugins', module)
 
     // inject position awareness (this is done to avoid react tree computations)
     // "performance is the root of all evil"
-    positionStoreMixin(MyFirstMSAPluginComponent, {withPosition: true});
+    const MyFirstMSAPluginConnected = withPositionStore(MyFirstMSAPluginComponent);
 
     // select attributes from the main redux store
     const mapStateToProps = state => {
@@ -63,7 +63,7 @@ storiesOf('Plugins', module)
     // subscribe to the main redux store
     const MyFirstMSAPlugin = msaConnect(
       mapStateToProps,
-    )(MyFirstMSAPluginComponent);
+    )(MyFirstMSAPluginConnected);
 
     return (
       <MSAViewer sequences={sequences} height={60}>

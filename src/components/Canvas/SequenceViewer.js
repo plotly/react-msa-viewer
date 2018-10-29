@@ -20,8 +20,8 @@ import TilingGrid from './CanvasTilingGrid';
 import CanvasCache from './CanvasCache';
 
 import { movePosition } from '../../store/positionReducers';
-import positionStoreMixin from '../../store/positionStoreMixin';
-import msaConnect from '../../store/connect'
+import msaConnect from '../../store/connect';
+import withPositionStore from '../../store/withPositionStore';
 
 import Mouse from '../../utils/mouse';
 import { roundMod } from '../../utils/math';
@@ -62,8 +62,8 @@ class SequenceViewerComponent extends DraggingComponent {
 
   // figures out from where to start drawing
   getTilePositions() {
-    const startXTile = Math.max(0, this.position.currentViewSequencePosition - this.props.cacheElements);
-    const startYTile = Math.max(0, this.position.currentViewSequence - this.props.cacheElements);
+    const startXTile = Math.max(0, this.props.position.currentViewSequencePosition - this.props.cacheElements);
+    const startYTile = Math.max(0, this.props.position.currentViewSequence - this.props.cacheElements);
     const endYTile = Math.min(this.props.sequences.length,
       startYTile + this.props.nrYTiles + 2 * this.props.cacheElements,
     );
@@ -111,8 +111,8 @@ class SequenceViewerComponent extends DraggingComponent {
         const canvas = this.renderTile({row: i, column: j, canvas: this.ctx});
         const width = xGridSize * this.props.tileWidth;
         const height = yGridSize * this.props.tileHeight;
-        const yPos = (i - this.position.currentViewSequence) * this.props.tileHeight + this.position.yPosOffset;
-        const xPos = (j - this.position.currentViewSequencePosition) * this.props.tileWidth + this.position.xPosOffset;
+        const yPos = (i - this.props.position.currentViewSequence) * this.props.tileHeight + this.props.position.yPosOffset;
+        const xPos = (j - this.props.position.currentViewSequencePosition) * this.props.tileWidth + this.props.position.xPosOffset;
         this.ctx.drawImage(canvas, 0, 0, width, height,
           xPos, yPos, width, height);
       }
@@ -124,15 +124,15 @@ class SequenceViewerComponent extends DraggingComponent {
       xMovement: oldPos[0] - newPos[0],
       yMovement: oldPos[1] - newPos[1],
     };
-    this.dispatch(movePosition(relativeMovement));
+    this.props.positionDispatch(movePosition(relativeMovement));
   }
 
   positionToSequence(pos) {
     const sequences = this.props.sequences.raw;
-    const seqNr = clamp(floor((this.position.yPos + pos.yPos) / this.props.tileHeight), 0, sequences.length - 1);
+    const seqNr = clamp(floor((this.props.position.yPos + pos.yPos) / this.props.tileHeight), 0, sequences.length - 1);
     const sequence = sequences[seqNr];
 
-    const position = clamp(floor((this.position.xPos + pos.xPos) / this.props.tileWidth), 0, sequence.sequence.length - 1);
+    const position = clamp(floor((this.props.position.xPos + pos.xPos) / this.props.tileWidth), 0, sequence.sequence.length - 1);
     return {
       i: seqNr,
       sequence,
@@ -142,10 +142,6 @@ class SequenceViewerComponent extends DraggingComponent {
   }
 
   updateScrollPosition = () => {
-    this.draw();
-  }
-
-  componentDidUpdate() {
     this.draw();
   }
 
@@ -226,12 +222,6 @@ class SequenceViewerComponent extends DraggingComponent {
     return super.render();
   }
 }
-
-positionStoreMixin(SequenceViewerComponent, {
-  withX: true,
-  withY: true,
-  withPosition: true,
-});
 
 SequenceViewerComponent.defaultProps = {
   showModBar: false,
@@ -370,17 +360,11 @@ const mapStateToProps = state => {
   }
 }
 
-
-//const mapDispatchToProps = dispatch => {
-  //return {
-    //updatePosition: flow(updatePosition, dispatch),
-  //}
-//}
+const SV = withPositionStore(SequenceViewerComponent, {withX: true, withY: true});
 
 export default msaConnect(
   mapStateToProps,
-  //mapDispatchToProps,
-)(SequenceViewerComponent);
+)(SV);
 
 export {
   SequenceViewerComponent as SequenceViewer,

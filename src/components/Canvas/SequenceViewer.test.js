@@ -84,6 +84,46 @@ describe('sends movement actions on mousemove events', () => {
     // shouldn't send updates here
     expect(ps.actions).toEqual(expected);
   })
+
+  it("should only rerender on mousemove actions when necessary", () => {
+    const sv = msa.find(CanvasSequenceViewer).instance();
+    const ps = msa.instance().positionStore;
+    const oldDraw = sv.draw();
+    sv.draw = jest.fn();
+    // restore old state;
+    afterAll(() => {
+      sv.draw = oldDraw;
+    });
+
+    sv.onMouseMove({pageX: 20, pageY: 10});
+    // shouldn't trigger a redraw
+    expect(sv.draw.mock.calls.length).toBe(0);
+
+    sv.onMouseDown({
+      pageX: 20,
+      pageY: 10,
+    });
+    expect(sv.draw.mock.calls.length).toBe(0);
+
+    sv.onMouseMove({
+      pageX: 40,
+      pageY: 20,
+    });
+    // should send updates here, but we need to wait for requestAnimationFrame
+    jest.runAllTimers();
+    expect(sv.draw.mock.calls.length).toBe(1);
+
+    sv.onMouseUp({});
+    // shouldn't send updates here
+    expect(sv.draw.mock.calls.length).toBe(1);
+
+    // no redraws on mouse{Enter,Leave}
+    sv.onMouseEnter({});
+    expect(sv.draw.mock.calls.length).toBe(1);
+
+    sv.onMouseEnter({});
+    expect(sv.draw.mock.calls.length).toBe(1);
+  })
 })
 
 it("should fire an event on mouseclick", () => {

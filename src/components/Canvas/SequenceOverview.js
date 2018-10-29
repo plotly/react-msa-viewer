@@ -7,13 +7,16 @@
 */
 
 import PropTypes from 'prop-types';
+import {
+  clamp,
+  floor,
+} from 'lodash-es';
 
 import CanvasComponent from './CanvasComponent';
 import msaConnect from '../../store/connect'
 
-import { floor, clamp } from 'lodash-es';
 
-import positionStoreMixin from '../../store/positionStoreMixin';
+import withPositionStore from '../../store/withPositionStore';
 
 class SequenceOverviewComponent extends CanvasComponent {
 
@@ -22,7 +25,7 @@ class SequenceOverviewComponent extends CanvasComponent {
     this.drawScene();
   }
 
-  shouldRerender() {
+  updateScrollPosition() {
     this._draw();
   }
 
@@ -89,8 +92,6 @@ class SequenceOverviewComponent extends CanvasComponent {
   }
 }
 
-positionStoreMixin(SequenceOverviewComponent, {withPosition: true});
-
 SequenceOverviewComponent.defaultProps = {
   ...CanvasComponent.defaultProps,
   height: 50,
@@ -116,6 +117,8 @@ SequenceOverviewComponent.propTypes = {
   tileHeight: PropTypes.number,
 };
 
+const SOC = withPositionStore(SequenceOverviewComponent);
+
 const mapStateToProps = state => {
   return {
     sequences: state.sequences,
@@ -130,4 +133,4 @@ const mapStateToProps = state => {
 
 export default msaConnect(
   mapStateToProps,
-)(SequenceOverviewComponent);
+)(SOC);

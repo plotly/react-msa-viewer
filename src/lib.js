@@ -9,7 +9,7 @@
 import msaConnect from './store/connect'
 import createMSAStore from './store/createMSAStore';
 import MSAProvider from './store/provider';
-import positionStoreMixin from './store/positionStoreMixin';
+import withPositionStore from './store/withPositionStore';
 
 import ColorScheme from './utils/ColorScheme';
 import MSAViewer from './components/MSAViewer';
@@ -29,7 +29,7 @@ export {
   msaConnect,
   MSAProvider,
   MSAViewer,
-  positionStoreMixin,
+  withPositionStore,
   VERSION as version,
 };
 

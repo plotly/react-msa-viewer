@@ -14,7 +14,7 @@ import {
 } from '../../test';
 
 import { OverviewBar } from './OverviewBar';
-import xBar from './xBar';
+import { xBar } from './xBar';
 
 import { mount, shallow } from 'enzyme';
 
@@ -36,7 +36,7 @@ it('renders properly with a moved viewport', () => {
   expect(msa).toMatchSnapshot();
   const bar = msa.find(xBar);
   const xBarDiv = bar.instance().el.current;
-  expect(xBarDiv.scrollLeft).toBe(0); // fresh render
+  expect(xBarDiv.scrollLeft).toBe(100); // fresh render (with scroll offset set)
   // call store subscribees
   msa.setProps({currentViewSequencePosition: 10});
   msa = msa.update(); // tell enzyme to update itself
