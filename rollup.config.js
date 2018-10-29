@@ -30,7 +30,8 @@ export default {
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
       'MSA_DEVELOPMENT_VERSION': version,
-      "const assert = require('assert')": "const assert = {}",
+      "require('assert')": "{}",
+      delimiters: ['', '']
     }),
     babel({
       exclude: 'node_modules/**',
