@@ -55,6 +55,10 @@ class FakePositionStore extends Component {
   }
   subscribe = (fn) => {
     this._subscribe = fn;
+    // unsubscribe callback
+    return () => {
+      this._subscribe = undefined;
+    }
   }
   componentDidUpdate() {
     // notify listeners
