@@ -145,10 +145,6 @@ class SequenceViewerComponent extends DraggingComponent {
     this.draw();
   }
 
-  componentDidUpdate() {
-    this.draw();
-  }
-
   /**
    * Returns the position of the mouse position relative to the sequences
    */
@@ -364,7 +360,7 @@ const mapStateToProps = state => {
   }
 }
 
-const SV = withPositionStore(SequenceViewerComponent);
+const SV = withPositionStore(SequenceViewerComponent, {withX: true, withY: true});
 
 export default msaConnect(
   mapStateToProps,
