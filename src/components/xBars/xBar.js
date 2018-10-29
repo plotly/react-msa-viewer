@@ -34,6 +34,7 @@ class XBarComponent extends PureComponent {
       maxLength,
       position,
       positionDispatch,
+      componentCache,
       ...otherProps
     } = this.props;
     const style = {
@@ -60,6 +61,7 @@ class XBarComponent extends PureComponent {
       <div style={containerStyle} {...otherProps}>
         <div style={style} ref={this.el}>
           <ListComponent {...forwardedProps}
+            componentCache={this.props.componentCache}
             startTile={startTile}
             endTile={endTile}
             maxWidth={maxWidth}
@@ -84,6 +86,8 @@ XBarComponent.propTypes = {
   tileWidth: PropTypes.number.isRequired,
   nrXTiles: PropTypes.number.isRequired,
   maxLength: PropTypes.number.isRequired,
+
+  componentCache: PropTypes.func.isRequired,
 }
 
 export default withPositionStore(XBarComponent, {withX: true});

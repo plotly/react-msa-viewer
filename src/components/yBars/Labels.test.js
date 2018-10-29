@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { mount, shallow } from 'enzyme';
 
+import { mountWithContext } from '../../test/withContext';
 import dummySequences from '../../test/dummySequences';
 import FakePositionStore from '../../test/FakePositionStore';
 import { Labels } from './Labels';
@@ -95,4 +96,60 @@ it('renders properly with a moved viewport (provider version)', () => {
   msa = msa.update(); // tell enzyme to update its state to reality
   expect(msa).toMatchSnapshot();
   expect(msa.find(yBar).instance().el.current.scrollTop).toBe(120);
+});
+
+describe('renders differently after changed properties', () => {
+  let spy, wrapper, component;
+  beforeEach(() => {
+    spy = jest.spyOn(Labels.prototype, "createLabel");
+    component = shallow(
+      <FakePositionStore currentViewSequencePosition={10}>
+        <Labels nrYTiles={7} tileHeight={100} height={200} cacheElements={2} sequences={[...dummySequences]} />
+      </FakePositionStore>
+    );
+    expect(component).toMatchSnapshot();
+    expect(spy.mock.calls.length).toBe(0);
+    wrapper = mountWithContext(component);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  afterEach(() => {
+    spy.mockRestore();
+  });
+
+  it('should have been called in the beginning', () => {
+    expect(spy.mock.calls.length).toBe(1);
+  });
+
+  it('should refresh on property changes', () => {
+    wrapper.setProps({
+      labelStyle: {color: "red"},
+    });
+    expect(wrapper).toMatchSnapshot();
+    expect(spy.mock.calls.length).toBe(2);
+  });
+
+  it("shouldn't refresh on unrelated property changes", () => {
+    wrapper.setProps({
+      font: "No-Font",
+    });
+    expect(spy.mock.calls.length).toBe(1);
+  });
+
+  it('should rerender if sequences have changed', () => {
+    wrapper.setProps({
+      sequences: [{
+          name: "seq.1",
+          sequence: "AAAAAAAAAAAAAAAAAAAA",
+        },{
+          name: "seq.1",
+          sequence: "AAAAAAAAAAAAAAAAAAAA",
+        },{
+          name: "seq.3",
+          sequence: "AAAAAAAAAAAAAAAAAAAA",
+      }]
+    });
+    expect(wrapper).toMatchSnapshot();
+    expect(spy.mock.calls.length).toBe(2);
+  });
 });

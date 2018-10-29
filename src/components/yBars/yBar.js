@@ -35,6 +35,7 @@ class YBarComponent extends PureComponent {
       nrYTiles,
       position,
       positionDispatch,
+      componentCache,
       ...otherProps
     } = this.props;
     const style = {
@@ -52,6 +53,7 @@ class YBarComponent extends PureComponent {
       <div {...otherProps}>
         <div style={style} ref={this.el}>
           <ListComponent
+            componentCache={this.props.componentCache}
             startTile={startTile}
             endTile={endTile}
             tileComponent={this.props.tileComponent}
@@ -75,6 +77,8 @@ YBarComponent.propTypes = {
 
   tileHeight: PropTypes.number.isRequired,
   nrYTiles: PropTypes.number.isRequired,
+
+  componentCache: PropTypes.func.isRequired,
 }
 
 export default withPositionStore(YBarComponent, {withY: true});

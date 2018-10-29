@@ -8,10 +8,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-  pick
+  partialRight,
+  pick,
 } from 'lodash-es';
 
 import msaConnect from '../../store/connect'
+import shallowSelect from '../../utils/shallowSelect';
+import autobind from '../../utils/autobind';
 
 import XBar from './xBar';
 
@@ -56,20 +59,24 @@ function createMarker({markerSteps, startIndex, tileWidth,
 */
 class HTMLPositionBarComponent extends PureComponent {
 
+  static markerAttributes = [
+    "markerSteps", "startIndex", "tileWidth",
+    "markerComponent", "markerStyle", "markerAttributes",
+  ];
+
   constructor(props) {
     super(props);
-    this.updateMarker();
+    this.cache = function(){};
+    autobind(this, 'createMarker');
+    this.marker = shallowSelect(
+      partialRight(pick, this.constructor.markerAttributes),
+      this.createMarker
+    );
   }
 
-  componentWillUpdate() {
-    this.updateMarker();
-  }
-
-  updateMarker() {
-    this.marker = createMarker(pick(this.props, [
-      "markerSteps", "startIndex", "tileWidth",
-      "markerComponent", "markerStyle", "markerAttributes",
-    ]));
+  createMarker(props) {
+    this.cache = function(){};
+    return createMarker(props);
   }
 
   render() {
@@ -82,8 +89,9 @@ class HTMLPositionBarComponent extends PureComponent {
       ...otherProps} = this.props;
     return (
       <XBar
-        tileComponent={this.marker}
+        tileComponent={this.marker(this.props)}
         cacheElements={cacheElements}
+        componentCache={this.cache}
         {...otherProps}
       />
     );

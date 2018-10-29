@@ -99,7 +99,6 @@ class SequenceViewerComponent extends DraggingComponent {
     });
   }
 
-
   drawTiles({startXTile, startYTile, endXTile, endYTile}) {
     const xGridSize = this.props.xGridSize;
     const yGridSize = this.props.yGridSize;
@@ -209,13 +208,17 @@ class SequenceViewerComponent extends DraggingComponent {
   }
 
   updateTileSpecs() {
-    this.tileCache.updateTileSpecs(pick(this.props, [
+    const tileAttributes = [
       'tileWidth', 'tileHeight', 'colorScheme', 'textFont',
+      'borderColor'
+    ];
+    this.tileCache.updateTileSpecs(pick(this.props, [
+      ...tileAttributes,
       'xGridSize', 'yGridSize', 'sequences',
     ]));
-    this.residueTileCache.updateTileSpecs(pick(this.props, [
-      'tileWidth', 'tileHeight', 'colorScheme', 'textFont'
-    ]));
+    this.residueTileCache.updateTileSpecs(
+      pick(this.props,tileAttributes)
+    );
   }
 
   render() {
@@ -368,4 +371,5 @@ export default msaConnect(
 
 export {
   SequenceViewerComponent as SequenceViewer,
+  SV as SequenceViewerWithPosition,
 }

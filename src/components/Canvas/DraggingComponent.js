@@ -6,7 +6,7 @@
 * LICENSE file in the root directory of this source tree.
 */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import createRef from 'create-react-ref/lib/createRef';
 
 import {
@@ -18,6 +18,7 @@ import Mouse from '../../utils/mouse';
 import ModBar from '../ModBar';
 import FakeScroll from './FakeScroll';
 import requestAnimation from '../../utils/requestAnimation';
+import autobind from '../../utils/autobind';
 
 /**
 Provides dragging support in a canvas for sub-classes.
@@ -30,7 +31,7 @@ Moreover, a component's viewpoint needs to be passed in via its properties:
   <MyDraggingComponent width="200" height="300" />
 */
 // TODO: handle wheel events
-class DraggingComponent extends Component {
+class DraggingComponent extends PureComponent {
 
   /**
    * The internal state is kept in:
@@ -59,13 +60,12 @@ class DraggingComponent extends Component {
     this.container = createRef();
 
     // bind events (can't use static properties due to inheritance)
-    ["onMouseEnter", "onMouseLeave", "onMouseDown", "onMouseUp", "onMouseMove",
+    autobind(this,
+      "onMouseEnter", "onMouseLeave", "onMouseDown", "onMouseUp", "onMouseMove",
       "onTouchStart", "onTouchMove", "onTouchEnd", "onTouchCancel",
       "onClick", "onDoubleClick",
-      "draw",
-    ].forEach(prop => {
-        this[prop] = this[prop].bind(this);
-    });
+      "draw"
+    );
 
     this.onViewpointChange();
     // Define internal variables for explicitness
