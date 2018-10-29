@@ -1,5 +1,711 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders differently after changed properties 1`] = `
+<HTMLLabelsComponent
+  cacheElements={2}
+  height={200}
+  labelStyle={Object {}}
+  nrYTiles={7}
+  sequences={
+    Array [
+      Object {
+        "name": "sequence 1",
+        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+      },
+      Object {
+        "name": "sequence 2",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 3",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 4",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 5",
+        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 6",
+        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 7",
+        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+      },
+    ]
+  }
+  tileHeight={100}
+/>
+`;
+
+exports[`renders differently after changed properties 2`] = `
+<HTMLLabelsComponent
+  cacheElements={2}
+  height={200}
+  labelStyle={Object {}}
+  nrYTiles={7}
+  sequences={
+    Array [
+      Object {
+        "name": "sequence 1",
+        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+      },
+      Object {
+        "name": "sequence 2",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 3",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 4",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 5",
+        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 6",
+        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 7",
+        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+      },
+    ]
+  }
+  tileHeight={100}
+>
+  <withPosition(YBarComponent)
+    cacheElements={2}
+    componentCache={[Function]}
+    height={200}
+    nrYTiles={7}
+    sequences={
+      Array [
+        Object {
+          "name": "sequence 1",
+          "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+        },
+        Object {
+          "name": "sequence 2",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 3",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 4",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 5",
+          "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 6",
+          "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 7",
+          "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+        },
+      ]
+    }
+    tileComponent={[Function]}
+    tileHeight={100}
+  >
+    <YBarComponent
+      cacheElements={2}
+      componentCache={[Function]}
+      height={200}
+      nrYTiles={7}
+      position={
+        Object {
+          "currentViewSequence": 0,
+          "currentViewSequencePosition": 10,
+          "lastCurrentViewSequence": 0,
+          "lastStartYTile": 0,
+          "xPos": 0,
+          "xPosOffset": 0,
+          "yPos": 0,
+          "yPosOffset": 0,
+        }
+      }
+      positionDispatch={[Function]}
+      sequences={
+        Array [
+          Object {
+            "name": "sequence 1",
+            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+          },
+          Object {
+            "name": "sequence 2",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 3",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 4",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 5",
+            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 6",
+            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 7",
+            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+          },
+        ]
+      }
+      tileComponent={[Function]}
+      tileHeight={100}
+    >
+      <div>
+        <div
+          style={
+            Object {
+              "height": 200,
+              "overflow": "hidden",
+              "position": "relative",
+              "whiteSpace": "nowrap",
+            }
+          }
+        >
+          <ListComponent
+            componentCache={[Function]}
+            endTile={6}
+            startTile={0}
+            tileComponent={[Function]}
+          >
+            <div>
+              <Label
+                index={0}
+                key="0"
+              >
+                <div
+                  style={
+                    Object {
+                      "height": 100,
+                    }
+                  }
+                >
+                  sequence 1
+                </div>
+              </Label>
+              <Label
+                index={1}
+                key="1"
+              >
+                <div
+                  style={
+                    Object {
+                      "height": 100,
+                    }
+                  }
+                >
+                  sequence 2
+                </div>
+              </Label>
+              <Label
+                index={2}
+                key="2"
+              >
+                <div
+                  style={
+                    Object {
+                      "height": 100,
+                    }
+                  }
+                >
+                  sequence 3
+                </div>
+              </Label>
+              <Label
+                index={3}
+                key="3"
+              >
+                <div
+                  style={
+                    Object {
+                      "height": 100,
+                    }
+                  }
+                >
+                  sequence 4
+                </div>
+              </Label>
+              <Label
+                index={4}
+                key="4"
+              >
+                <div
+                  style={
+                    Object {
+                      "height": 100,
+                    }
+                  }
+                >
+                  sequence 5
+                </div>
+              </Label>
+              <Label
+                index={5}
+                key="5"
+              >
+                <div
+                  style={
+                    Object {
+                      "height": 100,
+                    }
+                  }
+                >
+                  sequence 6
+                </div>
+              </Label>
+            </div>
+          </ListComponent>
+        </div>
+      </div>
+    </YBarComponent>
+  </withPosition(YBarComponent)>
+</HTMLLabelsComponent>
+`;
+
+exports[`renders differently after changed properties 3`] = `
+<HTMLLabelsComponent
+  cacheElements={2}
+  height={200}
+  labelStyle={
+    Object {
+      "color": "red",
+    }
+  }
+  nrYTiles={7}
+  sequences={
+    Array [
+      Object {
+        "name": "sequence 1",
+        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+      },
+      Object {
+        "name": "sequence 2",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 3",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 4",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 5",
+        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 6",
+        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 7",
+        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+      },
+    ]
+  }
+  tileHeight={100}
+>
+  <withPosition(YBarComponent)
+    cacheElements={2}
+    componentCache={[Function]}
+    height={200}
+    nrYTiles={7}
+    sequences={
+      Array [
+        Object {
+          "name": "sequence 1",
+          "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+        },
+        Object {
+          "name": "sequence 2",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 3",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 4",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 5",
+          "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 6",
+          "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 7",
+          "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+        },
+      ]
+    }
+    tileComponent={[Function]}
+    tileHeight={100}
+  >
+    <YBarComponent
+      cacheElements={2}
+      componentCache={[Function]}
+      height={200}
+      nrYTiles={7}
+      position={
+        Object {
+          "currentViewSequence": 0,
+          "currentViewSequencePosition": 10,
+          "lastCurrentViewSequence": 0,
+          "lastStartYTile": 0,
+          "xPos": 0,
+          "xPosOffset": 0,
+          "yPos": 0,
+          "yPosOffset": 0,
+        }
+      }
+      positionDispatch={[Function]}
+      sequences={
+        Array [
+          Object {
+            "name": "sequence 1",
+            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+          },
+          Object {
+            "name": "sequence 2",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 3",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 4",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 5",
+            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 6",
+            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 7",
+            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+          },
+        ]
+      }
+      tileComponent={[Function]}
+      tileHeight={100}
+    >
+      <div>
+        <div
+          style={
+            Object {
+              "height": 200,
+              "overflow": "hidden",
+              "position": "relative",
+              "whiteSpace": "nowrap",
+            }
+          }
+        >
+          <ListComponent
+            componentCache={[Function]}
+            endTile={6}
+            startTile={0}
+            tileComponent={[Function]}
+          >
+            <div>
+              <Label
+                index={0}
+                key="0"
+              >
+                <div
+                  style={
+                    Object {
+                      "color": "red",
+                      "height": 100,
+                    }
+                  }
+                >
+                  sequence 1
+                </div>
+              </Label>
+              <Label
+                index={1}
+                key="1"
+              >
+                <div
+                  style={
+                    Object {
+                      "color": "red",
+                      "height": 100,
+                    }
+                  }
+                >
+                  sequence 2
+                </div>
+              </Label>
+              <Label
+                index={2}
+                key="2"
+              >
+                <div
+                  style={
+                    Object {
+                      "color": "red",
+                      "height": 100,
+                    }
+                  }
+                >
+                  sequence 3
+                </div>
+              </Label>
+              <Label
+                index={3}
+                key="3"
+              >
+                <div
+                  style={
+                    Object {
+                      "color": "red",
+                      "height": 100,
+                    }
+                  }
+                >
+                  sequence 4
+                </div>
+              </Label>
+              <Label
+                index={4}
+                key="4"
+              >
+                <div
+                  style={
+                    Object {
+                      "color": "red",
+                      "height": 100,
+                    }
+                  }
+                >
+                  sequence 5
+                </div>
+              </Label>
+              <Label
+                index={5}
+                key="5"
+              >
+                <div
+                  style={
+                    Object {
+                      "color": "red",
+                      "height": 100,
+                    }
+                  }
+                >
+                  sequence 6
+                </div>
+              </Label>
+            </div>
+          </ListComponent>
+        </div>
+      </div>
+    </YBarComponent>
+  </withPosition(YBarComponent)>
+</HTMLLabelsComponent>
+`;
+
+exports[`renders differently after changed properties 4`] = `
+<HTMLLabelsComponent
+  cacheElements={2}
+  font="No-Font"
+  height={200}
+  labelStyle={
+    Object {
+      "color": "red",
+    }
+  }
+  nrYTiles={7}
+  sequences={
+    Array [
+      Object {
+        "name": "seq.1",
+        "sequence": "AAAAAAAAAAAAAAAAAAAA",
+      },
+      Object {
+        "name": "seq.1",
+        "sequence": "AAAAAAAAAAAAAAAAAAAA",
+      },
+      Object {
+        "name": "seq.3",
+        "sequence": "AAAAAAAAAAAAAAAAAAAA",
+      },
+    ]
+  }
+  tileHeight={100}
+>
+  <withPosition(YBarComponent)
+    cacheElements={2}
+    componentCache={[Function]}
+    font="No-Font"
+    height={200}
+    nrYTiles={7}
+    sequences={
+      Array [
+        Object {
+          "name": "seq.1",
+          "sequence": "AAAAAAAAAAAAAAAAAAAA",
+        },
+        Object {
+          "name": "seq.1",
+          "sequence": "AAAAAAAAAAAAAAAAAAAA",
+        },
+        Object {
+          "name": "seq.3",
+          "sequence": "AAAAAAAAAAAAAAAAAAAA",
+        },
+      ]
+    }
+    tileComponent={[Function]}
+    tileHeight={100}
+  >
+    <YBarComponent
+      cacheElements={2}
+      componentCache={[Function]}
+      font="No-Font"
+      height={200}
+      nrYTiles={7}
+      position={
+        Object {
+          "currentViewSequence": 0,
+          "currentViewSequencePosition": 10,
+          "lastCurrentViewSequence": 0,
+          "lastStartYTile": 0,
+          "xPos": 0,
+          "xPosOffset": 0,
+          "yPos": 0,
+          "yPosOffset": 0,
+        }
+      }
+      positionDispatch={[Function]}
+      sequences={
+        Array [
+          Object {
+            "name": "seq.1",
+            "sequence": "AAAAAAAAAAAAAAAAAAAA",
+          },
+          Object {
+            "name": "seq.1",
+            "sequence": "AAAAAAAAAAAAAAAAAAAA",
+          },
+          Object {
+            "name": "seq.3",
+            "sequence": "AAAAAAAAAAAAAAAAAAAA",
+          },
+        ]
+      }
+      tileComponent={[Function]}
+      tileHeight={100}
+    >
+      <div
+        font="No-Font"
+      >
+        <div
+          style={
+            Object {
+              "height": 200,
+              "overflow": "hidden",
+              "position": "relative",
+              "whiteSpace": "nowrap",
+            }
+          }
+        >
+          <ListComponent
+            componentCache={[Function]}
+            endTile={3}
+            startTile={0}
+            tileComponent={[Function]}
+          >
+            <div>
+              <Label
+                index={0}
+                key="0"
+              >
+                <div
+                  style={
+                    Object {
+                      "color": "red",
+                      "height": 100,
+                    }
+                  }
+                >
+                  seq.1
+                </div>
+              </Label>
+              <Label
+                index={1}
+                key="1"
+              >
+                <div
+                  style={
+                    Object {
+                      "color": "red",
+                      "height": 100,
+                    }
+                  }
+                >
+                  seq.1
+                </div>
+              </Label>
+              <Label
+                index={2}
+                key="2"
+              >
+                <div
+                  style={
+                    Object {
+                      "color": "red",
+                      "height": 100,
+                    }
+                  }
+                >
+                  seq.3
+                </div>
+              </Label>
+            </div>
+          </ListComponent>
+        </div>
+      </div>
+    </YBarComponent>
+  </withPosition(YBarComponent)>
+</HTMLLabelsComponent>
+`;
+
 exports[`renders properly 1`] = `
 <FakePositionStore
   currentViewSequence={0}

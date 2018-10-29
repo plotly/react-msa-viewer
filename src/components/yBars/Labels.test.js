@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { mount, shallow } from 'enzyme';
 
+import { mountWithContext } from '../../test/withContext';
 import dummySequences from '../../test/dummySequences';
 import FakePositionStore from '../../test/FakePositionStore';
 import { Labels } from './Labels';
@@ -95,4 +96,47 @@ it('renders properly with a moved viewport (provider version)', () => {
   msa = msa.update(); // tell enzyme to update its state to reality
   expect(msa).toMatchSnapshot();
   expect(msa.find(yBar).instance().el.current.scrollTop).toBe(120);
+});
+
+it('renders differently after changed properties', () => {
+  const spy = jest.spyOn(Labels.prototype, "createLabel");
+  const component = shallow(
+    <FakePositionStore currentViewSequencePosition={10}>
+      <Labels nrYTiles={7} tileHeight={100} height={200} cacheElements={2} sequences={[...dummySequences]} />
+    </FakePositionStore>
+  );
+  expect(component).toMatchSnapshot();
+  expect(spy.mock.calls.length).toBe(0);
+  let wrapper = mountWithContext(component);
+  expect(wrapper).toMatchSnapshot();
+  expect(spy.mock.calls.length).toBe(1);
+
+  wrapper.setProps({
+    labelStyle: {color: "red"},
+  });
+  expect(wrapper).toMatchSnapshot();
+  expect(spy.mock.calls.length).toBe(2);
+
+  // shouldn't rerender if not triggered
+  wrapper.setProps({
+    font: "No-Font",
+  });
+  expect(spy.mock.calls.length).toBe(2);
+
+  // but should rerender if sequences have changed
+  wrapper.setProps({
+    sequences: [{
+        name: "seq.1",
+        sequence: "AAAAAAAAAAAAAAAAAAAA",
+      },{
+        name: "seq.1",
+        sequence: "AAAAAAAAAAAAAAAAAAAA",
+      },{
+        name: "seq.3",
+        sequence: "AAAAAAAAAAAAAAAAAAAA",
+    }]
+  });
+  expect(wrapper).toMatchSnapshot();
+  expect(spy.mock.calls.length).toBe(3);
+  spy.mockRestore();
 });

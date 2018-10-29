@@ -9,10 +9,13 @@ import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import shallowCompare from 'react-addons-shallow-compare';
 import {
-  pick
+  partialRight,
+  pick,
 } from 'lodash-es';
 
 import msaConnect from '../../store/connect'
+import shallowSelect from '../../utils/shallowSelect';
+import autobind from '../../utils/autobind';
 
 import YBar from './yBar';
 
@@ -48,29 +51,25 @@ function createLabel({sequences, tileHeight, labelComponent,
 /**
  * Displays the sequence names.
  */
-class HTMLLabelsComponent extends Component {
+class HTMLLabelsComponent extends PureComponent {
+
+  static labelProps = [
+    "sequences", "tileHeight",
+    "labelComponent", "labelStyle", "labelAttributes"
+  ];
 
   constructor(props) {
     super(props);
-    this.updateLabel();
+    autobind(this, 'createLabel');
+    this.label= shallowSelect(
+      partialRight(pick, this.constructor.labelProps),
+      this.createLabel
+    );
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (["sequences", "tileHeight", "labelComponent"].some(key=> {
-      return nextProps[key] !== this.props[key];
-    }, true)){
-      this.updateLabel();
-      return true;
-    }
-    return shallowCompare(this, nextProps, nextState);
-  }
-
-  updateLabel() {
+  createLabel(props) {
     this.cache = function(){};
-    this.label = createLabel(pick(this.props, [
-      "sequences", "tileHeight",
-      "labelComponent", "labelStyle", "labelAttributes"
-    ]));
+    return createLabel(props);
   }
 
   render() {
@@ -82,7 +81,7 @@ class HTMLLabelsComponent extends Component {
       ...otherProps} = this.props;
     return (
       <YBar
-        tileComponent={this.label}
+        tileComponent={this.label(this.props)}
         cacheElements={cacheElements}
         componentCache={this.cache}
         {...otherProps}
