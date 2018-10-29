@@ -99,7 +99,6 @@ class SequenceViewerComponent extends DraggingComponent {
     });
   }
 
-
   drawTiles({startXTile, startYTile, endXTile, endYTile}) {
     const xGridSize = this.props.xGridSize;
     const yGridSize = this.props.yGridSize;
@@ -368,4 +367,5 @@ export default msaConnect(
 
 export {
   SequenceViewerComponent as SequenceViewer,
+  SV as SequenceViewerWithPosition,
 }

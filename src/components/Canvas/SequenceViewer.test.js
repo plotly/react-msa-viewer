@@ -9,7 +9,10 @@
 import React from 'react';
 
 import SequenceViewer from './SequenceViewer';
-import { SequenceViewer as CanvasSequenceViewer } from './SequenceViewer';
+import {
+  SequenceViewer as CanvasSequenceViewer,
+  SequenceViewerWithPosition,
+} from './SequenceViewer';
 import MSAViewer from '../MSAViewer';
 import {
   dummySequences,
@@ -17,6 +20,7 @@ import {
 } from '../../test';
 
 import { mount, shallow } from 'enzyme';
+import { mountWithContext } from '../../test/withContext';
 
 it('renders without crashing', () => {
   const wrapper = mount(<MSAViewer sequences={[...dummySequences]}>
@@ -151,3 +155,50 @@ it("should fire an event on mouseclick", () => {
   });
 })
 
+it('renders differently after changed properties', () => {
+  const spy = jest.spyOn(CanvasSequenceViewer.prototype, "drawScene");
+  const component = shallow(
+    <FakePositionStore currentViewSequencePosition={10}>
+      <SequenceViewerWithPosition width={100} height={200}
+        fullWidth={1000} fullHeight={2000} tileHeight={20} tileWidth={20}
+        nrXTiles={100} nrYTiles={100}
+        sequences={[...dummySequences]}
+      />
+    </FakePositionStore>
+  );
+  expect(component).toMatchSnapshot();
+  expect(spy.mock.calls.length).toBe(0);
+
+  let wrapper = mountWithContext(component);
+  expect(wrapper).toMatchSnapshot();
+  expect(spy.mock.calls.length).toBe(1);
+
+  wrapper.setProps({
+    borderColor: "green",
+  });
+  expect(wrapper).toMatchSnapshot();
+  expect(spy.mock.calls.length).toBe(2);
+
+  // shouldn't rerender if not triggered
+  wrapper.setProps({
+    borderColor: "green",
+  });
+  expect(spy.mock.calls.length).toBe(2);
+
+  // but should rerender if sequences have changed
+  wrapper.setProps({
+    sequences: [{
+        name: "seq.1",
+        sequence: "AAAAAAAAAAAAAAAAAAAA",
+      },{
+        name: "seq.1",
+        sequence: "AAAAAAAAAAAAAAAAAAAA",
+      },{
+        name: "seq.3",
+        sequence: "AAAAAAAAAAAAAAAAAAAA",
+    }]
+  });
+  expect(wrapper).toMatchSnapshot();
+  expect(spy.mock.calls.length).toBe(3);
+  spy.mockRestore();
+});
