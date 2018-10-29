@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import createRef from 'create-react-ref/lib/createRef';
 import {
   forOwn,
+  pick,
 } from 'lodash-es';
 
 import assert from '../assert';
@@ -35,12 +36,13 @@ import assert from '../assert';
  *
  * (b) `positionDispatch` (dispatch method for the position store)
  *
- * If a component implements `updateScrollPosition`, it will be called after
+ * Furthermore,
+ *
+ * (1) ff a component implements `updateScrollPosition`, it will be called after
  * every store update. Otherwise a default implementation will be used.
  *
- * (1) `updateFromPositionStore`
- * (2) `shouldRerender`
-
+ * (2) If a component implements `shouldRerender(newPosition)`, it will be called after
+ * every store update. Otherwise a default implementation will be used.
  */
 function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
   class MSAPositionConsumer extends PureComponent {
@@ -74,25 +76,30 @@ function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
       );
       const state = this.context.positionMSAStore.getState();
       this.position = this.position || {};
-      // copy-over the entire state
-      forOwn(state, (v, k) => {
-        if (k !== "position") {
-          this.position[k] = v;
-        }
-      });
+
+      // create new position object to compare it with the previous
+      const newPosition = pick(state, ["currentViewSequence",
+        "currentViewSequencePosition", "xPosOffset", "yPosOffset"]);
       if (state.position) {
-        this.position.xPos = state.position.xPos;
-        this.position.yPos = state.position.yPos;
+        newPosition.xPos = state.position.xPos;
+        newPosition.yPos = state.position.yPos;
       }
+
       // not called on the first render
-      if (this.el.current) {
-        if (this.shouldRerender()) {
-          // this will always force a rerender as position is a new object
-          this.position = {...this.position};
-          this.setState({
-            position: this.position,
-          });
-        } else {
+      if (this.el.current && this.shouldRerender(newPosition)) {
+        // this will always force a rerender as position is a new object
+        this.position = newPosition;
+        // it doesn't matter what state we set here, this is just to force
+        // React to rerender
+        this.setState({
+          position: this.position,
+        });
+      } else {
+        // copy over new position
+        forOwn(newPosition, (v, k) => {
+          this.position[k] = v;
+        });
+        if (this.el.current) {
           this.updateScrollPosition();
         }
       }
@@ -104,19 +111,19 @@ function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
      * - determine if the current viewpoint still has enough nodes
      * - checks the respective viewports when `withX` or `withY` have been set
      */
-    shouldRerender = () => {
+    shouldRerender = (newPosition) => {
       const it = this.el.current;
       if (it.shouldRerender !== undefined) {
-        return it.shouldRerender();
+        return it.shouldRerender(newPosition);
       }
       const cacheElements = it.props.cacheElements;
       if (withY) {
-        if (Math.abs(this.position.currentViewSequence - this.position.lastCurrentViewSequence) >= cacheElements) {
+        if (Math.abs(newPosition.currentViewSequence - this.position.lastCurrentViewSequence) >= cacheElements) {
           return true;
         }
       }
       if (withX) {
-        if (Math.abs(this.position.currentViewSequencePosition - this.position.lastCurrentViewSequencePosition) >= cacheElements) {
+        if (Math.abs(newPosition.currentViewSequencePosition - this.position.lastCurrentViewSequencePosition) >= cacheElements) {
           return true;
         }
       }

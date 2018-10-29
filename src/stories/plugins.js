@@ -35,7 +35,7 @@ storiesOf('Plugins', module)
 
     class MyFirstMSAPluginComponent extends Component {
       // called on every position update (e.g. mouse movement or scrolling)
-      shouldRerender() {
+      shouldRerender(newPosition) {
         return true;
       }
       render() {

@@ -617,7 +617,7 @@ import {
 
 
 class MyFirstMSAPlugin extends React.Component {
-  shouldRerender() {
+  shouldRerender(newPosition) {
      return true;
   }
   render() {
