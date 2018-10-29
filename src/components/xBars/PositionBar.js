@@ -8,10 +8,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
+  partialRight,
   pick
 } from 'lodash-es';
 
 import msaConnect from '../../store/connect'
+import shallowSelect from '../../utils/shallowSelect';
 
 import XBar from './xBar';
 
@@ -56,20 +58,14 @@ function createMarker({markerSteps, startIndex, tileWidth,
 */
 class HTMLPositionBarComponent extends PureComponent {
 
+  static markerAttributes = [
+    "markerSteps", "startIndex", "tileWidth",
+    "markerComponent", "markerStyle", "markerAttributes",
+  ];
+
   constructor(props) {
     super(props);
-    this.updateMarker();
-  }
-
-  componentWillUpdate() {
-    this.updateMarker();
-  }
-
-  updateMarker() {
-    this.marker = createMarker(pick(this.props, [
-      "markerSteps", "startIndex", "tileWidth",
-      "markerComponent", "markerStyle", "markerAttributes",
-    ]));
+    this.marker = shallowSelect(partialRight(pick, this.constructor.markerAttributes), createMarker);
   }
 
   render() {
@@ -82,7 +78,7 @@ class HTMLPositionBarComponent extends PureComponent {
       ...otherProps} = this.props;
     return (
       <XBar
-        tileComponent={this.marker}
+        tileComponent={this.marker(this.props)}
         cacheElements={cacheElements}
         {...otherProps}
       />
