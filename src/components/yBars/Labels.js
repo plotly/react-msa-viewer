@@ -50,7 +50,8 @@ function createLabel({sequences, tileHeight, labelComponent,
  */
 class HTMLLabelsComponent extends Component {
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     this.updateLabel();
   }
 

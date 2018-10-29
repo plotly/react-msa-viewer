@@ -43,7 +43,8 @@ function createBar({columnHeights, tileWidth, height, fillColor,
  */
 class HTMLOverviewBarComponent extends Component {
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     this.calculateStats();
   }
 
