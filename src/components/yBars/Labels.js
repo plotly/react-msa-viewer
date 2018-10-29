@@ -66,6 +66,7 @@ class HTMLLabelsComponent extends Component {
   }
 
   updateLabel() {
+    this.cache = function(){};
     this.label = createLabel(pick(this.props, [
       "sequences", "tileHeight",
       "labelComponent", "labelStyle", "labelAttributes"
@@ -83,6 +84,7 @@ class HTMLLabelsComponent extends Component {
       <YBar
         tileComponent={this.label}
         cacheElements={cacheElements}
+        componentCache={this.cache}
         {...otherProps}
       />
     );

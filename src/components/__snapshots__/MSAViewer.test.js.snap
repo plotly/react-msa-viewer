@@ -125,6 +125,7 @@ exports[`it should rerender when new props are given 1`] = `
           >
             <withPosition(YBarComponent)
               cacheElements={10}
+              componentCache={[Function]}
               height={100}
               nrYTiles={6}
               sequences={
@@ -169,6 +170,7 @@ exports[`it should rerender when new props are given 1`] = `
             >
               <YBarComponent
                 cacheElements={10}
+                componentCache={[Function]}
                 height={100}
                 nrYTiles={6}
                 position={
@@ -242,6 +244,7 @@ exports[`it should rerender when new props are given 1`] = `
                     }
                   >
                     <ListComponent
+                      componentCache={[Function]}
                       endTile={7}
                       startTile={0}
                       tileComponent={[Function]}
@@ -402,6 +405,7 @@ exports[`it should rerender when new props are given 1`] = `
             >
               <withPosition(XBarComponent)
                 cacheElements={10}
+                componentCache={[Function]}
                 maxLength={60}
                 nrXTiles={26}
                 sequences={
@@ -442,6 +446,7 @@ exports[`it should rerender when new props are given 1`] = `
               >
                 <XBarComponent
                   cacheElements={10}
+                  componentCache={[Function]}
                   maxLength={60}
                   nrXTiles={26}
                   position={
@@ -511,6 +516,7 @@ exports[`it should rerender when new props are given 1`] = `
                       }
                     >
                       <ListComponent
+                        componentCache={[Function]}
                         endTile={46}
                         maxWidth={900}
                         sequences={
@@ -1346,6 +1352,7 @@ exports[`it should rerender when new props are given 1`] = `
             >
               <withPosition(XBarComponent)
                 cacheElements={10}
+                componentCache={[Function]}
                 height={15}
                 maxLength={60}
                 nrXTiles={26}
@@ -1392,6 +1399,7 @@ exports[`it should rerender when new props are given 1`] = `
               >
                 <XBarComponent
                   cacheElements={10}
+                  componentCache={[Function]}
                   height={15}
                   maxLength={60}
                   nrXTiles={26}
@@ -1468,6 +1476,7 @@ exports[`it should rerender when new props are given 1`] = `
                       }
                     >
                       <ListComponent
+                        componentCache={[Function]}
                         endTile={46}
                         maxWidth={900}
                         sequences={
@@ -2683,6 +2692,7 @@ exports[`renders without crashing in enzyme 1`] = `
           >
             <withPosition(YBarComponent)
               cacheElements={10}
+              componentCache={[Function]}
               height={100}
               nrYTiles={6}
               sequences={
@@ -2727,6 +2737,7 @@ exports[`renders without crashing in enzyme 1`] = `
             >
               <YBarComponent
                 cacheElements={10}
+                componentCache={[Function]}
                 height={100}
                 nrYTiles={6}
                 position={
@@ -2800,6 +2811,7 @@ exports[`renders without crashing in enzyme 1`] = `
                     }
                   >
                     <ListComponent
+                      componentCache={[Function]}
                       endTile={7}
                       startTile={0}
                       tileComponent={[Function]}
@@ -2960,6 +2972,7 @@ exports[`renders without crashing in enzyme 1`] = `
             >
               <withPosition(XBarComponent)
                 cacheElements={10}
+                componentCache={[Function]}
                 maxLength={60}
                 nrXTiles={26}
                 sequences={
@@ -3000,6 +3013,7 @@ exports[`renders without crashing in enzyme 1`] = `
               >
                 <XBarComponent
                   cacheElements={10}
+                  componentCache={[Function]}
                   maxLength={60}
                   nrXTiles={26}
                   position={
@@ -3069,6 +3083,7 @@ exports[`renders without crashing in enzyme 1`] = `
                       }
                     >
                       <ListComponent
+                        componentCache={[Function]}
                         endTile={46}
                         maxWidth={900}
                         sequences={
@@ -3904,6 +3919,7 @@ exports[`renders without crashing in enzyme 1`] = `
             >
               <withPosition(XBarComponent)
                 cacheElements={10}
+                componentCache={[Function]}
                 height={15}
                 maxLength={60}
                 nrXTiles={26}
@@ -3950,6 +3966,7 @@ exports[`renders without crashing in enzyme 1`] = `
               >
                 <XBarComponent
                   cacheElements={10}
+                  componentCache={[Function]}
                   height={15}
                   maxLength={60}
                   nrXTiles={26}
@@ -4026,6 +4043,7 @@ exports[`renders without crashing in enzyme 1`] = `
                       }
                     >
                       <ListComponent
+                        componentCache={[Function]}
                         endTile={46}
                         maxWidth={900}
                         sequences={

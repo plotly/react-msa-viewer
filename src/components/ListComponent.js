@@ -7,27 +7,23 @@
 */
 
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Renders a list of tiles, but caches already seen components.
  */
 class ListComponent extends PureComponent {
 
-  constructor(props) {
-    super(props);
-    this.cache = {};
-  }
-
   renderTile(i) {
     const TileComponent = this.props.tileComponent;
-    if (i in this.cache) {
-      return this.cache[i];
+    if (i in this.props.componentCache) {
+      return this.props.componentCache[i];
     } else {
       const el = <TileComponent
           key={i}
           index={i}
       />;
-      this.cache[i] = el;
+      this.props.componentCache[i] = el;
       return el;
     }
   }
@@ -45,5 +41,10 @@ class ListComponent extends PureComponent {
       {elements}
     </div>
   }
+}
+ListComponent.propTypes = {
+  startTile: PropTypes.number.isRequired,
+  endTile: PropTypes.number.isRequired,
+  componentCache: PropTypes.func.isRequired,
 }
 export default ListComponent;

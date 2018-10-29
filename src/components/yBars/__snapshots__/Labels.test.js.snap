@@ -55,6 +55,7 @@ exports[`renders properly 1`] = `
   >
     <withPosition(YBarComponent)
       cacheElements={10}
+      componentCache={[Function]}
       height={400}
       nrYTiles={10}
       sequences={
@@ -94,6 +95,7 @@ exports[`renders properly 1`] = `
     >
       <YBarComponent
         cacheElements={10}
+        componentCache={[Function]}
         height={400}
         nrYTiles={10}
         position={
@@ -156,6 +158,7 @@ exports[`renders properly 1`] = `
             }
           >
             <ListComponent
+              componentCache={[Function]}
               endTile={7}
               startTile={0}
               tileComponent={[Function]}
@@ -324,6 +327,7 @@ exports[`renders properly when only 3 1/2 labels should be visible 1`] = `
   >
     <withPosition(YBarComponent)
       cacheElements={10}
+      componentCache={[Function]}
       height={400}
       nrYTiles={10}
       sequences={
@@ -363,6 +367,7 @@ exports[`renders properly when only 3 1/2 labels should be visible 1`] = `
     >
       <YBarComponent
         cacheElements={10}
+        componentCache={[Function]}
         height={400}
         nrYTiles={10}
         position={
@@ -425,6 +430,7 @@ exports[`renders properly when only 3 1/2 labels should be visible 1`] = `
             }
           >
             <ListComponent
+              componentCache={[Function]}
               endTile={7}
               startTile={0}
               tileComponent={[Function]}
@@ -593,6 +599,7 @@ exports[`renders properly with a moved viewport (provider version) 1`] = `
   >
     <withPosition(YBarComponent)
       cacheElements={2}
+      componentCache={[Function]}
       height={100}
       nrYTiles={7}
       sequences={
@@ -632,6 +639,7 @@ exports[`renders properly with a moved viewport (provider version) 1`] = `
     >
       <YBarComponent
         cacheElements={2}
+        componentCache={[Function]}
         height={100}
         nrYTiles={7}
         position={
@@ -694,6 +702,7 @@ exports[`renders properly with a moved viewport (provider version) 1`] = `
             }
           >
             <ListComponent
+              componentCache={[Function]}
               endTile={7}
               startTile={1}
               tileComponent={[Function]}
@@ -863,6 +872,7 @@ exports[`renders properly with a moved viewport (provider version) 3`] = `
   >
     <withPosition(YBarComponent)
       cacheElements={2}
+      componentCache={[Function]}
       height={100}
       nrYTiles={7}
       sequences={
@@ -902,6 +912,7 @@ exports[`renders properly with a moved viewport (provider version) 3`] = `
     >
       <YBarComponent
         cacheElements={2}
+        componentCache={[Function]}
         height={100}
         nrYTiles={7}
         position={
@@ -964,6 +975,7 @@ exports[`renders properly with a moved viewport (provider version) 3`] = `
             }
           >
             <ListComponent
+              componentCache={[Function]}
               endTile={7}
               startTile={4}
               tileComponent={[Function]}
@@ -1076,6 +1088,7 @@ exports[`renders properly with a moved viewport 1`] = `
   >
     <withPosition(YBarComponent)
       cacheElements={10}
+      componentCache={[Function]}
       height={400}
       nrYTiles={10}
       sequences={
@@ -1115,6 +1128,7 @@ exports[`renders properly with a moved viewport 1`] = `
     >
       <YBarComponent
         cacheElements={10}
+        componentCache={[Function]}
         height={400}
         nrYTiles={10}
         position={
@@ -1177,6 +1191,7 @@ exports[`renders properly with a moved viewport 1`] = `
             }
           >
             <ListComponent
+              componentCache={[Function]}
               endTile={7}
               startTile={0}
               tileComponent={[Function]}
@@ -1293,6 +1308,7 @@ exports[`renders properly with a moved viewport 1`] = `
 exports[`renders properly with a moved viewport 2`] = `
 <YBarComponent
   cacheElements={1}
+  componentCache={[Function]}
   height={100}
   nrYTiles={7}
   position={
@@ -1342,6 +1358,7 @@ exports[`renders properly with a moved viewport 2`] = `
 exports[`renders properly with a moved viewport 3`] = `
 <withPosition(YBarComponent)
   cacheElements={1}
+  componentCache={[Function]}
   height={100}
   nrYTiles={7}
   sequences={
@@ -1381,6 +1398,7 @@ exports[`renders properly with a moved viewport 3`] = `
 >
   <YBarComponent
     cacheElements={1}
+    componentCache={[Function]}
     height={100}
     nrYTiles={7}
     position={
@@ -1439,6 +1457,7 @@ exports[`renders properly with a moved viewport 3`] = `
         }
       >
         <ListComponent
+          componentCache={[Function]}
           endTile={5}
           startTile={1}
           tileComponent={[Function]}
@@ -1511,6 +1530,7 @@ exports[`renders properly with a moved viewport 3`] = `
 exports[`renders properly with a moved viewport 4`] = `
 <withPosition(YBarComponent)
   cacheElements={1}
+  componentCache={[Function]}
   height={100}
   nrYTiles={7}
   sequences={
@@ -1550,6 +1570,7 @@ exports[`renders properly with a moved viewport 4`] = `
 >
   <YBarComponent
     cacheElements={1}
+    componentCache={[Function]}
     height={100}
     nrYTiles={7}
     position={
@@ -1608,6 +1629,7 @@ exports[`renders properly with a moved viewport 4`] = `
         }
       >
         <ListComponent
+          componentCache={[Function]}
           endTile={7}
           startTile={4}
           tileComponent={[Function]}

@@ -65,7 +65,11 @@ class HTMLPositionBarComponent extends PureComponent {
 
   constructor(props) {
     super(props);
-    this.marker = shallowSelect(partialRight(pick, this.constructor.markerAttributes), createMarker);
+    this.cache = function(){};
+    this.marker = shallowSelect(partialRight(pick, this.constructor.markerAttributes), (props) => {
+      this.cache = function(){};
+      return createMarker(props);
+    });
   }
 
   render() {
@@ -80,6 +84,7 @@ class HTMLPositionBarComponent extends PureComponent {
       <XBar
         tileComponent={this.marker(this.props)}
         cacheElements={cacheElements}
+        componentCache={this.cache}
         {...otherProps}
       />
     );
