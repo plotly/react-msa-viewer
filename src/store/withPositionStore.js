@@ -52,6 +52,7 @@ function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
     componentDidMount() {
       // update to all updates from the position store
       this.unsubscribe = this.context.positionMSAStore.subscribe(this.updateFromPositionStore);
+      this.updateScrollPosition(true);
     }
 
     componentDidUpdate(){
@@ -129,11 +130,12 @@ function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
      */
     updateScrollPosition = () => {
       const it = this.el.current;
-      if (it.updateScrollPosition !== undefined) {
+      // be careful - might be a shallow render
+      if (it && it.updateScrollPosition !== undefined) {
         it.updateScrollPosition();
         return;
       }
-      if (it.el && it.el.current) {
+      if (it && it.el && it.el.current) {
         if (withX) {
           const tileWidth = it.props.tileWidth;
           let offsetX = -this.position.xPosOffset;
