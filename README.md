@@ -610,7 +610,7 @@ position events.
 
 ```jsx
 import {
-  positionStoreMixin,
+  withPositionStore,
   MSAViewer,
   SequenceViewer,
 } from '@plotly/react-msa-viewer';
@@ -630,7 +630,7 @@ class MyFirstMSAPlugin extends React.Component {
 }
 
 // inject the MSAPositionStore as this.position
-positionStoreMixin(MyFirstMSAPlugin, { withPosition: true });
+withPositionStore(MyFirstMSAPlugin);
 
 function MyMSA() {
   return (

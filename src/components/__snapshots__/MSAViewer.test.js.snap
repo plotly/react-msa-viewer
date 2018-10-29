@@ -71,16 +71,18 @@ exports[`it should rerender when new props are given 1`] = `
           }
         }
       >
-        <Connect(HTMLLabelsComponent-PositionStore)
+        <Connect(HTMLLabelsComponent)
           style={
             Object {
               "paddingTop": 70,
             }
           }
         >
-          <HTMLLabelsComponent-PositionStore
+          <HTMLLabelsComponent
+            cacheElements={10}
             dispatch={[Function]}
             height={100}
+            labelStyle={Object {}}
             nrYTiles={6}
             sequences={
               Array [
@@ -121,11 +123,9 @@ exports[`it should rerender when new props are given 1`] = `
             }
             tileHeight={20}
           >
-            <HTMLLabelsComponent
+            <withPosition(YBarComponent)
               cacheElements={10}
-              dispatch={[Function]}
               height={100}
-              labelStyle={Object {}}
               nrYTiles={6}
               sequences={
                 Array [
@@ -164,12 +164,114 @@ exports[`it should rerender when new props are given 1`] = `
                   "paddingTop": 70,
                 }
               }
+              tileComponent={[Function]}
               tileHeight={20}
             >
               <YBarComponent
                 cacheElements={10}
                 height={100}
                 nrYTiles={6}
+                position={
+                  Object {
+                    "currentViewSequence": 0,
+                    "currentViewSequencePosition": 0,
+                    "lastCurrentViewSequence": 0,
+                    "lastStartYTile": 0,
+                    "position": Object {
+                      "xPos": 0,
+                      "yPos": 0,
+                    },
+                    "props": Object {
+                      "backgroundColor": "red",
+                      "colorScheme": ColorScheme {
+                        "scheme": StaticSchemeClass {
+                          "defaultColor": "#ffffff",
+                          "getColor": [Function],
+                          "map": Object {
+                            "A": "orange",
+                            "B": "#fff",
+                            "C": "green",
+                            "D": "red",
+                            "E": "red",
+                            "F": "blue",
+                            "G": "orange",
+                            "Gap": "#fff",
+                            "H": "red",
+                            "I": "green",
+                            "J": "#fff",
+                            "K": "red",
+                            "L": "green",
+                            "M": "green",
+                            "N": "#fff",
+                            "O": "#fff",
+                            "P": "orange",
+                            "Q": "#fff",
+                            "R": "red",
+                            "S": "orange",
+                            "T": "orange",
+                            "U": "#fff",
+                            "V": "green",
+                            "W": "blue",
+                            "X": "#fff",
+                            "Y": "blue",
+                            "Z": "#fff",
+                          },
+                          "type": "static",
+                        },
+                      },
+                      "engine": "canvas",
+                      "height": 300,
+                      "tileHeight": 20,
+                      "tileWidth": 20,
+                      "width": 200,
+                    },
+                    "sequenceStats": Object {
+                      "fullHeight": 140,
+                      "fullWidth": 1200,
+                      "nrXTiles": 11,
+                      "nrYTiles": 16,
+                    },
+                    "sequences": Object {
+                      "length": 7,
+                      "maxLength": 60,
+                      "raw": Array [
+                        Object {
+                          "name": "sequence 1",
+                          "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                        },
+                        Object {
+                          "name": "sequence 2",
+                          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 3",
+                          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 4",
+                          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 5",
+                          "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 6",
+                          "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 7",
+                          "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                        },
+                      ],
+                    },
+                    "xPos": 0,
+                    "xPosOffset": -0,
+                    "yPos": 0,
+                    "yPosOffset": -0,
+                  }
+                }
+                positionDispatch={[Function]}
                 sequences={
                   Array [
                     Object {
@@ -336,17 +438,20 @@ exports[`it should rerender when new props are given 1`] = `
                   </div>
                 </div>
               </YBarComponent>
-            </HTMLLabelsComponent>
-          </HTMLLabelsComponent-PositionStore>
-        </Connect(HTMLLabelsComponent-PositionStore)>
+            </withPosition(YBarComponent)>
+          </HTMLLabelsComponent>
+        </Connect(HTMLLabelsComponent)>
         <div>
-          <Connect(HTMLOverviewBarComponent-PositionStore)
+          <Connect(HTMLOverviewBarComponent)
             height={50}
           >
-            <HTMLOverviewBarComponent-PositionStore
+            <HTMLOverviewBarComponent
+              cacheElements={10}
               dispatch={[Function]}
+              fillColor="#999999"
               height={50}
               maxLength={60}
+              method="conservation"
               nrXTiles={26}
               sequences={
                 Array [
@@ -383,13 +488,9 @@ exports[`it should rerender when new props are given 1`] = `
               tileWidth={20}
               width={500}
             >
-              <HTMLOverviewBarComponent
+              <withPosition(XBarComponent)
                 cacheElements={10}
-                dispatch={[Function]}
-                fillColor="#999999"
-                height={50}
                 maxLength={60}
-                method="conservation"
                 nrXTiles={26}
                 sequences={
                   Array [
@@ -423,6 +524,7 @@ exports[`it should rerender when new props are given 1`] = `
                     },
                   ]
                 }
+                tileComponent={[Function]}
                 tileWidth={20}
                 width={500}
               >
@@ -430,6 +532,107 @@ exports[`it should rerender when new props are given 1`] = `
                   cacheElements={10}
                   maxLength={60}
                   nrXTiles={26}
+                  position={
+                    Object {
+                      "currentViewSequence": 0,
+                      "currentViewSequencePosition": 0,
+                      "lastCurrentViewSequencePosition": 0,
+                      "lastStartXTile": 0,
+                      "position": Object {
+                        "xPos": 0,
+                        "yPos": 0,
+                      },
+                      "props": Object {
+                        "backgroundColor": "red",
+                        "colorScheme": ColorScheme {
+                          "scheme": StaticSchemeClass {
+                            "defaultColor": "#ffffff",
+                            "getColor": [Function],
+                            "map": Object {
+                              "A": "orange",
+                              "B": "#fff",
+                              "C": "green",
+                              "D": "red",
+                              "E": "red",
+                              "F": "blue",
+                              "G": "orange",
+                              "Gap": "#fff",
+                              "H": "red",
+                              "I": "green",
+                              "J": "#fff",
+                              "K": "red",
+                              "L": "green",
+                              "M": "green",
+                              "N": "#fff",
+                              "O": "#fff",
+                              "P": "orange",
+                              "Q": "#fff",
+                              "R": "red",
+                              "S": "orange",
+                              "T": "orange",
+                              "U": "#fff",
+                              "V": "green",
+                              "W": "blue",
+                              "X": "#fff",
+                              "Y": "blue",
+                              "Z": "#fff",
+                            },
+                            "type": "static",
+                          },
+                        },
+                        "engine": "canvas",
+                        "height": 300,
+                        "tileHeight": 20,
+                        "tileWidth": 20,
+                        "width": 200,
+                      },
+                      "sequenceStats": Object {
+                        "fullHeight": 140,
+                        "fullWidth": 1200,
+                        "nrXTiles": 11,
+                        "nrYTiles": 16,
+                      },
+                      "sequences": Object {
+                        "length": 7,
+                        "maxLength": 60,
+                        "raw": Array [
+                          Object {
+                            "name": "sequence 1",
+                            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                          },
+                          Object {
+                            "name": "sequence 2",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 3",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 4",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 5",
+                            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 6",
+                            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 7",
+                            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                          },
+                        ],
+                      },
+                      "xPos": 0,
+                      "xPosOffset": -0,
+                      "yPos": 0,
+                      "yPosOffset": -0,
+                    }
+                  }
+                  positionDispatch={[Function]}
                   sequences={
                     Array [
                       Object {
@@ -1264,12 +1467,16 @@ exports[`it should rerender when new props are given 1`] = `
                     </div>
                   </div>
                 </XBarComponent>
-              </HTMLOverviewBarComponent>
-            </HTMLOverviewBarComponent-PositionStore>
-          </Connect(HTMLOverviewBarComponent-PositionStore)>
-          <Connect(HTMLPositionBarComponent-PositionStore)>
-            <HTMLPositionBarComponent-PositionStore
+              </withPosition(XBarComponent)>
+            </HTMLOverviewBarComponent>
+          </Connect(HTMLOverviewBarComponent)>
+          <Connect(HTMLPositionBarComponent)>
+            <HTMLPositionBarComponent
+              cacheElements={10}
               dispatch={[Function]}
+              height={15}
+              markerSteps={2}
+              markerStyle={Object {}}
               maxLength={60}
               nrXTiles={26}
               sequences={
@@ -1304,15 +1511,18 @@ exports[`it should rerender when new props are given 1`] = `
                   },
                 ]
               }
+              startIndex={1}
+              style={
+                Object {
+                  "font": "12px Arial",
+                }
+              }
               tileWidth={20}
               width={500}
             >
-              <HTMLPositionBarComponent
+              <withPosition(XBarComponent)
                 cacheElements={10}
-                dispatch={[Function]}
                 height={15}
-                markerSteps={2}
-                markerStyle={Object {}}
                 maxLength={60}
                 nrXTiles={26}
                 sequences={
@@ -1347,12 +1557,12 @@ exports[`it should rerender when new props are given 1`] = `
                     },
                   ]
                 }
-                startIndex={1}
                 style={
                   Object {
                     "font": "12px Arial",
                   }
                 }
+                tileComponent={[Function]}
                 tileWidth={20}
                 width={500}
               >
@@ -1361,6 +1571,107 @@ exports[`it should rerender when new props are given 1`] = `
                   height={15}
                   maxLength={60}
                   nrXTiles={26}
+                  position={
+                    Object {
+                      "currentViewSequence": 0,
+                      "currentViewSequencePosition": 0,
+                      "lastCurrentViewSequencePosition": 0,
+                      "lastStartXTile": 0,
+                      "position": Object {
+                        "xPos": 0,
+                        "yPos": 0,
+                      },
+                      "props": Object {
+                        "backgroundColor": "red",
+                        "colorScheme": ColorScheme {
+                          "scheme": StaticSchemeClass {
+                            "defaultColor": "#ffffff",
+                            "getColor": [Function],
+                            "map": Object {
+                              "A": "orange",
+                              "B": "#fff",
+                              "C": "green",
+                              "D": "red",
+                              "E": "red",
+                              "F": "blue",
+                              "G": "orange",
+                              "Gap": "#fff",
+                              "H": "red",
+                              "I": "green",
+                              "J": "#fff",
+                              "K": "red",
+                              "L": "green",
+                              "M": "green",
+                              "N": "#fff",
+                              "O": "#fff",
+                              "P": "orange",
+                              "Q": "#fff",
+                              "R": "red",
+                              "S": "orange",
+                              "T": "orange",
+                              "U": "#fff",
+                              "V": "green",
+                              "W": "blue",
+                              "X": "#fff",
+                              "Y": "blue",
+                              "Z": "#fff",
+                            },
+                            "type": "static",
+                          },
+                        },
+                        "engine": "canvas",
+                        "height": 300,
+                        "tileHeight": 20,
+                        "tileWidth": 20,
+                        "width": 200,
+                      },
+                      "sequenceStats": Object {
+                        "fullHeight": 140,
+                        "fullWidth": 1200,
+                        "nrXTiles": 11,
+                        "nrYTiles": 16,
+                      },
+                      "sequences": Object {
+                        "length": 7,
+                        "maxLength": 60,
+                        "raw": Array [
+                          Object {
+                            "name": "sequence 1",
+                            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                          },
+                          Object {
+                            "name": "sequence 2",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 3",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 4",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 5",
+                            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 6",
+                            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 7",
+                            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                          },
+                        ],
+                      },
+                      "xPos": 0,
+                      "xPosOffset": -0,
+                      "yPos": 0,
+                      "yPosOffset": -0,
+                    }
+                  }
+                  positionDispatch={[Function]}
                   sequences={
                     Array [
                       Object {
@@ -2201,13 +2512,13 @@ exports[`it should rerender when new props are given 1`] = `
                     </div>
                   </div>
                 </XBarComponent>
-              </HTMLPositionBarComponent>
-            </HTMLPositionBarComponent-PositionStore>
-          </Connect(HTMLPositionBarComponent-PositionStore)>
-          <Connect(SequenceViewerComponent-PositionStore)
+              </withPosition(XBarComponent)>
+            </HTMLPositionBarComponent>
+          </Connect(HTMLPositionBarComponent)>
+          <Connect(withPosition(SequenceViewerComponent))
             onResidueClick={[Function]}
           >
-            <SequenceViewerComponent-PositionStore
+            <withPosition(SequenceViewerComponent)
               colorScheme={
                 ColorScheme {
                   "scheme": StaticSchemeClass {
@@ -2346,6 +2657,105 @@ exports[`it should rerender when new props are given 1`] = `
                 overflow="hidden"
                 overflowX="auto"
                 overflowY="auto"
+                position={
+                  Object {
+                    "currentViewSequence": 0,
+                    "currentViewSequencePosition": 0,
+                    "position": Object {
+                      "xPos": 0,
+                      "yPos": 0,
+                    },
+                    "props": Object {
+                      "backgroundColor": "red",
+                      "colorScheme": ColorScheme {
+                        "scheme": StaticSchemeClass {
+                          "defaultColor": "#ffffff",
+                          "getColor": [Function],
+                          "map": Object {
+                            "A": "orange",
+                            "B": "#fff",
+                            "C": "green",
+                            "D": "red",
+                            "E": "red",
+                            "F": "blue",
+                            "G": "orange",
+                            "Gap": "#fff",
+                            "H": "red",
+                            "I": "green",
+                            "J": "#fff",
+                            "K": "red",
+                            "L": "green",
+                            "M": "green",
+                            "N": "#fff",
+                            "O": "#fff",
+                            "P": "orange",
+                            "Q": "#fff",
+                            "R": "red",
+                            "S": "orange",
+                            "T": "orange",
+                            "U": "#fff",
+                            "V": "green",
+                            "W": "blue",
+                            "X": "#fff",
+                            "Y": "blue",
+                            "Z": "#fff",
+                          },
+                          "type": "static",
+                        },
+                      },
+                      "engine": "canvas",
+                      "height": 300,
+                      "tileHeight": 20,
+                      "tileWidth": 20,
+                      "width": 200,
+                    },
+                    "sequenceStats": Object {
+                      "fullHeight": 140,
+                      "fullWidth": 1200,
+                      "nrXTiles": 11,
+                      "nrYTiles": 16,
+                    },
+                    "sequences": Object {
+                      "length": 7,
+                      "maxLength": 60,
+                      "raw": Array [
+                        Object {
+                          "name": "sequence 1",
+                          "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                        },
+                        Object {
+                          "name": "sequence 2",
+                          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 3",
+                          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 4",
+                          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 5",
+                          "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 6",
+                          "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 7",
+                          "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                        },
+                      ],
+                    },
+                    "xPos": 0,
+                    "xPosOffset": -0,
+                    "yPos": 0,
+                    "yPosOffset": -0,
+                  }
+                }
+                positionDispatch={[Function]}
                 scrollBarPositionX="bottom"
                 scrollBarPositionY="right"
                 sequences={
@@ -2431,7 +2841,7 @@ exports[`it should rerender when new props are given 1`] = `
                   >
                     Your browser does not seem to support HTML5 canvas.
                   </canvas>
-                  <FakeScroll
+                  <withPosition(FakeScroll)
                     fullHeight={140}
                     fullWidth={1200}
                     height={100}
@@ -2440,15 +2850,126 @@ exports[`it should rerender when new props are given 1`] = `
                     overflowY="auto"
                     positionX="bottom"
                     positionY="right"
-                    scrollBarWidth={5}
                     width={500}
                   >
-                    <div />
-                  </FakeScroll>
+                    <FakeScroll
+                      fullHeight={140}
+                      fullWidth={1200}
+                      height={100}
+                      overflow="hidden"
+                      overflowX="auto"
+                      overflowY="auto"
+                      position={
+                        Object {
+                          "currentViewSequence": 0,
+                          "currentViewSequencePosition": 0,
+                          "position": Object {
+                            "xPos": 0,
+                            "yPos": 0,
+                          },
+                          "props": Object {
+                            "backgroundColor": "red",
+                            "colorScheme": ColorScheme {
+                              "scheme": StaticSchemeClass {
+                                "defaultColor": "#ffffff",
+                                "getColor": [Function],
+                                "map": Object {
+                                  "A": "orange",
+                                  "B": "#fff",
+                                  "C": "green",
+                                  "D": "red",
+                                  "E": "red",
+                                  "F": "blue",
+                                  "G": "orange",
+                                  "Gap": "#fff",
+                                  "H": "red",
+                                  "I": "green",
+                                  "J": "#fff",
+                                  "K": "red",
+                                  "L": "green",
+                                  "M": "green",
+                                  "N": "#fff",
+                                  "O": "#fff",
+                                  "P": "orange",
+                                  "Q": "#fff",
+                                  "R": "red",
+                                  "S": "orange",
+                                  "T": "orange",
+                                  "U": "#fff",
+                                  "V": "green",
+                                  "W": "blue",
+                                  "X": "#fff",
+                                  "Y": "blue",
+                                  "Z": "#fff",
+                                },
+                                "type": "static",
+                              },
+                            },
+                            "engine": "canvas",
+                            "height": 300,
+                            "tileHeight": 20,
+                            "tileWidth": 20,
+                            "width": 200,
+                          },
+                          "sequenceStats": Object {
+                            "fullHeight": 140,
+                            "fullWidth": 1200,
+                            "nrXTiles": 11,
+                            "nrYTiles": 16,
+                          },
+                          "sequences": Object {
+                            "length": 7,
+                            "maxLength": 60,
+                            "raw": Array [
+                              Object {
+                                "name": "sequence 1",
+                                "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                              },
+                              Object {
+                                "name": "sequence 2",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 3",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 4",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 5",
+                                "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 6",
+                                "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 7",
+                                "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                              },
+                            ],
+                          },
+                          "xPos": 0,
+                          "xPosOffset": -0,
+                          "yPos": 0,
+                          "yPosOffset": -0,
+                        }
+                      }
+                      positionDispatch={[Function]}
+                      positionX="bottom"
+                      positionY="right"
+                      scrollBarWidth={5}
+                      width={500}
+                    >
+                      <div />
+                    </FakeScroll>
+                  </withPosition(FakeScroll)>
                 </div>
               </SequenceViewerComponent>
-            </SequenceViewerComponent-PositionStore>
-          </Connect(SequenceViewerComponent-PositionStore)>
+            </withPosition(SequenceViewerComponent)>
+          </Connect(withPosition(SequenceViewerComponent))>
           <div
             style={
               Object {
@@ -2548,16 +3069,18 @@ exports[`renders without crashing in enzyme 1`] = `
           }
         }
       >
-        <Connect(HTMLLabelsComponent-PositionStore)
+        <Connect(HTMLLabelsComponent)
           style={
             Object {
               "paddingTop": 70,
             }
           }
         >
-          <HTMLLabelsComponent-PositionStore
+          <HTMLLabelsComponent
+            cacheElements={10}
             dispatch={[Function]}
             height={100}
+            labelStyle={Object {}}
             nrYTiles={6}
             sequences={
               Array [
@@ -2598,11 +3121,9 @@ exports[`renders without crashing in enzyme 1`] = `
             }
             tileHeight={20}
           >
-            <HTMLLabelsComponent
+            <withPosition(YBarComponent)
               cacheElements={10}
-              dispatch={[Function]}
               height={100}
-              labelStyle={Object {}}
               nrYTiles={6}
               sequences={
                 Array [
@@ -2641,12 +3162,114 @@ exports[`renders without crashing in enzyme 1`] = `
                   "paddingTop": 70,
                 }
               }
+              tileComponent={[Function]}
               tileHeight={20}
             >
               <YBarComponent
                 cacheElements={10}
                 height={100}
                 nrYTiles={6}
+                position={
+                  Object {
+                    "currentViewSequence": 0,
+                    "currentViewSequencePosition": 0,
+                    "lastCurrentViewSequence": 0,
+                    "lastStartYTile": 0,
+                    "position": Object {
+                      "xPos": 0,
+                      "yPos": 0,
+                    },
+                    "props": Object {
+                      "backgroundColor": "red",
+                      "colorScheme": ColorScheme {
+                        "scheme": StaticSchemeClass {
+                          "defaultColor": "#ffffff",
+                          "getColor": [Function],
+                          "map": Object {
+                            "A": "orange",
+                            "B": "#fff",
+                            "C": "green",
+                            "D": "red",
+                            "E": "red",
+                            "F": "blue",
+                            "G": "orange",
+                            "Gap": "#fff",
+                            "H": "red",
+                            "I": "green",
+                            "J": "#fff",
+                            "K": "red",
+                            "L": "green",
+                            "M": "green",
+                            "N": "#fff",
+                            "O": "#fff",
+                            "P": "orange",
+                            "Q": "#fff",
+                            "R": "red",
+                            "S": "orange",
+                            "T": "orange",
+                            "U": "#fff",
+                            "V": "green",
+                            "W": "blue",
+                            "X": "#fff",
+                            "Y": "blue",
+                            "Z": "#fff",
+                          },
+                          "type": "static",
+                        },
+                      },
+                      "engine": "canvas",
+                      "height": 100,
+                      "tileHeight": 20,
+                      "tileWidth": 20,
+                      "width": 500,
+                    },
+                    "sequenceStats": Object {
+                      "fullHeight": 140,
+                      "fullWidth": 1200,
+                      "nrXTiles": 26,
+                      "nrYTiles": 6,
+                    },
+                    "sequences": Object {
+                      "length": 7,
+                      "maxLength": 60,
+                      "raw": Array [
+                        Object {
+                          "name": "sequence 1",
+                          "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                        },
+                        Object {
+                          "name": "sequence 2",
+                          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 3",
+                          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 4",
+                          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 5",
+                          "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 6",
+                          "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 7",
+                          "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                        },
+                      ],
+                    },
+                    "xPos": 0,
+                    "xPosOffset": -0,
+                    "yPos": 0,
+                    "yPosOffset": -0,
+                  }
+                }
+                positionDispatch={[Function]}
                 sequences={
                   Array [
                     Object {
@@ -2813,17 +3436,20 @@ exports[`renders without crashing in enzyme 1`] = `
                   </div>
                 </div>
               </YBarComponent>
-            </HTMLLabelsComponent>
-          </HTMLLabelsComponent-PositionStore>
-        </Connect(HTMLLabelsComponent-PositionStore)>
+            </withPosition(YBarComponent)>
+          </HTMLLabelsComponent>
+        </Connect(HTMLLabelsComponent)>
         <div>
-          <Connect(HTMLOverviewBarComponent-PositionStore)
+          <Connect(HTMLOverviewBarComponent)
             height={50}
           >
-            <HTMLOverviewBarComponent-PositionStore
+            <HTMLOverviewBarComponent
+              cacheElements={10}
               dispatch={[Function]}
+              fillColor="#999999"
               height={50}
               maxLength={60}
+              method="conservation"
               nrXTiles={26}
               sequences={
                 Array [
@@ -2860,13 +3486,9 @@ exports[`renders without crashing in enzyme 1`] = `
               tileWidth={20}
               width={500}
             >
-              <HTMLOverviewBarComponent
+              <withPosition(XBarComponent)
                 cacheElements={10}
-                dispatch={[Function]}
-                fillColor="#999999"
-                height={50}
                 maxLength={60}
-                method="conservation"
                 nrXTiles={26}
                 sequences={
                   Array [
@@ -2900,6 +3522,7 @@ exports[`renders without crashing in enzyme 1`] = `
                     },
                   ]
                 }
+                tileComponent={[Function]}
                 tileWidth={20}
                 width={500}
               >
@@ -2907,6 +3530,107 @@ exports[`renders without crashing in enzyme 1`] = `
                   cacheElements={10}
                   maxLength={60}
                   nrXTiles={26}
+                  position={
+                    Object {
+                      "currentViewSequence": 0,
+                      "currentViewSequencePosition": 0,
+                      "lastCurrentViewSequencePosition": 0,
+                      "lastStartXTile": 0,
+                      "position": Object {
+                        "xPos": 0,
+                        "yPos": 0,
+                      },
+                      "props": Object {
+                        "backgroundColor": "red",
+                        "colorScheme": ColorScheme {
+                          "scheme": StaticSchemeClass {
+                            "defaultColor": "#ffffff",
+                            "getColor": [Function],
+                            "map": Object {
+                              "A": "orange",
+                              "B": "#fff",
+                              "C": "green",
+                              "D": "red",
+                              "E": "red",
+                              "F": "blue",
+                              "G": "orange",
+                              "Gap": "#fff",
+                              "H": "red",
+                              "I": "green",
+                              "J": "#fff",
+                              "K": "red",
+                              "L": "green",
+                              "M": "green",
+                              "N": "#fff",
+                              "O": "#fff",
+                              "P": "orange",
+                              "Q": "#fff",
+                              "R": "red",
+                              "S": "orange",
+                              "T": "orange",
+                              "U": "#fff",
+                              "V": "green",
+                              "W": "blue",
+                              "X": "#fff",
+                              "Y": "blue",
+                              "Z": "#fff",
+                            },
+                            "type": "static",
+                          },
+                        },
+                        "engine": "canvas",
+                        "height": 100,
+                        "tileHeight": 20,
+                        "tileWidth": 20,
+                        "width": 500,
+                      },
+                      "sequenceStats": Object {
+                        "fullHeight": 140,
+                        "fullWidth": 1200,
+                        "nrXTiles": 26,
+                        "nrYTiles": 6,
+                      },
+                      "sequences": Object {
+                        "length": 7,
+                        "maxLength": 60,
+                        "raw": Array [
+                          Object {
+                            "name": "sequence 1",
+                            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                          },
+                          Object {
+                            "name": "sequence 2",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 3",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 4",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 5",
+                            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 6",
+                            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 7",
+                            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                          },
+                        ],
+                      },
+                      "xPos": 0,
+                      "xPosOffset": -0,
+                      "yPos": 0,
+                      "yPosOffset": -0,
+                    }
+                  }
+                  positionDispatch={[Function]}
                   sequences={
                     Array [
                       Object {
@@ -3741,12 +4465,16 @@ exports[`renders without crashing in enzyme 1`] = `
                     </div>
                   </div>
                 </XBarComponent>
-              </HTMLOverviewBarComponent>
-            </HTMLOverviewBarComponent-PositionStore>
-          </Connect(HTMLOverviewBarComponent-PositionStore)>
-          <Connect(HTMLPositionBarComponent-PositionStore)>
-            <HTMLPositionBarComponent-PositionStore
+              </withPosition(XBarComponent)>
+            </HTMLOverviewBarComponent>
+          </Connect(HTMLOverviewBarComponent)>
+          <Connect(HTMLPositionBarComponent)>
+            <HTMLPositionBarComponent
+              cacheElements={10}
               dispatch={[Function]}
+              height={15}
+              markerSteps={2}
+              markerStyle={Object {}}
               maxLength={60}
               nrXTiles={26}
               sequences={
@@ -3781,15 +4509,18 @@ exports[`renders without crashing in enzyme 1`] = `
                   },
                 ]
               }
+              startIndex={1}
+              style={
+                Object {
+                  "font": "12px Arial",
+                }
+              }
               tileWidth={20}
               width={500}
             >
-              <HTMLPositionBarComponent
+              <withPosition(XBarComponent)
                 cacheElements={10}
-                dispatch={[Function]}
                 height={15}
-                markerSteps={2}
-                markerStyle={Object {}}
                 maxLength={60}
                 nrXTiles={26}
                 sequences={
@@ -3824,12 +4555,12 @@ exports[`renders without crashing in enzyme 1`] = `
                     },
                   ]
                 }
-                startIndex={1}
                 style={
                   Object {
                     "font": "12px Arial",
                   }
                 }
+                tileComponent={[Function]}
                 tileWidth={20}
                 width={500}
               >
@@ -3838,6 +4569,107 @@ exports[`renders without crashing in enzyme 1`] = `
                   height={15}
                   maxLength={60}
                   nrXTiles={26}
+                  position={
+                    Object {
+                      "currentViewSequence": 0,
+                      "currentViewSequencePosition": 0,
+                      "lastCurrentViewSequencePosition": 0,
+                      "lastStartXTile": 0,
+                      "position": Object {
+                        "xPos": 0,
+                        "yPos": 0,
+                      },
+                      "props": Object {
+                        "backgroundColor": "red",
+                        "colorScheme": ColorScheme {
+                          "scheme": StaticSchemeClass {
+                            "defaultColor": "#ffffff",
+                            "getColor": [Function],
+                            "map": Object {
+                              "A": "orange",
+                              "B": "#fff",
+                              "C": "green",
+                              "D": "red",
+                              "E": "red",
+                              "F": "blue",
+                              "G": "orange",
+                              "Gap": "#fff",
+                              "H": "red",
+                              "I": "green",
+                              "J": "#fff",
+                              "K": "red",
+                              "L": "green",
+                              "M": "green",
+                              "N": "#fff",
+                              "O": "#fff",
+                              "P": "orange",
+                              "Q": "#fff",
+                              "R": "red",
+                              "S": "orange",
+                              "T": "orange",
+                              "U": "#fff",
+                              "V": "green",
+                              "W": "blue",
+                              "X": "#fff",
+                              "Y": "blue",
+                              "Z": "#fff",
+                            },
+                            "type": "static",
+                          },
+                        },
+                        "engine": "canvas",
+                        "height": 100,
+                        "tileHeight": 20,
+                        "tileWidth": 20,
+                        "width": 500,
+                      },
+                      "sequenceStats": Object {
+                        "fullHeight": 140,
+                        "fullWidth": 1200,
+                        "nrXTiles": 26,
+                        "nrYTiles": 6,
+                      },
+                      "sequences": Object {
+                        "length": 7,
+                        "maxLength": 60,
+                        "raw": Array [
+                          Object {
+                            "name": "sequence 1",
+                            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                          },
+                          Object {
+                            "name": "sequence 2",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 3",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 4",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 5",
+                            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 6",
+                            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 7",
+                            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                          },
+                        ],
+                      },
+                      "xPos": 0,
+                      "xPosOffset": -0,
+                      "yPos": 0,
+                      "yPosOffset": -0,
+                    }
+                  }
+                  positionDispatch={[Function]}
                   sequences={
                     Array [
                       Object {
@@ -4678,13 +5510,13 @@ exports[`renders without crashing in enzyme 1`] = `
                     </div>
                   </div>
                 </XBarComponent>
-              </HTMLPositionBarComponent>
-            </HTMLPositionBarComponent-PositionStore>
-          </Connect(HTMLPositionBarComponent-PositionStore)>
-          <Connect(SequenceViewerComponent-PositionStore)
+              </withPosition(XBarComponent)>
+            </HTMLPositionBarComponent>
+          </Connect(HTMLPositionBarComponent)>
+          <Connect(withPosition(SequenceViewerComponent))
             onResidueClick={[Function]}
           >
-            <SequenceViewerComponent-PositionStore
+            <withPosition(SequenceViewerComponent)
               colorScheme={
                 ColorScheme {
                   "scheme": StaticSchemeClass {
@@ -4823,6 +5655,105 @@ exports[`renders without crashing in enzyme 1`] = `
                 overflow="hidden"
                 overflowX="auto"
                 overflowY="auto"
+                position={
+                  Object {
+                    "currentViewSequence": 0,
+                    "currentViewSequencePosition": 0,
+                    "position": Object {
+                      "xPos": 0,
+                      "yPos": 0,
+                    },
+                    "props": Object {
+                      "backgroundColor": "red",
+                      "colorScheme": ColorScheme {
+                        "scheme": StaticSchemeClass {
+                          "defaultColor": "#ffffff",
+                          "getColor": [Function],
+                          "map": Object {
+                            "A": "orange",
+                            "B": "#fff",
+                            "C": "green",
+                            "D": "red",
+                            "E": "red",
+                            "F": "blue",
+                            "G": "orange",
+                            "Gap": "#fff",
+                            "H": "red",
+                            "I": "green",
+                            "J": "#fff",
+                            "K": "red",
+                            "L": "green",
+                            "M": "green",
+                            "N": "#fff",
+                            "O": "#fff",
+                            "P": "orange",
+                            "Q": "#fff",
+                            "R": "red",
+                            "S": "orange",
+                            "T": "orange",
+                            "U": "#fff",
+                            "V": "green",
+                            "W": "blue",
+                            "X": "#fff",
+                            "Y": "blue",
+                            "Z": "#fff",
+                          },
+                          "type": "static",
+                        },
+                      },
+                      "engine": "canvas",
+                      "height": 100,
+                      "tileHeight": 20,
+                      "tileWidth": 20,
+                      "width": 500,
+                    },
+                    "sequenceStats": Object {
+                      "fullHeight": 140,
+                      "fullWidth": 1200,
+                      "nrXTiles": 26,
+                      "nrYTiles": 6,
+                    },
+                    "sequences": Object {
+                      "length": 7,
+                      "maxLength": 60,
+                      "raw": Array [
+                        Object {
+                          "name": "sequence 1",
+                          "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                        },
+                        Object {
+                          "name": "sequence 2",
+                          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 3",
+                          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 4",
+                          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 5",
+                          "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 6",
+                          "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                        },
+                        Object {
+                          "name": "sequence 7",
+                          "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                        },
+                      ],
+                    },
+                    "xPos": 0,
+                    "xPosOffset": -0,
+                    "yPos": 0,
+                    "yPosOffset": -0,
+                  }
+                }
+                positionDispatch={[Function]}
                 scrollBarPositionX="bottom"
                 scrollBarPositionY="right"
                 sequences={
@@ -4908,7 +5839,7 @@ exports[`renders without crashing in enzyme 1`] = `
                   >
                     Your browser does not seem to support HTML5 canvas.
                   </canvas>
-                  <FakeScroll
+                  <withPosition(FakeScroll)
                     fullHeight={140}
                     fullWidth={1200}
                     height={100}
@@ -4917,15 +5848,126 @@ exports[`renders without crashing in enzyme 1`] = `
                     overflowY="auto"
                     positionX="bottom"
                     positionY="right"
-                    scrollBarWidth={5}
                     width={500}
                   >
-                    <div />
-                  </FakeScroll>
+                    <FakeScroll
+                      fullHeight={140}
+                      fullWidth={1200}
+                      height={100}
+                      overflow="hidden"
+                      overflowX="auto"
+                      overflowY="auto"
+                      position={
+                        Object {
+                          "currentViewSequence": 0,
+                          "currentViewSequencePosition": 0,
+                          "position": Object {
+                            "xPos": 0,
+                            "yPos": 0,
+                          },
+                          "props": Object {
+                            "backgroundColor": "red",
+                            "colorScheme": ColorScheme {
+                              "scheme": StaticSchemeClass {
+                                "defaultColor": "#ffffff",
+                                "getColor": [Function],
+                                "map": Object {
+                                  "A": "orange",
+                                  "B": "#fff",
+                                  "C": "green",
+                                  "D": "red",
+                                  "E": "red",
+                                  "F": "blue",
+                                  "G": "orange",
+                                  "Gap": "#fff",
+                                  "H": "red",
+                                  "I": "green",
+                                  "J": "#fff",
+                                  "K": "red",
+                                  "L": "green",
+                                  "M": "green",
+                                  "N": "#fff",
+                                  "O": "#fff",
+                                  "P": "orange",
+                                  "Q": "#fff",
+                                  "R": "red",
+                                  "S": "orange",
+                                  "T": "orange",
+                                  "U": "#fff",
+                                  "V": "green",
+                                  "W": "blue",
+                                  "X": "#fff",
+                                  "Y": "blue",
+                                  "Z": "#fff",
+                                },
+                                "type": "static",
+                              },
+                            },
+                            "engine": "canvas",
+                            "height": 100,
+                            "tileHeight": 20,
+                            "tileWidth": 20,
+                            "width": 500,
+                          },
+                          "sequenceStats": Object {
+                            "fullHeight": 140,
+                            "fullWidth": 1200,
+                            "nrXTiles": 26,
+                            "nrYTiles": 6,
+                          },
+                          "sequences": Object {
+                            "length": 7,
+                            "maxLength": 60,
+                            "raw": Array [
+                              Object {
+                                "name": "sequence 1",
+                                "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                              },
+                              Object {
+                                "name": "sequence 2",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 3",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 4",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 5",
+                                "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 6",
+                                "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 7",
+                                "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                              },
+                            ],
+                          },
+                          "xPos": 0,
+                          "xPosOffset": -0,
+                          "yPos": 0,
+                          "yPosOffset": -0,
+                        }
+                      }
+                      positionDispatch={[Function]}
+                      positionX="bottom"
+                      positionY="right"
+                      scrollBarWidth={5}
+                      width={500}
+                    >
+                      <div />
+                    </FakeScroll>
+                  </withPosition(FakeScroll)>
                 </div>
               </SequenceViewerComponent>
-            </SequenceViewerComponent-PositionStore>
-          </Connect(SequenceViewerComponent-PositionStore)>
+            </withPosition(SequenceViewerComponent)>
+          </Connect(withPosition(SequenceViewerComponent))>
           <div
             style={
               Object {

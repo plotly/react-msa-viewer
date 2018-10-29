@@ -9,7 +9,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import createRef from 'create-react-ref/lib/createRef';
 
-import positionStoreMixin from '../../store/positionStoreMixin';
+import withPositionStore from '../../store/withPositionStore';
 
 import ListComponent from '../ListComponent';
 
@@ -32,6 +32,8 @@ class XBarComponent extends PureComponent {
       tileComponent,
       nrXTiles,
       maxLength,
+      position,
+      positionDispatch,
       ...otherProps
     } = this.props;
     const style = {
@@ -49,11 +51,11 @@ class XBarComponent extends PureComponent {
       sequences,
       tileComponent,
     };
-    const startTile = Math.max(0, this.position.currentViewSequencePosition - this.props.cacheElements);
+    const startTile = Math.max(0, this.props.position.currentViewSequencePosition - this.props.cacheElements);
     const endTile = Math.min(this.props.maxLength, startTile + this.props.nrXTiles + this.props.cacheElements * 2);
     const maxWidth = this.props.width + this.props.cacheElements * 2 * this.props.tileWidth;
-    this.position.lastStartXTile = startTile;
-    this.position.lastCurrentViewSequencePosition = this.position.currentViewSequencePosition;
+    this.props.position.lastStartXTile = startTile;
+    this.props.position.lastCurrentViewSequencePosition = this.props.position.currentViewSequencePosition;
     return (
       <div style={containerStyle} {...otherProps}>
         <div style={style} ref={this.el}>
@@ -67,8 +69,6 @@ class XBarComponent extends PureComponent {
     );
   }
 }
-
-positionStoreMixin(XBarComponent, {withX: true});
 
 XBarComponent.propTypes = {
   /**
@@ -86,4 +86,7 @@ XBarComponent.propTypes = {
   maxLength: PropTypes.number.isRequired,
 }
 
-export default XBarComponent;
+export default withPositionStore(XBarComponent, {withX: true});
+export {
+  XBarComponent as xBar,
+}

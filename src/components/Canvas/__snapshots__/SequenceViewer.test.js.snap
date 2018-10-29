@@ -65,8 +65,8 @@ exports[`renders without crashing 1`] = `
       }
     >
       <div>
-        <Connect(SequenceViewerComponent-PositionStore)>
-          <SequenceViewerComponent-PositionStore
+        <Connect(withPosition(SequenceViewerComponent))>
+          <withPosition(SequenceViewerComponent)
             colorScheme={
               ColorScheme {
                 "scheme": StaticSchemeClass {
@@ -203,6 +203,105 @@ exports[`renders without crashing 1`] = `
               overflow="hidden"
               overflowX="auto"
               overflowY="auto"
+              position={
+                Object {
+                  "currentViewSequence": 0,
+                  "currentViewSequencePosition": 0,
+                  "position": Object {
+                    "xPos": 0,
+                    "yPos": 0,
+                  },
+                  "props": Object {
+                    "backgroundColor": "red",
+                    "colorScheme": ColorScheme {
+                      "scheme": StaticSchemeClass {
+                        "defaultColor": "#ffffff",
+                        "getColor": [Function],
+                        "map": Object {
+                          "A": "orange",
+                          "B": "#fff",
+                          "C": "green",
+                          "D": "red",
+                          "E": "red",
+                          "F": "blue",
+                          "G": "orange",
+                          "Gap": "#fff",
+                          "H": "red",
+                          "I": "green",
+                          "J": "#fff",
+                          "K": "red",
+                          "L": "green",
+                          "M": "green",
+                          "N": "#fff",
+                          "O": "#fff",
+                          "P": "orange",
+                          "Q": "#fff",
+                          "R": "red",
+                          "S": "orange",
+                          "T": "orange",
+                          "U": "#fff",
+                          "V": "green",
+                          "W": "blue",
+                          "X": "#fff",
+                          "Y": "blue",
+                          "Z": "#fff",
+                        },
+                        "type": "static",
+                      },
+                    },
+                    "engine": "canvas",
+                    "height": 100,
+                    "tileHeight": 20,
+                    "tileWidth": 20,
+                    "width": 500,
+                  },
+                  "sequenceStats": Object {
+                    "fullHeight": 140,
+                    "fullWidth": 1200,
+                    "nrXTiles": 26,
+                    "nrYTiles": 6,
+                  },
+                  "sequences": Object {
+                    "length": 7,
+                    "maxLength": 60,
+                    "raw": Array [
+                      Object {
+                        "name": "sequence 1",
+                        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                      },
+                      Object {
+                        "name": "sequence 2",
+                        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                      },
+                      Object {
+                        "name": "sequence 3",
+                        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                      },
+                      Object {
+                        "name": "sequence 4",
+                        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                      },
+                      Object {
+                        "name": "sequence 5",
+                        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                      },
+                      Object {
+                        "name": "sequence 6",
+                        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                      },
+                      Object {
+                        "name": "sequence 7",
+                        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                      },
+                    ],
+                  },
+                  "xPos": 0,
+                  "xPosOffset": -0,
+                  "yPos": 0,
+                  "yPosOffset": -0,
+                }
+              }
+              positionDispatch={[Function]}
               scrollBarPositionX="bottom"
               scrollBarPositionY="right"
               sequences={
@@ -288,7 +387,7 @@ exports[`renders without crashing 1`] = `
                 >
                   Your browser does not seem to support HTML5 canvas.
                 </canvas>
-                <FakeScroll
+                <withPosition(FakeScroll)
                   fullHeight={140}
                   fullWidth={1200}
                   height={100}
@@ -297,15 +396,126 @@ exports[`renders without crashing 1`] = `
                   overflowY="auto"
                   positionX="bottom"
                   positionY="right"
-                  scrollBarWidth={5}
                   width={500}
                 >
-                  <div />
-                </FakeScroll>
+                  <FakeScroll
+                    fullHeight={140}
+                    fullWidth={1200}
+                    height={100}
+                    overflow="hidden"
+                    overflowX="auto"
+                    overflowY="auto"
+                    position={
+                      Object {
+                        "currentViewSequence": 0,
+                        "currentViewSequencePosition": 0,
+                        "position": Object {
+                          "xPos": 0,
+                          "yPos": 0,
+                        },
+                        "props": Object {
+                          "backgroundColor": "red",
+                          "colorScheme": ColorScheme {
+                            "scheme": StaticSchemeClass {
+                              "defaultColor": "#ffffff",
+                              "getColor": [Function],
+                              "map": Object {
+                                "A": "orange",
+                                "B": "#fff",
+                                "C": "green",
+                                "D": "red",
+                                "E": "red",
+                                "F": "blue",
+                                "G": "orange",
+                                "Gap": "#fff",
+                                "H": "red",
+                                "I": "green",
+                                "J": "#fff",
+                                "K": "red",
+                                "L": "green",
+                                "M": "green",
+                                "N": "#fff",
+                                "O": "#fff",
+                                "P": "orange",
+                                "Q": "#fff",
+                                "R": "red",
+                                "S": "orange",
+                                "T": "orange",
+                                "U": "#fff",
+                                "V": "green",
+                                "W": "blue",
+                                "X": "#fff",
+                                "Y": "blue",
+                                "Z": "#fff",
+                              },
+                              "type": "static",
+                            },
+                          },
+                          "engine": "canvas",
+                          "height": 100,
+                          "tileHeight": 20,
+                          "tileWidth": 20,
+                          "width": 500,
+                        },
+                        "sequenceStats": Object {
+                          "fullHeight": 140,
+                          "fullWidth": 1200,
+                          "nrXTiles": 26,
+                          "nrYTiles": 6,
+                        },
+                        "sequences": Object {
+                          "length": 7,
+                          "maxLength": 60,
+                          "raw": Array [
+                            Object {
+                              "name": "sequence 1",
+                              "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                            },
+                            Object {
+                              "name": "sequence 2",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 3",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 4",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 5",
+                              "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 6",
+                              "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 7",
+                              "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                            },
+                          ],
+                        },
+                        "xPos": 0,
+                        "xPosOffset": -0,
+                        "yPos": 0,
+                        "yPosOffset": -0,
+                      }
+                    }
+                    positionDispatch={[Function]}
+                    positionX="bottom"
+                    positionY="right"
+                    scrollBarWidth={5}
+                    width={500}
+                  >
+                    <div />
+                  </FakeScroll>
+                </withPosition(FakeScroll)>
               </div>
             </SequenceViewerComponent>
-          </SequenceViewerComponent-PositionStore>
-        </Connect(SequenceViewerComponent-PositionStore)>
+          </withPosition(SequenceViewerComponent)>
+        </Connect(withPosition(SequenceViewerComponent))>
       </div>
     </Provider>
   </MSAViewerComponent>
@@ -372,8 +582,8 @@ exports[`sends movement actions on mousemove events should change the cursor sta
     }
   >
     <div>
-      <Connect(SequenceViewerComponent-PositionStore)>
-        <SequenceViewerComponent-PositionStore
+      <Connect(withPosition(SequenceViewerComponent))>
+        <withPosition(SequenceViewerComponent)
           colorScheme={
             ColorScheme {
               "scheme": StaticSchemeClass {
@@ -510,6 +720,21 @@ exports[`sends movement actions on mousemove events should change the cursor sta
             overflow="hidden"
             overflowX="auto"
             overflowY="auto"
+            position={
+              Object {
+                "currentViewSequence": 0,
+                "currentViewSequencePosition": 0,
+                "position": Object {
+                  "xPos": 0,
+                  "yPos": 0,
+                },
+                "xPos": 0,
+                "xPosOffset": 0,
+                "yPos": 0,
+                "yPosOffset": 0,
+              }
+            }
+            positionDispatch={[Function]}
             scrollBarPositionX="bottom"
             scrollBarPositionY="right"
             sequences={
@@ -595,7 +820,7 @@ exports[`sends movement actions on mousemove events should change the cursor sta
               >
                 Your browser does not seem to support HTML5 canvas.
               </canvas>
-              <FakeScroll
+              <withPosition(FakeScroll)
                 fullHeight={140}
                 fullWidth={1200}
                 height={140}
@@ -604,15 +829,42 @@ exports[`sends movement actions on mousemove events should change the cursor sta
                 overflowY="auto"
                 positionX="bottom"
                 positionY="right"
-                scrollBarWidth={5}
                 width={400}
               >
-                <div />
-              </FakeScroll>
+                <FakeScroll
+                  fullHeight={140}
+                  fullWidth={1200}
+                  height={140}
+                  overflow="hidden"
+                  overflowX="auto"
+                  overflowY="auto"
+                  position={
+                    Object {
+                      "currentViewSequence": 0,
+                      "currentViewSequencePosition": 0,
+                      "position": Object {
+                        "xPos": 0,
+                        "yPos": 0,
+                      },
+                      "xPos": 0,
+                      "xPosOffset": 0,
+                      "yPos": 0,
+                      "yPosOffset": 0,
+                    }
+                  }
+                  positionDispatch={[Function]}
+                  positionX="bottom"
+                  positionY="right"
+                  scrollBarWidth={5}
+                  width={400}
+                >
+                  <div />
+                </FakeScroll>
+              </withPosition(FakeScroll)>
             </div>
           </SequenceViewerComponent>
-        </SequenceViewerComponent-PositionStore>
-      </Connect(SequenceViewerComponent-PositionStore)>
+        </withPosition(SequenceViewerComponent)>
+      </Connect(withPosition(SequenceViewerComponent))>
     </div>
   </Provider>
 </FakePositionStore>
@@ -683,10 +935,10 @@ exports[`should fire an event on mouseclick 1`] = `
       }
     >
       <div>
-        <Connect(SequenceViewerComponent-PositionStore)
+        <Connect(withPosition(SequenceViewerComponent))
           onResidueClick={[MockFunction]}
         >
-          <SequenceViewerComponent-PositionStore
+          <withPosition(SequenceViewerComponent)
             colorScheme={
               ColorScheme {
                 "scheme": StaticSchemeClass {
@@ -825,6 +1077,105 @@ exports[`should fire an event on mouseclick 1`] = `
               overflow="hidden"
               overflowX="auto"
               overflowY="auto"
+              position={
+                Object {
+                  "currentViewSequence": 0,
+                  "currentViewSequencePosition": 0,
+                  "position": Object {
+                    "xPos": 0,
+                    "yPos": 0,
+                  },
+                  "props": Object {
+                    "backgroundColor": "red",
+                    "colorScheme": ColorScheme {
+                      "scheme": StaticSchemeClass {
+                        "defaultColor": "#ffffff",
+                        "getColor": [Function],
+                        "map": Object {
+                          "A": "orange",
+                          "B": "#fff",
+                          "C": "green",
+                          "D": "red",
+                          "E": "red",
+                          "F": "blue",
+                          "G": "orange",
+                          "Gap": "#fff",
+                          "H": "red",
+                          "I": "green",
+                          "J": "#fff",
+                          "K": "red",
+                          "L": "green",
+                          "M": "green",
+                          "N": "#fff",
+                          "O": "#fff",
+                          "P": "orange",
+                          "Q": "#fff",
+                          "R": "red",
+                          "S": "orange",
+                          "T": "orange",
+                          "U": "#fff",
+                          "V": "green",
+                          "W": "blue",
+                          "X": "#fff",
+                          "Y": "blue",
+                          "Z": "#fff",
+                        },
+                        "type": "static",
+                      },
+                    },
+                    "engine": "canvas",
+                    "height": 200,
+                    "tileHeight": 20,
+                    "tileWidth": 20,
+                    "width": 400,
+                  },
+                  "sequenceStats": Object {
+                    "fullHeight": 140,
+                    "fullWidth": 1200,
+                    "nrXTiles": 21,
+                    "nrYTiles": 11,
+                  },
+                  "sequences": Object {
+                    "length": 7,
+                    "maxLength": 60,
+                    "raw": Array [
+                      Object {
+                        "name": "sequence 1",
+                        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                      },
+                      Object {
+                        "name": "sequence 2",
+                        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                      },
+                      Object {
+                        "name": "sequence 3",
+                        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                      },
+                      Object {
+                        "name": "sequence 4",
+                        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                      },
+                      Object {
+                        "name": "sequence 5",
+                        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                      },
+                      Object {
+                        "name": "sequence 6",
+                        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                      },
+                      Object {
+                        "name": "sequence 7",
+                        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                      },
+                    ],
+                  },
+                  "xPos": 0,
+                  "xPosOffset": -0,
+                  "yPos": 0,
+                  "yPosOffset": -0,
+                }
+              }
+              positionDispatch={[Function]}
               scrollBarPositionX="bottom"
               scrollBarPositionY="right"
               sequences={
@@ -910,7 +1261,7 @@ exports[`should fire an event on mouseclick 1`] = `
                 >
                   Your browser does not seem to support HTML5 canvas.
                 </canvas>
-                <FakeScroll
+                <withPosition(FakeScroll)
                   fullHeight={140}
                   fullWidth={1200}
                   height={140}
@@ -919,15 +1270,126 @@ exports[`should fire an event on mouseclick 1`] = `
                   overflowY="auto"
                   positionX="bottom"
                   positionY="right"
-                  scrollBarWidth={5}
                   width={400}
                 >
-                  <div />
-                </FakeScroll>
+                  <FakeScroll
+                    fullHeight={140}
+                    fullWidth={1200}
+                    height={140}
+                    overflow="hidden"
+                    overflowX="auto"
+                    overflowY="auto"
+                    position={
+                      Object {
+                        "currentViewSequence": 0,
+                        "currentViewSequencePosition": 0,
+                        "position": Object {
+                          "xPos": 0,
+                          "yPos": 0,
+                        },
+                        "props": Object {
+                          "backgroundColor": "red",
+                          "colorScheme": ColorScheme {
+                            "scheme": StaticSchemeClass {
+                              "defaultColor": "#ffffff",
+                              "getColor": [Function],
+                              "map": Object {
+                                "A": "orange",
+                                "B": "#fff",
+                                "C": "green",
+                                "D": "red",
+                                "E": "red",
+                                "F": "blue",
+                                "G": "orange",
+                                "Gap": "#fff",
+                                "H": "red",
+                                "I": "green",
+                                "J": "#fff",
+                                "K": "red",
+                                "L": "green",
+                                "M": "green",
+                                "N": "#fff",
+                                "O": "#fff",
+                                "P": "orange",
+                                "Q": "#fff",
+                                "R": "red",
+                                "S": "orange",
+                                "T": "orange",
+                                "U": "#fff",
+                                "V": "green",
+                                "W": "blue",
+                                "X": "#fff",
+                                "Y": "blue",
+                                "Z": "#fff",
+                              },
+                              "type": "static",
+                            },
+                          },
+                          "engine": "canvas",
+                          "height": 200,
+                          "tileHeight": 20,
+                          "tileWidth": 20,
+                          "width": 400,
+                        },
+                        "sequenceStats": Object {
+                          "fullHeight": 140,
+                          "fullWidth": 1200,
+                          "nrXTiles": 21,
+                          "nrYTiles": 11,
+                        },
+                        "sequences": Object {
+                          "length": 7,
+                          "maxLength": 60,
+                          "raw": Array [
+                            Object {
+                              "name": "sequence 1",
+                              "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                            },
+                            Object {
+                              "name": "sequence 2",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 3",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 4",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 5",
+                              "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 6",
+                              "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 7",
+                              "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                            },
+                          ],
+                        },
+                        "xPos": 0,
+                        "xPosOffset": -0,
+                        "yPos": 0,
+                        "yPosOffset": -0,
+                      }
+                    }
+                    positionDispatch={[Function]}
+                    positionX="bottom"
+                    positionY="right"
+                    scrollBarWidth={5}
+                    width={400}
+                  >
+                    <div />
+                  </FakeScroll>
+                </withPosition(FakeScroll)>
               </div>
             </SequenceViewerComponent>
-          </SequenceViewerComponent-PositionStore>
-        </Connect(SequenceViewerComponent-PositionStore)>
+          </withPosition(SequenceViewerComponent)>
+        </Connect(withPosition(SequenceViewerComponent))>
       </div>
     </Provider>
   </MSAViewerComponent>

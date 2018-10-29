@@ -9,7 +9,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import createRef from 'create-react-ref/lib/createRef';
 
-import positionStoreMixin from '../../store/positionStoreMixin';
+import withPositionStore from '../../store/withPositionStore';
 
 import ListComponent from '../ListComponent';
 
@@ -33,6 +33,8 @@ class YBarComponent extends PureComponent {
       cacheElements,
       tileComponent,
       nrYTiles,
+      position,
+      positionDispatch,
       ...otherProps
     } = this.props;
     const style = {
@@ -41,11 +43,11 @@ class YBarComponent extends PureComponent {
       position: "relative",
       whiteSpace: "nowrap",
     };
-    const startTile = Math.max(0, this.position.currentViewSequence - this.props.cacheElements);
+    const startTile = Math.max(0, this.props.position.currentViewSequence - this.props.cacheElements);
     const endTile = Math.min(this.props.sequences.length,
       startTile + Math.ceil(height / this.props.tileHeight) + this.props.cacheElements * 2);
-    this.position.lastCurrentViewSequence = this.position.currentViewSequence;
-    this.position.lastStartYTile = startTile;
+    this.props.position.lastCurrentViewSequence = this.props.position.currentViewSequence;
+    this.props.position.lastStartYTile = startTile;
     return (
       <div {...otherProps}>
         <div style={style} ref={this.el}>
@@ -59,8 +61,6 @@ class YBarComponent extends PureComponent {
     );
   }
 }
-
-positionStoreMixin(YBarComponent, {withY: true});
 
 YBarComponent.propTypes = {
   /**
@@ -77,4 +77,7 @@ YBarComponent.propTypes = {
   nrYTiles: PropTypes.number.isRequired,
 }
 
-export default YBarComponent;
+export default withPositionStore(YBarComponent, {withY: true});
+export {
+  YBarComponent as yBar,
+}

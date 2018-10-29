@@ -76,16 +76,23 @@ function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
       this.position = this.position || {};
       // copy-over the entire state
       forOwn(state, (v, k) => {
-        this.position[k] = state[k];
+        this.position[k] = v;
       });
+      if (state.position) {
+        this.position.xPos = state.position.xPos;
+        this.position.yPos = state.position.yPos;
+      }
+      // not called on the first render
       if (this.el.current) {
         if (this.shouldRerender()) {
           // this will always force a rerender as position is a new object
-          this.el.current.setState({
-            position: {...this.position},
+          this.position = {...this.position};
+          this.setState({
+            position: this.position,
           });
+        } else {
+          this.updateScrollPosition();
         }
-        this.updateScrollPosition();
       }
     }
 
@@ -127,18 +134,20 @@ function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
       }
       if (it.el && it.el.current) {
         if (withX) {
+          const tileWidth = this.props.tileWidth || it.props.tileWidth;
           let offsetX = -this.position.xPosOffset;
-          offsetX += (this.position.lastCurrentViewSequencePosition - this.position.lastStartXTile) * this.props.tileWidth;
+          offsetX += (this.position.lastCurrentViewSequencePosition - this.position.lastStartXTile) * tileWidth;
           if (this.position.currentViewSequencePosition !== this.position.lastCurrentViewSequencePosition) {
-            offsetX += (this.position.currentViewSequencePosition - this.position.lastCurrentViewSequencePosition) * this.props.tileWidth;
+            offsetX += (this.position.currentViewSequencePosition - this.position.lastCurrentViewSequencePosition) * tileWidth;
           }
           it.el.current.scrollLeft = offsetX;
         }
         if (withY) {
+          const tileHeight = this.props.tileHeight || it.props.tileHeight;
           let offsetY = -this.position.yPosOffset;
-          offsetY += (this.position.lastCurrentViewSequence - this.position.lastStartYTile) * this.props.tileHeight;
+          offsetY += (this.position.lastCurrentViewSequence - this.position.lastStartYTile) * tileHeight;
           if (this.position.currentViewSequence !== this.position.lastCurrentViewSequence) {
-            offsetY += (this.position.currentViewSequence - this.position.lastCurrentViewSequence) * this.props.tileHeight;
+            offsetY += (this.position.currentViewSequence - this.position.lastCurrentViewSequence) * tileHeight;
           }
           it.el.current.scrollTop = offsetY;
         }
@@ -150,7 +159,10 @@ function withPositionConsumer(Component, {withX = false, withY = false} = {}) {
     }
 
     render() {
-      this.updateFromPositionStore();
+      if (!this.hasBeenInitialized) {
+        this.updateFromPositionStore();
+        this.hasBeenInitialized = true;
+      }
       return React.createElement(Component, {
         ref:this.el,
         position: this.position,

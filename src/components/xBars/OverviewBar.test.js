@@ -14,7 +14,7 @@ import {
 } from '../../test';
 
 import { OverviewBar } from './OverviewBar';
-import xBar from './xBar';
+import { xBar } from './xBar';
 
 import { mount, shallow } from 'enzyme';
 

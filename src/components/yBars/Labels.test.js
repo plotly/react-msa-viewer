@@ -13,7 +13,7 @@ import { mount, shallow } from 'enzyme';
 import dummySequences from '../../test/dummySequences';
 import FakePositionStore from '../../test/FakePositionStore';
 import { Labels } from './Labels';
-import yBar from './yBar';
+import { yBar } from './yBar';
 import MSAViewer from '../MSAViewer';
 
 it('renders properly', () => {
@@ -72,7 +72,7 @@ it('renders properly with a moved viewport', () => {
     sequences={[...dummySequences]} cacheElements={1} />);
   const bar = mount(msa.getElement(), {context: {positionMSAStore}});
   expect(bar).toMatchSnapshot();
-  const yBarDiv = bar.instance().el.current;
+  const yBarDiv = bar.childAt(0).instance().el.current;
   expect(yBarDiv.scrollTop).toBe(0); // fresh render
   state.currentViewSequence = 5;
   state.yPosOffset = -20;
@@ -91,7 +91,7 @@ it('renders properly with a moved viewport (provider version)', () => {
   expect(msa).toMatchSnapshot();
   expect(msa.find(yBar).instance().el.current.scrollTop).toBe(0); // fresh render
   msa.setProps({currentViewSequence: 6, yPosOffset: -20});
-  expect(msa.find(yBar).state()).toMatchSnapshot();
+  expect(msa.find('withPosition(YBarComponent)').state()).toMatchSnapshot();
   msa = msa.update(); // tell enzyme to update its state to reality
   expect(msa).toMatchSnapshot();
   expect(msa.find(yBar).instance().el.current.scrollTop).toBe(120);

@@ -346,6 +346,7 @@ class DraggingComponent extends Component {
       "nrXTiles", "nrYTiles",
       "dispatch", "sequences",
       "fullWidth", "fullHeight",
+      "position", "positionDispatch",
     ]);
     return (
       <div
