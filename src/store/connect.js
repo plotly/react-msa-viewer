@@ -7,35 +7,22 @@
 */
 
 import { connect } from 'react-redux';
-import createRef from 'create-react-ref/lib/createRef';
 
 import { storeKey } from './storeOptions';
 
-import React, { PureComponent } from 'react';
-
-// just inject the position store and further magic
-function withPositionConsumer(Component) {
-  class MSAPositionConsumer extends PureComponent {
-    constructor(props) {
-      super(props);
-      this.el = createRef();
-    }
-    render() {
-      return <Component ref={this.el} {...this.props} />
-    }
-  }
-  MSAPositionConsumer.displayName = Component.name + '-PositionStore';
-  return MSAPositionConsumer;
-}
-
+/**
+ * Injects the msaStore into a component.
+ *
+ * @param {Object} mapStateToProps - plain object of store state to be mapped into the component
+ * @param {Object} mapDispatchToProps - methods to be mapped into the component
+ * @param {Object} mergeProps - custom merge method for (stateProps, dispatchProps, ownProps)
+ * @param {Object} options - further customization for the connector
+ *
+ * See also: https://react-redux.js.org/docs/api
+ */
 function msaConnect(mapStateToProps, mapDispatchToProps, mergeProps, options = {}) {
   options.storeKey = storeKey;
-  const reduxConnect = connect(mapStateToProps, mapDispatchToProps, mergeProps, options);
-  return function(Component) {
-    //console.log(Component);
-    const wrappedComponent = withPositionConsumer(Component);
-    return reduxConnect(wrappedComponent);
-  }
+  return connect(mapStateToProps, mapDispatchToProps, mergeProps, options);
 }
 
 export default msaConnect;
