@@ -208,13 +208,17 @@ class SequenceViewerComponent extends DraggingComponent {
   }
 
   updateTileSpecs() {
-    this.tileCache.updateTileSpecs(pick(this.props, [
+    const tileAttributes = [
       'tileWidth', 'tileHeight', 'colorScheme', 'textFont',
+      'borderColor'
+    ];
+    this.tileCache.updateTileSpecs(pick(this.props, [
+      ...tileAttributes,
       'xGridSize', 'yGridSize', 'sequences',
     ]));
-    this.residueTileCache.updateTileSpecs(pick(this.props, [
-      'tileWidth', 'tileHeight', 'colorScheme', 'textFont'
-    ]));
+    this.residueTileCache.updateTileSpecs(
+      pick(this.props,tileAttributes)
+    );
   }
 
   render() {

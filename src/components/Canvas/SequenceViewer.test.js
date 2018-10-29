@@ -9,6 +9,7 @@
 import React from 'react';
 
 import SequenceViewer from './SequenceViewer';
+import CanvasCache from './CanvasCache';
 import {
   SequenceViewer as CanvasSequenceViewer,
   SequenceViewerWithPosition,
@@ -201,4 +202,79 @@ it('renders differently after changed properties', () => {
   expect(wrapper).toMatchSnapshot();
   expect(spy.mock.calls.length).toBe(3);
   spy.mockRestore();
+});
+
+describe('renders invalidates the tile cache changed properties', () => {
+  let component, wrapper, sv, residueCache, tileCache;
+  beforeEach(() => {
+    component = shallow(
+      <FakePositionStore currentViewSequencePosition={10}>
+        <SequenceViewerWithPosition width={100} height={200}
+          fullWidth={1000} fullHeight={2000} tileHeight={20} tileWidth={20}
+          nrXTiles={100} nrYTiles={100}
+          sequences={[...dummySequences]}
+        />
+      </FakePositionStore>
+    );
+    expect(component).toMatchSnapshot();
+    wrapper = mountWithContext(component);
+    sv= wrapper.instance().el.current;
+    residueCache = jest.spyOn(sv.residueTileCache, "invalidate");
+    tileCache = jest.spyOn(sv.tileCache, "invalidate");
+  });
+  afterEach(() => {
+    residueCache.mockRestore();
+    tileCache.mockRestore();
+  });
+
+  it('should invalidate both caches on an affecting property change', () => {
+    wrapper.setProps({
+      borderColor: "green",
+    });
+    expect(wrapper).toMatchSnapshot();
+    expect(tileCache.mock.calls.length).toBe(1);
+    expect(residueCache.mock.calls.length).toBe(1);
+  });
+
+  it("shouldn't invalidate the residue cache when sequences change", () => {
+    wrapper.setProps({
+      sequences: [{
+          name: "seq.1",
+          sequence: "AAAAAAAAAAAAAAAAAAAA",
+        },{
+          name: "seq.1",
+          sequence: "AAAAAAAAAAAAAAAAAAAA",
+        },{
+          name: "seq.3",
+          sequence: "AAAAAAAAAAAAAAAAAAAA",
+      }]
+    });
+    expect(wrapper).toMatchSnapshot();
+    expect(tileCache.mock.calls.length).toBe(1);
+    expect(residueCache.mock.calls.length).toBe(0);
+  });
+
+  it("shouldn't invalidate any cache on unrelated properties", () => {
+    wrapper.setProps({
+      height: 500,
+    });
+    expect(tileCache.mock.calls.length).toBe(0);
+    expect(residueCache.mock.calls.length).toBe(0);
+  });
+
+  it("shouldn't invalidate any cache on mousemove", () => {
+    sv.onMouseDown({
+      pageX: 20,
+      pageY: 10,
+    });
+    sv.onMouseMove({
+      pageX: 40,
+      pageY: 20,
+    });
+    jest.runAllTimers();
+    const expected = [{"payload": {"xMovement": -20, "yMovement": -10}, "type": "POSITION_MOVE"}];
+    expect(component.instance().positionStore.actions).toEqual(expected);
+    expect(tileCache.mock.calls.length).toBe(0);
+    expect(residueCache.mock.calls.length).toBe(0);
+  });
 });
