@@ -61,48 +61,60 @@ it('renders properly with a moved viewport', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-it('renders differently after changed properties', () => {
-  const spy = jest.spyOn(OverviewBar.prototype, "createBar");
-  const component = shallow(
-    <FakePositionStore currentViewSequencePosition={10}>
-      <OverviewBar nrXTiles={20} tileWidth={20} maxLength={20}
-                   sequences={[...dummySequences]}
-      />
-    </FakePositionStore>
-  );
-  expect(component).toMatchSnapshot();
-  expect(spy.mock.calls.length).toBe(0);
-  let wrapper = mountWithContext(component);
-  expect(wrapper).toMatchSnapshot();
-  expect(spy.mock.calls.length).toBe(1);
-
-  wrapper.setProps({
-    fillColor: "blue",
-    height: 100,
+describe('renders differently after changed properties', () => {
+  let component, spy, wrapper;
+  beforeEach(() => {
+    spy = jest.spyOn(OverviewBar.prototype, "createBar");
+    component = shallow(
+      <FakePositionStore currentViewSequencePosition={10}>
+        <OverviewBar nrXTiles={20} tileWidth={20} maxLength={20}
+                     sequences={[...dummySequences]}
+        />
+      </FakePositionStore>
+    );
+    expect(component).toMatchSnapshot();
+    expect(spy.mock.calls.length).toBe(0);
+    wrapper = mountWithContext(component);
+    expect(wrapper).toMatchSnapshot();
   });
-  expect(wrapper).toMatchSnapshot();
-  expect(spy.mock.calls.length).toBe(2);
-
-  // shouldn't rerender if not triggered
-  wrapper.setProps({
-    style: {width: 200},
+  afterEach(() => {
+    spy.mockRestore();
   });
-  expect(spy.mock.calls.length).toBe(2);
 
-  // but should rerender if sequences have changed
-  wrapper.setProps({
-    sequences: [{
-        name: "seq.1",
-        sequence: "AAAAAAAAAAAAAAAAAAAA",
-      },{
-        name: "seq.1",
-        sequence: "AAAAAAAAAAAAAAAAAAAA",
-      },{
-        name: "seq.3",
-        sequence: "AAAAAAAAAAAAAAAAAAAA",
-    }]
+  it('should have been called in the beginning', () => {
+    expect(spy.mock.calls.length).toBe(1);
   });
-  expect(wrapper).toMatchSnapshot();
-  expect(spy.mock.calls.length).toBe(3);
-  spy.mockRestore();
+
+  it('should refresh on property changes', () => {
+    wrapper.setProps({
+      fillColor: "blue",
+      height: 100,
+    });
+    expect(wrapper).toMatchSnapshot();
+    expect(spy.mock.calls.length).toBe(2);
+  });
+
+  it('should refresh on unrelated property changes', () => {
+    wrapper.setProps({
+      style: {width: 200},
+    });
+    expect(spy.mock.calls.length).toBe(1);
+  });
+
+  it('should rerender if sequences have changed', () => {
+    wrapper.setProps({
+      sequences: [{
+          name: "seq.1",
+          sequence: "AAAAAAAAAAAAAAAAAAAA",
+        },{
+          name: "seq.1",
+          sequence: "AAAAAAAAAAAAAAAAAAAA",
+        },{
+          name: "seq.3",
+          sequence: "AAAAAAAAAAAAAAAAAAAA",
+      }]
+    });
+    expect(wrapper).toMatchSnapshot();
+    expect(spy.mock.calls.length).toBe(2);
+  });
 });

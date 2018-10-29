@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders differently after changed properties 1`] = `
+exports[`renders differently after changed properties should have been called in the beginning 1`] = `
 <HTMLOverviewBarComponent
   cacheElements={10}
   fillColor="#999999"
@@ -44,7 +44,7 @@ exports[`renders differently after changed properties 1`] = `
 />
 `;
 
-exports[`renders differently after changed properties 2`] = `
+exports[`renders differently after changed properties should have been called in the beginning 2`] = `
 <HTMLOverviewBarComponent
   cacheElements={10}
   fillColor="#999999"
@@ -566,7 +566,573 @@ exports[`renders differently after changed properties 2`] = `
 </HTMLOverviewBarComponent>
 `;
 
-exports[`renders differently after changed properties 3`] = `
+exports[`renders differently after changed properties should refresh on property changes 1`] = `
+<HTMLOverviewBarComponent
+  cacheElements={10}
+  fillColor="#999999"
+  height={50}
+  maxLength={20}
+  method="conservation"
+  nrXTiles={20}
+  sequences={
+    Array [
+      Object {
+        "name": "sequence 1",
+        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+      },
+      Object {
+        "name": "sequence 2",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 3",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 4",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 5",
+        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 6",
+        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 7",
+        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+      },
+    ]
+  }
+  tileWidth={20}
+/>
+`;
+
+exports[`renders differently after changed properties should refresh on property changes 2`] = `
+<HTMLOverviewBarComponent
+  cacheElements={10}
+  fillColor="#999999"
+  height={50}
+  maxLength={20}
+  method="conservation"
+  nrXTiles={20}
+  sequences={
+    Array [
+      Object {
+        "name": "sequence 1",
+        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+      },
+      Object {
+        "name": "sequence 2",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 3",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 4",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 5",
+        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 6",
+        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 7",
+        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+      },
+    ]
+  }
+  tileWidth={20}
+>
+  <withPosition(XBarComponent)
+    cacheElements={10}
+    componentCache={[Function]}
+    maxLength={20}
+    nrXTiles={20}
+    sequences={
+      Array [
+        Object {
+          "name": "sequence 1",
+          "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+        },
+        Object {
+          "name": "sequence 2",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 3",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 4",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 5",
+          "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 6",
+          "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 7",
+          "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+        },
+      ]
+    }
+    tileComponent={[Function]}
+    tileWidth={20}
+  >
+    <XBarComponent
+      cacheElements={10}
+      componentCache={[Function]}
+      maxLength={20}
+      nrXTiles={20}
+      position={
+        Object {
+          "currentViewSequence": 0,
+          "currentViewSequencePosition": 10,
+          "lastCurrentViewSequencePosition": 10,
+          "lastStartXTile": 0,
+          "xPos": 0,
+          "xPosOffset": 0,
+          "yPos": 0,
+          "yPosOffset": 0,
+        }
+      }
+      positionDispatch={[Function]}
+      sequences={
+        Array [
+          Object {
+            "name": "sequence 1",
+            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+          },
+          Object {
+            "name": "sequence 2",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 3",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 4",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 5",
+            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 6",
+            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 7",
+            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+          },
+        ]
+      }
+      tileComponent={[Function]}
+      tileWidth={20}
+    >
+      <div
+        style={
+          Object {
+            "height": undefined,
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "width": undefined,
+            }
+          }
+        >
+          <ListComponent
+            componentCache={[Function]}
+            endTile={20}
+            maxWidth={NaN}
+            sequences={
+              Array [
+                Object {
+                  "name": "sequence 1",
+                  "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                },
+                Object {
+                  "name": "sequence 2",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 3",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 4",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 5",
+                  "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 6",
+                  "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 7",
+                  "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                },
+              ]
+            }
+            startTile={0}
+            tileComponent={[Function]}
+            tileWidth={20}
+          >
+            <div>
+              <Bar
+                index={0}
+                key="0"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={1}
+                key="1"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={2}
+                key="2"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={3}
+                key="3"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={4}
+                key="4"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={5}
+                key="5"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 34,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={6}
+                key="6"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={7}
+                key="7"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 32,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={8}
+                key="8"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={9}
+                key="9"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={10}
+                key="10"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 28,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={11}
+                key="11"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 21,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={12}
+                key="12"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={13}
+                key="13"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={14}
+                key="14"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={15}
+                key="15"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={16}
+                key="16"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={17}
+                key="17"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={18}
+                key="18"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={19}
+                key="19"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+            </div>
+          </ListComponent>
+        </div>
+      </div>
+    </XBarComponent>
+  </withPosition(XBarComponent)>
+</HTMLOverviewBarComponent>
+`;
+
+exports[`renders differently after changed properties should refresh on property changes 3`] = `
 <HTMLOverviewBarComponent
   cacheElements={10}
   fillColor="blue"
@@ -1088,11 +1654,1143 @@ exports[`renders differently after changed properties 3`] = `
 </HTMLOverviewBarComponent>
 `;
 
-exports[`renders differently after changed properties 4`] = `
+exports[`renders differently after changed properties should refresh on unrelated property changes 1`] = `
 <HTMLOverviewBarComponent
   cacheElements={10}
-  fillColor="blue"
-  height={100}
+  fillColor="#999999"
+  height={50}
+  maxLength={20}
+  method="conservation"
+  nrXTiles={20}
+  sequences={
+    Array [
+      Object {
+        "name": "sequence 1",
+        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+      },
+      Object {
+        "name": "sequence 2",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 3",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 4",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 5",
+        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 6",
+        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 7",
+        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+      },
+    ]
+  }
+  tileWidth={20}
+/>
+`;
+
+exports[`renders differently after changed properties should refresh on unrelated property changes 2`] = `
+<HTMLOverviewBarComponent
+  cacheElements={10}
+  fillColor="#999999"
+  height={50}
+  maxLength={20}
+  method="conservation"
+  nrXTiles={20}
+  sequences={
+    Array [
+      Object {
+        "name": "sequence 1",
+        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+      },
+      Object {
+        "name": "sequence 2",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 3",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 4",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 5",
+        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 6",
+        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 7",
+        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+      },
+    ]
+  }
+  tileWidth={20}
+>
+  <withPosition(XBarComponent)
+    cacheElements={10}
+    componentCache={[Function]}
+    maxLength={20}
+    nrXTiles={20}
+    sequences={
+      Array [
+        Object {
+          "name": "sequence 1",
+          "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+        },
+        Object {
+          "name": "sequence 2",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 3",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 4",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 5",
+          "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 6",
+          "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 7",
+          "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+        },
+      ]
+    }
+    tileComponent={[Function]}
+    tileWidth={20}
+  >
+    <XBarComponent
+      cacheElements={10}
+      componentCache={[Function]}
+      maxLength={20}
+      nrXTiles={20}
+      position={
+        Object {
+          "currentViewSequence": 0,
+          "currentViewSequencePosition": 10,
+          "lastCurrentViewSequencePosition": 10,
+          "lastStartXTile": 0,
+          "xPos": 0,
+          "xPosOffset": 0,
+          "yPos": 0,
+          "yPosOffset": 0,
+        }
+      }
+      positionDispatch={[Function]}
+      sequences={
+        Array [
+          Object {
+            "name": "sequence 1",
+            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+          },
+          Object {
+            "name": "sequence 2",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 3",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 4",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 5",
+            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 6",
+            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 7",
+            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+          },
+        ]
+      }
+      tileComponent={[Function]}
+      tileWidth={20}
+    >
+      <div
+        style={
+          Object {
+            "height": undefined,
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "width": undefined,
+            }
+          }
+        >
+          <ListComponent
+            componentCache={[Function]}
+            endTile={20}
+            maxWidth={NaN}
+            sequences={
+              Array [
+                Object {
+                  "name": "sequence 1",
+                  "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                },
+                Object {
+                  "name": "sequence 2",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 3",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 4",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 5",
+                  "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 6",
+                  "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 7",
+                  "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                },
+              ]
+            }
+            startTile={0}
+            tileComponent={[Function]}
+            tileWidth={20}
+          >
+            <div>
+              <Bar
+                index={0}
+                key="0"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={1}
+                key="1"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={2}
+                key="2"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={3}
+                key="3"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={4}
+                key="4"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={5}
+                key="5"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 34,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={6}
+                key="6"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={7}
+                key="7"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 32,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={8}
+                key="8"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={9}
+                key="9"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={10}
+                key="10"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 28,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={11}
+                key="11"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 21,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={12}
+                key="12"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={13}
+                key="13"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={14}
+                key="14"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={15}
+                key="15"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={16}
+                key="16"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={17}
+                key="17"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={18}
+                key="18"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={19}
+                key="19"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+            </div>
+          </ListComponent>
+        </div>
+      </div>
+    </XBarComponent>
+  </withPosition(XBarComponent)>
+</HTMLOverviewBarComponent>
+`;
+
+exports[`renders differently after changed properties should rerender if sequences have changed 1`] = `
+<HTMLOverviewBarComponent
+  cacheElements={10}
+  fillColor="#999999"
+  height={50}
+  maxLength={20}
+  method="conservation"
+  nrXTiles={20}
+  sequences={
+    Array [
+      Object {
+        "name": "sequence 1",
+        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+      },
+      Object {
+        "name": "sequence 2",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 3",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 4",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 5",
+        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 6",
+        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 7",
+        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+      },
+    ]
+  }
+  tileWidth={20}
+/>
+`;
+
+exports[`renders differently after changed properties should rerender if sequences have changed 2`] = `
+<HTMLOverviewBarComponent
+  cacheElements={10}
+  fillColor="#999999"
+  height={50}
+  maxLength={20}
+  method="conservation"
+  nrXTiles={20}
+  sequences={
+    Array [
+      Object {
+        "name": "sequence 1",
+        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+      },
+      Object {
+        "name": "sequence 2",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 3",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 4",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 5",
+        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 6",
+        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 7",
+        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+      },
+    ]
+  }
+  tileWidth={20}
+>
+  <withPosition(XBarComponent)
+    cacheElements={10}
+    componentCache={[Function]}
+    maxLength={20}
+    nrXTiles={20}
+    sequences={
+      Array [
+        Object {
+          "name": "sequence 1",
+          "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+        },
+        Object {
+          "name": "sequence 2",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 3",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 4",
+          "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 5",
+          "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 6",
+          "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+        },
+        Object {
+          "name": "sequence 7",
+          "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+        },
+      ]
+    }
+    tileComponent={[Function]}
+    tileWidth={20}
+  >
+    <XBarComponent
+      cacheElements={10}
+      componentCache={[Function]}
+      maxLength={20}
+      nrXTiles={20}
+      position={
+        Object {
+          "currentViewSequence": 0,
+          "currentViewSequencePosition": 10,
+          "lastCurrentViewSequencePosition": 10,
+          "lastStartXTile": 0,
+          "xPos": 0,
+          "xPosOffset": 0,
+          "yPos": 0,
+          "yPosOffset": 0,
+        }
+      }
+      positionDispatch={[Function]}
+      sequences={
+        Array [
+          Object {
+            "name": "sequence 1",
+            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+          },
+          Object {
+            "name": "sequence 2",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 3",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 4",
+            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 5",
+            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 6",
+            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+          },
+          Object {
+            "name": "sequence 7",
+            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+          },
+        ]
+      }
+      tileComponent={[Function]}
+      tileWidth={20}
+    >
+      <div
+        style={
+          Object {
+            "height": undefined,
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "overflow": "hidden",
+              "position": "relative",
+              "whiteSpace": "nowrap",
+              "width": undefined,
+            }
+          }
+        >
+          <ListComponent
+            componentCache={[Function]}
+            endTile={20}
+            maxWidth={NaN}
+            sequences={
+              Array [
+                Object {
+                  "name": "sequence 1",
+                  "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                },
+                Object {
+                  "name": "sequence 2",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 3",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 4",
+                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 5",
+                  "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 6",
+                  "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                },
+                Object {
+                  "name": "sequence 7",
+                  "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                },
+              ]
+            }
+            startTile={0}
+            tileComponent={[Function]}
+            tileWidth={20}
+          >
+            <div>
+              <Bar
+                index={0}
+                key="0"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={1}
+                key="1"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={2}
+                key="2"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={3}
+                key="3"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={4}
+                key="4"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={5}
+                key="5"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 34,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={6}
+                key="6"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={7}
+                key="7"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 32,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={8}
+                key="8"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={9}
+                key="9"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={10}
+                key="10"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 28,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={11}
+                key="11"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 21,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={12}
+                key="12"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={13}
+                key="13"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={14}
+                key="14"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={15}
+                key="15"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={16}
+                key="16"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 35,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={17}
+                key="17"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={18}
+                key="18"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+              <Bar
+                index={19}
+                key="19"
+              >
+                <div
+                  style={
+                    Object {
+                      "backgroundColor": "#999999",
+                      "display": "inline-block",
+                      "height": 50,
+                      "textAlign": "center",
+                      "width": 20,
+                    }
+                  }
+                />
+              </Bar>
+            </div>
+          </ListComponent>
+        </div>
+      </div>
+    </XBarComponent>
+  </withPosition(XBarComponent)>
+</HTMLOverviewBarComponent>
+`;
+
+exports[`renders differently after changed properties should rerender if sequences have changed 3`] = `
+<HTMLOverviewBarComponent
+  cacheElements={10}
+  fillColor="#999999"
+  height={50}
   maxLength={20}
   method="conservation"
   nrXTiles={20}
@@ -1111,11 +2809,6 @@ exports[`renders differently after changed properties 4`] = `
         "sequence": "AAAAAAAAAAAAAAAAAAAA",
       },
     ]
-  }
-  style={
-    Object {
-      "width": 200,
-    }
   }
   tileWidth={20}
 >
@@ -1139,11 +2832,6 @@ exports[`renders differently after changed properties 4`] = `
           "sequence": "AAAAAAAAAAAAAAAAAAAA",
         },
       ]
-    }
-    style={
-      Object {
-        "width": 200,
-      }
     }
     tileComponent={[Function]}
     tileWidth={20}
@@ -1182,18 +2870,13 @@ exports[`renders differently after changed properties 4`] = `
           },
         ]
       }
-      style={
-        Object {
-          "width": 200,
-        }
-      }
       tileComponent={[Function]}
       tileWidth={20}
     >
       <div
         style={
           Object {
-            "width": 200,
+            "height": undefined,
           }
         }
       >
@@ -1239,9 +2922,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1255,9 +2938,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1271,9 +2954,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1287,9 +2970,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1303,9 +2986,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1319,9 +3002,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1335,9 +3018,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1351,9 +3034,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1367,9 +3050,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1383,9 +3066,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1399,9 +3082,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1415,9 +3098,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1431,9 +3114,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1447,9 +3130,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1463,9 +3146,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1479,9 +3162,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1495,9 +3178,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1511,9 +3194,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1527,9 +3210,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
@@ -1543,9 +3226,9 @@ exports[`renders differently after changed properties 4`] = `
                 <div
                   style={
                     Object {
-                      "backgroundColor": "blue",
+                      "backgroundColor": "#999999",
                       "display": "inline-block",
-                      "height": 100,
+                      "height": 50,
                       "textAlign": "center",
                       "width": 20,
                     }
