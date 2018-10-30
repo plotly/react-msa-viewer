@@ -165,6 +165,7 @@ Props
 __Warning__: these properties are still susceptible to a _change at any moment_.
 
 <!-- GENERATED_DOCUMENTATION_START -->
+<!-- Run 'npm run docs' to rebuild this -->
 
 ### `MSAViewer` (component)
 
@@ -221,7 +222,6 @@ Inline styles to apply to the Label component
 
 type: `object`
 
-
 ### `OverviewBar` (component)
 
 Creates a small overview box of the sequences for a general overview.
@@ -274,7 +274,6 @@ type: `object`
 Width of the component (in pixels), e.g. `100`
 
 type: `number`
-
 
 ### `PositionBar` (component)
 
@@ -350,7 +349,6 @@ defaultValue: `{
   font: "12px Arial",
 }`
 
-
 ### `SequenceOverview` (component)
 
 
@@ -401,7 +399,6 @@ defaultValue: `5`
 Width of the component (in pixels), e.g. `100`
 
 type: `number`
-
 
 ### `SequenceViewer` (component)
 
