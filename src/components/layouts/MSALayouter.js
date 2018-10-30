@@ -22,12 +22,14 @@ import BasicLayout from './basic';
 import InverseLayout from './inverse';
 import FullLayout from './inverse';
 import CompactLayout from './inverse';
+import FunkyLayout from './funky';
 
 const layouts = {
   "basic": BasicLayout,
   "inverse": InverseLayout,
   "full": FullLayout,
   "compact": CompactLayout,
+  "funky": FunkyLayout,
   "default": BasicLayout,
 };
 
