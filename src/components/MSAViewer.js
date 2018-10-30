@@ -9,6 +9,8 @@
 import React, { Component } from 'react';
 import createRef from 'create-react-ref/lib/createRef';
 
+import PropTypes from 'prop-types';
+
 import {
   forOwn,
   memoize,
@@ -21,7 +23,6 @@ import {
   ColorSchemePropType,
   PositionPropType,
   MSAPropTypes,
-  PropTypes,
 } from '../PropTypes';
 
 import MSAProvider from '../store/provider';
@@ -140,16 +141,7 @@ MSAViewerComponent.childContextTypes = {
   positionMSAStore: PropTypes.object,
 };
 
-const MSAViewer = propsToRedux(MSAViewerComponent);
-
-MSAViewer.defaultProps = msaDefaultProps;
-MSAViewer.propTypes = {
-  /**
-   * A custom msaStore (created with `createMSAStore`).
-   * Useful for custom interaction with other components
-   */
-  msaStore: PropTypes.object,
-
+MSAViewerComponent.propTypes = {
   /**
    * Sequence data.
    * `sequences` expects an array of individual sequences.
@@ -195,11 +187,6 @@ MSAViewer.propTypes = {
   tileHeight: PropTypes.number,
 
   /**
-   * Font of the individual residue tiles, e.g. `"20px Arial"`.
-   */
-  textFont: PropTypes.string,
-
-  /**
    * Current x and y position of the viewpoint
    * in the main sequence viewer (in pixels).
    * This specifies the position of the top-left corner
@@ -217,16 +204,6 @@ MSAViewer.propTypes = {
   * See [msa-colorschemes](https://github.com/wilzbach/msa-colorschemes) for details.
   */
   colorScheme: ColorSchemePropType,
-
-  /**
-   * Background color to use, e.g. `red`
-   */
-  backgroundColor: PropTypes.string,
-
-  /**
-   * Rendering engine: `canvas` or `webgl` (experimental).
-   */
-  engine: PropTypes.oneOf(['canvas', 'webl']), // experimental
 
   /**
    * Callback fired when the mouse pointer is entering a residue.
@@ -254,6 +231,143 @@ MSAViewer.propTypes = {
    */
   layout: PropTypes.oneOf(['basic', 'default', 'inverse', 'full', 'compact',
     'funky']),
+
+  /**
+   * Whether to draw a border.
+   */
+  sequenceBorder: PropTypes.bool,
+
+  /**
+   * Color of the border. Name, hex or RGB value.
+   */
+  sequenceBorderColor: PropTypes.string,
+
+  /**
+   * Width of the border.
+   */
+  sequenceBorderWidth: PropTypes.number,
+
+  /**
+   * Color of the text residue letters (name, hex or RGB value)
+   */
+  sequenceTextColor: PropTypes.string,
+
+  /**
+   * Font to use when drawing the individual residues.
+   */
+  sequenceTextFont: PropTypes.string,
+
+  /**
+   * What should happen if content overflows.
+   */
+  sequenceOverflow: PropTypes.oneOf(["hidden", "auto", "scroll"]),
+
+  /**
+   * What should happen if x-axis content overflows (overwrites "overflow")
+   */
+  sequenceOverflowX: PropTypes.oneOf(["hidden", "auto", "scroll", "initial"]),
+
+  /**
+   * What should happen if y-axis content overflows (overwrites "overflow")
+   */
+  sequenceOverflowY: PropTypes.oneOf(["hidden", "auto", "scroll", "initial"]),
+
+  /**
+   * X Position of the scroll bar ("top or "bottom")
+   */
+  sequenceScrollBarPositionX: PropTypes.oneOf(["top", "bottom"]),
+
+  /**
+   * Y Position of the scroll bar ("left" or "right")
+   */
+  sequenceScrollBarPositionY: PropTypes.oneOf(["left", "right"]),
+
+  /**
+   * Component to create labels from.
+   */
+  labelComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+
+  /**
+   * Inline styles to apply to each label.
+   */
+  labelStyle: PropTypes.object,
+
+  /**
+   * Attributes to apply to each label.
+   */
+  labelAttributes: PropTypes.object,
+
+  /**
+   * At which steps the position labels should appear, e.g. `2` for (1, 3, 5)
+   */
+  markerSteps: PropTypes.number,
+
+  /**
+   * At which number the PositionBar marker should start counting.
+   * Typical values are: `1` (1-based indexing) and `0` (0-based indexing).
+   */
+  markerStartIndex: PropTypes.number,
+
+  /**
+   * Component to create markers from.
+   */
+  markerComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+
+  /**
+   * Inline styles to apply to each marker.
+   */
+  markerStyle: PropTypes.object,
+
+  /**
+   * Attributes to apply to each marker.
+   */
+  markerAttributes: PropTypes.object,
+
+  /**
+   * Method to use for the OverviewBar:
+   *  - `information-content`: Information entropy after Shannon of a column (scaled)
+   *  - `conservation`: Conservation of a column (scaled)
+   */
+  barMethod: PropTypes.oneOf(['information-content', 'conservation']),
+
+  /**
+   * Fill color of the OverviewBar, e.g. `#999999`
+   */
+  barFillColor: PropTypes.string,
+
+  /**
+   * Inline styles to apply to each bar.
+   */
+  barStyle: PropTypes.object,
+
+  /**
+   * Attributes to apply to each bar.
+   */
+  barAttributes: PropTypes.object,
+
+  /**
+   * A custom msaStore (created with `createMSAStore`).
+   * Useful for custom interaction with other components
+   */
+  msaStore: PropTypes.object,
 };
+
+const MSAViewer = propsToRedux(MSAViewerComponent);
+MSAViewer.defaultProps = msaDefaultProps;
+
+/**
+ * react-docgen trickery:
+ * React-docgen doesn't detect the MSAViewer as a documented component, because
+ * it only looks for two patterns and MSAViewer is a `propsToRedux`.
+ *
+ * So instead of declaring the properties directly on the MSAViewer,
+ * we declare them on MSAViewerComponent, s.t. they get documented
+ * However, we need to exclude the properties that `propsToRedux` passes to redux.
+ * Luckily, react-docgen doesn't stops looking at the source tree once it found the first `<class>.propTypes` pattern.
+ */
+MSAViewer.propTypes = {...MSAViewerComponent.propTypes};
+MSAViewerComponent.propTypes = omit(MSAViewerComponent.propTypes, [
+  ...Object.keys(MSAPropTypes), 'sequences', 'position',
+]);
 
 export default MSAViewer;

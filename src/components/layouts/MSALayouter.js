@@ -72,12 +72,16 @@ class MSALayouter extends PureComponent {
     },
     // List of props forwarded to the PositionBar component
     positionBarProps: {
+      "markerSteps": same,
+      "markerStartIndex": "startIndex",
       "markerComponent": same,
       "markerStyle": same,
       "markerAttributes": same,
     },
     // List of props forwarded to the OverviewBar component
     overviewBarProps: {
+      "barMethod": "method",
+      "barFillColor": "fillColor",
       "barComponent": same,
       "barStyle": same,
       "barAttributes": same,

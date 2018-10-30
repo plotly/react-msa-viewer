@@ -13,6 +13,7 @@
 
 import React, { Component } from 'react';
 import createRef from 'create-react-ref/lib/createRef';
+import PropTypes from 'prop-types';
 
 import {
   forOwn,
@@ -23,7 +24,7 @@ import {
 } from 'lodash-es';
 
 import createMSAStore from './createMSAStore';
-import {MSAPropTypes, PropTypes} from '../PropTypes';
+import { MSAPropTypes } from '../PropTypes';
 import mainStoreActions from './actions';
 import { actions as positionStoreActions } from './positionReducers';
 import requestAnimation from '../utils/requestAnimation';

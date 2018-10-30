@@ -47,6 +47,10 @@ export const PositionPropType = PropTypes.shape({
   yPos: PropTypes.number,
 })
 
+/**
+ * These are the "globally" exposes properties which get inserted into the
+ * Redux store.
+ */
 export const MSAPropTypes = {
   /**
    * Width of the sequence viewer (in pixels), e.g. `500`.
@@ -88,5 +92,3 @@ export const msaDefaultProps = {
   tileHeight: 20,
   colorScheme: "clustal",
 };
-
-export {PropTypes};
