@@ -20,9 +20,12 @@ import {
 
 import BasicLayout from './basic';
 import InverseLayout from './inverse';
+import FullLayout from './inverse';
+
 const layouts = {
   "basic": BasicLayout,
   "inverse": InverseLayout,
+  "full": FullLayout,
   "default": BasicLayout,
 };
 
