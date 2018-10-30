@@ -38,7 +38,14 @@ function generatePropType(type) {
         .join('|') +
       ')';
   } else {
-    values = type.value;
+    if (type.value && type.value.name === 'custom') {
+      values = type.value.raw;
+      if (type.name === 'arrayOf') {
+        values = `[${values}]`;
+      }
+    } else {
+      values = type.value;
+    }
   }
 
   return 'type: `' + type.name + (values ? values : '') + '`\n';

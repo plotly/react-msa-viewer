@@ -262,7 +262,7 @@ const sequences = [
 ];
 ```
 
-type: `arrayOf[object Object]`
+type: `arrayOf[SequencePropType]`
 
 
 ### `tileHeight`
