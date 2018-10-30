@@ -10,7 +10,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Canvas from '../../drawing/canvas';
-import WebGL from '../../drawing/webgl';
 
 import createRef from 'create-react-ref/lib/createRef';
 
@@ -32,12 +31,7 @@ class CanvasComponent extends PureComponent {
   }
 
   componentDidMount() {
-    // choose the best engine
-    if (this.props.engine === "webgl" && WebGL.isSupported(this.canvas.current)) {
-      this.ctx = new WebGL(this.canvas.current);
-    } else {
-      this.ctx = new Canvas(this.canvas.current);
-    }
+    this.ctx = new Canvas(this.canvas.current);
     this.draw();
   }
 
