@@ -127,7 +127,7 @@ However, it can be used in Vanilla JS:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.4.2/react-dom.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.5.2/prop-types.js"></script>
-<script src="https://unpkg.com/@plotly/react-msa-viewer/dist/index.js"></script>
+<script src="https://unpkg.com/@plotly/react-msa-viewer/dist/index.umd.min.js"></script>
 <body>
   <div id="my-msa" />
   <script>
@@ -672,7 +672,7 @@ outside of React:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.4.2/react-dom.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.5.2/prop-types.js"></script>
-<script src="https://unpkg.com/@plotly/react-msa-viewer/dist/index.js"></script>
+<script src="https://unpkg.com/@plotly/react-msa-viewer/dist/index.umd.min.js"></script>
 <body>
   <div id="my-msa" />
   <script>
