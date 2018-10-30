@@ -164,7 +164,7 @@ Props
 
 __Warning__: these properties are still susceptible to a _change at any moment_.
 
-<!-- run `npm run docs` to regenerate this -->
+<!-- GENERATED_DOCUMENTATION_START -->
 
 ### `MSAViewer` (component)
 
@@ -549,7 +549,7 @@ type: `number`
 defaultValue: `10`
 
 
-<!-- end generated documentation -->
+<!-- GENERATED_DOCUMENTATION_END -->
 
 ### Creating your own MSA components
 
