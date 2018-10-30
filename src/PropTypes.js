@@ -148,8 +148,9 @@ export const MSAPropTypes = {
 
   /**
    * Predefined layout scheme to use (only used when no child elements are provided).
+   * Available layouts: `basic`, `inverse`
    */
-  layout: PropTypes.oneOf(['basic', 'default']),
+  layout: PropTypes.oneOf(['basic', 'default', 'inverse']),
 };
 
 

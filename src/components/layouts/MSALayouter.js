@@ -13,14 +13,16 @@ import createRef from 'create-react-ref/lib/createRef';
 import {
 } from 'lodash-es'
 
-import BasicLayout from './basic';
 import {
   same,
   forwardPropsMapper,
 } from './util';
 
+import BasicLayout from './basic';
+import InverseLayout from './inverse';
 const layouts = {
   "basic": BasicLayout,
+  "inverse": InverseLayout,
   "default": BasicLayout,
 };
 
