@@ -2,9 +2,7 @@
 
 exports[`it should rerender when new props are given 1`] = `
 <PropsToReduxComponent
-  backgroundColor="red"
   colorScheme="clustal"
-  engine="canvas"
   height={300}
   sequences={
     Array [
@@ -67,6 +65,7 @@ exports[`it should rerender when new props are given 1`] = `
       <div>
         <MSALayouter
           layout="default"
+          onResidueClick={[Function]}
         >
           <div>
             <Connect(MSABasicLayout)
@@ -2597,9 +2596,7 @@ exports[`renders without crashing 1`] = `
 
 exports[`renders without crashing in enzyme 1`] = `
 <PropsToReduxComponent
-  backgroundColor="red"
   colorScheme="clustal"
-  engine="canvas"
   height={100}
   sequences={
     Array [
@@ -2662,6 +2659,7 @@ exports[`renders without crashing in enzyme 1`] = `
       <div>
         <MSALayouter
           layout="default"
+          onResidueClick={[Function]}
         >
           <div>
             <Connect(MSABasicLayout)

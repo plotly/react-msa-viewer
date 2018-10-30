@@ -2,9 +2,7 @@
 
 exports[`renders without crashing 1`] = `
 <PropsToReduxComponent
-  backgroundColor="red"
   colorScheme="clustal"
-  engine="canvas"
   height={100}
   layout="basic"
   sequences={
@@ -44,6 +42,7 @@ exports[`renders without crashing 1`] = `
   width={500}
 >
   <MSAViewerComponent
+    layout="basic"
     msaStore={
       Object {
         "dispatch": [Function],
@@ -67,7 +66,8 @@ exports[`renders without crashing 1`] = `
     >
       <div>
         <MSALayouter
-          layout="default"
+          layout="basic"
+          onResidueClick={[Function]}
         >
           <div>
             <Connect(MSABasicLayout)
