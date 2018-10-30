@@ -16,6 +16,12 @@ addons:
 script:
   - npm test
   - npm run build
+  - npm run docs
+  - >
+    if [[ ! -z $(git status --porcelain) ]] ; then
+      echo "Please rebuild docs with 'npm run docs' and commit documentation changes.";
+      exit 1;
+    fi
 branches:
   only:
   - master
