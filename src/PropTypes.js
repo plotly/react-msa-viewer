@@ -145,6 +145,11 @@ export const MSAPropTypes = {
    * Callback fired when the mouse pointer clicked a residue.
    */
   onResidueDoubleClick: PropTypes.func,
+
+  /**
+   * Predefined layout scheme to use (only used when no child elements are provided).
+   */
+  layout: PropTypes.oneOf(['basic', 'default']),
 };
 
 
