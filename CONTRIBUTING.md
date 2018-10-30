@@ -73,3 +73,20 @@ For further information about creating a Pull Request, please read [this blog
 post](http://williamdurand.fr/2013/11/20/on-creating-pull-requests/).
 
 Thank you!
+
+## Releasing a new version
+
+Release management is done with [`release-it`](https://github.com/webpro/release-it).
+For a new patch release, simply run:
+
+```sh
+release-it
+```
+
+For a new minor release:
+
+```sh
+release-it -i minor
+```
+
+Make sure that you follow [Semantic Versioning](https://semver.org).
