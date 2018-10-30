@@ -56,10 +56,10 @@ class MSAViewerComponent extends Component {
       super(props);
       this.el = createRef();
       this._setupStores();
-      this.createDomHandler = memoize(this.createDomHandler);
+      this.createDomHandler = memoize(this.createDomHandler.bind(this));
       this.forwardProps = shallowSelect(
         p => omit(p, ['msaStore']),
-        this.forwardProps,
+        this.forwardProps.bind(this),
       );
     }
 
@@ -106,9 +106,9 @@ class MSAViewerComponent extends Component {
      * Inject default event handler if no handler for the respective
      * event has been provided.
      */
-    forOwn(options, (forwardedName, currentName) => {
-      if (!(currentName in defaultEvents)) {
-        options[currentName] = this.createDomHandler(defaultEvents[currentName]);
+    forOwn(defaultEvents, (forwardedName, currentName) => {
+      if (currentName in defaultEvents && !(currentName in options)) {
+        options[currentName] = this.createDomHandler(forwardedName);
       }
     });
     return options;
