@@ -66,7 +66,7 @@ function generateProp(propName, prop, level) {
 function generateProps(props, level) {
   const title = 'Props';
   if (!props) {
-    return 'TBD';
+    return 'TBD\n';
   }
 
   return (
