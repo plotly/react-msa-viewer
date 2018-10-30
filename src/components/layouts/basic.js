@@ -41,12 +41,8 @@ class MSABasicLayout extends PureBaseLayout {
           <OverviewBar height={overviewBarHeight}
             {...this.props.overviewBarProps}
           />
-          <PositionBar
-            {...this.props.positionBarProps}
-          />
-          <SequenceViewer
-            {...this.props.sequenceViewerProps}
-          />
+          <PositionBar {...this.props.positionBarProps} />
+          <SequenceViewer {...this.props.sequenceViewerProps} />
           <div style={separatorPadding} />
         </div>
       </div>
