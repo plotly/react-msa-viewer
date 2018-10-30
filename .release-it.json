@@ -1,0 +1,25 @@
+{
+  "non-interactive": true,
+  "requireCleanWorkingDir": true,
+  "buildCommand": "npm run release-it",
+  "changelogCommand": "git log --pretty=format:\"* %s (%h)\" [REV_RANGE]",
+  "increment": "patch",
+  "src": {
+    "tagName": "v%s",
+    "commitArgs": "--gpg-sign",
+    "commitMessage": "Release v%s"
+  },
+  "github": {
+    "release": false
+  },
+  "prompt": {
+    "src": {
+      "status": true,
+      "commit": true,
+      "tag": true,
+      "push": true,
+      "release": false,
+      "publish": true
+    }
+  }
+}
