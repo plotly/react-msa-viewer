@@ -11,6 +11,8 @@ import createRef from 'create-react-ref/lib/createRef';
 
 import {
   forOwn,
+  memoize,
+  omit,
 } from 'lodash-es'
 
 import {
@@ -18,13 +20,6 @@ import {
   MSAPropTypes,
   PropTypes,
 } from '../PropTypes';
-
-import {
-  Labels,
-  OverviewBar,
-  PositionBar,
-  SequenceViewer,
-} from './index';
 
 import MSAProvider from '../store/provider';
 import propsToRedux from '../store/propsToRedux';
@@ -35,7 +30,9 @@ import {
   createPositionStore,
 } from '../store/positionReducers';
 
-const same = "FORWARD_SAME_PROP_NAME";
+import MSALayouter from './layouts/MSALayouter';
+
+import shallowSelect from '../utils/shallowSelect';
 
 // list of events with a default implementation
 // mapping: eventName -> DOM event name
@@ -55,72 +52,13 @@ class MSAViewerComponent extends Component {
     constructor(props) {
       super(props);
       this.el = createRef();
-      // add default event callback
-      forOwn(defaultEvents, (domEventName, eventName) => {
-        this["_" + eventName] = (e) => {
-          const event = new CustomEvent(domEventName, {
-            detail: e,
-            bubbles: true,
-          });
-          this.el.current.dispatchEvent(event);
-        };
-      });
       this._setupStores();
+      this.createDomHandler = memoize(this.createDomHandler);
+      this.forwardProps = shallowSelect(
+        p => omit(p, ['msaStore']),
+        this.forwardProps,
+      );
     }
-
-  // List of props forwarded to the SequenceViewer component
-  static sequenceViewerProps = {
-    "showModBar": same,
-    "onResidueMouseEnter": same,
-    "onResidueMouseLeave": same,
-    "onResidueClick": same,
-    "onResidueDoubleClick": same,
-    "sequenceBorder": "border",
-    "sequenceBorderColor": "borderColor",
-    "sequenceBorderWidth": "borderWidth",
-    "sequenceTextColor": "textColor",
-    "sequenceTextFont": "textFont",
-    "sequenceOverflow": "overflow",
-    "sequenceOverflowX": "overflowX",
-    "sequenceOverflowy": "overflowY",
-    "sequenceScrollBarPositionX": "scrollBarPositionX",
-    "sequenceScrollBarPositionY": "scrollBarPositionY",
-  };
-
-  // List of props forwarded to the Labels component
-  static labelsProps = {
-    "labelComponent": same,
-    "labelStyle": same,
-    "labelAttributes": same,
-  };
-
-  // List of props forwarded to the PositionBar component
-  static positionBarProps = {
-    "markerComponent": same,
-    "markerStyle": same,
-    "markerAttributes": same,
-  };
-
-  // List of props forwarded to the OverviewBar component
-  static overviewBarProps = {
-    "barComponent": same,
-    "barStyle": same,
-    "barAttributes": same,
-  };
-
-  forwardProps(propsToBeForwarded) {
-    const options = {};
-    forOwn(propsToBeForwarded, (forwardedName, currentName) => {
-      if (this.props[currentName] !== undefined) {
-        const name = forwardedName === same ? currentName : forwardedName;
-        options[name] = this.props[currentName];
-      } else if (currentName in defaultEvents) {
-        // inject default event handler
-        options[currentName] = this["_" + currentName];
-      }
-    });
-    return options;
-  }
 
   _setupStores() {
     this.positionStore = createPositionStore(positionReducer);
@@ -146,6 +84,33 @@ class MSAViewerComponent extends Component {
     };
   }
 
+  /**
+   * Creates a listener which triggers `domEventName`
+   */
+  createDomHandler(domEventName) {
+    return (e) => {
+      const event = new CustomEvent(domEventName, {
+        detail: e,
+        bubbles: true,
+      });
+      this.el.current.dispatchEvent(event);
+    };
+  }
+
+  forwardProps(props) {
+    const options = {...props};
+    /**
+     * Inject default event handler if no handler for the respective
+     * event has been provided.
+     */
+    forOwn(options, (forwardedName, currentName) => {
+      if (!(currentName in defaultEvents)) {
+        options[currentName] = this.createDomHandler(defaultEvents[currentName]);
+      }
+    });
+    return options;
+  }
+
   render() {
     const {children, msaStore, ...otherProps} = this.props;
     if (children) {
@@ -157,42 +122,13 @@ class MSAViewerComponent extends Component {
         </MSAProvider>
       );
     } else {
-      // TODO: add more advanced layouts
-      const currentState = msaStore.getState();
-      const labelsPadding = currentState.props.tileHeight;
-      const overviewBarHeight = 50;
-      const labelsAndSequenceDiv = {
-        display: "flex",
-      };
-      const labelsStyle = {
-        paddingTop: labelsPadding + overviewBarHeight,
-      }
-      const separatorPadding = {
-        height: 10,
-      };
       return (
         <MSAProvider store={msaStore}>
-          <div style={labelsAndSequenceDiv} ref={this.el}>
-            <Labels
-              style={labelsStyle}
-              {...this.forwardProps(MSAViewerComponent.labelsProps)}
-            />
-            <div>
-              <OverviewBar height={overviewBarHeight}
-                {...this.forwardProps(MSAViewerComponent.overviewBarProps)}
-              />
-              <PositionBar
-                {...this.forwardProps(MSAViewerComponent.positionBarProps)}
-              />
-              <SequenceViewer
-                {...this.forwardProps(MSAViewerComponent.sequenceViewerProps)}
-              />
-              <div style={separatorPadding} />
-            </div>
+          <div ref={this.el}>
+            <MSALayouter {...this.forwardProps(otherProps)} />
           </div>
         </MSAProvider>
       );
-      //<SequenceOverview />
     }
   }
 }
