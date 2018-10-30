@@ -3,7 +3,6 @@ import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import visualizer from 'rollup-plugin-visualizer';
-import { terser } from "rollup-plugin-terser";
 import { version } from "./package.json";
 import strip from 'rollup-plugin-strip';
 
@@ -38,8 +37,8 @@ export default {
     }),
     strip({
       debugger: true,
-      // defaults to `[ 'console.*', 'assert.*' ]`
       functions: [ 'console.log', 'assert', 'assert.*', 'debug', 'alert' ],
+      sourceMap: true,
     }),
     resolve({
       browser: true,
@@ -50,7 +49,14 @@ export default {
         'react-is': ['isValidElementType'],
       },
     }),
-    terser(),
+    /**
+     * the terser plugin breaks the sourcemap
+    /* same for the rollup-plugin-{minify,uglify}
+    /* hence we call terser manually
+    */
+    //terser({
+      //sourcemap: true,
+    //}),
     visualizer({
       filename: './dist/statistics.html',
       title: 'MSAViewer Bundle',

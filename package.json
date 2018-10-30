@@ -34,7 +34,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:lib-esm": "NODE_ENV=production rollup -c --format es --file dist/index.esm.js",
-    "build:lib-umd": "NODE_ENV=production rollup -c",
+    "build:lib-umd": "NODE_ENV=production rollup -c && terser dist/index.umd.js -c -m --source-map \"content='dist/index.umd.js.map',url='index.umd.min.js.map'\" -o dist/index.umd.min.js > dist/index.umd.min.js.map && rm dist/index.umd.js{,.map}",
     "build:lib": "npm run build:lib-umd && npm run build:lib-esm",
     "netlify": "npm run build-storybook && npm run build:lib && mv dist storybook-static",
     "test": "jest",
