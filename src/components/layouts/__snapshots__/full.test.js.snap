@@ -1,0 +1,2576 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<PropsToReduxComponent
+  colorScheme="clustal"
+  height={100}
+  layout="full"
+  sequences={
+    Array [
+      Object {
+        "name": "sequence 1",
+        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+      },
+      Object {
+        "name": "sequence 2",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 3",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 4",
+        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 5",
+        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 6",
+        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+      },
+      Object {
+        "name": "sequence 7",
+        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+      },
+    ]
+  }
+  tileHeight={20}
+  tileWidth={20}
+  width={500}
+>
+  <MSAViewerComponent
+    layout="full"
+    msaStore={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "dispatch": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+          Symbol(observable): [Function],
+        }
+      }
+    >
+      <div>
+        <MSALayouter
+          layout="full"
+          onResidueClick={[Function]}
+        >
+          <div>
+            <Connect(MSAInverseLayout)
+              forwardedPropsKeys={
+                Array [
+                  "sequenceViewerProps",
+                  "labelsProps",
+                  "positionBarProps",
+                  "overviewBarProps",
+                ]
+              }
+            >
+              <MSAInverseLayout
+                dispatch={[Function]}
+                forwardedPropsKeys={
+                  Array [
+                    "sequenceViewerProps",
+                    "labelsProps",
+                    "positionBarProps",
+                    "overviewBarProps",
+                  ]
+                }
+                tileHeight={20}
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                    }
+                  }
+                >
+                  <div>
+                    <Connect(HTMLOverviewBarComponent)
+                      height={50}
+                    >
+                      <HTMLOverviewBarComponent
+                        cacheElements={10}
+                        dispatch={[Function]}
+                        fillColor="#999999"
+                        height={50}
+                        maxLength={60}
+                        method="conservation"
+                        nrXTiles={26}
+                        sequences={
+                          Array [
+                            Object {
+                              "name": "sequence 1",
+                              "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                            },
+                            Object {
+                              "name": "sequence 2",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 3",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 4",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 5",
+                              "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 6",
+                              "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 7",
+                              "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                            },
+                          ]
+                        }
+                        tileWidth={20}
+                        width={500}
+                      >
+                        <withPosition(XBarComponent)
+                          cacheElements={10}
+                          componentCache={[Function]}
+                          maxLength={60}
+                          nrXTiles={26}
+                          sequences={
+                            Array [
+                              Object {
+                                "name": "sequence 1",
+                                "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                              },
+                              Object {
+                                "name": "sequence 2",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 3",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 4",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 5",
+                                "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 6",
+                                "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 7",
+                                "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                              },
+                            ]
+                          }
+                          tileComponent={[Function]}
+                          tileWidth={20}
+                          width={500}
+                        >
+                          <XBarComponent
+                            cacheElements={10}
+                            componentCache={[Function]}
+                            maxLength={60}
+                            nrXTiles={26}
+                            position={
+                              Object {
+                                "currentViewSequence": 0,
+                                "currentViewSequencePosition": 0,
+                                "lastCurrentViewSequencePosition": 0,
+                                "lastStartXTile": 0,
+                                "xPos": 0,
+                                "xPosOffset": -0,
+                                "yPos": 0,
+                                "yPosOffset": -0,
+                              }
+                            }
+                            positionDispatch={[Function]}
+                            sequences={
+                              Array [
+                                Object {
+                                  "name": "sequence 1",
+                                  "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                                },
+                                Object {
+                                  "name": "sequence 2",
+                                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 3",
+                                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 4",
+                                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 5",
+                                  "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 6",
+                                  "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 7",
+                                  "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                                },
+                              ]
+                            }
+                            tileComponent={[Function]}
+                            tileWidth={20}
+                            width={500}
+                          >
+                            <div
+                              style={
+                                Object {
+                                  "height": undefined,
+                                }
+                              }
+                            >
+                              <div
+                                style={
+                                  Object {
+                                    "overflow": "hidden",
+                                    "position": "relative",
+                                    "whiteSpace": "nowrap",
+                                    "width": 500,
+                                  }
+                                }
+                              >
+                                <ListComponent
+                                  componentCache={[Function]}
+                                  endTile={46}
+                                  maxWidth={900}
+                                  sequences={
+                                    Array [
+                                      Object {
+                                        "name": "sequence 1",
+                                        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                                      },
+                                      Object {
+                                        "name": "sequence 2",
+                                        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                      },
+                                      Object {
+                                        "name": "sequence 3",
+                                        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                      },
+                                      Object {
+                                        "name": "sequence 4",
+                                        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                      },
+                                      Object {
+                                        "name": "sequence 5",
+                                        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                      },
+                                      Object {
+                                        "name": "sequence 6",
+                                        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                      },
+                                      Object {
+                                        "name": "sequence 7",
+                                        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                                      },
+                                    ]
+                                  }
+                                  startTile={0}
+                                  tileComponent={[Function]}
+                                  tileWidth={20}
+                                >
+                                  <div>
+                                    <Bar
+                                      index={0}
+                                      key="0"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={1}
+                                      key="1"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={2}
+                                      key="2"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={3}
+                                      key="3"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={4}
+                                      key="4"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={5}
+                                      key="5"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 34,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={6}
+                                      key="6"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={7}
+                                      key="7"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 32,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={8}
+                                      key="8"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={9}
+                                      key="9"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 35,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={10}
+                                      key="10"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 28,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={11}
+                                      key="11"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 21,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={12}
+                                      key="12"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={13}
+                                      key="13"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={14}
+                                      key="14"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={15}
+                                      key="15"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={16}
+                                      key="16"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 35,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={17}
+                                      key="17"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={18}
+                                      key="18"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={19}
+                                      key="19"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={20}
+                                      key="20"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={21}
+                                      key="21"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={22}
+                                      key="22"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={23}
+                                      key="23"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={24}
+                                      key="24"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 35,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={25}
+                                      key="25"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 35,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={26}
+                                      key="26"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={27}
+                                      key="27"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={28}
+                                      key="28"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 35,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={29}
+                                      key="29"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={30}
+                                      key="30"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={31}
+                                      key="31"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={32}
+                                      key="32"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={33}
+                                      key="33"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={34}
+                                      key="34"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 35,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={35}
+                                      key="35"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={36}
+                                      key="36"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={37}
+                                      key="37"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={38}
+                                      key="38"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={39}
+                                      key="39"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 35,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={40}
+                                      key="40"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 35,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={41}
+                                      key="41"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={42}
+                                      key="42"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 35,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={43}
+                                      key="43"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 35,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={44}
+                                      key="44"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 35,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                    <Bar
+                                      index={45}
+                                      key="45"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "backgroundColor": "#999999",
+                                            "display": "inline-block",
+                                            "height": 50,
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      />
+                                    </Bar>
+                                  </div>
+                                </ListComponent>
+                              </div>
+                            </div>
+                          </XBarComponent>
+                        </withPosition(XBarComponent)>
+                      </HTMLOverviewBarComponent>
+                    </Connect(HTMLOverviewBarComponent)>
+                    <Connect(HTMLPositionBarComponent)>
+                      <HTMLPositionBarComponent
+                        cacheElements={10}
+                        dispatch={[Function]}
+                        height={15}
+                        markerSteps={2}
+                        markerStyle={Object {}}
+                        maxLength={60}
+                        nrXTiles={26}
+                        sequences={
+                          Array [
+                            Object {
+                              "name": "sequence 1",
+                              "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                            },
+                            Object {
+                              "name": "sequence 2",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 3",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 4",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 5",
+                              "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 6",
+                              "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 7",
+                              "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                            },
+                          ]
+                        }
+                        startIndex={1}
+                        style={
+                          Object {
+                            "font": "12px Arial",
+                          }
+                        }
+                        tileWidth={20}
+                        width={500}
+                      >
+                        <withPosition(XBarComponent)
+                          cacheElements={10}
+                          componentCache={[Function]}
+                          height={15}
+                          maxLength={60}
+                          nrXTiles={26}
+                          sequences={
+                            Array [
+                              Object {
+                                "name": "sequence 1",
+                                "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                              },
+                              Object {
+                                "name": "sequence 2",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 3",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 4",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 5",
+                                "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 6",
+                                "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 7",
+                                "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                              },
+                            ]
+                          }
+                          style={
+                            Object {
+                              "font": "12px Arial",
+                            }
+                          }
+                          tileComponent={[Function]}
+                          tileWidth={20}
+                          width={500}
+                        >
+                          <XBarComponent
+                            cacheElements={10}
+                            componentCache={[Function]}
+                            height={15}
+                            maxLength={60}
+                            nrXTiles={26}
+                            position={
+                              Object {
+                                "currentViewSequence": 0,
+                                "currentViewSequencePosition": 0,
+                                "lastCurrentViewSequencePosition": 0,
+                                "lastStartXTile": 0,
+                                "xPos": 0,
+                                "xPosOffset": -0,
+                                "yPos": 0,
+                                "yPosOffset": -0,
+                              }
+                            }
+                            positionDispatch={[Function]}
+                            sequences={
+                              Array [
+                                Object {
+                                  "name": "sequence 1",
+                                  "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                                },
+                                Object {
+                                  "name": "sequence 2",
+                                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 3",
+                                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 4",
+                                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 5",
+                                  "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 6",
+                                  "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 7",
+                                  "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                                },
+                              ]
+                            }
+                            style={
+                              Object {
+                                "font": "12px Arial",
+                              }
+                            }
+                            tileComponent={[Function]}
+                            tileWidth={20}
+                            width={500}
+                          >
+                            <div
+                              height={15}
+                              style={
+                                Object {
+                                  "font": "12px Arial",
+                                }
+                              }
+                            >
+                              <div
+                                style={
+                                  Object {
+                                    "overflow": "hidden",
+                                    "position": "relative",
+                                    "whiteSpace": "nowrap",
+                                    "width": 500,
+                                  }
+                                }
+                              >
+                                <ListComponent
+                                  componentCache={[Function]}
+                                  endTile={46}
+                                  maxWidth={900}
+                                  sequences={
+                                    Array [
+                                      Object {
+                                        "name": "sequence 1",
+                                        "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                                      },
+                                      Object {
+                                        "name": "sequence 2",
+                                        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                      },
+                                      Object {
+                                        "name": "sequence 3",
+                                        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                      },
+                                      Object {
+                                        "name": "sequence 4",
+                                        "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                      },
+                                      Object {
+                                        "name": "sequence 5",
+                                        "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                      },
+                                      Object {
+                                        "name": "sequence 6",
+                                        "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                      },
+                                      Object {
+                                        "name": "sequence 7",
+                                        "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                                      },
+                                    ]
+                                  }
+                                  startTile={0}
+                                  tileComponent={[Function]}
+                                  tileWidth={20}
+                                >
+                                  <div>
+                                    <Marker
+                                      index={0}
+                                      key="0"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        1
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={1}
+                                      key="1"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={2}
+                                      key="2"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        3
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={3}
+                                      key="3"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={4}
+                                      key="4"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        5
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={5}
+                                      key="5"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={6}
+                                      key="6"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        7
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={7}
+                                      key="7"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={8}
+                                      key="8"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        9
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={9}
+                                      key="9"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={10}
+                                      key="10"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        11
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={11}
+                                      key="11"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={12}
+                                      key="12"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        13
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={13}
+                                      key="13"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={14}
+                                      key="14"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        15
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={15}
+                                      key="15"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={16}
+                                      key="16"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        17
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={17}
+                                      key="17"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={18}
+                                      key="18"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        19
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={19}
+                                      key="19"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={20}
+                                      key="20"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        21
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={21}
+                                      key="21"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={22}
+                                      key="22"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        23
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={23}
+                                      key="23"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={24}
+                                      key="24"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        25
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={25}
+                                      key="25"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={26}
+                                      key="26"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        27
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={27}
+                                      key="27"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={28}
+                                      key="28"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        29
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={29}
+                                      key="29"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={30}
+                                      key="30"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        31
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={31}
+                                      key="31"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={32}
+                                      key="32"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        33
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={33}
+                                      key="33"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={34}
+                                      key="34"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        35
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={35}
+                                      key="35"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={36}
+                                      key="36"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        37
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={37}
+                                      key="37"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={38}
+                                      key="38"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        39
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={39}
+                                      key="39"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={40}
+                                      key="40"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        41
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={41}
+                                      key="41"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={42}
+                                      key="42"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        43
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={43}
+                                      key="43"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={44}
+                                      key="44"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        45
+                                      </div>
+                                    </Marker>
+                                    <Marker
+                                      index={45}
+                                      key="45"
+                                    >
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "inline-block",
+                                            "textAlign": "center",
+                                            "width": 20,
+                                          }
+                                        }
+                                      >
+                                        .
+                                      </div>
+                                    </Marker>
+                                  </div>
+                                </ListComponent>
+                              </div>
+                            </div>
+                          </XBarComponent>
+                        </withPosition(XBarComponent)>
+                      </HTMLPositionBarComponent>
+                    </Connect(HTMLPositionBarComponent)>
+                    <Connect(withPosition(SequenceViewerComponent))>
+                      <withPosition(SequenceViewerComponent)
+                        colorScheme={
+                          ColorScheme {
+                            "scheme": StaticSchemeClass {
+                              "defaultColor": "#ffffff",
+                              "getColor": [Function],
+                              "map": Object {
+                                "A": "orange",
+                                "B": "#fff",
+                                "C": "green",
+                                "D": "red",
+                                "E": "red",
+                                "F": "blue",
+                                "G": "orange",
+                                "Gap": "#fff",
+                                "H": "red",
+                                "I": "green",
+                                "J": "#fff",
+                                "K": "red",
+                                "L": "green",
+                                "M": "green",
+                                "N": "#fff",
+                                "O": "#fff",
+                                "P": "orange",
+                                "Q": "#fff",
+                                "R": "red",
+                                "S": "orange",
+                                "T": "orange",
+                                "U": "#fff",
+                                "V": "green",
+                                "W": "blue",
+                                "X": "#fff",
+                                "Y": "blue",
+                                "Z": "#fff",
+                              },
+                              "type": "static",
+                            },
+                          }
+                        }
+                        dispatch={[Function]}
+                        fullHeight={140}
+                        fullWidth={1200}
+                        height={100}
+                        nrXTiles={26}
+                        nrYTiles={6}
+                        sequences={
+                          Object {
+                            "length": 7,
+                            "maxLength": 60,
+                            "raw": Array [
+                              Object {
+                                "name": "sequence 1",
+                                "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                              },
+                              Object {
+                                "name": "sequence 2",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 3",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 4",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 5",
+                                "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 6",
+                                "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 7",
+                                "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                              },
+                            ],
+                          }
+                        }
+                        tileHeight={20}
+                        tileWidth={20}
+                        width={500}
+                      >
+                        <SequenceViewerComponent
+                          border={false}
+                          borderColor="black"
+                          borderWidth={1}
+                          cacheElements={20}
+                          colorScheme={
+                            ColorScheme {
+                              "scheme": StaticSchemeClass {
+                                "defaultColor": "#ffffff",
+                                "getColor": [Function],
+                                "map": Object {
+                                  "A": "orange",
+                                  "B": "#fff",
+                                  "C": "green",
+                                  "D": "red",
+                                  "E": "red",
+                                  "F": "blue",
+                                  "G": "orange",
+                                  "Gap": "#fff",
+                                  "H": "red",
+                                  "I": "green",
+                                  "J": "#fff",
+                                  "K": "red",
+                                  "L": "green",
+                                  "M": "green",
+                                  "N": "#fff",
+                                  "O": "#fff",
+                                  "P": "orange",
+                                  "Q": "#fff",
+                                  "R": "red",
+                                  "S": "orange",
+                                  "T": "orange",
+                                  "U": "#fff",
+                                  "V": "green",
+                                  "W": "blue",
+                                  "X": "#fff",
+                                  "Y": "blue",
+                                  "Z": "#fff",
+                                },
+                                "type": "static",
+                              },
+                            }
+                          }
+                          dispatch={[Function]}
+                          fullHeight={140}
+                          fullWidth={1200}
+                          height={100}
+                          nrXTiles={26}
+                          nrYTiles={6}
+                          overflow="hidden"
+                          overflowX="auto"
+                          overflowY="auto"
+                          position={
+                            Object {
+                              "currentViewSequence": 0,
+                              "currentViewSequencePosition": 0,
+                              "xPos": 0,
+                              "xPosOffset": -0,
+                              "yPos": 0,
+                              "yPosOffset": -0,
+                            }
+                          }
+                          positionDispatch={[Function]}
+                          scrollBarPositionX="bottom"
+                          scrollBarPositionY="right"
+                          sequences={
+                            Object {
+                              "length": 7,
+                              "maxLength": 60,
+                              "raw": Array [
+                                Object {
+                                  "name": "sequence 1",
+                                  "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                                },
+                                Object {
+                                  "name": "sequence 2",
+                                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 3",
+                                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 4",
+                                  "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 5",
+                                  "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 6",
+                                  "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                                },
+                                Object {
+                                  "name": "sequence 7",
+                                  "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                                },
+                              ],
+                            }
+                          }
+                          showModBar={false}
+                          textColor="black"
+                          textFont="18px Arial"
+                          tileHeight={20}
+                          tileWidth={20}
+                          width={500}
+                          xGridSize={10}
+                          yGridSize={10}
+                        >
+                          <div
+                            height={100}
+                            style={
+                              Object {
+                                "cursor": "grab",
+                                "height": 100,
+                                "position": "relative",
+                                "width": 500,
+                              }
+                            }
+                            width={500}
+                          >
+                            <canvas
+                              height={100}
+                              style={
+                                Object {
+                                  "left": 0,
+                                  "position": "absolute",
+                                  "top": 0,
+                                }
+                              }
+                              width={500}
+                            >
+                              Your browser does not seem to support HTML5 canvas.
+                            </canvas>
+                            <canvas
+                              height={100}
+                              style={
+                                Object {
+                                  "left": 0,
+                                  "position": "absolute",
+                                  "top": 0,
+                                }
+                              }
+                              width={500}
+                            >
+                              Your browser does not seem to support HTML5 canvas.
+                            </canvas>
+                            <withPosition(FakeScroll)
+                              fullHeight={140}
+                              fullWidth={1200}
+                              height={100}
+                              overflow="hidden"
+                              overflowX="auto"
+                              overflowY="auto"
+                              positionX="bottom"
+                              positionY="right"
+                              width={500}
+                            >
+                              <FakeScroll
+                                fullHeight={140}
+                                fullWidth={1200}
+                                height={100}
+                                overflow="hidden"
+                                overflowX="auto"
+                                overflowY="auto"
+                                position={
+                                  Object {
+                                    "currentViewSequence": 0,
+                                    "currentViewSequencePosition": 0,
+                                    "xPos": 0,
+                                    "xPosOffset": -0,
+                                    "yPos": 0,
+                                    "yPosOffset": -0,
+                                  }
+                                }
+                                positionDispatch={[Function]}
+                                positionX="bottom"
+                                positionY="right"
+                                scrollBarWidth={5}
+                                width={500}
+                              >
+                                <div />
+                              </FakeScroll>
+                            </withPosition(FakeScroll)>
+                          </div>
+                        </SequenceViewerComponent>
+                      </withPosition(SequenceViewerComponent)>
+                    </Connect(withPosition(SequenceViewerComponent))>
+                  </div>
+                  <Connect(HTMLLabelsComponent)
+                    style={
+                      Object {
+                        "paddingTop": 70,
+                      }
+                    }
+                  >
+                    <HTMLLabelsComponent
+                      cacheElements={10}
+                      dispatch={[Function]}
+                      height={100}
+                      labelStyle={Object {}}
+                      nrYTiles={6}
+                      sequences={
+                        Array [
+                          Object {
+                            "name": "sequence 1",
+                            "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                          },
+                          Object {
+                            "name": "sequence 2",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 3",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 4",
+                            "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 5",
+                            "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 6",
+                            "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                          },
+                          Object {
+                            "name": "sequence 7",
+                            "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                          },
+                        ]
+                      }
+                      style={
+                        Object {
+                          "paddingTop": 70,
+                        }
+                      }
+                      tileHeight={20}
+                    >
+                      <withPosition(YBarComponent)
+                        cacheElements={10}
+                        componentCache={[Function]}
+                        height={100}
+                        nrYTiles={6}
+                        sequences={
+                          Array [
+                            Object {
+                              "name": "sequence 1",
+                              "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                            },
+                            Object {
+                              "name": "sequence 2",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 3",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 4",
+                              "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 5",
+                              "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 6",
+                              "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                            },
+                            Object {
+                              "name": "sequence 7",
+                              "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                            },
+                          ]
+                        }
+                        style={
+                          Object {
+                            "paddingTop": 70,
+                          }
+                        }
+                        tileComponent={[Function]}
+                        tileHeight={20}
+                      >
+                        <YBarComponent
+                          cacheElements={10}
+                          componentCache={[Function]}
+                          height={100}
+                          nrYTiles={6}
+                          position={
+                            Object {
+                              "currentViewSequence": 0,
+                              "currentViewSequencePosition": 0,
+                              "lastCurrentViewSequence": 0,
+                              "lastStartYTile": 0,
+                              "xPos": 0,
+                              "xPosOffset": -0,
+                              "yPos": 0,
+                              "yPosOffset": -0,
+                            }
+                          }
+                          positionDispatch={[Function]}
+                          sequences={
+                            Array [
+                              Object {
+                                "name": "sequence 1",
+                                "sequence": "MEEPQSDPSIEP-PLSQETFSDLWKLLPENNVLSPLPS-QA-VDDLMLSPDDLAQWLTED",
+                              },
+                              Object {
+                                "name": "sequence 2",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 3",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 4",
+                                "sequence": "MEEPQSDLSIEL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 5",
+                                "sequence": "MEEPQSD--IEL-PLSEETFSDLWWPLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 6",
+                                "sequence": "MEEPQEDLSSSL-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE-LFLSENVAGWLEDP",
+                              },
+                              Object {
+                                "name": "sequence 7",
+                                "sequence": "MEEPQ---SISE-PLSQETFSDLWKLLPPNNVLSTLPS-SDSIEE---LSENVAGWLEDP",
+                              },
+                            ]
+                          }
+                          style={
+                            Object {
+                              "paddingTop": 70,
+                            }
+                          }
+                          tileComponent={[Function]}
+                          tileHeight={20}
+                        >
+                          <div
+                            style={
+                              Object {
+                                "paddingTop": 70,
+                              }
+                            }
+                          >
+                            <div
+                              style={
+                                Object {
+                                  "height": 100,
+                                  "overflow": "hidden",
+                                  "position": "relative",
+                                  "whiteSpace": "nowrap",
+                                }
+                              }
+                            >
+                              <ListComponent
+                                componentCache={[Function]}
+                                endTile={7}
+                                startTile={0}
+                                tileComponent={[Function]}
+                              >
+                                <div>
+                                  <Label
+                                    index={0}
+                                    key="0"
+                                  >
+                                    <div
+                                      style={
+                                        Object {
+                                          "height": 20,
+                                        }
+                                      }
+                                    >
+                                      sequence 1
+                                    </div>
+                                  </Label>
+                                  <Label
+                                    index={1}
+                                    key="1"
+                                  >
+                                    <div
+                                      style={
+                                        Object {
+                                          "height": 20,
+                                        }
+                                      }
+                                    >
+                                      sequence 2
+                                    </div>
+                                  </Label>
+                                  <Label
+                                    index={2}
+                                    key="2"
+                                  >
+                                    <div
+                                      style={
+                                        Object {
+                                          "height": 20,
+                                        }
+                                      }
+                                    >
+                                      sequence 3
+                                    </div>
+                                  </Label>
+                                  <Label
+                                    index={3}
+                                    key="3"
+                                  >
+                                    <div
+                                      style={
+                                        Object {
+                                          "height": 20,
+                                        }
+                                      }
+                                    >
+                                      sequence 4
+                                    </div>
+                                  </Label>
+                                  <Label
+                                    index={4}
+                                    key="4"
+                                  >
+                                    <div
+                                      style={
+                                        Object {
+                                          "height": 20,
+                                        }
+                                      }
+                                    >
+                                      sequence 5
+                                    </div>
+                                  </Label>
+                                  <Label
+                                    index={5}
+                                    key="5"
+                                  >
+                                    <div
+                                      style={
+                                        Object {
+                                          "height": 20,
+                                        }
+                                      }
+                                    >
+                                      sequence 6
+                                    </div>
+                                  </Label>
+                                  <Label
+                                    index={6}
+                                    key="6"
+                                  >
+                                    <div
+                                      style={
+                                        Object {
+                                          "height": 20,
+                                        }
+                                      }
+                                    >
+                                      sequence 7
+                                    </div>
+                                  </Label>
+                                </div>
+                              </ListComponent>
+                            </div>
+                          </div>
+                        </YBarComponent>
+                      </withPosition(YBarComponent)>
+                    </HTMLLabelsComponent>
+                  </Connect(HTMLLabelsComponent)>
+                </div>
+              </MSAInverseLayout>
+            </Connect(MSAInverseLayout)>
+          </div>
+        </MSALayouter>
+      </div>
+    </Provider>
+  </MSAViewerComponent>
+</PropsToReduxComponent>
+`;

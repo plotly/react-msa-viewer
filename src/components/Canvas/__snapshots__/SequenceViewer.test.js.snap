@@ -1116,9 +1116,7 @@ exports[`renders invalidates the tile cache changed properties shouldn't invalid
 
 exports[`renders without crashing 1`] = `
 <PropsToReduxComponent
-  backgroundColor="red"
   colorScheme="clustal"
-  engine="canvas"
   height={100}
   sequences={
     Array [
@@ -1802,9 +1800,7 @@ exports[`sends movement actions on mousemove events should change the cursor sta
 
 exports[`should fire an event on mouseclick 1`] = `
 <PropsToReduxComponent
-  backgroundColor="red"
   colorScheme="clustal"
-  engine="canvas"
   height={200}
   sequences={
     Array [
