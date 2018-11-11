@@ -1,5 +1,5 @@
 {
-  "name": "@plotly/react-msa-viewer",
+  "name": "react-msa-viewer",
   "description": "A React component to create Multiple Sequence Alignments",
   "keywords": [
     "react",
