@@ -15,10 +15,17 @@ module.exports = {
                   singleQuote: false,
                 }
               }
-          }
+          },
         ],
         enforce: 'pre',
-      },
+      }, {
+        test: /\.(clustal|fasta|fa)$/,
+        use: [
+          {
+            loader: 'raw-loader',
+          }
+        ]
+      }
     ],
   },
 };

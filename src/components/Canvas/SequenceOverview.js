@@ -31,7 +31,7 @@ class SequenceOverviewComponent extends CanvasComponent {
 
   drawScene() {
     this.scene = {};
-    ({xPos: this.scene.xViewPos, yPos: this.scene.yViewPos} = this.position);
+    ({xPos: this.scene.xViewPos, yPos: this.scene.yViewPos} = this.props.position);
     this.scene.xScalingFactor = 1 / this.props.globalTileWidth * this.props.tileWidth;
     this.scene.yScalingFactor = 1 / this.props.globalTileHeight * this.props.tileHeight;
     this.drawCurrentViewpoint();
