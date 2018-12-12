@@ -60,6 +60,8 @@ export function parse(text) {
       } else {
         console.log("parse error", line);
       }
+      // reset RegExp
+      clustalRegex.lastIndex = 0;
     }
   }
   return seqs;
