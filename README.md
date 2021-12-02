@@ -10,14 +10,9 @@ React Component that renders a Multiple Sequence Alignment (MSA).
 
 __WARNING: Work in progress - use with caution__
 
-Live demo
----------
-
 <a href="https://msa.bio.sh">
   <img alt="MSAViewer example" src="https://user-images.githubusercontent.com/4370550/46425572-50a8b900-c73c-11e8-9f46-a9cac3a5000b.png" />
 </a>
-
-Checkout the storybook at https://msa.bio.sh
 
 Getting started
 ---------------
