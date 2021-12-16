@@ -12,3 +12,4 @@ require('./layouts');
 require('./events');
 require('./navigation');
 require('./plugins');
+require('./examples');

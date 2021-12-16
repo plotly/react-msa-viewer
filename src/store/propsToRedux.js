@@ -14,6 +14,7 @@
 import React, { Component } from 'react';
 import createRef from 'create-react-ref/lib/createRef';
 import PropTypes from 'prop-types';
+import assert from '../assert';
 
 import {
   forOwn,
@@ -59,6 +60,8 @@ export const PropsToRedux = (WrappedComponent) => {
       this.el = createRef();
       this.msaStore = props.msaStore;
       if (storeProps.sequences !== undefined) {
+        assert(storeProps.sequences.length > 0, "Must have at least one sequence");
+        assert(storeProps.sequences[0].sequence.length > 0, "Must have at a valid .sequence property");
         this.msaStore = createMSAStore(storeProps);
       } else {
         console.warn("Check your MSA properties", storeProps);
